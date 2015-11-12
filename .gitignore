@@ -1,0 +1,13 @@
+*.png
+*.jpg
+*.bmp
+*.wav
+*.mp3
+*.ogg
+*.mp4
+*sublime*
+Library/
+Temp/
+*.sln
+*.csproj
+
