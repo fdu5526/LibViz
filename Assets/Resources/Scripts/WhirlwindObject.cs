@@ -4,16 +4,15 @@ using System.Collections;
 public class WhirlwindObject : MonoBehaviour {
 
 	// assigned
-	[Range(5f, 25.0f)]
+	[Range(5f, 20.0f)]
 	public float speed;
 
 	[Range(2.5f, 8f)]
 	public float height;
 
 	// state machine
-	public enum State { Dormant, FlyInto, Orbit, FlyOut };
+	public enum State { Dormant, FlyInto, Orbit, FlyBack };
 	public State currentState;
-
 
 
 	// generated
@@ -40,20 +39,19 @@ public class WhirlwindObject : MonoBehaviour {
 		center = GameObject.Find("Center").GetComponent<Transform>();
 
 
-		Vector3 v = center.position + radius * (center.position - dormantPosition).normalized;
+		Vector3 d = new Vector3(dormantPosition.x, height, dormantPosition.z);
+		Vector3 c = new Vector3(center.position.x, height, center.position.z);
+		Vector3 v = c - radius * (c - d).normalized;
 		orbitStartPosition = new Vector3(v.x, height, v.z);
-		
 
 		isGoingUp = UnityEngine.Random.Range(0f, 1f) > 0.5f;
 	}
 
+
+
+
 	// for setting initial angular velocity
 	float RandomAngularVelocityRange { get { return 5f * UnityEngine.Random.Range(-1f, 1f); } }
-
-
-	void FlyInto () {
-		GetComponent<Rigidbody>().velocity = speed * (orbitStartPosition - GetComponent<Transform>().position).normalized;
-	}
 
 
 
@@ -94,6 +92,23 @@ public class WhirlwindObject : MonoBehaviour {
 		rigidbody.velocity = new Vector3(v.x, isGoingUp ? 0.06f : -0.06f, v.y) * speed;
 	}
 
+
+	public void FlyInto () {
+		currentState = State.FlyInto;
+		GetComponent<Rigidbody>().useGravity = false;
+		GetComponent<Collider>().enabled = false;
+		GetComponent<Rigidbody>().velocity = speed * 1f * (orbitStartPosition - GetComponent<Transform>().position).normalized;
+		GetComponent<Rigidbody>().angularVelocity = new Vector3(RandomAngularVelocityRange,
+																														RandomAngularVelocityRange, 
+																														RandomAngularVelocityRange);
+	}
+
+	public void FlyBack () {
+		currentState = State.FlyBack;
+		GetComponent<Rigidbody>().useGravity = true;
+		GetComponent<Rigidbody>().velocity = speed * 1f * (dormantPosition - GetComponent<Transform>().position).normalized;
+	}
+
 	
 	// state machine transitions here
 	void FixedUpdate () {
@@ -102,32 +117,23 @@ public class WhirlwindObject : MonoBehaviour {
 
 		switch (currentState) {
 			case State.Dormant:
-
-				if (Input.GetKeyDown("space")) {
-					currentState = State.FlyInto;
-				}
 				break;
 			case State.FlyInto:
-				
-				if ((p - orbitStartPosition).sqrMagnitude < 0.1f) { // FlyInto => Orbit
+				if ((p - orbitStartPosition).sqrMagnitude < 1f) { // FlyInto => Orbit
 					isCounterClockwise = UnityEngine.Random.Range(0f, 1f) > 0.5f;
-					GetComponent<Rigidbody>().angularVelocity = new Vector3(RandomAngularVelocityRange,
-																																	RandomAngularVelocityRange, 
-																																	RandomAngularVelocityRange);
 					currentState = State.Orbit;
 				} else {
-					FlyInto();
+					GetComponent<Collider>().enabled = true;
 				}
-					
-
 				break;
 			case State.Orbit:
+				Orbit();
 				break;
-			case State.FlyOut:
+			case State.FlyBack:
+				if (p.y < 1f) { // FlyBack => Dormant
+					currentState = State.Dormant;
+				}
 				break;
-			default:
-				break;
-
 		}
 	}
 }
