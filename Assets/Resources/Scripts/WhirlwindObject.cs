@@ -25,6 +25,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 	// for going up and down
 	int verticalCounter;
+	int currentVerticalCounterMax;
 	bool isGoingUp;
 
 
@@ -52,6 +53,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 	// for setting initial angular velocity
 	float RandomAngularVelocityRange { get { return 5f * UnityEngine.Random.Range(-1f, 1f); } }
+	int NewVerticalCounterMax { get { return (int)UnityEngine.Random.Range(50f, 150f); } }
 
 
 
@@ -98,6 +100,7 @@ public class WhirlwindObject : MonoBehaviour {
 		GetComponent<Rigidbody>().useGravity = false;
 		GetComponent<Collider>().enabled = false;
 		GetComponent<Rigidbody>().velocity = speed * 1f * (orbitStartPosition - GetComponent<Transform>().position).normalized;
+		currentVerticalCounterMax = NewVerticalCounterMax;
 		GetComponent<Rigidbody>().angularVelocity = new Vector3(RandomAngularVelocityRange,
 																														RandomAngularVelocityRange, 
 																														RandomAngularVelocityRange);
