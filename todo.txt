@@ -1,0 +1,17 @@
+whirlwind start
+whirlwind end
+
+-------------------------------------------------------
+
+touch interaction
+	TUIO?
+
+kinect
+	faster people movement => swirl up more stuff
+	ensure it is same person interacting
+
+get data from mySQL
+
+selectable objects
+	objects appear in a grid
+	info popup and go in front
