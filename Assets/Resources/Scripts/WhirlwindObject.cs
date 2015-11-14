@@ -7,7 +7,7 @@ public class WhirlwindObject : MonoBehaviour {
 	[Range(5f, 18.0f)]
 	public float speed;
 
-	[Range(2.5f, 8f)]
+	[Range(2.5f, 9.5f)]
 	public float height;
 
 	// state machine
@@ -19,9 +19,9 @@ public class WhirlwindObject : MonoBehaviour {
 	float radius;
 	bool isCounterClockwise;
 	Vector3 dormantPosition;
-	Vector3 orbitStartPosition;
 
 	Transform center;
+	GameObject trail;
 
 	// for going up and down
 	int verticalCounter;
@@ -35,15 +35,12 @@ public class WhirlwindObject : MonoBehaviour {
 
 		currentState = State.Dormant;
 		radius = height / 9f * 5f;
+		speed *= 0.7f; // TODO
 
 		dormantPosition = GetComponent<Transform>().position;
 		center = GameObject.Find("WhirlwindCenter").GetComponent<Transform>();
-
-
-		Vector3 d = new Vector3(dormantPosition.x, height, dormantPosition.z);
-		Vector3 c = new Vector3(center.position.x, height, center.position.z);
-		Vector3 v = c - radius * (c - d).normalized;
-		orbitStartPosition = new Vector3(v.x, height, v.z);
+		trail = GetComponent<Transform>().Find("Trail").gameObject;
+		trail.GetComponent<ParticleSystem>().Stop();
 
 		isGoingUp = UnityEngine.Random.Range(0f, 1f) > 0.5f;
 	}
@@ -68,6 +65,7 @@ public class WhirlwindObject : MonoBehaviour {
 		GetComponent<Collider>().enabled = false;
 		isCounterClockwise = UnityEngine.Random.Range(0f, 1f) > 0.5f;
 		currentVerticalCounterMax = NewVerticalCounterMax;
+		trail.GetComponent<ParticleSystem>().Play();
 		GetComponent<Rigidbody>().angularVelocity = new Vector3(RandomAngularVelocityRange,
 																														RandomAngularVelocityRange, 
 																														RandomAngularVelocityRange);
@@ -90,11 +88,11 @@ public class WhirlwindObject : MonoBehaviour {
 		// vertical velocity
 		if (currentState == State.FlyInto) {
 			if (GetComponent<Transform>().position.y < height) {
-				dy = 0.5f;
+				dy = speed / 45f;
 			}
 		} else {
 			// go up and down
-			if (verticalCounter > 100) {
+			if (verticalCounter > currentVerticalCounterMax) {
 				verticalCounter = 0;
 				isGoingUp = !isGoingUp;	
 			}
@@ -139,12 +137,14 @@ public class WhirlwindObject : MonoBehaviour {
 	public void FlyBack () {
 		currentState = State.FlyBack;
 		GetComponent<Rigidbody>().useGravity = true;
+		trail.GetComponent<ParticleSystem>().Stop();
 		GetComponent<Rigidbody>().velocity = speed * (dormantPosition - GetComponent<Transform>().position).normalized;
 	}
 
 
 	void OnMouseOver () {
 		if (Input.GetMouseButtonDown(0)) {
+			// TODO
 			GameObject[] gl = GameObject.FindGameObjectsWithTag("WhirlwindObject");
 			for (int i = 0; i < gl.Length; i++) {
 				gl[i].GetComponent<WhirlwindObject>().currentState = State.Grid;
