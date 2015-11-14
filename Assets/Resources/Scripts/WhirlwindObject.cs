@@ -4,7 +4,7 @@ using System.Collections;
 public class WhirlwindObject : MonoBehaviour {
 
 	// assigned
-	[Range(5f, 20.0f)]
+	[Range(5f, 18.0f)]
 	public float speed;
 
 	[Range(2.5f, 8f)]
@@ -37,7 +37,7 @@ public class WhirlwindObject : MonoBehaviour {
 		radius = height / 9f * 5f;
 
 		dormantPosition = GetComponent<Transform>().position;
-		center = GameObject.Find("Center").GetComponent<Transform>();
+		center = GameObject.Find("WhirlwindCenter").GetComponent<Transform>();
 
 
 		Vector3 d = new Vector3(dormantPosition.x, height, dormantPosition.z);
@@ -52,88 +52,117 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 	// for setting initial angular velocity
-	float RandomAngularVelocityRange { get { return 5f * UnityEngine.Random.Range(-1f, 1f); } }
+	float RandomAngularVelocityRange { 
+		get { 
+			float f = 5f * UnityEngine.Random.Range(0.3f, 1f);
+			return UnityEngine.Random.Range(0f, 1f) > 0.5f ? f : -f;
+		} 
+	}
 	int NewVerticalCounterMax { get { return (int)UnityEngine.Random.Range(50f, 150f); } }
 
-
-
-	// orbit the whirlwind
-	void Orbit () {
-		Rigidbody rigidbody = GetComponent<Rigidbody>();		
-
-		// go up and down
-		if (verticalCounter > 100) {
-			verticalCounter = 0;
-			isGoingUp = !isGoingUp;
-		}
-		verticalCounter++;
-		
-		// d is directional vector to player, d2 is the 2D vector
-		Vector3 p = GetComponent<Transform>().position;
-		Vector3 d = center.position - p;
-		Vector2 d2 = new Vector2(d.x, d.z);
-
-
-		// small adjustments to prevent objects from escaping orbit
-		Vector2 d2n = d2.normalized;
-		float rd = radius - d2.magnitude;
-		if (rd > 0.05f) {
-			GetComponent<Transform>().position = p - 0.05f * new Vector3(d2n.x, 0f, d2n.y);
-		} else if (rd < -0.05f) {
-			GetComponent<Transform>().position = p + 0.05f * new Vector3(d2n.x, 0f, d2n.y);
-		}
-		
-		// rotation based on rotation matrix
-		Vector2 v;
-		if (isCounterClockwise) { 
-			v = new Vector2(d2.x * 0.0698f + d2.y * 0.998f, d2.x * -0.998f + d2.y * 0.0698f);
-		} else {
-			v = new Vector2(d2.x * 0.0698f + d2.y * -0.998f, d2.x * 0.998f + d2.y * 0.0698f);
-		}
-		v.Normalize();
-		rigidbody.velocity = new Vector3(v.x, isGoingUp ? 0.06f : -0.06f, v.y) * speed;
-	}
 
 
 	public void FlyInto () {
 		currentState = State.FlyInto;
 		GetComponent<Rigidbody>().useGravity = false;
 		GetComponent<Collider>().enabled = false;
-		GetComponent<Rigidbody>().velocity = speed * 1f * (orbitStartPosition - GetComponent<Transform>().position).normalized;
+		isCounterClockwise = UnityEngine.Random.Range(0f, 1f) > 0.5f;
 		currentVerticalCounterMax = NewVerticalCounterMax;
 		GetComponent<Rigidbody>().angularVelocity = new Vector3(RandomAngularVelocityRange,
 																														RandomAngularVelocityRange, 
 																														RandomAngularVelocityRange);
 	}
 
+
+
+	void Orbit () {
+		float xc;
+		float yc;
+		float dy = 0f;
+		Vector2 v, d2, d2n;
+		Vector3 p, d;
+
+
+		if (!GetComponent<Collider>().enabled) {
+			GetComponent<Collider>().enabled = true;
+		}
+		
+		// vertical velocity
+		if (currentState == State.FlyInto) {
+			if (GetComponent<Transform>().position.y < height) {
+				dy = 0.5f;
+			}
+		} else {
+			// go up and down
+			if (verticalCounter > 100) {
+				verticalCounter = 0;
+				isGoingUp = !isGoingUp;	
+			}
+			verticalCounter++;
+			dy = isGoingUp ? 0.06f : -0.06f;
+		}
+
+		// d is directional vector to player, d2 is the 2D vector
+		p = GetComponent<Transform>().position;
+		d = center.position - p;
+		d2 = new Vector2(d.x, d.z);
+
+		// small adjustments to prevent objects from escaping orbit
+		d2n = d2.normalized;
+		float rd = radius - d2.magnitude;
+		if (rd > 0.05f) {
+			GetComponent<Transform>().position = p - 0.05f * new Vector3(d2n.x, 0f, d2n.y);
+		} else if (rd < -0.05f) {
+			GetComponent<Transform>().position = p + 0.05f * new Vector3(d2n.x, 0f, d2n.y);
+		}
+
+		// rotation based on rotation matrix		
+		if (currentState == State.FlyInto) {
+			xc = 0.17f;
+			yc = 0.985f;
+		} else {
+			xc = 0.0698f;
+			yc = 0.998f;
+		}
+
+		if (isCounterClockwise) {
+			v = new Vector2(d2.x * xc + d2.y * yc, d2.x * -yc + d2.y * xc);
+		} else {
+			v = new Vector2(d2.x * xc + d2.y * -yc, d2.x * yc + d2.y * xc);
+		}
+		v.Normalize();
+		GetComponent<Rigidbody>().velocity = new Vector3(v.x, dy, v.y) * speed;
+	}
+
+
+
 	public void FlyBack () {
 		currentState = State.FlyBack;
 		GetComponent<Rigidbody>().useGravity = true;
-		GetComponent<Rigidbody>().velocity = speed * 1f * (dormantPosition - GetComponent<Transform>().position).normalized;
+		GetComponent<Rigidbody>().velocity = speed * (dormantPosition - GetComponent<Transform>().position).normalized;
 	}
 
 	
-	// state machine transitions here
 	void FixedUpdate () {
 			
 		Vector3 p = GetComponent<Transform>().position;
 
+		// state machine transitions
 		switch (currentState) {
 			case State.Dormant:
 				break;
 			case State.FlyInto:
-				if ((p - orbitStartPosition).sqrMagnitude < 1f) { // FlyInto => Orbit
-					isCounterClockwise = UnityEngine.Random.Range(0f, 1f) > 0.5f;
+				if (Mathf.Abs(p.y - height) < 1f) { // FlyInto => Orbit
 					currentState = State.Orbit;
 				} else {
-					GetComponent<Collider>().enabled = true;
+					Orbit();
 				}
 				break;
 			case State.Orbit:
 				Orbit();
 				break;
 			case State.FlyBack:
-				if (p.y < 1f) { // FlyBack => Dormant
+				if (p.y < 2f) { // FlyBack => Dormant
 					currentState = State.Dormant;
 				}
 				break;
