@@ -11,7 +11,7 @@ public class WhirlwindObject : MonoBehaviour {
 	public float height;
 
 	// state machine
-	public enum State { Dormant, FlyInto, Orbit, FlyBack };
+	public enum State { Dormant, FlyInto, Orbit, Grid, FlyBack };
 	public State currentState;
 
 
@@ -142,6 +142,17 @@ public class WhirlwindObject : MonoBehaviour {
 		GetComponent<Rigidbody>().velocity = speed * (dormantPosition - GetComponent<Transform>().position).normalized;
 	}
 
+
+	void OnMouseOver () {
+		if (Input.GetMouseButtonDown(0)) {
+			GameObject[] gl = GameObject.FindGameObjectsWithTag("WhirlwindObject");
+			for (int i = 0; i < gl.Length; i++) {
+				gl[i].GetComponent<WhirlwindObject>().currentState = State.Grid;
+			}
+		}
+		
+	}
+
 	
 	void FixedUpdate () {
 			
@@ -160,6 +171,10 @@ public class WhirlwindObject : MonoBehaviour {
 				break;
 			case State.Orbit:
 				Orbit();
+				break;
+			case State.Grid:
+				GetComponent<Rigidbody>().velocity = Vector3.zero;
+				GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 				break;
 			case State.FlyBack:
 				if (p.y < 2f) { // FlyBack => Dormant

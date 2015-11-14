@@ -16,7 +16,7 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 
-	void CheckUserInput () {
+	void InteractWithWhirlwind () {
 		if (Input.GetKeyDown("space")) {
 			if (wb[0].currentState == WhirlwindObject.State.Dormant) {
 				for (int i = 0; i < wb.Length; i++) {
@@ -33,6 +33,6 @@ public class Whirlwind : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		CheckUserInput();
+		InteractWithWhirlwind();
 	}
 }
