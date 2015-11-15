@@ -97,7 +97,7 @@ public class WhirlwindObject : MonoBehaviour {
 				isGoingUp = !isGoingUp;	
 			}
 			verticalCounter++;
-			dy = isGoingUp ? 0.06f : -0.06f;
+			dy = isGoingUp ? 0.1f : -0.1f;
 		}
 
 		// d is directional vector to player, d2 is the 2D vector
@@ -179,6 +179,8 @@ public class WhirlwindObject : MonoBehaviour {
 			case State.FlyBack:
 				if (p.y < 2f) { // FlyBack => Dormant
 					currentState = State.Dormant;
+				} else {
+					GetComponent<Rigidbody>().velocity = speed * (dormantPosition - GetComponent<Transform>().position).normalized;
 				}
 				break;
 		}
