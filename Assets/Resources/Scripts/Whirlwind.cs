@@ -22,7 +22,8 @@ public class Whirlwind : MonoBehaviour {
 				for (int i = 0; i < wb.Length; i++) {
 					wb[i].FlyInto();
 				}
-			} else if (wb[0].currentState == WhirlwindObject.State.Orbit) {
+			} else if (wb[0].currentState == WhirlwindObject.State.Orbit || 
+								 wb[0].currentState == WhirlwindObject.State.Grid) {
 				for (int i = 0; i < wb.Length; i++) {
 					wb[i].FlyBack();
 				}

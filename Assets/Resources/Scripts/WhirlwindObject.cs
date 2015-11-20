@@ -17,7 +17,6 @@ public class WhirlwindObject : MonoBehaviour {
 
 	// generated
 	float radius;
-	bool isCounterClockwise;
 	Vector3 dormantPosition;
 
 	Transform center;
@@ -63,7 +62,6 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.FlyInto;
 		GetComponent<Rigidbody>().useGravity = false;
 		GetComponent<Collider>().enabled = false;
-		isCounterClockwise = UnityEngine.Random.Range(0f, 1f) > 0.5f;
 		currentVerticalCounterMax = NewVerticalCounterMax;
 		trail.GetComponent<ParticleSystem>().Play();
 		GetComponent<Rigidbody>().angularVelocity = new Vector3(RandomAngularVelocityRange,
@@ -123,11 +121,7 @@ public class WhirlwindObject : MonoBehaviour {
 			yc = 0.998f;
 		}
 
-		if (isCounterClockwise) {
-			v = new Vector2(d2.x * xc + d2.y * yc, d2.x * -yc + d2.y * xc);
-		} else {
-			v = new Vector2(d2.x * xc + d2.y * -yc, d2.x * yc + d2.y * xc);
-		}
+		v = new Vector2(d2.x * xc + d2.y * yc, d2.x * -yc + d2.y * xc);
 		v.Normalize();
 		GetComponent<Rigidbody>().velocity = new Vector3(v.x, dy, v.y) * speed;
 	}
@@ -143,11 +137,12 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 	void OnMouseOver () {
-		if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetMouseButtonDown(0) && currentState != State.Grid) {
 			// TODO
 			GameObject[] gl = GameObject.FindGameObjectsWithTag("WhirlwindObject");
 			for (int i = 0; i < gl.Length; i++) {
 				gl[i].GetComponent<WhirlwindObject>().currentState = State.Grid;
+				//gl[i].GetComponent<Transform>().
 			}
 		}
 		
@@ -175,6 +170,8 @@ public class WhirlwindObject : MonoBehaviour {
 			case State.Grid:
 				GetComponent<Rigidbody>().velocity = Vector3.zero;
 				GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+				GetComponent<Transform>().eulerAngles = Vector3.zero;
+				trail.GetComponent<ParticleSystem>().Stop();
 				break;
 			case State.FlyBack:
 				if (p.y < 2f) { // FlyBack => Dormant
