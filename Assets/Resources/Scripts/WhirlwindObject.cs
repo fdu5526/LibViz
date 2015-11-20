@@ -34,7 +34,6 @@ public class WhirlwindObject : MonoBehaviour {
 
 		currentState = State.Dormant;
 		radius = height / 9f * 5f;
-		speed *= 0.7f; // TODO
 
 		dormantPosition = GetComponent<Transform>().position;
 		center = GameObject.Find("WhirlwindCenter").GetComponent<Transform>();
@@ -123,7 +122,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 		v = new Vector2(d2.x * xc + d2.y * yc, d2.x * -yc + d2.y * xc);
 		v.Normalize();
-		GetComponent<Rigidbody>().velocity = new Vector3(v.x, dy, v.y) * speed;
+		GetComponent<Rigidbody>().velocity = new Vector3(v.x, dy, v.y) * speed * 0.3f;
 	}
 
 
@@ -132,17 +131,26 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.FlyBack;
 		GetComponent<Rigidbody>().useGravity = true;
 		trail.GetComponent<ParticleSystem>().Stop();
-		GetComponent<Rigidbody>().velocity = speed * (dormantPosition - GetComponent<Transform>().position).normalized;
+		GetComponent<Rigidbody>().velocity = speed * 0.3f * (dormantPosition - GetComponent<Transform>().position).normalized;
 	}
 
 
 	void OnMouseOver () {
 		if (Input.GetMouseButtonDown(0) && currentState != State.Grid) {
-			// TODO
 			GameObject[] gl = GameObject.FindGameObjectsWithTag("WhirlwindObject");
 			for (int i = 0; i < gl.Length; i++) {
 				gl[i].GetComponent<WhirlwindObject>().currentState = State.Grid;
-				//gl[i].GetComponent<Transform>().
+				gl[i].GetComponent<Rigidbody>().useGravity = false;
+
+				int x = i % 4;
+				int y = i / 4;
+				float hDistance = 2.7f;
+				float vDistance = 2.5f - 0.1f * (float)y;
+				GameObject.Find("Structure/Spotlight").GetComponent<Transform>().position = new Vector3(0f, 31f, -12.87756f);
+
+				gl[i].GetComponent<Transform>().position = new Vector3((float)x * hDistance - 4f, 
+																															 1.7f - 0.1f *(float)y + (float)y * vDistance, 
+																															 -5f);
 			}
 		}
 		
