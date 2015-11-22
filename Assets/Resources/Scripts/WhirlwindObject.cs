@@ -32,6 +32,8 @@ public class WhirlwindObject : MonoBehaviour {
 	int currentVerticalCounterMax;
 	bool isGoingUp;
 
+	Vector3 defaultScale;
+
 
 
 	// Use this for initialization
@@ -40,6 +42,8 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.Dormant;
 		radius = height / 9f * 5f;
 		isInGridFront = false;
+
+		defaultScale = new Vector3(2.5f, 2f, 0.1f);
 
 		otherObjects = GameObject.FindGameObjectsWithTag("WhirlwindObject");
 		dormantPosition = GetComponent<Transform>().position;
@@ -149,14 +153,14 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 	public void MoveToFrontOfGrid () {
-		GetComponent<Transform>().localScale = new Vector3(5f, 4f, 0.1f);
+		GetComponent<Transform>().localScale = defaultScale * 2f;
 		GetComponent<Transform>().position = new Vector3(0f, 4f, -6f);
 		isInGridFront = true;
 	}
 
 
 	public void MoveToBackOfGrid () {
-		GetComponent<Transform>().localScale = new Vector3(2.5f, 2f, 0.1f);
+		GetComponent<Transform>().localScale = defaultScale;
 		GetComponent<Transform>().position = gridPosition;
 		isInGridFront = false;
 	}
@@ -165,6 +169,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 	public void FlyToDormant () {
+		GetComponent<Transform>().localScale = defaultScale;
 		currentState = State.FlyToDormant;
 		GetComponent<Rigidbody>().useGravity = true;
 		trail.GetComponent<ParticleSystem>().Stop();
