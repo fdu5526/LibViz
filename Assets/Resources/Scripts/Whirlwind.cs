@@ -4,11 +4,11 @@ using System.Collections;
 public class Whirlwind : MonoBehaviour {
 
 	WhirlwindObject[] wb;
-	GameObject spotlight;
+	GameObject frontLight;
 
 	// Use this for initialization
 	void Start () {
-		spotlight = GameObject.Find("Structure/Spotlight");
+		frontLight = GameObject.Find("Structure/FrontLight");
 		GameObject[] gl = GameObject.FindGameObjectsWithTag("WhirlwindObject");
 		wb = new WhirlwindObject[gl.Length];
 
@@ -26,11 +26,11 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 
-	void OnMouseOver () {
-		if (Input.GetMouseButtonDown(0) && 
-			(wb[0].currentState != WhirlwindObject.State.FlyToGrid ||
-			 wb[0].currentState != WhirlwindObject.State.Grid)) {
-			spotlight.GetComponent<Transform>().position = new Vector3(0f, 31f, -12.87756f);
+	void OnMouseDown () {
+		if (wb[0].currentState != WhirlwindObject.State.FlyToGrid ||
+			 	wb[0].currentState != WhirlwindObject.State.Grid) {
+			frontLight.GetComponent<Light>().enabled = true;
+			GetComponent<Collider>().enabled = false;
 			for (int i = 0; i < wb.Length; i++) {
 				wb[i].FlyToGrid();
 			}
@@ -41,14 +41,16 @@ public class Whirlwind : MonoBehaviour {
 	void InteractWithWhirlwind () {
 		if (Input.GetKeyDown("a") &&
 				wb[0].currentState == WhirlwindObject.State.Dormant) {
-			spotlight.GetComponent<Transform>().position = new Vector3(0f, 31f, 0f);
+			frontLight.GetComponent<Light>().enabled = false;
+			GetComponent<Collider>().enabled = true;
 			for (int i = 0; i < wb.Length; i++) {
 				wb[i].FlyToOrbit();
 			}
 		} else if (Input.GetKeyDown("s") &&
 							 (wb[0].currentState == WhirlwindObject.State.Orbit || 
 	 							wb[0].currentState == WhirlwindObject.State.Grid)) {
-			spotlight.GetComponent<Transform>().position = new Vector3(0f, 31f, 0f);
+			frontLight.GetComponent<Light>().enabled = false;
+			GetComponent<Collider>().enabled = true;
 			for (int i = 0; i < wb.Length; i++) {
 				wb[i].FlyToDormant();
 			}
