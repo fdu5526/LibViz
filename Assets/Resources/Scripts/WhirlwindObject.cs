@@ -60,7 +60,7 @@ public class WhirlwindObject : MonoBehaviour {
 	// for setting initial angular velocity
 	float RandomAngularVelocityRange { 
 		get { 
-			float f = 5f * UnityEngine.Random.Range(0.3f, 1f);
+			float f = 2f * UnityEngine.Random.Range(0.3f, 1f);
 			return UnityEngine.Random.Range(0f, 1f) > 0.5f ? f : -f;
 		} 
 	}
