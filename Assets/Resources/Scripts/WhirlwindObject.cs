@@ -43,7 +43,7 @@ public class WhirlwindObject : MonoBehaviour {
 		radius = height / 9f * 5f;
 		isInGridFront = false;
 
-		defaultScale = new Vector3(2.5f, 2f, 0.1f);
+		defaultScale = GetComponent<Transform>().localScale;
 
 		otherObjects = GameObject.FindGameObjectsWithTag("WhirlwindObject");
 		dormantPosition = GetComponent<Transform>().position;
