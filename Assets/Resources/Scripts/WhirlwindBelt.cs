@@ -4,7 +4,7 @@ using System.Collections;
 public class WhirlwindBelt : MonoBehaviour {
 	[Range(1, 5)]
 	public int level;
-	
+
 	public WhirlwindObject[] whirlwindObjects;
 
 
@@ -15,7 +15,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 	
 	}
 }

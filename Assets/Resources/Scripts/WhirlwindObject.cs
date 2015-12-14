@@ -13,17 +13,12 @@ public class WhirlwindObject : MonoBehaviour {
 	public float radius;
 
 	// state machine
-	public enum State { Dormant, FlyToOrbit, Orbit, FlyToGrid, Grid, FlyToDormant };
+	public enum State { Dormant, FlyToOrbit, Orbit, FlyToDormant };
 	public State currentState;
-	bool isInGridFront;
-
-
-	GameObject[] otherObjects;
 
 
 	// generated
 	Vector3 dormantPosition;
-	public Vector3 gridPosition;
 
 	Transform center;
 	GameObject trail;
@@ -36,11 +31,9 @@ public class WhirlwindObject : MonoBehaviour {
 	void Start () {
 		currentState = State.Dormant;
 		radius = height / 9f * 5f;
-		isInGridFront = false;
+	
 
 		defaultScale = GetComponent<Transform>().localScale;
-
-		otherObjects = GameObject.FindGameObjectsWithTag("WhirlwindObject");
 		dormantPosition = GetComponent<Transform>().position;
 		center = GameObject.Find("WhirlwindCenter").GetComponent<Transform>();
 		trail = GetComponent<Transform>().Find("Trail").gameObject;
@@ -59,7 +52,7 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 
-
+	// fly into orbit
 	public void FlyToOrbit () {
 		currentState = State.FlyToOrbit;
 		GetComponent<Rigidbody>().useGravity = false;
@@ -71,14 +64,13 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 
-
+	// spin around
 	void Orbit () {
 		float xc;
 		float yc;
 		float dy = 0f;
 		Vector2 v, d2, d2n;
 		Vector3 p, d;
-
 
 		if (!GetComponent<Collider>().enabled) {
 			GetComponent<Collider>().enabled = true;
@@ -119,37 +111,6 @@ public class WhirlwindObject : MonoBehaviour {
 		GetComponent<Rigidbody>().velocity = new Vector3(v.x, dy, v.y) * speed * 0.3f;
 	}
 
-
-	void OnMouseUp () {
-		if (currentState == State.Grid) {
-			if (isInGridFront) {
-				MoveToBackOfGrid();
-			} else {
-				for (int i = 0; i < otherObjects.Length; i++) {
-					otherObjects[i].GetComponent<WhirlwindObject>().MoveToBackOfGrid();
-				}
-				MoveToFrontOfGrid();
-			}
-		}
-	}
-
-
-	public void MoveToFrontOfGrid () {
-		GetComponent<Transform>().localScale = defaultScale * 2f;
-		GetComponent<Transform>().position = new Vector3(0f, 4f, -6f);
-		isInGridFront = true;
-	}
-
-
-	public void MoveToBackOfGrid () {
-		GetComponent<Transform>().localScale = defaultScale;
-		GetComponent<Transform>().position = gridPosition;
-		isInGridFront = false;
-	}
-
-
-
-
 	public void FlyToDormant () {
 		GetComponent<Transform>().localScale = defaultScale;
 		currentState = State.FlyToDormant;
@@ -159,12 +120,8 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 
-	public void FlyToGrid () {
-		currentState = State.FlyToGrid;
-		GetComponent<Rigidbody>().useGravity = false;
-		trail.GetComponent<ParticleSystem>().Stop();
-	}
 
+	// do everything state machine here
 	void ComputeState () {
 		Vector3 p = GetComponent<Transform>().position;
 
@@ -181,26 +138,6 @@ public class WhirlwindObject : MonoBehaviour {
 				break;
 			case State.Orbit:
 				Orbit();
-				break;
-			case State.FlyToGrid:
-				Vector3 d = gridPosition - p;
-				if (d.sqrMagnitude < 0.05f)  { // FlyToGrid => Grid
-					currentState = State.Grid;
-					GetComponent<Rigidbody>().velocity = Vector3.zero;
-					GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-				} else {
-					GetComponent<Transform>().position = Vector3.Slerp(p, gridPosition, 0.1f);
-					Quaternion q = GetComponent<Transform>().rotation;
-					GetComponent<Transform>().rotation = Quaternion.Slerp(q, Quaternion.identity, 0.7f);
-				}
-				break;
-			case State.Grid:
-				if (!isInGridFront) {
-					Quaternion q = GetComponent<Transform>().rotation;
-					GetComponent<Transform>().rotation = Quaternion.Slerp(q, Quaternion.identity, 0.7f);
-					GetComponent<Rigidbody>().AddForce((gridPosition - p) * 5f);
-				}
-				
 				break;
 			case State.FlyToDormant:
 				if (p.y < 2f) { // FlyToDormant => Dormant
