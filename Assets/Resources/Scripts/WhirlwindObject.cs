@@ -27,18 +27,12 @@ public class WhirlwindObject : MonoBehaviour {
 	Transform center;
 	GameObject trail;
 
-	// for going up and down
-	int verticalCounter;
-	int currentVerticalCounterMax;
-	bool isGoingUp;
-
 	Vector3 defaultScale;
 
 
 
 	// Use this for initialization
 	void Start () {
-
 		currentState = State.Dormant;
 		radius = height / 9f * 5f;
 		isInGridFront = false;
@@ -50,8 +44,6 @@ public class WhirlwindObject : MonoBehaviour {
 		center = GameObject.Find("WhirlwindCenter").GetComponent<Transform>();
 		trail = GetComponent<Transform>().Find("Trail").gameObject;
 		trail.GetComponent<ParticleSystem>().Stop();
-
-		isGoingUp = UnityEngine.Random.Range(0f, 1f) > 0.5f;
 	}
 
 
@@ -64,7 +56,6 @@ public class WhirlwindObject : MonoBehaviour {
 			return UnityEngine.Random.Range(0f, 1f) > 0.5f ? f : -f;
 		} 
 	}
-	int NewVerticalCounterMax { get { return (int)UnityEngine.Random.Range(50f, 150f); } }
 
 
 
@@ -72,7 +63,6 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.FlyToOrbit;
 		GetComponent<Rigidbody>().useGravity = false;
 		GetComponent<Collider>().enabled = false;
-		currentVerticalCounterMax = NewVerticalCounterMax;
 		trail.GetComponent<ParticleSystem>().Play();
 		GetComponent<MeshRenderer>().receiveShadows = true;
 		GetComponent<Rigidbody>().angularVelocity = new Vector3(RandomAngularVelocityRange,
@@ -99,14 +89,6 @@ public class WhirlwindObject : MonoBehaviour {
 			if (GetComponent<Transform>().position.y < height) {
 				dy = speed / 45f;
 			}
-		} else {
-			// go up and down
-			if (verticalCounter > currentVerticalCounterMax) {
-				verticalCounter = 0;
-				isGoingUp = !isGoingUp;	
-			}
-			verticalCounter++;
-			dy = isGoingUp ? 0.1f : -0.1f;
 		}
 
 		// d is directional vector to player, d2 is the 2D vector
@@ -185,9 +167,7 @@ public class WhirlwindObject : MonoBehaviour {
 		GetComponent<MeshRenderer>().receiveShadows = false;
 	}
 
-	
-	void FixedUpdate () {
-			
+	void ComputeState () {
 		Vector3 p = GetComponent<Transform>().position;
 
 		// state machine transitions
@@ -232,5 +212,10 @@ public class WhirlwindObject : MonoBehaviour {
 				}
 				break;
 		}
+	}
+
+	
+	void FixedUpdate () {
+		ComputeState();
 	}
 }
