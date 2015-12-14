@@ -4,12 +4,8 @@ using System.Collections;
 public class WhirlwindObject : MonoBehaviour {
 
 	// assigned
-	[Range(5f, 18.0f)]
 	public float speed;
-
-	[Range(2.5f, 9.5f)]
 	public float height;
-
 	public float radius;
 
 	// state machine
@@ -20,19 +16,15 @@ public class WhirlwindObject : MonoBehaviour {
 	// generated
 	Vector3 dormantPosition;
 
+	// properties
 	Transform center;
 	GameObject trail;
-
 	Vector3 defaultScale;
-
-
 
 	// Use this for initialization
 	void Start () {
 		currentState = State.Dormant;
-		radius = height / 9f * 5f;
 	
-
 		defaultScale = GetComponent<Transform>().localScale;
 		dormantPosition = GetComponent<Transform>().position;
 		center = GameObject.Find("WhirlwindCenter").GetComponent<Transform>();
@@ -88,7 +80,7 @@ public class WhirlwindObject : MonoBehaviour {
 		d = center.position - p;
 		d2 = new Vector2(d.x, d.z);
 
-		// small adjustments to prevent objects from escaping orbit
+		// small corrections to prevent objects from escaping orbit
 		d2n = d2.normalized;
 		float rd = radius - d2.magnitude;
 		if (rd > 0.05f) {
@@ -108,7 +100,10 @@ public class WhirlwindObject : MonoBehaviour {
 
 		v = new Vector2(d2.x * xc + d2.y * yc, d2.x * -yc + d2.y * xc);
 		v.Normalize();
-		GetComponent<Rigidbody>().velocity = new Vector3(v.x, dy, v.y) * speed * 0.3f;
+		Vector3 nv = new Vector3(v.x, dy, v.y) * speed * 0.3f;
+		GetComponent<Rigidbody>().velocity = nv;
+
+		speed = Mathf.Max(0f, speed - 0.1f);
 	}
 
 	public void FlyToDormant () {
