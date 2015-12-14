@@ -7,6 +7,7 @@ public class WhirlwindObject : MonoBehaviour {
 	public float speed;
 	public float height;
 	public float radius;
+	public float direction;
 
 	// state machine
 	public enum State { Dormant, FlyToOrbit, Orbit, FlyToDormant };
@@ -23,6 +24,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		direction = 1f;
 		currentState = State.Dormant;
 	
 		defaultScale = GetComponent<Transform>().localScale;
@@ -71,7 +73,7 @@ public class WhirlwindObject : MonoBehaviour {
 		// vertical velocity
 		if (currentState == State.FlyToOrbit) {
 			if (GetComponent<Transform>().position.y < height) {
-				dy = speed / 4f;
+				dy = speed;
 			}
 		}
 
@@ -100,16 +102,13 @@ public class WhirlwindObject : MonoBehaviour {
 
 		v = new Vector2(d2.x * xc + d2.y * yc, d2.x * -yc + d2.y * xc);
 		v.Normalize();
-		Vector3 nv = new Vector3(v.x, dy, v.y) * speed * 0.3f;
-		GetComponent<Rigidbody>().velocity = nv;
+		Vector3 nv = new Vector3(v.x, dy, v.y) * speed * direction;
+		GetComponent<Rigidbody>().velocity = nv;//Vector3.Lerp(GetComponent<Rigidbody>().velocity, nv, 0.5f);
 
 		if (currentState == State.Orbit) {
 			if (speed > 0f) {
-				speed = Mathf.Max(0f, speed - 0.1f);
-			} else {
-				speed = Mathf.Min(0f, speed + 0.1f);
+				speed = Mathf.Max(0f, speed - 0.05f);
 			}
-			
 		}
 	}
 
@@ -134,6 +133,7 @@ public class WhirlwindObject : MonoBehaviour {
 			case State.FlyToOrbit:
 				if (Mathf.Abs(p.y - height) < 1f) { // FlyToOrbit => Orbit
 					currentState = State.Orbit;
+					GetComponent<Rigidbody>().angularVelocity = new Vector3(0.5f, 0.5f, 0.5f);
 				} else {
 					Orbit();
 				}

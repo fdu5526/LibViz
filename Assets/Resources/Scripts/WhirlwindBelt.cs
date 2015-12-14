@@ -17,7 +17,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	void Start () {
 		height = (float)level * 2f + 1f;
 		radius = height / 9f * 8f;
-		speed = 5f;
+		speed = 1.5f;
 
 		wwObjs = GetComponentsInChildren<WhirlwindObject>();
 		for (int i = 0; i < wwObjs.Length; i++) {
@@ -38,14 +38,14 @@ public class WhirlwindBelt : MonoBehaviour {
 		float d = mouseX - prevMouseX;
 		prevMouseX = mouseX;
 		float s = Mathf.Max(Mathf.Min(Mathf.Abs(d/10f), 5f), 1f);
-		print(d);
 
 		if (wwObjs[0].currentState == WhirlwindObject.State.Orbit) {
 			for (int i = 0; i < wwObjs.Length; i++) {
-				if (d > 1f) {
+				wwObjs[i].speed = speed * s;
+				wwObjs[i].direction = d > 1f ? 1f : -1f;
+				
+				if (Mathf.Abs(d) > 1f) {
 					wwObjs[i].speed = speed * s;
-				} else if (d < -1f) {
-					wwObjs[i].speed = speed * -s;
 				} else {
 					wwObjs[i].speed = 0f;
 				}
