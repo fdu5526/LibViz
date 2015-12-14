@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Whirlwind : MonoBehaviour {
 
+	public enum State { Dormant, FlyToOrbit, Orbit, FlyToGrid, Grid, FlyToDormant };
+	public State currentState;
+	
 	WhirlwindObject[] wb;
 	GameObject frontLight;
 

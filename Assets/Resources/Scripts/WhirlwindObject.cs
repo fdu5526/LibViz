@@ -10,6 +10,8 @@ public class WhirlwindObject : MonoBehaviour {
 	[Range(2.5f, 9.5f)]
 	public float height;
 
+	public float radius;
+
 	// state machine
 	public enum State { Dormant, FlyToOrbit, Orbit, FlyToGrid, Grid, FlyToDormant };
 	public State currentState;
@@ -20,7 +22,6 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 	// generated
-	float radius;
 	Vector3 dormantPosition;
 	public Vector3 gridPosition;
 
@@ -64,7 +65,6 @@ public class WhirlwindObject : MonoBehaviour {
 		GetComponent<Rigidbody>().useGravity = false;
 		GetComponent<Collider>().enabled = false;
 		trail.GetComponent<ParticleSystem>().Play();
-		GetComponent<MeshRenderer>().receiveShadows = true;
 		GetComponent<Rigidbody>().angularVelocity = new Vector3(RandomAngularVelocityRange,
 																														RandomAngularVelocityRange, 
 																														RandomAngularVelocityRange);
@@ -155,7 +155,6 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.FlyToDormant;
 		GetComponent<Rigidbody>().useGravity = true;
 		trail.GetComponent<ParticleSystem>().Stop();
-		GetComponent<MeshRenderer>().receiveShadows = true;
 		GetComponent<Rigidbody>().velocity = speed * 0.3f * (dormantPosition - GetComponent<Transform>().position).normalized;
 	}
 
@@ -164,7 +163,6 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.FlyToGrid;
 		GetComponent<Rigidbody>().useGravity = false;
 		trail.GetComponent<ParticleSystem>().Stop();
-		GetComponent<MeshRenderer>().receiveShadows = false;
 	}
 
 	void ComputeState () {

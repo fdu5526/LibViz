@@ -10,5 +10,3 @@ kinect
 get data from mySQL
 
 interaction state machine
-	
-for whirlwind object, make panels be a child of WhirlwindObject
