@@ -49,7 +49,7 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.FlyToOrbit;
 		GetComponent<Rigidbody>().useGravity = false;
 		GetComponent<Collider>().enabled = false;
-		trail.GetComponent<ParticleSystem>().Play();
+		//trail.GetComponent<ParticleSystem>().Play();
 		GetComponent<Rigidbody>().angularVelocity = new Vector3(RandomAngularVelocityRange,
 																														RandomAngularVelocityRange, 
 																														RandomAngularVelocityRange);
@@ -71,7 +71,7 @@ public class WhirlwindObject : MonoBehaviour {
 		// vertical velocity
 		if (currentState == State.FlyToOrbit) {
 			if (GetComponent<Transform>().position.y < height) {
-				dy = speed / 45f;
+				dy = speed / 4f;
 			}
 		}
 
@@ -103,14 +103,21 @@ public class WhirlwindObject : MonoBehaviour {
 		Vector3 nv = new Vector3(v.x, dy, v.y) * speed * 0.3f;
 		GetComponent<Rigidbody>().velocity = nv;
 
-		speed = Mathf.Max(0f, speed - 0.1f);
+		if (currentState == State.Orbit) {
+			if (speed > 0f) {
+				speed = Mathf.Max(0f, speed - 0.1f);
+			} else {
+				speed = Mathf.Min(0f, speed + 0.1f);
+			}
+			
+		}
 	}
 
 	public void FlyToDormant () {
 		GetComponent<Transform>().localScale = defaultScale;
 		currentState = State.FlyToDormant;
 		GetComponent<Rigidbody>().useGravity = true;
-		trail.GetComponent<ParticleSystem>().Stop();
+		//trail.GetComponent<ParticleSystem>().Stop();
 		GetComponent<Rigidbody>().velocity = speed * 0.3f * (dormantPosition - GetComponent<Transform>().position).normalized;
 	}
 
