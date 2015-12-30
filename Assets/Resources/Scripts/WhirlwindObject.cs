@@ -60,6 +60,11 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 
+	public void SlowToStop () {
+
+	}
+
+
 	// spin around
 	void Orbit (Whirlwind.State currentState) {
 		float xc;
@@ -75,7 +80,7 @@ public class WhirlwindObject : MonoBehaviour {
 		// vertical velocity
 		if (currentState == Whirlwind.State.StirUp) {
 			if (GetComponent<Transform>().position.y < height) {
-				dy = speed;
+				dy = speed / 30f;
 			}
 		}
 
@@ -111,6 +116,10 @@ public class WhirlwindObject : MonoBehaviour {
 			if (speed > 0f) {
 				speed = Mathf.Max(0f, speed - 0.05f);
 			}
+		} else if (currentState == Whirlwind.State.SlowToStop) {
+			if (speed > 0f) {
+				speed = Mathf.Max(0f, speed - 0.1f);
+			}
 		}
 	}
 
@@ -135,12 +144,20 @@ public class WhirlwindObject : MonoBehaviour {
 		switch (currentState) {
 			case Whirlwind.State.Idle:
 				if (p.y > 2f) {
-					rigidbody.velocity = speed * (dormantPosition - transform.position).normalized;
+					//rigidbody.velocity = speed * (dormantPosition - transform.position).normalized;
 				}
 				break;
-			case Whirlwind.State.StirUp:
 			case Whirlwind.State.SlowToStop:
 			case Whirlwind.State.Interacting:
+
+				rigidbody.angularVelocity = Vector3.zero;
+
+				Quaternion q = Quaternion.Slerp(rigidbody.rotation, Quaternion.identity, 0.08f);
+				rigidbody.rotation = q;
+				Orbit(currentState);
+				break;
+			case Whirlwind.State.StirUp:
+				speed = Mathf.Lerp (speed, 10f, 0.01f); // TODO no hardcode
 				Orbit(currentState);
 				break;
 			default:

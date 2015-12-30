@@ -53,7 +53,11 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	void CanInteract () {
+
 		currentState = State.Interacting;
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].CanInteract();
+		}
 	}
 
 	void End () {

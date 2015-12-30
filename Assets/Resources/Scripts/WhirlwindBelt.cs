@@ -65,7 +65,9 @@ public class WhirlwindBelt : MonoBehaviour {
 
 
 	public void SlowToStop () {
-		// TODO
+		for (int i = 0; i < wwObjs.Length; i++) {
+			wwObjs[i].SlowToStop();
+		}
 	}
 
 
@@ -88,6 +90,10 @@ public class WhirlwindBelt : MonoBehaviour {
 		isInteractable = true;
 	}
 
+
+	public void CanInteract () {
+		isInteractable = true;
+	}
 
 	public void ComputeState (Whirlwind.State currentState) {
 		for (int i = 0; i < wwObjs.Length; i++) {
