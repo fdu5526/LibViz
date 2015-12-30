@@ -35,8 +35,6 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 
-
-
 	// for setting initial angular velocity
 	float RandomAngularVelocityRange { 
 		get { 
@@ -52,9 +50,10 @@ public class WhirlwindObject : MonoBehaviour {
 		GetComponent<Rigidbody>().useGravity = false;
 		GetComponent<Collider>().enabled = false;
 		//trail.GetComponent<ParticleSystem>().Play();
-		GetComponent<Rigidbody>().angularVelocity = new Vector3(RandomAngularVelocityRange,
-																														RandomAngularVelocityRange, 
-																														RandomAngularVelocityRange);
+		Vector3 v = new Vector3(RandomAngularVelocityRange, 
+														RandomAngularVelocityRange, 
+														RandomAngularVelocityRange);
+		GetComponent<Rigidbody>().angularVelocity = v;
 	}
 
 
@@ -123,7 +122,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 	// do everything state machine here
-	void ComputeState () {
+	public void ComputeState () {
 		Vector3 p = GetComponent<Transform>().position;
 
 		// state machine transitions
@@ -153,6 +152,5 @@ public class WhirlwindObject : MonoBehaviour {
 
 	
 	void FixedUpdate () {
-		ComputeState();
 	}
 }

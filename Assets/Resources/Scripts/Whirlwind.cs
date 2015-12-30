@@ -38,9 +38,18 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
+	void ComputeState () {
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].ComputeState();
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
 		CheckInteractionWithWhirlwind();
+	}
+
+	void FixedUpdate () {
+		ComputeState();
 	}
 }
