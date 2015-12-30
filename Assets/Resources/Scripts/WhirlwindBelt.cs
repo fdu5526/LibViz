@@ -57,10 +57,15 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
-	public void StirUp () {
+	IEnumerator StaggeredStirUp () {
 		for (int i = 0; i < wwObjs.Length; i++) {
 			wwObjs[i].StirUp();
+			yield return new WaitForSeconds(0.8f);
 		}
+	}
+
+	public void StirUp () {
+		StartCoroutine(StaggeredStirUp());
 	}
 
 

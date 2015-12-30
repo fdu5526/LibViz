@@ -14,6 +14,10 @@ public class WhirlwindObject : MonoBehaviour {
 	// generated
 	Vector3 dormantPosition;
 
+
+	enum State { Idle, StirUp, SlowToStop, Interacting , Frozen };
+	State currentState;
+
 	// properties
 	Transform center;
 	GameObject trail;
@@ -44,7 +48,7 @@ public class WhirlwindObject : MonoBehaviour {
 		get { 
 			float f = 2f * UnityEngine.Random.Range(0.3f, 1f);
 			return UnityEngine.Random.Range(0f, 1f) > 0.5f ? f : -f;
-		} 
+		}
 	}
 
 
