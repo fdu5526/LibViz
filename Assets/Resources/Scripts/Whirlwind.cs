@@ -3,36 +3,44 @@ using System.Collections;
 
 public class Whirlwind : MonoBehaviour {
 
-	WhirlwindObject[] wb;
+	// state machine
+	public enum State {Idle, StirUp, SlowToStop, Interacting, End, Frozen };
+	public State currentState;
+
+	// a whirlwind is defined as an array of WhirlWindBelt
+	WhirlwindBelt[] belts;
 
 	// Use this for initialization
 	void Start () {
-		GameObject[] gl = GameObject.FindGameObjectsWithTag("WhirlwindObject");
-		wb = new WhirlwindObject[gl.Length];
+		currentState = State.Idle;
+		GameObject[] gl = GameObject.FindGameObjectsWithTag("WhirlwindBelt");
+		belts = new WhirlwindBelt[gl.Length];
 
 		for (int i = 0; i < gl.Length; i++) {
-			wb[i] = gl[i].GetComponent<WhirlwindObject>();
+			belts[i] = gl[i].GetComponent<WhirlwindBelt>();
 		}
 	}
 
 
-	void InteractWithWhirlwind () {
+	void CheckInteractionWithWhirlwind () {
 		if (Input.GetKeyDown("a") &&
-				wb[0].currentState == WhirlwindObject.State.Dormant) {
-			for (int i = 0; i < wb.Length; i++) {
-				wb[i].FlyToOrbit();
+				currentState == State.Idle) {
+			for (int i = 0; i < belts.Length; i++) {
+				belts[i].StirUp();
 			}
+			currentState = State.StirUp;
 		} else if (Input.GetKeyDown("s") &&
-							 wb[0].currentState == WhirlwindObject.State.Orbit) {
-			for (int i = 0; i < wb.Length; i++) {
-				wb[i].FlyToDormant();
+							 currentState == State.Interacting) {
+			for (int i = 0; i < belts.Length; i++) {
+				belts[i].End();
 			}
+			currentState = State.End;
 		}
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
-		InteractWithWhirlwind();
+		CheckInteractionWithWhirlwind();
 	}
 }

@@ -11,6 +11,8 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	float prevMouseX;
 
+	public bool interactable;
+
 	WhirlwindObject[] wwObjs;
 
 	// Use this for initialization
@@ -18,12 +20,27 @@ public class WhirlwindBelt : MonoBehaviour {
 		height = (float)level * 2f + 1f;
 		radius = height / 9f * 8f;
 		speed = 1.5f;
-
+		interactable = false;
+		
 		wwObjs = GetComponentsInChildren<WhirlwindObject>();
 		for (int i = 0; i < wwObjs.Length; i++) {
 			wwObjs[i].speed = speed;
 			wwObjs[i].height = height;
 			wwObjs[i].radius = radius;
+		}
+	}
+
+
+	public void StirUp () {
+		for (int i = 0; i < wwObjs.Length; i++) {
+			wwObjs[i].FlyToOrbit();
+		}
+	}
+
+
+	public void End () {
+		for (int i = 0; i < wwObjs.Length; i++) {
+			wwObjs[i].FlyToDormant();
 		}
 	}
 
@@ -49,7 +66,6 @@ public class WhirlwindBelt : MonoBehaviour {
 				} else {
 					wwObjs[i].speed = 0f;
 				}
-				
 			}
 		}
 	}
