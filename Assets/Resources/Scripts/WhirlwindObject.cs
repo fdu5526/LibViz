@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (Rigidbody))]
+[RequireComponent (typeof (Collider))]
 public class WhirlwindObject : MonoBehaviour {
 
 	// assigned
@@ -17,15 +19,23 @@ public class WhirlwindObject : MonoBehaviour {
 	GameObject trail;
 	Vector3 defaultScale;
 
+	// aliases
+	Collider collider;
+	Rigidbody rigidbody;
+
 	// Use this for initialization
 	void Start () {
 		direction = 1f;
 	
-		defaultScale = GetComponent<Transform>().localScale;
-		dormantPosition = GetComponent<Transform>().position;
-		center = GameObject.Find("WhirlwindCenter").GetComponent<Transform>();
-		trail = GetComponent<Transform>().Find("Trail").gameObject;
+		defaultScale = transform.localScale;
+		Vector3 p = transform.position;
+		dormantPosition = new Vector3(p.x, 0f, p.y);
+		center = GameObject.Find("WhirlwindCenter").transform;
+		trail = transform.Find("Trail").gameObject;
 		trail.GetComponent<ParticleSystem>().Stop();
+
+		collider = GetComponent<Collider>();
+		rigidbody = GetComponent<Rigidbody>();
 	}
 
 
@@ -40,13 +50,13 @@ public class WhirlwindObject : MonoBehaviour {
 
 	// fly into orbit
 	public void StirUp () {
-		GetComponent<Rigidbody>().useGravity = false;
-		GetComponent<Collider>().enabled = false;
+		rigidbody.useGravity = false;
+		collider.enabled = false;
 		//trail.GetComponent<ParticleSystem>().Play();
 		Vector3 v = new Vector3(RandomAngularVelocityRange, 
 														RandomAngularVelocityRange, 
 														RandomAngularVelocityRange);
-		GetComponent<Rigidbody>().angularVelocity = v;
+		rigidbody.angularVelocity = v;
 	}
 
 
@@ -58,8 +68,8 @@ public class WhirlwindObject : MonoBehaviour {
 		Vector2 v, d2, d2n;
 		Vector3 p, d;
 
-		if (!GetComponent<Collider>().enabled) {
-			GetComponent<Collider>().enabled = true;
+		if (!collider.enabled) {
+			collider.enabled = true;
 		}
 		
 		// vertical velocity
@@ -95,7 +105,7 @@ public class WhirlwindObject : MonoBehaviour {
 		v = new Vector2(d2.x * xc + d2.y * yc, d2.x * -yc + d2.y * xc);
 		v.Normalize();
 		Vector3 nv = new Vector3(v.x, dy, v.y) * speed * direction;
-		GetComponent<Rigidbody>().velocity = nv;//Vector3.Lerp(GetComponent<Rigidbody>().velocity, nv, 0.5f);
+		rigidbody.velocity = nv;//Vector3.Lerp(GetComponent<Rigidbody>().velocity, nv, 0.5f);
 
 		if (currentState == Whirlwind.State.Interacting) {
 			if (speed > 0f) {
@@ -105,41 +115,35 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void End () {
-		GetComponent<Transform>().localScale = defaultScale;
-		GetComponent<Rigidbody>().useGravity = true;
+		transform.localScale = defaultScale;
+		rigidbody.useGravity = true;
 		//trail.GetComponent<ParticleSystem>().Stop();
-		GetComponent<Rigidbody>().velocity = speed * 0.3f * (dormantPosition - GetComponent<Transform>().position).normalized;
+		rigidbody.velocity = speed * 0.3f * (dormantPosition - transform.position).normalized;
+	}
+
+	public void Freeze () {
+		rigidbody.velocity = Vector3.zero;
 	}
 
 
 
 	// do everything state machine here
 	public void ComputeState (Whirlwind.State currentState) {
-		Vector3 p = GetComponent<Transform>().position;
+		Vector3 p = transform.position;
 
 		// state machine transitions
 		switch (currentState) {
 			case Whirlwind.State.Idle:
-				break;
-			case Whirlwind.State.StirUp:
-				if (Mathf.Abs(p.y - height) < 1f) { // StirUp => SlowToStop TODO transition here
-					GetComponent<Rigidbody>().angularVelocity = new Vector3(0.5f, 0.5f, 0.5f);
-				} else {
-					Orbit(currentState);
+				if (p.y > 2f) {
+					rigidbody.velocity = speed * (dormantPosition - transform.position).normalized;
 				}
 				break;
+			case Whirlwind.State.StirUp:
 			case Whirlwind.State.SlowToStop:
-				// TODO
-				break;
 			case Whirlwind.State.Interacting:
 				Orbit(currentState);
 				break;
-			case Whirlwind.State.End:
-				if (p.y < 2f) { // End => Idle TODO
-					//currentState = State.Dormant; 
-				} else {
-					GetComponent<Rigidbody>().velocity = speed * (dormantPosition - GetComponent<Transform>().position).normalized;
-				}
+			default:
 				break;
 		}
 	}

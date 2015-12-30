@@ -78,7 +78,9 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	public void Freeze () {
 		isInteractable = false;
-		// TODO freeze movement of objects in belt
+		for (int i = 0; i < wwObjs.Length; i++) {
+			wwObjs[i].Freeze();
+		}
 	}
 
 
