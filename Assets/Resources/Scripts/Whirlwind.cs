@@ -25,22 +25,56 @@ public class Whirlwind : MonoBehaviour {
 	void CheckInteractionWithWhirlwind () {
 		if (Input.GetKeyDown("a") &&
 				currentState == State.Idle) {
-			for (int i = 0; i < belts.Length; i++) {
-				belts[i].StirUp();
-			}
-			currentState = State.StirUp;
+			StirUp();
 		} else if (Input.GetKeyDown("s") &&
+							 currentState == State.StirUp) {
+			SlowToStop();
+		} else if (Input.GetKeyDown("d") &&
 							 currentState == State.Interacting) {
-			for (int i = 0; i < belts.Length; i++) {
-				belts[i].End();
-			}
-			currentState = State.End;
+			End();
+		}
+	}
+
+
+	void StirUp () {
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].StirUp();
+		}
+		currentState = State.StirUp;
+	}
+
+
+	void SlowToStop () {
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].SlowToStop();
+		}
+		currentState = State.SlowToStop;
+	}
+
+	void End () {
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].End();
+		}
+		currentState = State.End;
+	}
+
+	void Freeze () {
+		currentState = State.Frozen;
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].Freeze();
+		}
+	}
+
+	void UnFreeze () {
+		currentState = State.Interacting; // TODO watch for edge case
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].UnFreeze();
 		}
 	}
 
 	void ComputeState () {
 		for (int i = 0; i < belts.Length; i++) {
-			belts[i].ComputeState();
+			belts[i].ComputeState(currentState);
 		}
 	}
 	
@@ -50,6 +84,8 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		ComputeState();
+		if (currentState != State.Frozen) {
+			ComputeState();
+		}
 	}
 }

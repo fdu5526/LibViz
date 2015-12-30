@@ -20,7 +20,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		height = (float)level * 2f + 1f;
 		radius = height / 9f * 8f;
 		speed = 1.5f;
-		isInteractable = true;
+		isInteractable = false;
 
 		wwObjs = GetComponentsInChildren<WhirlwindObject>();
 		for (int i = 0; i < wwObjs.Length; i++) {
@@ -31,6 +31,10 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
+	void OnmouseDown () {
+		prevMouseX = Input.mousePosition.x;
+	}
+
 	// change orbiting speed of this belt
 	void OnMouseDrag () {
 		if (isInteractable) {
@@ -39,16 +43,14 @@ public class WhirlwindBelt : MonoBehaviour {
 			prevMouseX = mouseX;
 			float s = Mathf.Max(Mathf.Min(Mathf.Abs(d/10f), 5f), 1f);
 
-			if (wwObjs[0].currentState == WhirlwindObject.State.Orbit) {
-				for (int i = 0; i < wwObjs.Length; i++) {
+			for (int i = 0; i < wwObjs.Length; i++) {
+				wwObjs[i].speed = speed * s;
+				wwObjs[i].direction = d > 1f ? 1f : -1f;
+				
+				if (Mathf.Abs(d) > 1f) {
 					wwObjs[i].speed = speed * s;
-					wwObjs[i].direction = d > 1f ? 1f : -1f;
-					
-					if (Mathf.Abs(d) > 1f) {
-						wwObjs[i].speed = speed * s;
-					} else {
-						wwObjs[i].speed = 0f;
-					}
+				} else {
+					wwObjs[i].speed = 0f;
 				}
 			}
 		}
@@ -70,6 +72,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	public void Freeze () {
 		isInteractable = false;
+		// TODO freeze movement of objects in belt
 	}
 
 
@@ -83,16 +86,11 @@ public class WhirlwindBelt : MonoBehaviour {
 			wwObjs[i].FlyToDormant();
 		}
 	}
-	
-
-	void OnmouseDown () {
-		prevMouseX = Input.mousePosition.x;
-	}
 
 
-	public void ComputeState () {
+	public void ComputeState (Whirlwind.State currentState) {
 		for (int i = 0; i < wwObjs.Length; i++) {
-			wwObjs[i].ComputeState();
+			wwObjs[i].ComputeState(currentState);
 		}
 	}
 

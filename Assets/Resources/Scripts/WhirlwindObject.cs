@@ -9,11 +9,6 @@ public class WhirlwindObject : MonoBehaviour {
 	public float radius;
 	public float direction;
 
-	// state machine
-	public enum State { Dormant, FlyToOrbit, Orbit, FlyToDormant };
-	public State currentState;
-
-
 	// generated
 	Vector3 dormantPosition;
 
@@ -25,7 +20,6 @@ public class WhirlwindObject : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		direction = 1f;
-		currentState = State.Dormant;
 	
 		defaultScale = GetComponent<Transform>().localScale;
 		dormantPosition = GetComponent<Transform>().position;
@@ -46,7 +40,6 @@ public class WhirlwindObject : MonoBehaviour {
 
 	// fly into orbit
 	public void FlyToOrbit () {
-		currentState = State.FlyToOrbit;
 		GetComponent<Rigidbody>().useGravity = false;
 		GetComponent<Collider>().enabled = false;
 		//trail.GetComponent<ParticleSystem>().Play();
@@ -58,7 +51,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 	// spin around
-	void Orbit () {
+	void Orbit (Whirlwind.State currentState) {
 		float xc;
 		float yc;
 		float dy = 0f;
@@ -70,7 +63,7 @@ public class WhirlwindObject : MonoBehaviour {
 		}
 		
 		// vertical velocity
-		if (currentState == State.FlyToOrbit) {
+		if (currentState == Whirlwind.State.StirUp) {
 			if (GetComponent<Transform>().position.y < height) {
 				dy = speed;
 			}
@@ -91,7 +84,7 @@ public class WhirlwindObject : MonoBehaviour {
 		}
 
 		// rotation based on rotation matrix		
-		if (currentState == State.FlyToOrbit) {
+		if (currentState == Whirlwind.State.StirUp) {
 			xc = 0.17f;
 			yc = 0.985f;
 		} else {
@@ -104,7 +97,7 @@ public class WhirlwindObject : MonoBehaviour {
 		Vector3 nv = new Vector3(v.x, dy, v.y) * speed * direction;
 		GetComponent<Rigidbody>().velocity = nv;//Vector3.Lerp(GetComponent<Rigidbody>().velocity, nv, 0.5f);
 
-		if (currentState == State.Orbit) {
+		if (currentState == Whirlwind.State.Interacting) {
 			if (speed > 0f) {
 				speed = Mathf.Max(0f, speed - 0.05f);
 			}
@@ -113,7 +106,6 @@ public class WhirlwindObject : MonoBehaviour {
 
 	public void FlyToDormant () {
 		GetComponent<Transform>().localScale = defaultScale;
-		currentState = State.FlyToDormant;
 		GetComponent<Rigidbody>().useGravity = true;
 		//trail.GetComponent<ParticleSystem>().Stop();
 		GetComponent<Rigidbody>().velocity = speed * 0.3f * (dormantPosition - GetComponent<Transform>().position).normalized;
@@ -122,27 +114,29 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 	// do everything state machine here
-	public void ComputeState () {
+	public void ComputeState (Whirlwind.State currentState) {
 		Vector3 p = GetComponent<Transform>().position;
 
 		// state machine transitions
 		switch (currentState) {
-			case State.Dormant:
+			case Whirlwind.State.Idle:
 				break;
-			case State.FlyToOrbit:
-				if (Mathf.Abs(p.y - height) < 1f) { // FlyToOrbit => Orbit
-					currentState = State.Orbit;
+			case Whirlwind.State.StirUp:
+				if (Mathf.Abs(p.y - height) < 1f) { // StirUp => SlowToStop TODO transition here
 					GetComponent<Rigidbody>().angularVelocity = new Vector3(0.5f, 0.5f, 0.5f);
 				} else {
-					Orbit();
+					Orbit(currentState);
 				}
 				break;
-			case State.Orbit:
-				Orbit();
+			case Whirlwind.State.SlowToStop:
+				// TODO
 				break;
-			case State.FlyToDormant:
-				if (p.y < 2f) { // FlyToDormant => Dormant
-					currentState = State.Dormant;
+			case Whirlwind.State.Interacting:
+				Orbit(currentState);
+				break;
+			case Whirlwind.State.End:
+				if (p.y < 2f) { // End => Idle TODO
+					//currentState = State.Dormant; 
 				} else {
 					GetComponent<Rigidbody>().velocity = speed * (dormantPosition - GetComponent<Transform>().position).normalized;
 				}
