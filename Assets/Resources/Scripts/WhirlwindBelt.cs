@@ -59,15 +59,21 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	public void StirUp () {
 		for (int i = 0; i < wwObjs.Length; i++) {
-			wwObjs[i].FlyToOrbit();
+			wwObjs[i].StirUp();
 		}
 	}
 
 
 	public void SlowToStop () {
-
+		// TODO
 	}
 
+
+	public void End () {
+		for (int i = 0; i < wwObjs.Length; i++) {
+			wwObjs[i].End();
+		}
+	}
 
 
 	public void Freeze () {
@@ -78,13 +84,6 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	public void UnFreeze () {
 		isInteractable = true;
-	}
-
-
-	public void End () {
-		for (int i = 0; i < wwObjs.Length; i++) {
-			wwObjs[i].FlyToDormant();
-		}
 	}
 
 

@@ -39,7 +39,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 	// fly into orbit
-	public void FlyToOrbit () {
+	public void StirUp () {
 		GetComponent<Rigidbody>().useGravity = false;
 		GetComponent<Collider>().enabled = false;
 		//trail.GetComponent<ParticleSystem>().Play();
@@ -104,7 +104,7 @@ public class WhirlwindObject : MonoBehaviour {
 		}
 	}
 
-	public void FlyToDormant () {
+	public void End () {
 		GetComponent<Transform>().localScale = defaultScale;
 		GetComponent<Rigidbody>().useGravity = true;
 		//trail.GetComponent<ParticleSystem>().Stop();
