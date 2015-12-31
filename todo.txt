@@ -10,3 +10,9 @@ kinect
 get data from mySQL
 
 interaction state machine
+	enlarged view
+		reduce view
+	Fullscreen view
+	conveyor belt
+	search box
+		searching reorganization
