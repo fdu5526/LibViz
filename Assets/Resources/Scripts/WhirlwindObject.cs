@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (Collider))]
@@ -49,6 +50,17 @@ public class WhirlwindObject : MonoBehaviour {
 		get { 
 			float f = 2f * UnityEngine.Random.Range(0.3f, 1f);
 			return UnityEngine.Random.Range(0f, 1f) > 0.5f ? f : -f;
+		}
+	}
+
+	// for when an item is stirred up while whirlwind is in ContextExam state
+	IEnumerator CheckWhenToStop () {
+		while (true) {
+			if (height - transform.position.y < 1f) {
+				SlowToStopByShift();
+				break;
+			}
+			yield return new WaitForSeconds(0.1f);
 		}
 	}
 
@@ -126,6 +138,15 @@ public class WhirlwindObject : MonoBehaviour {
 		direction = 1f;
 	}
 
+	public void StirUpByShift () {
+		StirUp();
+		StartCoroutine(CheckWhenToStop());
+	}
+
+	public void SlowToStopByShift () {
+		SlowToStop();
+		Invoke("CanInteract", Global.CanInteractTime);
+	}
 
 	public void SlowToStop () {
 		rigidbody.angularVelocity = Vector3.zero;
@@ -133,13 +154,24 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void CanInteract () {
+		rigidbody.velocity = Vector3.zero;
+		rigidbody.angularVelocity = Vector3.zero;
+		rigidbody.rotation = Quaternion.identity;
+		rigidbody.freezeRotation = true;
 		currentState = State.ContextExam;
+	}
+
+
+	public void EndByShift () {
+		End();
+		Invoke("ResetToIdle", Global.ResetToIdleTime);
 	}
 
 	public void End () {
 		currentState = State.End;
 		transform.localScale = defaultScale;
 		rigidbody.useGravity = true;
+		rigidbody.freezeRotation = false;
 		Vector3 v = (idlePosition - transform.position).normalized * 30f;
 		v.Set(v.x, v.y + 5f, v.z);
 		rigidbody.velocity = v;

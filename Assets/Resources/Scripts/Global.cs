@@ -6,6 +6,8 @@ using UnityEngine;
  */
 public class Global
 {
+	public const float CanInteractTime = 2f;
+	public const float ResetToIdleTime = 2.5f;
 
 	public static bool FiftyFifty { get { return UnityEngine.Random.value > 0.5f; } }
 	

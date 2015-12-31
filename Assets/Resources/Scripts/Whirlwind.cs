@@ -49,7 +49,7 @@ public class Whirlwind : MonoBehaviour {
 			belts[i].SlowToStop();
 		}
 		currentState = State.SlowToStop;
-		Invoke("CanInteract", 2f);
+		Invoke("CanInteract", Global.CanInteractTime);
 	}
 
 
@@ -66,7 +66,7 @@ public class Whirlwind : MonoBehaviour {
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].End();
 		}
-		Invoke("ResetToIdle", 2.5f);
+		Invoke("ResetToIdle", Global.ResetToIdleTime);
 	}
 
 	void ResetToIdle () {
