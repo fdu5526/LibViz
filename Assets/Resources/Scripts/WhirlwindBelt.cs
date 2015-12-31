@@ -19,8 +19,8 @@ public class WhirlwindBelt : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		height = transform.position.y;
-		radius = height / 9f * 8f; // TODO better radius formula
-		speed = 1.5f;
+		radius = height / 10f * 5f + 1f; // TODO better radius formula
+		speed = 50f;
 		isTakingUserInput = false;
 
 		wwObjs = GetComponentsInChildren<WhirlwindObject>();
@@ -35,6 +35,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	IEnumerator StaggeredStirUp () {
 		// TODO the amount should be based on radius
 		for (int i = 0; i < wwObjs.Length; i++) {
+			wwObjs[i].speed = speed;
 			wwObjs[i].StirUp();
 			yield return new WaitForSeconds(0.2f + 0.2f * (float)level);
 		}
@@ -92,6 +93,12 @@ public class WhirlwindBelt : MonoBehaviour {
 		isTakingUserInput = false;
 		for (int i = 0; i < wwObjs.Length; i++) {
 			wwObjs[i].End();
+		}
+	}
+
+	public void ResetToIdle () {
+		for (int i = 0; i < wwObjs.Length; i++) {
+			wwObjs[i].ResetToIdle();
 		}
 	}
 

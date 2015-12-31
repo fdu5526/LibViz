@@ -4,7 +4,7 @@ using System.Collections;
 public class Whirlwind : MonoBehaviour {
 
 	// state machine
-	public enum State {Idle, StirUp, SlowToStop, Interacting, Frozen };
+	public enum State {Idle, StirUp, SlowToStop, Interacting, End, Frozen };
 	public State currentState;
 
 	// a whirlwind is defined as an array of WhirlWindBelt
@@ -49,7 +49,7 @@ public class Whirlwind : MonoBehaviour {
 			belts[i].SlowToStop();
 		}
 		currentState = State.SlowToStop;
-		Invoke("CanInteract", 1f);
+		Invoke("CanInteract", 2f);
 	}
 
 
@@ -62,10 +62,18 @@ public class Whirlwind : MonoBehaviour {
 
 
 	void End () {
+		currentState = State.End;
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].End();
 		}
+		Invoke("ResetToIdle", 2.5f);
+	}
+
+	void ResetToIdle () {
 		currentState = State.Idle;
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].ResetToIdle();
+		}
 	}
 
 

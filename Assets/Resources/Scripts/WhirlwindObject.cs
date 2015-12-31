@@ -14,7 +14,7 @@ public class WhirlwindObject : MonoBehaviour {
 	// generated
 	Vector3 idlePosition;
 
-	enum State { Idle, StirUp, SlowToStop, Interacting , Frozen };
+	enum State { Idle, StirUp, SlowToStop, Interacting , End, Frozen };
 	State currentState;
 
 	// properties
@@ -30,11 +30,10 @@ public class WhirlwindObject : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentState = State.Idle;
-		direction = 1f;
 	
 		defaultScale = transform.localScale;
 		Vector3 p = transform.position;
-		idlePosition = new Vector3(p.x, 0f, p.y);
+		idlePosition = p;
 		center = GameObject.Find("WhirlwindCenter").transform;
 		belt = transform.parent.GetComponent<WhirlwindBelt>();
 		trail = transform.Find("Trail").gameObject;
@@ -68,8 +67,8 @@ public class WhirlwindObject : MonoBehaviour {
 		
 		// vertical velocity
 		if (currentState == State.StirUp) {
-			if (transform.position.y < height) {
-				dy = speed / 30f;
+			if (height - transform.position.y > 0.1f ) {
+				dy = speed / 50f;
 			}
 		}
 
@@ -108,7 +107,7 @@ public class WhirlwindObject : MonoBehaviour {
 			}
 		} else if (currentState == State.SlowToStop) {
 			if (speed > 0f) {
-				speed = Mathf.Max(0f, speed - 0.1f);
+				speed *= 0.9f;
 			}
 		}
 	}
@@ -124,6 +123,7 @@ public class WhirlwindObject : MonoBehaviour {
 														RandomAngularVelocityRange);
 		rigidbody.angularVelocity = v;
 		currentState = State.StirUp;
+		direction = 1f;
 	}
 
 
@@ -137,11 +137,24 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void End () {
-		currentState = State.Idle;
+		currentState = State.End;
 		transform.localScale = defaultScale;
 		rigidbody.useGravity = true;
-		//trail.GetComponent<ParticleSystem>().Stop();
-		rigidbody.velocity = (idlePosition - transform.position);
+		Vector3 v = (idlePosition - transform.position).normalized * 30f;
+		v.Set(v.x, v.y + 5f, v.z);
+		rigidbody.velocity = v;
+		v = new Vector3(RandomAngularVelocityRange, 
+										RandomAngularVelocityRange, 
+										RandomAngularVelocityRange);
+		rigidbody.angularVelocity = v;
+	}
+
+	public void ResetToIdle () {
+		currentState = State.Idle;
+		transform.position = idlePosition;
+		rigidbody.velocity = Vector3.zero;
+		rigidbody.angularVelocity = Vector3.zero;
+		rigidbody.rotation = Quaternion.identity;
 	}
 
 	public void Freeze () {
@@ -155,11 +168,11 @@ public class WhirlwindObject : MonoBehaviour {
 
 		// state machine transitions
 		switch (currentState) {
-			case State.Idle:
-				break;
 			case State.SlowToStop:
 				Quaternion q = Quaternion.Slerp(rigidbody.rotation, Quaternion.identity, 0.08f);
 				rigidbody.rotation = q;
+				float h = Mathf.Lerp(p.y, height, 0.08f);
+				transform.position = new Vector3(p.x, h, p.z);
 				Orbit();
 				break;
 			case State.Interacting:
