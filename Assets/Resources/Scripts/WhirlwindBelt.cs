@@ -36,7 +36,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		// TODO the amount should be based on radius
 		for (int i = 0; i < wwObjs.Length; i++) {
 			wwObjs[i].StirUp();
-			yield return new WaitForSeconds(0.4f);
+			yield return new WaitForSeconds(0.2f + 0.2f * (float)level);
 		}
 	}
 
