@@ -12,7 +12,7 @@ public class WhirlwindObject : MonoBehaviour {
 	public float direction;
 
 	// generated
-	Vector3 dormantPosition;
+	Vector3 idlePosition;
 
 	enum State { Idle, StirUp, SlowToStop, Interacting , Frozen };
 	State currentState;
@@ -34,7 +34,7 @@ public class WhirlwindObject : MonoBehaviour {
 	
 		defaultScale = transform.localScale;
 		Vector3 p = transform.position;
-		dormantPosition = new Vector3(p.x, 0f, p.y);
+		idlePosition = new Vector3(p.x, 0f, p.y);
 		center = GameObject.Find("WhirlwindCenter").transform;
 		belt = transform.parent.GetComponent<WhirlwindBelt>();
 		trail = transform.Find("Trail").gameObject;
@@ -141,7 +141,7 @@ public class WhirlwindObject : MonoBehaviour {
 		transform.localScale = defaultScale;
 		rigidbody.useGravity = true;
 		//trail.GetComponent<ParticleSystem>().Stop();
-		rigidbody.velocity = (dormantPosition - transform.position);
+		rigidbody.velocity = (idlePosition - transform.position);
 	}
 
 	public void Freeze () {
