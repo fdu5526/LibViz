@@ -11,7 +11,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	float prevMouseX;
 
-	bool isInteractable;
+	bool isTakingUserInput;
 
 	WhirlwindObject[] wwObjs;
 	int headIndex, tailIndex;
@@ -19,9 +19,9 @@ public class WhirlwindBelt : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		height = transform.position.y;
-		radius = height / 9f * 8f;
+		radius = height / 9f * 8f; // TODO better radius formula
 		speed = 1.5f;
-		isInteractable = false;
+		isTakingUserInput = false;
 
 		wwObjs = GetComponentsInChildren<WhirlwindObject>();
 		for (int i = 0; i < wwObjs.Length; i++) {
@@ -31,46 +31,47 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
-
-	void OnmouseDown () {
-		prevMouseX = Input.mousePosition.x;
-	}
-
-	// change orbiting speed of this belt
-	void OnMouseDrag () {
-		if (isInteractable) {
-			float mouseX = Input.mousePosition.x;
-			float d = mouseX - prevMouseX;
-			prevMouseX = mouseX;
-			float s = Mathf.Max(Mathf.Min(Mathf.Abs(d/10f), 5f), 1f);
-
-			for (int i = 0; i < wwObjs.Length; i++) {
-				wwObjs[i].speed = speed * s;
-				wwObjs[i].direction = d > 1f ? 1f : -1f;
-				
-				if (Mathf.Abs(d) > 1f) {
-					wwObjs[i].speed = speed * s;
-				} else {
-					wwObjs[i].speed = 0f;
-				}
-			}
-		}
-	}
-
-
+	// stir up an item one at a time
 	IEnumerator StaggeredStirUp () {
+		// TODO the amount should be based on radius
 		for (int i = 0; i < wwObjs.Length; i++) {
 			wwObjs[i].StirUp();
 			yield return new WaitForSeconds(0.4f);
 		}
 	}
 
+/////// public functions used by whirlwindObjects //////
+	
+	// for when user initially places mouse down to drag it
+	public void SetMouseDownPosition () {
+		if (isTakingUserInput) {
+			prevMouseX = Input.mousePosition.x;
+		}
+	}
+
+	// spin the entire belt
+	public void Spin () {
+		if (isTakingUserInput) {
+			float mouseX = Input.mousePosition.x;
+			float d = mouseX - prevMouseX;
+			prevMouseX = mouseX;
+			//float s = Mathf.Max(Mathf.Min(Mathf.Abs(d/10f), 20f), 1f);
+			float s = Mathf.Min(Mathf.Abs(d), 50f);
+
+			for (int i = 0; i < wwObjs.Length; i++) {
+				wwObjs[i].direction = d > 0f ? 1f : -1f;
+				wwObjs[i].speed = s > 1f ? s : 0f;
+			}
+		}
+	}
+
 
 /////// public functions for setting whirlwindObject state //////
+	
+	// stir up objects, but stagger them so they have spaces in between them
 	public void StirUp () {
 		StartCoroutine(StaggeredStirUp());
 	}
-
 
 	public void SlowToStop () {
 		for (int i = 0; i < wwObjs.Length; i++) {
@@ -78,33 +79,33 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
+	// is able to interact
+	public void CanInteract () {
+		isTakingUserInput = true;
+		for (int i = 0; i < wwObjs.Length; i++) {
+			wwObjs[i].CanInteract();
+		}
+	}
 
+	// end the entire belt
 	public void End () {
-		isInteractable = false;
+		isTakingUserInput = false;
 		for (int i = 0; i < wwObjs.Length; i++) {
 			wwObjs[i].End();
 		}
 	}
 
-
+	// freeze the entire belt from moving
 	public void Freeze () {
-		isInteractable = false;
+		isTakingUserInput = false;
 		for (int i = 0; i < wwObjs.Length; i++) {
 			wwObjs[i].Freeze();
 		}
 	}
 
-
+	// unfreeze the belt, can move again
 	public void UnFreeze () {
-		isInteractable = true;
-	}
-
-
-	public void CanInteract () {
-		isInteractable = true;
-		for (int i = 0; i < wwObjs.Length; i++) {
-			wwObjs[i].CanInteract();
-		}
+		isTakingUserInput = true;
 	}
 
 	public void ComputeState (Whirlwind.State currentState) {
@@ -112,6 +113,9 @@ public class WhirlwindBelt : MonoBehaviour {
 			wwObjs[i].ComputeState();
 		}
 	}
+
+
+/////// inherited from MonoBehaviour //////
 
 	
 	// Update is called once per frame

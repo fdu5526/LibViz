@@ -21,7 +21,7 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
-
+	// current debugging based state machine triggers
 	void CheckInteractionWithWhirlwind () {
 		if (Input.GetKeyDown("a") &&
 				currentState == State.Idle) {
@@ -35,7 +35,7 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
-
+/////// functions for setting whirlwind state //////
 	void StirUp () {
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].StirUp();
@@ -52,13 +52,14 @@ public class Whirlwind : MonoBehaviour {
 		Invoke("CanInteract", 1f);
 	}
 
-	void CanInteract () {
 
+	void CanInteract () {
 		currentState = State.Interacting;
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].CanInteract();
 		}
 	}
+
 
 	void End () {
 		for (int i = 0; i < belts.Length; i++) {
@@ -67,12 +68,14 @@ public class Whirlwind : MonoBehaviour {
 		currentState = State.Idle;
 	}
 
+
 	public void Freeze () {
 		currentState = State.Frozen;
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].Freeze();
 		}
 	}
+
 
 	public void UnFreeze () {
 		currentState = State.Interacting; // TODO watch for edge case
@@ -81,12 +84,15 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
+
 	void ComputeState () {
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].ComputeState(currentState);
 		}
 	}
-	
+
+
+/////// inherited from MonoBehaviour //////
 	// Update is called once per frame
 	void Update () {
 		CheckInteractionWithWhirlwind();

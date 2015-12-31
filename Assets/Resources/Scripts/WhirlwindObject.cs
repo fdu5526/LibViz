@@ -18,6 +18,7 @@ public class WhirlwindObject : MonoBehaviour {
 	State currentState;
 
 	// properties
+	WhirlwindBelt belt;
 	Transform center;
 	GameObject trail;
 	Vector3 defaultScale;
@@ -35,6 +36,7 @@ public class WhirlwindObject : MonoBehaviour {
 		Vector3 p = transform.position;
 		dormantPosition = new Vector3(p.x, 0f, p.y);
 		center = GameObject.Find("WhirlwindCenter").transform;
+		belt = transform.parent.GetComponent<WhirlwindBelt>();
 		trail = transform.Find("Trail").gameObject;
 		trail.GetComponent<ParticleSystem>().Stop();
 
@@ -72,7 +74,7 @@ public class WhirlwindObject : MonoBehaviour {
 		}
 
 		// d is directional vector to player, d2 is the 2D vector
-		p = GetComponent<Transform>().position;
+		p = transform.position;
 		d = center.position - p;
 		d2 = new Vector2(d.x, d.z);
 
@@ -80,9 +82,9 @@ public class WhirlwindObject : MonoBehaviour {
 		d2n = d2.normalized;
 		float rd = radius - d2.magnitude;
 		if (rd > 0.05f) {
-			GetComponent<Transform>().position = p - 0.05f * new Vector3(d2n.x, 0f, d2n.y);
+			transform.position = p - 0.1f * new Vector3(d2n.x, 0f, d2n.y);
 		} else if (rd < -0.05f) {
-			GetComponent<Transform>().position = p + 0.05f * new Vector3(d2n.x, 0f, d2n.y);
+			transform.position = p + 0.1f * new Vector3(d2n.x, 0f, d2n.y);
 		}
 
 		// rotation based on rotation matrix		
@@ -97,11 +99,12 @@ public class WhirlwindObject : MonoBehaviour {
 		v = new Vector2(d2.x * xc + d2.y * yc, d2.x * -yc + d2.y * xc);
 		v.Normalize();
 		Vector3 nv = new Vector3(v.x, dy, v.y) * speed * direction;
-		rigidbody.velocity = nv;//Vector3.Lerp(GetComponent<Rigidbody>().velocity, nv, 0.5f);
+		rigidbody.velocity = nv;//Vector3.Lerp(rigidbody.velocity, nv, 0.5f);
 
 		if (currentState == State.Interacting) {
 			if (speed > 0f) {
-				speed = Mathf.Max(0f, speed - 0.05f);
+				//speed = Mathf.Max(0f, speed - 0.05f);
+				speed *= 0.9f;
 			}
 		} else if (currentState == State.SlowToStop) {
 			if (speed > 0f) {
@@ -169,6 +172,20 @@ public class WhirlwindObject : MonoBehaviour {
 			default:
 				break;
 		}
+	}
+
+
+/////// inherited from MonoBehaviour //////
+	void OnMouseDown () {
+		belt.SetMouseDownPosition();
+	}
+
+	void OnMouseUp () {
+		// TODO do enlarge view here
+	}
+	
+	void OnMouseDrag () {
+		belt.Spin();
 	}
 
 	
