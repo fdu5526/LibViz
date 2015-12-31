@@ -126,7 +126,8 @@ public class WhirlwindObject : MonoBehaviour {
 
 /////// public functions for setting whirlwindObject state //////
 	// fly into orbit
-	public void StirUp () {
+	public void StirUp (float speed) {
+		this.speed = speed;
 		rigidbody.useGravity = false;
 		collider.enabled = false;
 		//trail.GetComponent<ParticleSystem>().Play();
@@ -138,14 +139,14 @@ public class WhirlwindObject : MonoBehaviour {
 		direction = 1f;
 	}
 
-	public void StirUpByShift () {
-		StirUp();
+	public void StirUpByShift (float speed) {
+		StirUp(speed);
 		StartCoroutine(CheckWhenToStop());
 	}
 
 	public void SlowToStopByShift () {
 		SlowToStop();
-		Invoke("CanInteract", Global.CanInteractTime);
+		Invoke("ContextExam", Global.TransitionToContextExamTime);
 	}
 
 	public void SlowToStop () {
@@ -153,7 +154,9 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.SlowToStop;
 	}
 
-	public void CanInteract () {
+	public bool IsInContextExam { get { return currentState == State.ContextExam; } }
+
+	public void ContextExam () {
 		rigidbody.velocity = Vector3.zero;
 		rigidbody.angularVelocity = Vector3.zero;
 		rigidbody.rotation = Quaternion.identity;

@@ -49,14 +49,14 @@ public class Whirlwind : MonoBehaviour {
 			belts[i].SlowToStop();
 		}
 		currentState = State.SlowToStop;
-		Invoke("CanInteract", Global.CanInteractTime);
+		Invoke("ContextExam", Global.TransitionToContextExamTime);
 	}
 
 
-	void CanInteract () {
+	void ContextExam () {
 		currentState = State.ContextExam;
 		for (int i = 0; i < belts.Length; i++) {
-			belts[i].CanInteract();
+			belts[i].ContextExam();
 		}
 	}
 

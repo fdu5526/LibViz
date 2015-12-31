@@ -45,8 +45,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 		// TODO the amount should be based on radius
 		for (int i = headIndex; i < tailIndex; i++) {
-			wwObjs[i].speed = speed;
-			wwObjs[i].StirUp();
+			wwObjs[i].StirUp(speed);
 			yield return new WaitForSeconds(0.4f);
 		}
 	}
@@ -83,8 +82,10 @@ public class WhirlwindBelt : MonoBehaviour {
 					
 			// actually spin the belt here
 			for (int i = headIndex; i < tailIndex; i++) {
-				wwObjs[i].direction = direction;
-				wwObjs[i].speed = s;
+				if (wwObjs[i].IsInContextExam) {
+					wwObjs[i].direction = direction;
+					wwObjs[i].speed = s;
+				}
 			}
 		}
 	}
@@ -94,8 +95,8 @@ public class WhirlwindBelt : MonoBehaviour {
 		bool canShiftNext = direction > 0f && p.x > 0f && p.z < 0f;
 		p = wwObjs[tailIndex - 1].transform.position;
 		bool canShiftPrev = false;//TODOdirection < 0f && p.x < 0f && p.z < 0f;
-		return Input.GetKey("f");
-		//return canShiftPrev || canShiftNext;
+		return Input.GetKeyDown("f");
+		//return canShiftPrev || canShiftNext; TODO
 	}
 
 	// check if we are within bounds to shift in and out items
@@ -119,9 +120,9 @@ public class WhirlwindBelt : MonoBehaviour {
 
 		if (direction == 1) { // shift next
 			wwObjs[headIndex].EndByShift();
-			wwObjs[tailIndex].StirUpByShift();
+			wwObjs[tailIndex].StirUpByShift(speed);
 		} else {
-			wwObjs[headIndex - 1].StirUpByShift();
+			wwObjs[headIndex - 1].StirUpByShift(speed);
 			wwObjs[tailIndex - 1].EndByShift();
 		}
 
@@ -136,10 +137,10 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 	// is able to interact
-	public void CanInteract () {
+	public void ContextExam () {
 		isInteractable = true;
 		for (int i = headIndex; i < tailIndex; i++) {
-			wwObjs[i].CanInteract();
+			wwObjs[i].ContextExam();
 		}
 	}
 
