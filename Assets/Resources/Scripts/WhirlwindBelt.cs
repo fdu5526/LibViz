@@ -38,12 +38,10 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// stir up an item one at a time
 	IEnumerator StaggeredStirUp () {
+		// the number of items stirred up is based on radius
+		tailIndex = Mathf.Min(3 + level * 2, wwObjs.Count);
 		headIndex = 0;
-		tailIndex = 3 + level * 2;
 
-		Debug.Assert(tailIndex <= wwObjs.Count );
-
-		// TODO the amount should be based on radius
 		for (int i = headIndex; i < tailIndex; i++) {
 			wwObjs[i].StirUp(speed);
 			yield return new WaitForSeconds(0.4f);
@@ -82,7 +80,7 @@ public class WhirlwindBelt : MonoBehaviour {
 					
 			// actually spin the belt here
 			for (int i = headIndex; i < tailIndex; i++) {
-				if (wwObjs[i].IsInContextExam) {
+				if (wwObjs[i].IsInContextExam) { // only spin what should be spun
 					wwObjs[i].direction = direction;
 					wwObjs[i].speed = s;
 				}
@@ -90,6 +88,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
+	// is the belt in a position such that we need to shift?
 	bool ShouldShift (int direction) {
 		Vector3 p = wwObjs[headIndex].transform.position;
 		bool canShiftNext = direction > 0f && p.x > 0f && p.z < 0f;
@@ -130,6 +129,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		tailIndex += direction;
 	}
 
+	// slow down initial spin
 	public void SlowToStop () {
 		for (int i = headIndex; i < tailIndex; i++) {
 			wwObjs[i].SlowToStop();
@@ -152,6 +152,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
+	// when a belt's items are all returned to position, reset them to a stack
 	public void ResetToIdle () {
 		for (int i = headIndex; i < tailIndex; i++) {
 			wwObjs[i].ResetToIdle();
@@ -179,10 +180,6 @@ public class WhirlwindBelt : MonoBehaviour {
 
 
 /////// inherited from MonoBehaviour //////
-
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-	
-	}
+	// FixedUpdate is called at set intervals
+	void FixedUpdate () { }
 }

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 [RequireComponent (typeof (Collider))]
 public class WhirlwindObject : MonoBehaviour {
 
+	const float StirUpSpeed = 10f;
+	
 	// assigned
 	public float speed;
 	public float height;
@@ -127,6 +129,8 @@ public class WhirlwindObject : MonoBehaviour {
 /////// public functions for setting whirlwindObject state //////
 	// fly into orbit
 	public void StirUp (float speed) {
+		Debug.Assert(currentState == State.Idle);
+
 		this.speed = speed;
 		rigidbody.useGravity = false;
 		collider.enabled = false;
@@ -150,6 +154,8 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void SlowToStop () {
+		Debug.Assert(currentState == State.StirUp);
+
 		rigidbody.angularVelocity = Vector3.zero;
 		currentState = State.SlowToStop;
 	}
@@ -157,6 +163,8 @@ public class WhirlwindObject : MonoBehaviour {
 	public bool IsInContextExam { get { return currentState == State.ContextExam; } }
 
 	public void ContextExam () {
+		Debug.Assert(currentState == State.SlowToStop);
+
 		rigidbody.velocity = Vector3.zero;
 		rigidbody.angularVelocity = Vector3.zero;
 		rigidbody.rotation = Quaternion.identity;
@@ -171,6 +179,8 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void End () {
+		Debug.Assert(currentState == State.ContextExam);
+
 		currentState = State.End;
 		transform.localScale = defaultScale;
 		rigidbody.useGravity = true;
@@ -185,6 +195,8 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void ResetToIdle () {
+		Debug.Assert(currentState == State.End);
+
 		currentState = State.Idle;
 		transform.position = idlePosition;
 		rigidbody.velocity = Vector3.zero;
@@ -214,7 +226,7 @@ public class WhirlwindObject : MonoBehaviour {
 				Orbit();
 				break;
 			case State.StirUp:
-				speed = Mathf.Lerp(speed, 10f, 0.02f); // TODO no hardcode
+				speed = Mathf.Lerp(speed, StirUpSpeed, 0.02f);
 				Orbit();
 				break;
 			default:
