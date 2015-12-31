@@ -25,6 +25,8 @@ public class WhirlwindBelt : MonoBehaviour {
 		isInteractable = false;
 
 		WhirlwindObject[] w = GetComponentsInChildren<WhirlwindObject>();
+		Debug.Assert(w != null );
+		
 		wwObjs = new List<WhirlwindObject>(w);
 		wwObjs.Sort(delegate(WhirlwindObject w1, WhirlwindObject w2) { return w1.name.CompareTo(w2.name); });
 		for (int i = 0; i < wwObjs.Count; i++) {
@@ -63,15 +65,41 @@ public class WhirlwindBelt : MonoBehaviour {
 		if (isInteractable) {
 			float mouseX = Input.mousePosition.x;
 			float d = mouseX - prevMouseX;
-			prevMouseX = mouseX;
-			//float s = Mathf.Max(Mathf.Min(Mathf.Abs(d/10f), 20f), 1f);
+			float direction = d > 0f ? 1f : -1f;
+			int di = (int)direction;
 			float s = Mathf.Min(Mathf.Abs(d), 50f);
+			s = s > 1f ? s : 0f;
+			prevMouseX = mouseX;
 
-			for (int i = 0; i < wwObjs.Count; i++) {
-				wwObjs[i].direction = d > 0f ? 1f : -1f;
-				wwObjs[i].speed = s > 1f ? s : 0f;
+			// check for shifting the contents of the belt
+			bool canShift = CanShift(di);
+			if (ShouldShift(di) && !canShift) { // at the edge
+				s = 0f;
+				// TODO should it loop here?
+			} else if (canShift) { // shift
+				ShiftByOne(di);
+			}
+					
+			// spin the entire belt
+			for (int i = headIndex; i < tailIndex; i++) {
+				wwObjs[i].direction = direction;
+				wwObjs[i].speed = s;
 			}
 		}
+	}
+
+	bool ShouldShift (int direction) {
+		Vector3 p = wwObjs[headIndex].transform.position;
+		bool canShiftNext = direction > 0f && p.x > 0f && p.z < 0f;
+		p = wwObjs[tailIndex - 1].transform.position;
+		bool canShiftPrev = false;//TODOdirection < 0f && p.x < 0f && p.z < 0f;
+		return canShiftPrev || canShiftNext;
+	}
+
+	// check if we are within bounds to shift in and out items
+	bool CanShift (int direction) {
+		bool isNotOutOfBounds = headIndex + direction >= 0 && tailIndex + direction <= wwObjs.Count;
+		return isNotOutOfBounds;
 	}
 
 
@@ -82,8 +110,25 @@ public class WhirlwindBelt : MonoBehaviour {
 		StartCoroutine(StaggeredStirUp());
 	}
 
+	// shift to the left or right by one
+	public void ShiftByOne (int direction) {
+		Debug.Assert(CanShift(direction));
+		Debug.Assert(direction == -1 || direction == 1);
+
+		if (direction == 1) { // shift next
+			wwObjs[headIndex].End();
+			wwObjs[tailIndex].StirUp();
+		} else {
+			wwObjs[headIndex - 1].StirUp();
+			wwObjs[tailIndex - 1].End();
+		}
+
+		headIndex += direction;
+		tailIndex += direction;
+	}
+
 	public void SlowToStop () {
-		for (int i = 0; i < wwObjs.Count; i++) {
+		for (int i = headIndex; i < tailIndex; i++) {
 			wwObjs[i].SlowToStop();
 		}
 	}
@@ -91,7 +136,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	// is able to interact
 	public void CanInteract () {
 		isInteractable = true;
-		for (int i = 0; i < wwObjs.Count; i++) {
+		for (int i = headIndex; i < tailIndex; i++) {
 			wwObjs[i].CanInteract();
 		}
 	}
@@ -99,13 +144,13 @@ public class WhirlwindBelt : MonoBehaviour {
 	// end the entire belt
 	public void End () {
 		isInteractable = false;
-		for (int i = 0; i < wwObjs.Count; i++) {
+		for (int i = headIndex; i < tailIndex; i++) {
 			wwObjs[i].End();
 		}
 	}
 
 	public void ResetToIdle () {
-		for (int i = 0; i < wwObjs.Count; i++) {
+		for (int i = headIndex; i < tailIndex; i++) {
 			wwObjs[i].ResetToIdle();
 		}
 	}
@@ -113,7 +158,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	// freeze the entire belt from moving
 	public void Freeze () {
 		isInteractable = false;
-		for (int i = 0; i < wwObjs.Count; i++) {
+		for (int i = headIndex; i < tailIndex; i++) {
 			wwObjs[i].Freeze();
 		}
 	}
@@ -124,7 +169,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 	public void ComputeState (Whirlwind.State currentState) {
-		for (int i = 0; i < wwObjs.Count; i++) {
+		for (int i = headIndex; i < tailIndex; i++) {
 			wwObjs[i].ComputeState();
 		}
 	}
