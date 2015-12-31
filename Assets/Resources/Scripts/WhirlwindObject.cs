@@ -179,7 +179,7 @@ public class WhirlwindObject : MonoBehaviour {
 				Orbit();
 				break;
 			case State.StirUp:
-				speed = Mathf.Lerp(speed, 10f, 0.01f); // TODO no hardcode
+				speed = Mathf.Lerp(speed, 10f, 0.02f); // TODO no hardcode
 				Orbit();
 				break;
 			default:
@@ -188,7 +188,7 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 
-/////// inherited from MonoBehaviour //////
+/////// inherited functions //////
 	void OnMouseDown () {
 		belt.SetMouseDownPosition();
 	}
