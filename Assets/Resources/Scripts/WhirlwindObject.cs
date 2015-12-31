@@ -14,7 +14,7 @@ public class WhirlwindObject : MonoBehaviour {
 	// generated
 	Vector3 idlePosition;
 
-	enum State { Idle, StirUp, SlowToStop, Interacting , End, Frozen };
+	enum State { Idle, StirUp, SlowToStop, ContextExam, EnlargeSelect, FullscreenSelect, End, Frozen };
 	State currentState;
 
 	// properties
@@ -100,7 +100,7 @@ public class WhirlwindObject : MonoBehaviour {
 		Vector3 nv = new Vector3(v.x, dy, v.y) * speed * direction;
 		rigidbody.velocity = nv;//Vector3.Lerp(rigidbody.velocity, nv, 0.5f);
 
-		if (currentState == State.Interacting) {
+		if (currentState == State.ContextExam) {
 			if (speed > 0f) {
 				//speed = Mathf.Max(0f, speed - 0.05f);
 				speed *= 0.9f;
@@ -133,7 +133,7 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void CanInteract () {
-		currentState = State.Interacting;
+		currentState = State.ContextExam;
 	}
 
 	public void End () {
@@ -175,7 +175,7 @@ public class WhirlwindObject : MonoBehaviour {
 				transform.position = new Vector3(p.x, h, p.z);
 				Orbit();
 				break;
-			case State.Interacting:
+			case State.ContextExam:
 				Orbit();
 				break;
 			case State.StirUp:

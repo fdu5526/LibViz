@@ -11,7 +11,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	float prevMouseX;
 
-	bool isTakingUserInput;
+	bool isInteractable;
 
 	WhirlwindObject[] wwObjs;
 	int headIndex, tailIndex;
@@ -21,7 +21,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		height = transform.position.y;
 		radius = height / 10f * 5f + 1f; // TODO better radius formula
 		speed = 50f;
-		isTakingUserInput = false;
+		isInteractable = false;
 
 		wwObjs = GetComponentsInChildren<WhirlwindObject>();
 		for (int i = 0; i < wwObjs.Length; i++) {
@@ -45,14 +45,14 @@ public class WhirlwindBelt : MonoBehaviour {
 	
 	// for when user initially places mouse down to drag it
 	public void SetMouseDownPosition () {
-		if (isTakingUserInput) {
+		if (isInteractable) {
 			prevMouseX = Input.mousePosition.x;
 		}
 	}
 
 	// spin the entire belt
 	public void Spin () {
-		if (isTakingUserInput) {
+		if (isInteractable) {
 			float mouseX = Input.mousePosition.x;
 			float d = mouseX - prevMouseX;
 			prevMouseX = mouseX;
@@ -82,7 +82,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// is able to interact
 	public void CanInteract () {
-		isTakingUserInput = true;
+		isInteractable = true;
 		for (int i = 0; i < wwObjs.Length; i++) {
 			wwObjs[i].CanInteract();
 		}
@@ -90,7 +90,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// end the entire belt
 	public void End () {
-		isTakingUserInput = false;
+		isInteractable = false;
 		for (int i = 0; i < wwObjs.Length; i++) {
 			wwObjs[i].End();
 		}
@@ -104,7 +104,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// freeze the entire belt from moving
 	public void Freeze () {
-		isTakingUserInput = false;
+		isInteractable = false;
 		for (int i = 0; i < wwObjs.Length; i++) {
 			wwObjs[i].Freeze();
 		}
@@ -112,7 +112,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// unfreeze the belt, can move again
 	public void UnFreeze () {
-		isTakingUserInput = true;
+		isInteractable = true;
 	}
 
 	public void ComputeState (Whirlwind.State currentState) {
