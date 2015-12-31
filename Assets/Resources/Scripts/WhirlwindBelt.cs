@@ -11,13 +11,14 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	float prevMouseX;
 
-	public bool isInteractable;
+	bool isInteractable;
 
 	WhirlwindObject[] wwObjs;
+	int headIndex, tailIndex;
 
 	// Use this for initialization
 	void Start () {
-		height = (float)level * 2f + 1f;
+		height = transform.position.y;
 		radius = height / 9f * 8f;
 		speed = 1.5f;
 		isInteractable = false;
@@ -60,10 +61,12 @@ public class WhirlwindBelt : MonoBehaviour {
 	IEnumerator StaggeredStirUp () {
 		for (int i = 0; i < wwObjs.Length; i++) {
 			wwObjs[i].StirUp();
-			yield return new WaitForSeconds(0.8f);
+			yield return new WaitForSeconds(0.4f);
 		}
 	}
 
+
+/////// public functions for setting whirlwindObject state //////
 	public void StirUp () {
 		StartCoroutine(StaggeredStirUp());
 	}
@@ -77,6 +80,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 
 	public void End () {
+		isInteractable = false;
 		for (int i = 0; i < wwObjs.Length; i++) {
 			wwObjs[i].End();
 		}
@@ -98,11 +102,14 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	public void CanInteract () {
 		isInteractable = true;
+		for (int i = 0; i < wwObjs.Length; i++) {
+			wwObjs[i].CanInteract();
+		}
 	}
 
 	public void ComputeState (Whirlwind.State currentState) {
 		for (int i = 0; i < wwObjs.Length; i++) {
-			wwObjs[i].ComputeState(currentState);
+			wwObjs[i].ComputeState();
 		}
 	}
 

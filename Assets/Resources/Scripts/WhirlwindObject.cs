@@ -14,7 +14,6 @@ public class WhirlwindObject : MonoBehaviour {
 	// generated
 	Vector3 dormantPosition;
 
-
 	enum State { Idle, StirUp, SlowToStop, Interacting , Frozen };
 	State currentState;
 
@@ -29,6 +28,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		currentState = State.Idle;
 		direction = 1f;
 	
 		defaultScale = transform.localScale;
@@ -52,25 +52,8 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 
-	// fly into orbit
-	public void StirUp () {
-		rigidbody.useGravity = false;
-		collider.enabled = false;
-		//trail.GetComponent<ParticleSystem>().Play();
-		Vector3 v = new Vector3(RandomAngularVelocityRange, 
-														RandomAngularVelocityRange, 
-														RandomAngularVelocityRange);
-		rigidbody.angularVelocity = v;
-	}
-
-
-	public void SlowToStop () {
-
-	}
-
-
-	// spin around
-	void Orbit (Whirlwind.State currentState) {
+	// spin around, most important function
+	void Orbit () {
 		float xc;
 		float yc;
 		float dy = 0f;
@@ -82,8 +65,8 @@ public class WhirlwindObject : MonoBehaviour {
 		}
 		
 		// vertical velocity
-		if (currentState == Whirlwind.State.StirUp) {
-			if (GetComponent<Transform>().position.y < height) {
+		if (currentState == State.StirUp) {
+			if (transform.position.y < height) {
 				dy = speed / 30f;
 			}
 		}
@@ -103,7 +86,7 @@ public class WhirlwindObject : MonoBehaviour {
 		}
 
 		// rotation based on rotation matrix		
-		if (currentState == Whirlwind.State.StirUp) {
+		if (currentState == State.StirUp) {
 			xc = 0.17f;
 			yc = 0.985f;
 		} else {
@@ -116,22 +99,46 @@ public class WhirlwindObject : MonoBehaviour {
 		Vector3 nv = new Vector3(v.x, dy, v.y) * speed * direction;
 		rigidbody.velocity = nv;//Vector3.Lerp(GetComponent<Rigidbody>().velocity, nv, 0.5f);
 
-		if (currentState == Whirlwind.State.Interacting) {
+		if (currentState == State.Interacting) {
 			if (speed > 0f) {
 				speed = Mathf.Max(0f, speed - 0.05f);
 			}
-		} else if (currentState == Whirlwind.State.SlowToStop) {
+		} else if (currentState == State.SlowToStop) {
 			if (speed > 0f) {
 				speed = Mathf.Max(0f, speed - 0.1f);
 			}
 		}
 	}
 
+/////// public functions for setting whirlwindObject state //////
+	// fly into orbit
+	public void StirUp () {
+		rigidbody.useGravity = false;
+		collider.enabled = false;
+		//trail.GetComponent<ParticleSystem>().Play();
+		Vector3 v = new Vector3(RandomAngularVelocityRange, 
+														RandomAngularVelocityRange, 
+														RandomAngularVelocityRange);
+		rigidbody.angularVelocity = v;
+		currentState = State.StirUp;
+	}
+
+
+	public void SlowToStop () {
+		rigidbody.angularVelocity = Vector3.zero;
+		currentState = State.SlowToStop;
+	}
+
+	public void CanInteract () {
+		currentState = State.Interacting;
+	}
+
 	public void End () {
+		currentState = State.Idle;
 		transform.localScale = defaultScale;
 		rigidbody.useGravity = true;
 		//trail.GetComponent<ParticleSystem>().Stop();
-		rigidbody.velocity = speed * 0.3f * (dormantPosition - transform.position).normalized;
+		rigidbody.velocity = (dormantPosition - transform.position);
 	}
 
 	public void Freeze () {
@@ -139,30 +146,25 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 
-
 	// do everything state machine here
-	public void ComputeState (Whirlwind.State currentState) {
+	public void ComputeState () {
 		Vector3 p = transform.position;
 
 		// state machine transitions
 		switch (currentState) {
-			case Whirlwind.State.Idle:
-				if (p.y > 2f) {
-					//rigidbody.velocity = speed * (dormantPosition - transform.position).normalized;
-				}
+			case State.Idle:
 				break;
-			case Whirlwind.State.SlowToStop:
-			case Whirlwind.State.Interacting:
-
-				rigidbody.angularVelocity = Vector3.zero;
-
+			case State.SlowToStop:
 				Quaternion q = Quaternion.Slerp(rigidbody.rotation, Quaternion.identity, 0.08f);
 				rigidbody.rotation = q;
-				Orbit(currentState);
+				Orbit();
 				break;
-			case Whirlwind.State.StirUp:
-				speed = Mathf.Lerp (speed, 10f, 0.01f); // TODO no hardcode
-				Orbit(currentState);
+			case State.Interacting:
+				Orbit();
+				break;
+			case State.StirUp:
+				speed = Mathf.Lerp(speed, 10f, 0.01f); // TODO no hardcode
+				Orbit();
 				break;
 			default:
 				break;
