@@ -5,8 +5,6 @@ using System.Collections.Generic;
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (Collider))]
 public class WhirlwindObject : MonoBehaviour {
-
-	const float StirUpSpeed = 10f;
 	
 	// assigned
 	public float speed;
@@ -226,7 +224,7 @@ public class WhirlwindObject : MonoBehaviour {
 				Orbit();
 				break;
 			case State.StirUp:
-				speed = Mathf.Lerp(speed, StirUpSpeed, 0.02f);
+				speed = Mathf.Lerp(speed, Global.StirUpSpeed, 0.02f);
 				Orbit();
 				break;
 			default:
@@ -236,16 +234,8 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 /////// inherited functions //////
-	void OnMouseDown () {
-		belt.SetMouseDownPosition();
-	}
-
 	void OnMouseUp () {
 		// TODO do enlarge view here
-	}
-	
-	void OnMouseDrag () {
-		belt.Spin();
 	}
 
 	

@@ -5,14 +5,13 @@ using System.Collections.Generic;
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (Collider))]
 public class WhirlwindBeltMarker : MonoBehaviour {
-
-	const float StirUpSpeed = 10f;
 	
 	// assigned
 	public float speed;
 	public float height;
 	public float radius;
 	public float direction;
+	public bool shouldSlowsDown;
 
 	// properties
 	WhirlwindBelt belt;
@@ -24,14 +23,31 @@ public class WhirlwindBeltMarker : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {	
-		Vector3 p = transform.position;
 		center = GameObject.Find("WhirlwindCenter").transform;
-		belt = transform.parent.GetComponent<WhirlwindBelt>();
+		shouldSlowsDown = false;
+		speed = 0f;
 
 		collider = GetComponent<Collider>();
 		rigidbody = GetComponent<Rigidbody>();
 	}
 
+	public void Initialize (Vector3 position, WhirlwindBelt belt, float height, float radius) {
+		transform.position = position;
+		this.belt = belt;
+		this.height = height;
+		this.radius = radius;
+	}
+
+
+	public void StirUp () {
+		speed = Global.StirUpSpeed;
+		direction = 1f;
+		shouldSlowsDown = false;
+	}
+	
+	public void SlowToStop () {
+		shouldSlowsDown = true;
+	}
 
 	// spin around, most important function
 	void Orbit () {
@@ -64,7 +80,10 @@ public class WhirlwindBeltMarker : MonoBehaviour {
 		Vector3 nv = new Vector3(v.x, dy, v.y) * speed * direction;
 		rigidbody.velocity = nv;
 
-		speed *= 0.9f;
+		if (shouldSlowsDown) {
+			speed *= 0.9f;
+		}
+		
 	}
 
 /////// public functions for setting whirlwindObject state //////

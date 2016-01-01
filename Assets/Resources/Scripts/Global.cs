@@ -8,6 +8,7 @@ public class Global
 {
 	public const float TransitionToContextExamTime = 2f;
 	public const float ResetToIdleTime = 2.5f;
+	public const float StirUpSpeed = 10f;
 
 	public static bool FiftyFifty { get { return UnityEngine.Random.value > 0.5f; } }
 	

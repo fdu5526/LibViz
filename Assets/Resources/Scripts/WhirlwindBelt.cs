@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class WhirlwindBelt : MonoBehaviour {
 	[Range(0, 5)]
 	public int level;
+	int numOfObjectsShownOnBelt;
 
 	float radius;
 	float height;
@@ -19,16 +20,20 @@ public class WhirlwindBelt : MonoBehaviour {
 	List<WhirlwindObject> wwObjs;
 	int headIndex, tailIndex;
 
+	WhirlwindBeltMarker[] markers;
+
 	// Use this for initialization
 	void Start () {
 		height = transform.position.y;
 		radius = height / 10f * 5f + 1f; // TODO better radius formula
 		speed = 50f;
 		isInteractable = false;
+		numOfObjectsShownOnBelt = 3 + level * 2;
 
 		WhirlwindObject[] w = GetComponentsInChildren<WhirlwindObject>();
 		Debug.Assert(w != null);
 		
+		// find all the objects of this belt
 		wwObjs = new List<WhirlwindObject>(w);
 		wwObjs.Sort(delegate(WhirlwindObject w1, WhirlwindObject w2) { return w1.name.CompareTo(w2.name); });
 		for (int i = 0; i < wwObjs.Count; i++) {
@@ -37,6 +42,20 @@ public class WhirlwindBelt : MonoBehaviour {
 			wwObjs[i].radius = radius;
 		}
 
+		// initialize the markers
+		markers = new WhirlwindBeltMarker[numOfObjectsShownOnBelt];
+		for (int i = 0; i < numOfObjectsShownOnBelt; i++) {
+			GameObject g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindBeltMarker"));
+			markers[i] = g.GetComponent<WhirlwindBeltMarker>();
+
+			float t = (360f / (float)numOfObjectsShownOnBelt) * (float)i / 180f * Mathf.PI;
+			Vector2 d = new Vector2(0f, -radius);
+			Vector3 v = new Vector3(d.x * Mathf.Cos(t) + d.y * Mathf.Sin(t),
+															height,
+															d.y * Mathf.Cos(t) - d.x * Mathf.Sin(t));
+			markers[i].Initialize(v, this, height, radius);
+		}
+		
 		float theta = 90f / 180f * Mathf.PI;
 		Vector2 down = new Vector2(0f, -radius);
 		exitPoint = new Vector2(down.x * Mathf.Cos(theta) + down.y * Mathf.Sin(theta),
@@ -46,7 +65,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	// stir up an item one at a time
 	IEnumerator StaggeredStirUp () {
 		// the number of items stirred up is based on radius
-		tailIndex = Mathf.Min(3 + level * 2, wwObjs.Count);
+		tailIndex = Mathf.Min(numOfObjectsShownOnBelt, wwObjs.Count);
 		headIndex = 0;
 
 		for (int i = headIndex; i < tailIndex; i++) {
@@ -74,7 +93,7 @@ public class WhirlwindBelt : MonoBehaviour {
 			float s = Mathf.Min(Mathf.Abs(d), 50f);
 			s = s > 1f ? s : 0f;
 			prevMouseX = mouseX;
-
+/*
 			// check for shifting the contents of the belt
 			if (ShouldShift(di)) { // at the edge
 				if (CanShift(di)) {
@@ -93,6 +112,12 @@ public class WhirlwindBelt : MonoBehaviour {
 					}
 					wwObjs[i].speed = s;
 				}
+			}
+*/
+			// actually spin the belt here
+			for (int i = 0; i < markers.Length; i++) {
+				markers[i].direction = direction;
+				markers[i].speed = s;
 			}
 		}
 	}
@@ -121,6 +146,9 @@ public class WhirlwindBelt : MonoBehaviour {
 	
 	// stir up objects, but stagger them so they have spaces in between them
 	public void StirUp () {
+		for (int i = 0; i < markers.Length; i++) {
+			markers[i].StirUp();
+		}
 		StartCoroutine(StaggeredStirUp());
 	}
 
@@ -145,6 +173,9 @@ public class WhirlwindBelt : MonoBehaviour {
 	public void SlowToStop () {
 		for (int i = headIndex; i < tailIndex; i++) {
 			wwObjs[i].SlowToStop();
+		}
+		for (int i = 0; i < markers.Length; i++) {
+			markers[i].SlowToStop();
 		}
 	}
 
