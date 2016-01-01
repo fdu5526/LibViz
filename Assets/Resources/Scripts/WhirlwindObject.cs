@@ -58,7 +58,7 @@ public class WhirlwindObject : MonoBehaviour {
 	// for when an item is stirred up while whirlwind is in ContextExam state
 	IEnumerator CheckWhenToStop () {
 		while (true) {
-			if (height - transform.position.y < 1f) {
+			if (height - transform.position.y < 0.1f) {
 				SlowToStopByShift();
 				break;
 			}
@@ -129,6 +129,8 @@ public class WhirlwindObject : MonoBehaviour {
 /////// public functions for setting whirlwindObject state //////
 	// fly into orbit
 	public void StirUp (float speed) {
+		ResetToIdle();
+
 		Debug.Assert(currentState == State.Idle);
 
 		this.speed = speed;
@@ -195,8 +197,6 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void ResetToIdle () {
-		Debug.Assert(currentState == State.End);
-
 		currentState = State.Idle;
 		transform.position = idlePosition;
 		rigidbody.velocity = Vector3.zero;

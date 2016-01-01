@@ -14,6 +14,8 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	bool isInteractable;
 
+	Vector2 exitPoint;
+
 	List<WhirlwindObject> wwObjs;
 	int headIndex, tailIndex;
 
@@ -25,7 +27,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		isInteractable = false;
 
 		WhirlwindObject[] w = GetComponentsInChildren<WhirlwindObject>();
-		Debug.Assert(w != null );
+		Debug.Assert(w != null);
 		
 		wwObjs = new List<WhirlwindObject>(w);
 		wwObjs.Sort(delegate(WhirlwindObject w1, WhirlwindObject w2) { return w1.name.CompareTo(w2.name); });
@@ -34,6 +36,11 @@ public class WhirlwindBelt : MonoBehaviour {
 			wwObjs[i].height = height;
 			wwObjs[i].radius = radius;
 		}
+
+		float theta = 90f / 180f * Mathf.PI;
+		Vector2 down = new Vector2(0f, -radius);
+		exitPoint = new Vector2(down.x * Mathf.Cos(theta) + down.y * Mathf.Sin(theta),
+														down.y * Mathf.Cos(theta) - down.x * Mathf.Sin(theta));
 	}
 
 	// stir up an item one at a time
@@ -81,7 +88,9 @@ public class WhirlwindBelt : MonoBehaviour {
 			// actually spin the belt here
 			for (int i = headIndex; i < tailIndex; i++) {
 				if (wwObjs[i].IsInContextExam) { // only spin what should be spun
-					wwObjs[i].direction = direction;
+					if (Mathf.Abs(d) > 1f) {
+						wwObjs[i].direction = direction;
+					}
 					wwObjs[i].speed = s;
 				}
 			}
@@ -91,11 +100,13 @@ public class WhirlwindBelt : MonoBehaviour {
 	// is the belt in a position such that we need to shift?
 	bool ShouldShift (int direction) {
 		Vector3 p = wwObjs[headIndex].transform.position;
-		bool canShiftNext = direction > 0f && p.x > 0f && p.z < 0f;
+		Vector2 p2 = new Vector2(p.x, p.z);
+		bool canShiftNext = direction > 0 && (p2 - exitPoint).sqrMagnitude < 10f;
 		p = wwObjs[tailIndex - 1].transform.position;
-		bool canShiftPrev = false;//TODOdirection < 0f && p.x < 0f && p.z < 0f;
-		return Input.GetKeyDown("f");
-		//return canShiftPrev || canShiftNext; TODO
+		bool canShiftPrev = false;//TODOdirection < 0 && p.x < 0f && p.z < 0f;
+		
+		//return Input.GetKeyDown("f");
+		return canShiftPrev || canShiftNext;
 	}
 
 	// check if we are within bounds to shift in and out items
