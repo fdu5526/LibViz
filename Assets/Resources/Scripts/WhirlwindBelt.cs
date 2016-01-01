@@ -44,20 +44,20 @@ public class WhirlwindBelt : MonoBehaviour {
 
 		// initialize the markers
 		markers = new WhirlwindBeltMarker[numOfObjectsShownOnBelt];
+		float deltaDegree = (360f / (float)(numOfObjectsShownOnBelt));
 		for (int i = 0; i < numOfObjectsShownOnBelt; i++) {
 			GameObject g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindBeltMarker"));
 			markers[i] = g.GetComponent<WhirlwindBeltMarker>();
 
-			float t = (360f / (float)(numOfObjectsShownOnBelt)) * (float)i / 180f * Mathf.PI;
+			float t = deltaDegree * (float)(numOfObjectsShownOnBelt - i) * Mathf.Deg2Rad;
 			Vector3 v = new Vector3(center.position.x + radius * Mathf.Cos(t),
 															height,
 															center.position.z + radius * Mathf.Sin(t));
 			markers[i].Initialize(v, this, height, radius);
 		}
 		
-		// TODO probably not this
 		// TODO compute shiftPrevPoint also
-		float theta = 90f / 180f * Mathf.PI;
+		float theta = 270f * Mathf.Deg2Rad;
 		Vector2 down = new Vector2(0f, -radius);
 		shiftNextPoint = new Vector2(down.x * Mathf.Cos(theta) + down.y * Mathf.Sin(theta),
 														down.y * Mathf.Cos(theta) - down.x * Mathf.Sin(theta));

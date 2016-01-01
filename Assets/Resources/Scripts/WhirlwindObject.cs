@@ -56,7 +56,7 @@ public class WhirlwindObject : MonoBehaviour {
 	// for when an item is stirred up while whirlwind is in ContextExam state
 	IEnumerator CheckWhenToStop () {
 		while (true) {
-			if (height - transform.position.y < 0.1f) {
+			if (height - transform.position.y < 1f) {
 				SlowToStopByShift();
 				break;
 			}
