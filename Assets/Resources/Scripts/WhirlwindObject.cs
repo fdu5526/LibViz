@@ -17,6 +17,8 @@ public class WhirlwindObject : MonoBehaviour {
 
 	enum State { Idle, StirUp, SlowToStop, ContextExam, EnlargeSelect, FullscreenSelect, End, Frozen };
 	State currentState;
+	
+	public Transform marker;
 	bool isLockedToMarker;
 
 	// properties
@@ -66,74 +68,15 @@ public class WhirlwindObject : MonoBehaviour {
 		}
 	}
 
-
-	// spin around, most important function
-	void Orbit () {
-		float xc;
-		float yc;
-		float dy = 0f;
-		Vector2 v, d2, d2n;
-		Vector3 p, d;
-
-		if (!collider.enabled) {
-			collider.enabled = true;
-		}
-		
-		// vertical velocity
-		if (currentState == State.StirUp) {
-			if (height - transform.position.y > 0.1f ) {
-				dy = speed / 50f;
-			}
-		}
-
-		// d is directional vector to player, d2 is the 2D vector
-		p = transform.position;
-		d = center.position - p;
-		d2 = new Vector2(d.x, d.z);
-
-		// small corrections to prevent objects from escaping orbit
-		d2n = d2.normalized;
-		float rd = radius - d2.magnitude;
-		if (rd > 0.05f) {
-			transform.position = p - 0.1f * new Vector3(d2n.x, 0f, d2n.y);
-		} else if (rd < -0.05f) {
-			transform.position = p + 0.1f * new Vector3(d2n.x, 0f, d2n.y);
-		}
-
-		// rotation based on rotation matrix		
-		if (currentState == State.StirUp) {
-			xc = 0.17f;
-			yc = 0.985f;
-		} else {
-			xc = 0.0698f;
-			yc = 0.998f;
-		}
-
-		v = new Vector2(d2.x * xc + d2.y * yc, d2.x * -yc + d2.y * xc);
-		v.Normalize();
-		Vector3 nv = new Vector3(v.x, dy, v.y) * speed * direction;
-		rigidbody.velocity = nv;//Vector3.Lerp(rigidbody.velocity, nv, 0.5f);
-
-		if (currentState == State.ContextExam) {
-			if (speed > 0f) {
-				//speed = Mathf.Max(0f, speed - 0.05f);
-				speed *= 0.9f;
-			}
-		} else if (currentState == State.SlowToStop) {
-			if (speed > 0f) {
-				speed *= 0.9f;
-			}
-		}
-	}
-
 /////// public functions for setting whirlwindObject state //////
 	// fly into orbit
-	public void StirUp (float speed) {
+	public void StirUp (float speed, Transform marker) {
 		ResetToIdle();
 
 		Debug.Assert(currentState == State.Idle);
 
 		this.speed = speed;
+		this.marker = marker;
 		rigidbody.useGravity = false;
 		collider.enabled = false;
 		//trail.GetComponent<ParticleSystem>().Play();
@@ -145,8 +88,8 @@ public class WhirlwindObject : MonoBehaviour {
 		direction = 1f;
 	}
 
-	public void StirUpByShift (float speed) {
-		StirUp(speed);
+	public void StirUpByShift (float speed, Transform marker) {
+		StirUp(speed, marker);
 		StartCoroutine(CheckWhenToStop());
 	}
 
@@ -183,6 +126,8 @@ public class WhirlwindObject : MonoBehaviour {
 	public void End () {
 		Debug.Assert(currentState == State.ContextExam);
 
+		isLockedToMarker = false;
+		marker = null;
 		currentState = State.End;
 		transform.localScale = defaultScale;
 		rigidbody.useGravity = true;
@@ -220,17 +165,28 @@ public class WhirlwindObject : MonoBehaviour {
 				rigidbody.rotation = q;
 				float h = Mathf.Lerp(p.y, height, 0.08f);
 				transform.position = new Vector3(p.x, h, p.z);
-				Orbit();
 				break;
 			case State.ContextExam:
-				Orbit();
 				break;
 			case State.StirUp:
-				speed = Mathf.Lerp(speed, Global.StirUpSpeed, 0.02f);
-				Orbit();
+				Debug.Assert(marker != null);
+
+				Vector3 d = (marker.position - p);
+				if (!isLockedToMarker && d.sqrMagnitude < 0.1f) { // dock at marker
+					isLockedToMarker = true;
+					collider.enabled = true;
+				} else if (!isLockedToMarker) {
+					speed = Mathf.Lerp(speed, Global.StirUpSpeed, 0.02f);
+					rigidbody.velocity = (marker.position - p).normalized * speed;
+				}
 				break;
 			default:
 				break;
+		}
+
+		if (isLockedToMarker) {
+			Debug.Assert(marker != null);
+			transform.position = Vector3.Lerp(transform.position, marker.position, 0.5f);
 		}
 	}
 

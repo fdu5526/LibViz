@@ -57,6 +57,7 @@ public class WhirlwindBelt : MonoBehaviour {
 			markers[i].Initialize(v, this, height, radius);
 		}
 		
+		// TODO probably not this
 		float theta = 90f / 180f * Mathf.PI;
 		Vector2 down = new Vector2(0f, -radius);
 		exitPoint = new Vector2(down.x * Mathf.Cos(theta) + down.y * Mathf.Sin(theta),
@@ -68,9 +69,11 @@ public class WhirlwindBelt : MonoBehaviour {
 		// the number of items stirred up is based on radius
 		tailIndex = Mathf.Min(numOfObjectsShownOnBelt, wwObjs.Count);
 		headIndex = 0;
+		int markerIndex = 0;
 
 		for (int i = headIndex; i < tailIndex; i++) {
-			wwObjs[i].StirUp(speed);
+			wwObjs[i].StirUp(speed, markers[markerIndex].transform);
+			markerIndex++;
 			yield return new WaitForSeconds(0.4f);
 		}
 	}
@@ -159,11 +162,17 @@ public class WhirlwindBelt : MonoBehaviour {
 		Debug.Assert(direction == -1 || direction == 1);
 
 		if (direction == 1) { // shift next
+			Transform marker = wwObjs[headIndex].marker;
+			Debug.Assert(marker != null);
+
 			wwObjs[headIndex].EndByShift();
-			wwObjs[tailIndex].StirUpByShift(speed);
+			wwObjs[tailIndex].StirUpByShift(speed, marker);
 		} else {
-			wwObjs[headIndex - 1].StirUpByShift(speed);
+			Transform marker = wwObjs[tailIndex - 1].marker;
+			Debug.Assert(marker != null);
+
 			wwObjs[tailIndex - 1].EndByShift();
+			wwObjs[headIndex - 1].StirUpByShift(speed, marker);
 		}
 
 		headIndex += direction;
