@@ -15,8 +15,6 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	bool isInteractable;
 
-	Timer shiftTimer;
-
 	Vector2 shiftNextPoint, shiftPrevPoint;
 
 	Transform center;
@@ -29,7 +27,6 @@ public class WhirlwindBelt : MonoBehaviour {
 		center = GameObject.Find("WhirlwindCenter").transform;
 		height = transform.position.y;
 		radius = height / 2f + 1f;
-		shiftTimer = new Timer(0.1f);
 		speed = 50f;
 		isInteractable = false;
 		numOfObjectsShownOnBelt = 3 + level * 2;
@@ -43,7 +40,6 @@ public class WhirlwindBelt : MonoBehaviour {
 		for (int i = 0; i < wwObjs.Count; i++) {
 			wwObjs[i].speed = speed;
 			wwObjs[i].height = height;
-			wwObjs[i].radius = radius;
 		}
 
 		// initialize the markers
@@ -60,6 +56,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 		
 		// TODO probably not this
+		// TODO compute shiftPrevPoint also
 		float theta = 90f / 180f * Mathf.PI;
 		Vector2 down = new Vector2(0f, -radius);
 		shiftNextPoint = new Vector2(down.x * Mathf.Cos(theta) + down.y * Mathf.Sin(theta),
@@ -94,6 +91,8 @@ public class WhirlwindBelt : MonoBehaviour {
 		if (isInteractable) {
 			float mouseX = Input.mousePosition.x;
 			float d = mouseX - prevMouseX;
+			
+			// ignore extraneous input
 			if (Mathf.Abs(d) < 1f) {
 				return;
 			}
@@ -105,10 +104,9 @@ public class WhirlwindBelt : MonoBehaviour {
 			prevMouseX = mouseX;
 
 			// check for shifting the contents of the belt
-			if (shiftTimer.IsOffCooldown && ShouldShift(di)) { // at the edge
+			if (ShouldShift(di)) { // at the edge
 				if (CanShift(di)) {
 					ShiftByOne(di);
-					shiftTimer.Reset();
 					// TODO should it loop here?
 				} else {
 					s = 0f;
@@ -118,7 +116,6 @@ public class WhirlwindBelt : MonoBehaviour {
 			// actually spin the belt here
 			for (int i = headIndex; i < tailIndex; i++) {
 				if (wwObjs[i].IsInContextExam) { // only spin what should be spun
-					wwObjs[i].direction = direction;
 					wwObjs[i].speed = s;
 				}
 			}
@@ -140,7 +137,6 @@ public class WhirlwindBelt : MonoBehaviour {
 		p2 = new Vector2(p.x, p.z);
 		bool canShiftPrev = direction < 0 && (p2 - shiftNextPoint).sqrMagnitude < 10f;
 		
-		//return Input.GetKeyDown("f");
 		return canShiftPrev || canShiftNext;
 	}
 
@@ -165,8 +161,6 @@ public class WhirlwindBelt : MonoBehaviour {
 	public void ShiftByOne (int direction) {
 		Debug.Assert(CanShift(direction));
 		Debug.Assert(direction == -1 || direction == 1);
-
-		print(direction);
 
 		if (direction == 1) { // shift next
 			Transform marker = wwObjs[headIndex].marker;

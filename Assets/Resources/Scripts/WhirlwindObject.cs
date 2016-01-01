@@ -9,8 +9,6 @@ public class WhirlwindObject : MonoBehaviour {
 	// assigned
 	public float speed;
 	public float height;
-	public float radius;
-	public float direction;
 
 	// generated
 	Vector3 idlePosition;
@@ -83,7 +81,6 @@ public class WhirlwindObject : MonoBehaviour {
 														RandomAngularVelocityRange);
 		rigidbody.angularVelocity = v;
 		currentState = State.StirUp;
-		direction = 1f;
 	}
 
 	public void StirUpByShift (float speed, Transform marker) {
