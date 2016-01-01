@@ -17,15 +17,17 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	Vector2 exitPoint;
 
+	Transform center;
 	List<WhirlwindObject> wwObjs;
 	int headIndex, tailIndex;
-
 	WhirlwindBeltMarker[] markers;
 
 	// Use this for initialization
 	void Start () {
+		center = GameObject.Find("WhirlwindCenter").transform;
 		height = transform.position.y;
 		radius = height / 10f * 5f + 1f; // TODO better radius formula
+
 		speed = 50f;
 		isInteractable = false;
 		numOfObjectsShownOnBelt = 3 + level * 2;
@@ -48,11 +50,10 @@ public class WhirlwindBelt : MonoBehaviour {
 			GameObject g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindBeltMarker"));
 			markers[i] = g.GetComponent<WhirlwindBeltMarker>();
 
-			float t = (360f / (float)numOfObjectsShownOnBelt) * (float)i / 180f * Mathf.PI;
-			Vector2 d = new Vector2(0f, -radius);
-			Vector3 v = new Vector3(d.x * Mathf.Cos(t) + d.y * Mathf.Sin(t),
+			float t = (360f / (float)(numOfObjectsShownOnBelt)) * (float)i / 180f * Mathf.PI;
+			Vector3 v = new Vector3(center.position.x + radius * Mathf.Cos(t),
 															height,
-															d.y * Mathf.Cos(t) - d.x * Mathf.Sin(t));
+															center.position.z + radius * Mathf.Sin(t));
 			markers[i].Initialize(v, this, height, radius);
 		}
 		

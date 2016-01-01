@@ -17,6 +17,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 	enum State { Idle, StirUp, SlowToStop, ContextExam, EnlargeSelect, FullscreenSelect, End, Frozen };
 	State currentState;
+	bool isLockedToMarker;
 
 	// properties
 	WhirlwindBelt belt;
@@ -35,6 +36,7 @@ public class WhirlwindObject : MonoBehaviour {
 		defaultScale = transform.localScale;
 		Vector3 p = transform.position;
 		idlePosition = p;
+		isLockedToMarker = false;
 		center = GameObject.Find("WhirlwindCenter").transform;
 		belt = transform.parent.GetComponent<WhirlwindBelt>();
 		trail = transform.Find("Trail").gameObject;
