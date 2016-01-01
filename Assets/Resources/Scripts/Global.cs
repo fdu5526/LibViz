@@ -6,7 +6,7 @@ using UnityEngine;
  */
 public class Global
 {
-	public const float TransitionToContextExamTime = 2f;
+	public const float TransitionToContextExamTime = 1f;
 	public const float ResetToIdleTime = 2.5f;
 	public const float StirUpSpeed = 10f;
 

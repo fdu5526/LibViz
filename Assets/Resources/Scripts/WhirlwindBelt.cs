@@ -17,7 +17,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	Timer shiftTimer;
 
-	Vector2 exitPoint;
+	Vector2 shiftNextPoint, shiftPrevPoint;
 
 	Transform center;
 	List<WhirlwindObject> wwObjs;
@@ -62,7 +62,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		// TODO probably not this
 		float theta = 90f / 180f * Mathf.PI;
 		Vector2 down = new Vector2(0f, -radius);
-		exitPoint = new Vector2(down.x * Mathf.Cos(theta) + down.y * Mathf.Sin(theta),
+		shiftNextPoint = new Vector2(down.x * Mathf.Cos(theta) + down.y * Mathf.Sin(theta),
 														down.y * Mathf.Cos(theta) - down.x * Mathf.Sin(theta));
 	}
 
@@ -94,6 +94,10 @@ public class WhirlwindBelt : MonoBehaviour {
 		if (isInteractable) {
 			float mouseX = Input.mousePosition.x;
 			float d = mouseX - prevMouseX;
+			if (Mathf.Abs(d) < 1f) {
+				return;
+			}
+
 			float direction = d > 0f ? 1f : -1f;
 			int di = (int)direction;
 			float s = Mathf.Min(Mathf.Abs(d), 50f);
@@ -114,9 +118,7 @@ public class WhirlwindBelt : MonoBehaviour {
 			// actually spin the belt here
 			for (int i = headIndex; i < tailIndex; i++) {
 				if (wwObjs[i].IsInContextExam) { // only spin what should be spun
-					if (Mathf.Abs(d) > 1f) {
-						wwObjs[i].direction = direction;
-					}
+					wwObjs[i].direction = direction;
 					wwObjs[i].speed = s;
 				}
 			}
@@ -133,10 +135,10 @@ public class WhirlwindBelt : MonoBehaviour {
 	bool ShouldShift (int direction) {
 		Vector3 p = wwObjs[headIndex].transform.position;
 		Vector2 p2 = new Vector2(p.x, p.z);
-		bool canShiftNext = direction > 0 && (p2 - exitPoint).sqrMagnitude < 10f;
+		bool canShiftNext = direction > 0 && (p2 - shiftNextPoint).sqrMagnitude < 10f;
 		p = wwObjs[tailIndex - 1].transform.position;
 		p2 = new Vector2(p.x, p.z);
-		bool canShiftPrev = direction < 0 && (p2 - exitPoint).sqrMagnitude < 10f;
+		bool canShiftPrev = direction < 0 && (p2 - shiftNextPoint).sqrMagnitude < 10f;
 		
 		//return Input.GetKeyDown("f");
 		return canShiftPrev || canShiftNext;
@@ -163,6 +165,8 @@ public class WhirlwindBelt : MonoBehaviour {
 	public void ShiftByOne (int direction) {
 		Debug.Assert(CanShift(direction));
 		Debug.Assert(direction == -1 || direction == 1);
+
+		print(direction);
 
 		if (direction == 1) { // shift next
 			Transform marker = wwObjs[headIndex].marker;

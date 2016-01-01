@@ -23,7 +23,6 @@ public class WhirlwindObject : MonoBehaviour {
 
 	// properties
 	WhirlwindBelt belt;
-	Transform center;
 	GameObject trail;
 	Vector3 defaultScale;
 
@@ -39,7 +38,6 @@ public class WhirlwindObject : MonoBehaviour {
 		Vector3 p = transform.position;
 		idlePosition = p;
 		isLockedToMarker = false;
-		center = GameObject.Find("WhirlwindCenter").transform;
 		belt = transform.parent.GetComponent<WhirlwindBelt>();
 		trail = transform.Find("Trail").gameObject;
 		trail.GetComponent<ParticleSystem>().Stop();
