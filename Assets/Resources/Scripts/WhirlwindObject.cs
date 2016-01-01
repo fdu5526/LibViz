@@ -130,6 +130,7 @@ public class WhirlwindObject : MonoBehaviour {
 		marker = null;
 		currentState = State.End;
 		transform.localScale = defaultScale;
+		collider.enabled = true;
 		rigidbody.useGravity = true;
 		rigidbody.freezeRotation = false;
 		Vector3 v = (idlePosition - transform.position).normalized * 30f;
@@ -172,9 +173,8 @@ public class WhirlwindObject : MonoBehaviour {
 				Debug.Assert(marker != null);
 
 				Vector3 d = (marker.position - p);
-				if (!isLockedToMarker && d.sqrMagnitude < 0.1f) { // dock at marker
+				if (!isLockedToMarker && d.sqrMagnitude < 10f) { // dock at marker
 					isLockedToMarker = true;
-					collider.enabled = true;
 				} else if (!isLockedToMarker) {
 					speed = Mathf.Lerp(speed, Global.StirUpSpeed, 0.02f);
 					rigidbody.velocity = (marker.position - p).normalized * speed;
@@ -191,12 +191,7 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 
-/////// inherited functions //////
-	void OnMouseUp () {
-		// TODO do enlarge view here
-	}
-
-	
+/////// inherited functions //////	
 	void FixedUpdate () {
 	}
 }

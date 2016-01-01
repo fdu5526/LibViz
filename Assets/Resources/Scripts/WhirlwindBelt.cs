@@ -15,6 +15,8 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	bool isInteractable;
 
+	Timer shiftTimer;
+
 	Vector2 exitPoint;
 
 	Transform center;
@@ -26,8 +28,8 @@ public class WhirlwindBelt : MonoBehaviour {
 	void Start () {
 		center = GameObject.Find("WhirlwindCenter").transform;
 		height = transform.position.y;
-		radius = height / 10f * 5f + 1f; // TODO better radius formula
-
+		radius = height / 2f + 1f;
+		shiftTimer = new Timer(0.1f);
 		speed = 50f;
 		isInteractable = false;
 		numOfObjectsShownOnBelt = 3 + level * 2;
@@ -97,11 +99,12 @@ public class WhirlwindBelt : MonoBehaviour {
 			float s = Mathf.Min(Mathf.Abs(d), 50f);
 			s = s > 1f ? s : 0f;
 			prevMouseX = mouseX;
-/*
+
 			// check for shifting the contents of the belt
-			if (ShouldShift(di)) { // at the edge
+			if (shiftTimer.IsOffCooldown && ShouldShift(di)) { // at the edge
 				if (CanShift(di)) {
 					ShiftByOne(di);
+					shiftTimer.Reset();
 					// TODO should it loop here?
 				} else {
 					s = 0f;
@@ -117,7 +120,7 @@ public class WhirlwindBelt : MonoBehaviour {
 					wwObjs[i].speed = s;
 				}
 			}
-*/
+
 			// actually spin the belt here
 			for (int i = 0; i < markers.Length; i++) {
 				markers[i].direction = direction;

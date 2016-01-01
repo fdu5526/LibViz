@@ -100,6 +100,11 @@ public class WhirlwindBeltMarker : MonoBehaviour {
 		belt.Spin();
 	}
 
+	void OnMouseUp () {
+		// TODO do enlarge view here
+	}
+
+
 	
 	void FixedUpdate () {
 		Orbit();
