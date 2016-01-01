@@ -13,7 +13,7 @@ public class WhirlwindObject : MonoBehaviour {
 	// generated
 	Vector3 idlePosition;
 
-	enum State { Idle, StirUp, SlowToStop, ContextExam, EnlargeSelect, FullscreenSelect, End, Frozen };
+	enum State { Idle, StirUp, SlowToStop, ContextExam, EnlargeSelect, FullscreenSelect, Frozen };
 	State currentState;
 	
 	public Transform marker;
@@ -55,13 +55,21 @@ public class WhirlwindObject : MonoBehaviour {
 
 	// for when an item is stirred up while whirlwind is in ContextExam state
 	IEnumerator CheckWhenToStop () {
-		while (true) {
+		while (currentState == State.StirUp) {
 			if (height - transform.position.y < 1f) {
 				SlowToStopByShift();
 				break;
 			}
 			yield return new WaitForSeconds(0.1f);
 		}
+	}
+
+	// lock onto marker, hopefully marker isn't null
+	void LockToMarker () {
+		Debug.Assert(marker != null);
+
+		isLockedToMarker = true;
+		rigidbody.velocity = Vector3.zero;
 	}
 
 /////// public functions for setting whirlwindObject state //////
@@ -89,12 +97,14 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void SlowToStopByShift () {
+		LockToMarker();
 		SlowToStop();
-		Invoke("ContextExam", Global.TransitionToContextExamTime);
+		ContextExam();
+		//Invoke("ContextExam", Global.TransitionToContextExamTime);
 	}
 
 	public void SlowToStop () {
-		Debug.Assert(currentState == State.StirUp);
+		Debug.Assert(isLockedToMarker);
 
 		rigidbody.angularVelocity = Vector3.zero;
 		currentState = State.SlowToStop;
@@ -112,18 +122,10 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.ContextExam;
 	}
 
-
-	public void EndByShift () {
-		End();
-		Invoke("ResetToIdle", Global.ResetToIdleTime);
-	}
-
 	public void End () {
-		Debug.Assert(currentState == State.ContextExam);
-
 		isLockedToMarker = false;
 		marker = null;
-		currentState = State.End;
+		currentState = State.Idle;
 		transform.localScale = defaultScale;
 		collider.enabled = true;
 		rigidbody.useGravity = true;
@@ -156,23 +158,22 @@ public class WhirlwindObject : MonoBehaviour {
 
 		// state machine transitions
 		switch (currentState) {
+			case State.ContextExam:
 			case State.SlowToStop:
+				Debug.Assert(isLockedToMarker);
+
 				Quaternion q = Quaternion.Slerp(rigidbody.rotation, Quaternion.identity, 0.08f);
 				rigidbody.rotation = q;
-				float h = Mathf.Lerp(p.y, height, 0.08f);
-				transform.position = new Vector3(p.x, h, p.z);
-				break;
-			case State.ContextExam:
 				break;
 			case State.StirUp:
 				Debug.Assert(marker != null);
 
 				Vector3 d = (marker.position - p);
 				if (!isLockedToMarker && d.sqrMagnitude < 10f) { // dock at marker
-					isLockedToMarker = true;
+					LockToMarker();
 				} else if (!isLockedToMarker) {
 					speed = Mathf.Lerp(speed, Global.StirUpSpeed, 0.02f);
-					rigidbody.velocity = (marker.position - p).normalized * speed;
+					rigidbody.velocity = d.normalized * speed;
 				}
 				break;
 			default:

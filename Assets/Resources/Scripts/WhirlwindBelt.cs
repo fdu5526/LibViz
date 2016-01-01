@@ -73,7 +73,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		for (int i = headIndex; i < tailIndex; i++) {
 			wwObjs[i].StirUp(speed, markers[markerIndex].transform);
 			markerIndex++;
-			yield return new WaitForSeconds(0.4f);
+			yield return new WaitForSeconds(0.3f);
 		}
 	}
 
@@ -166,13 +166,13 @@ public class WhirlwindBelt : MonoBehaviour {
 			Transform marker = wwObjs[headIndex].marker;
 			Debug.Assert(marker != null);
 
-			wwObjs[headIndex].EndByShift();
+			wwObjs[headIndex].End();
 			wwObjs[tailIndex].StirUpByShift(speed, marker);
 		} else {
 			Transform marker = wwObjs[tailIndex - 1].marker;
 			Debug.Assert(marker != null);
 
-			wwObjs[tailIndex - 1].EndByShift();
+			wwObjs[tailIndex - 1].End();
 			wwObjs[headIndex - 1].StirUpByShift(speed, marker);
 		}
 
