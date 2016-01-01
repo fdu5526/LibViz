@@ -103,7 +103,8 @@ public class WhirlwindBelt : MonoBehaviour {
 		Vector2 p2 = new Vector2(p.x, p.z);
 		bool canShiftNext = direction > 0 && (p2 - exitPoint).sqrMagnitude < 10f;
 		p = wwObjs[tailIndex - 1].transform.position;
-		bool canShiftPrev = false;//TODOdirection < 0 && p.x < 0f && p.z < 0f;
+		p2 = new Vector2(p.x, p.z);
+		bool canShiftPrev = direction < 0 && (p2 - exitPoint).sqrMagnitude < 10f;
 		
 		//return Input.GetKeyDown("f");
 		return canShiftPrev || canShiftNext;
