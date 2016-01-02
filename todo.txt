@@ -14,5 +14,7 @@ interaction state machine
 		reduce view
 	Fullscreen view
 	conveyor belt
+		make it loop?
+		fix edge bug for smaller loops
 	search box
 		searching reorganization
