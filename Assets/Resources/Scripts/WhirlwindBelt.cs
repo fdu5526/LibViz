@@ -159,6 +159,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// is the belt in a position such that we need to shift?
 	bool ShouldShift (int direction) {
+		bool needToShift = wwObjs.Count > slots.Length;
 		Vector3 p = wwObjs[headIndex].transform.position;
 		Vector2 p2 = new Vector2(p.x, p.z);
 		bool canShiftNext = direction > 0 && (p2 - shiftNextPoint).sqrMagnitude < 10f;
@@ -166,7 +167,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		p2 = new Vector2(p.x, p.z);
 		bool canShiftPrev = direction < 0 && (p2 - shiftNextPoint).sqrMagnitude < 10f;
 		
-		return canShiftPrev || canShiftNext;
+		return needToShift && (canShiftPrev || canShiftNext);
 	}
 
 	// check if we are within bounds to shift in and out items
@@ -188,7 +189,6 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// shift to the left or right by one
 	public void ShiftByOne (int direction) {
-		Debug.Assert(CanShift(direction));
 		Debug.Assert(direction == -1 || direction == 1);
 
 		if (direction == 1) { // shift next
