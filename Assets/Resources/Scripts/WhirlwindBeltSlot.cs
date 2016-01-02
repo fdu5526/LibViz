@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (Collider))]
-public class WhirlwindBeltMarker : MonoBehaviour {
+public class WhirlwindBeltSlot : MonoBehaviour {
 	
 	// assigned
 	public float speed;

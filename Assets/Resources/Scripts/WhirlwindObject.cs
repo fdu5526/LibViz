@@ -16,8 +16,8 @@ public class WhirlwindObject : MonoBehaviour {
 	enum State { Idle, StirUp, SlowToStop, ContextExam, EnlargeSelect, FullscreenSelect, Frozen };
 	State currentState;
 	
-	public Transform marker;
-	bool isLockedToMarker;
+	public Transform slot;
+	bool isLockedToSlot;
 
 	// properties
 	WhirlwindBelt belt;
@@ -35,7 +35,7 @@ public class WhirlwindObject : MonoBehaviour {
 		defaultScale = transform.localScale;
 		Vector3 p = transform.position;
 		idlePosition = p;
-		isLockedToMarker = false;
+		isLockedToSlot = false;
 		belt = transform.parent.GetComponent<WhirlwindBelt>();
 		trail = transform.Find("Trail").gameObject;
 		trail.GetComponent<ParticleSystem>().Stop();
@@ -64,23 +64,23 @@ public class WhirlwindObject : MonoBehaviour {
 		}
 	}
 
-	// lock onto marker, hopefully marker isn't null
-	void LockToMarker () {
-		Debug.Assert(marker != null);
+	// lock onto slot, hopefully slot isn't null
+	void LockToSlot () {
+		Debug.Assert(slot != null);
 
-		isLockedToMarker = true;
+		isLockedToSlot = true;
 		rigidbody.velocity = Vector3.zero;
 	}
 
 /////// public functions for setting whirlwindObject state //////
 	// fly into orbit
-	public void StirUp (float speed, Transform marker) {
+	public void StirUp (float speed, Transform slot) {
 		ResetToIdle();
 
 		Debug.Assert(currentState == State.Idle);
 
 		this.speed = speed;
-		this.marker = marker;
+		this.slot = slot;
 		rigidbody.useGravity = false;
 		collider.enabled = false;
 		//trail.GetComponent<ParticleSystem>().Play();
@@ -91,20 +91,20 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.StirUp;
 	}
 
-	public void StirUpByShift (float speed, Transform marker) {
-		StirUp(speed, marker);
+	public void StirUpByShift (float speed, Transform slot) {
+		StirUp(speed, slot);
 		StartCoroutine(CheckWhenToStop());
 	}
 
 	public void SlowToStopByShift () {
-		LockToMarker();
+		LockToSlot();
 		SlowToStop();
 		ContextExam();
 		//Invoke("ContextExam", Global.TransitionToContextExamTime);
 	}
 
 	public void SlowToStop () {
-		Debug.Assert(isLockedToMarker);
+		Debug.Assert(isLockedToSlot);
 
 		rigidbody.angularVelocity = Vector3.zero;
 		currentState = State.SlowToStop;
@@ -123,8 +123,8 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void End () {
-		isLockedToMarker = false;
-		marker = null;
+		isLockedToSlot = false;
+		slot = null;
 		currentState = State.Idle;
 		transform.localScale = defaultScale;
 		collider.enabled = true;
@@ -160,18 +160,18 @@ public class WhirlwindObject : MonoBehaviour {
 		switch (currentState) {
 			case State.ContextExam:
 			case State.SlowToStop:
-				Debug.Assert(isLockedToMarker);
+				Debug.Assert(isLockedToSlot);
 
 				Quaternion q = Quaternion.Slerp(rigidbody.rotation, Quaternion.identity, 0.08f);
 				rigidbody.rotation = q;
 				break;
 			case State.StirUp:
-				Debug.Assert(marker != null);
+				Debug.Assert(slot != null);
 
-				Vector3 d = (marker.position - p);
-				if (!isLockedToMarker && d.sqrMagnitude < 10f) { // dock at marker
-					LockToMarker();
-				} else if (!isLockedToMarker) {
+				Vector3 d = (slot.position - p);
+				if (!isLockedToSlot && d.sqrMagnitude < 10f) { // dock at slot
+					LockToSlot();
+				} else if (!isLockedToSlot) {
 					speed = Mathf.Lerp(speed, Global.StirUpSpeed, 0.02f);
 					rigidbody.velocity = d.normalized * speed;
 				}
@@ -180,9 +180,9 @@ public class WhirlwindObject : MonoBehaviour {
 				break;
 		}
 
-		if (isLockedToMarker) {
-			Debug.Assert(marker != null);
-			transform.position = Vector3.Lerp(transform.position, marker.position, 0.5f);
+		if (isLockedToSlot) {
+			Debug.Assert(slot != null);
+			transform.position = Vector3.Lerp(transform.position, slot.position, 0.5f);
 		}
 	}
 
