@@ -21,9 +21,12 @@ public class WhirlwindBelt : MonoBehaviour {
 	List<WhirlwindObject> wwObjs;
 	int headIndex, tailIndex;
 	WhirlwindBeltSlot[] slots;
+	WhirlwindBeltEnd beltEnd;
 
 	// Use this for initialization
 	void Start () {
+		GameObject g;
+
 		center = GameObject.Find("WhirlwindCenter").transform;
 		height = transform.position.y;
 		radius = height / 2f + 1f;
@@ -46,7 +49,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		slots = new WhirlwindBeltSlot[numOfObjectsShownOnBelt];
 		float deltaDegree = (360f / (float)(numOfObjectsShownOnBelt));
 		for (int i = 0; i < numOfObjectsShownOnBelt; i++) {
-			GameObject g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindBeltSlot"));
+			g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindBeltSlot"));
 			slots[i] = g.GetComponent<WhirlwindBeltSlot>();
 
 			float t = deltaDegree * (float)(numOfObjectsShownOnBelt - i) * Mathf.Deg2Rad;
@@ -57,10 +60,12 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 		
 		// TODO compute shiftPrevPoint also
-		float theta = 270f * Mathf.Deg2Rad;
-		Vector2 down = new Vector2(0f, -radius);
-		shiftNextPoint = new Vector2(down.x * Mathf.Cos(theta) + down.y * Mathf.Sin(theta),
-														down.y * Mathf.Cos(theta) - down.x * Mathf.Sin(theta));
+	g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindBeltEnd"));
+		g.transform.parent = transform;
+		g.transform.position = transform.position;
+		g.transform.localPosition = new Vector3(radius, 0f, 0f);
+		beltEnd = g.GetComponent<WhirlwindBeltEnd>();
+		beltEnd.belt = this;
 	}
 
 
@@ -134,20 +139,6 @@ public class WhirlwindBelt : MonoBehaviour {
 			s = s > 1f ? s : 0f;
 			prevMouseX = mouseX;
 
-			// check for shifting the contents of the belt
-			if (ShouldShift(di)) { // at the edge
-				ShiftByOne(di);
-			}
-					
-			// actually spin the belt here
-			for (int i = 0; i < wwObjs.Count; i++) {
-				if (IndexIsInSlots(i)) {
-					if (wwObjs[i].IsInContextExam) { // only spin what should be spun
-						wwObjs[i].speed = s;
-					}
-				}
-			}
-
 			// actually spin the belt here
 			for (int i = 0; i < slots.Length; i++) {
 				slots[i].direction = direction;
@@ -184,6 +175,14 @@ public class WhirlwindBelt : MonoBehaviour {
 			slots[i].StirUp();
 		}
 		StartCoroutine(StaggeredStirUp());
+	}
+
+
+	public bool IsAtHeadOrTail (Transform slot) {
+		bool isHead = (slot.position - wwObjs[headIndex].slot.position).sqrMagnitude < 0.1f;
+		bool isTail = (slot.position - wwObjs[PrevIndex(tailIndex)].slot.position).sqrMagnitude < 0.1f;
+
+		return isHead || isTail;
 	}
 
 	// shift to the left or right by one
@@ -223,6 +222,8 @@ public class WhirlwindBelt : MonoBehaviour {
 	// is able to interact
 	public void ContextExam () {
 		isInteractable = true;
+		beltEnd.isInContextExam = true;
+
 		for (int i = 0; i < wwObjs.Count; i++) {
 			if (IndexIsInSlots(i)) {
 				wwObjs[i].ContextExam();
@@ -233,6 +234,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	// end the entire belt
 	public void End () {
 		isInteractable = false;
+		beltEnd.isInContextExam = false;
 		for (int i = 0; i < wwObjs.Count; i++) {
 			if (IndexIsInSlots(i)) {
 				wwObjs[i].End();
