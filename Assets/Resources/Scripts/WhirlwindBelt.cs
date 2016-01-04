@@ -43,7 +43,6 @@ public class WhirlwindBelt : MonoBehaviour {
 		for (int i = 0; i < wwObjs.Count; i++) {
 			wwObjs[i].speed = speed;
 			wwObjs[i].height = height;
-			wwObjs[i].index = i;
 		}
 
 		// initialize the slots
@@ -162,14 +161,13 @@ public class WhirlwindBelt : MonoBehaviour {
 /////// public functions for setting whirlwindObject state //////
 	
 	public bool IsAtHead (Transform slot) {
-		bool isHead = (slot.position - wwObjs[headIndex].slot.position).sqrMagnitude < 0.1f;
+		bool isHead = (slot.position - wwObjs[headIndex].slot.position).sqrMagnitude < 1f;
 		return isHead;
 	}
 
 
 	public bool IsAtTail (Transform slot) {
-		print(tailIndex);
-		bool isTail = (slot.position - wwObjs[tailIndex].slot.position).sqrMagnitude < 0.1f;
+		bool isTail = (slot.position - wwObjs[tailIndex].slot.position).sqrMagnitude < 1f;
 		return isTail;
 	}
 
@@ -182,7 +180,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 	// shift to the left or right by one
-	public void ShiftByOne (int direction, int index) {
+	public void ShiftByOne (int direction) {
 		Debug.Assert(direction == -1 || direction == 1);
 
 		if (direction == 1) { // shift next
@@ -192,7 +190,6 @@ public class WhirlwindBelt : MonoBehaviour {
 			wwObjs[headIndex].End();
 			wwObjs[NextIndex(tailIndex)].StirUpByShift(speed, slot);
 		} else { 							// shift prev
-			return;
 			Transform slot = wwObjs[tailIndex].slot;
 			Debug.Assert(slot != null);
 

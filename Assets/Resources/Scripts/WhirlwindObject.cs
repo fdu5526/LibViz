@@ -9,7 +9,6 @@ public class WhirlwindObject : MonoBehaviour {
 	// assigned
 	public float speed;
 	public float height;
-	public int index;
 
 	// generated
 	Vector3 idlePosition;
