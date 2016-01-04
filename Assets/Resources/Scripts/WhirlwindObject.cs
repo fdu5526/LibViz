@@ -18,6 +18,7 @@ public class WhirlwindObject : MonoBehaviour {
 	
 	public Transform slot;
 	bool isLockedToSlot;
+	public bool isDragged;
 
 	// properties
 	Whirlwind whirlwind;
@@ -38,12 +39,18 @@ public class WhirlwindObject : MonoBehaviour {
 		idlePosition = p;
 		isLockedToSlot = false;
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
-		belt = transform.parent.GetComponent<WhirlwindBelt>();
 		trail = transform.Find("Trail").gameObject;
 		trail.GetComponent<ParticleSystem>().Stop();
 
 		collider = GetComponent<Collider>();
 		rigidbody = GetComponent<Rigidbody>();
+	}
+
+
+	public void Initialize (WhirlwindBelt belt, float speed, float height) {
+		this.belt = belt;
+		this.speed = speed;
+		this.height = height;
 	}
 
 
@@ -111,6 +118,7 @@ public class WhirlwindObject : MonoBehaviour {
 	public void SlowToStop () {
 		Debug.Assert(isLockedToSlot);
 
+		collider.enabled = true;
 		rigidbody.angularVelocity = Vector3.zero;
 		currentState = State.SlowToStop;
 	}
@@ -208,6 +216,24 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 /////// inherited functions //////	
+	void OnMouseDown () {
+		belt.SetMouseDownPosition();
+	}
+
+	void OnMouseDrag () {
+		if (currentState == State.ContextExam) {
+			belt.Spin();
+		}
+	}
+
+	void OnMouseUp () {
+		if (!isDragged && currentState == State.ContextExam) {
+			Enlarge();
+		}
+
+		isDragged = false;
+	}
+
 	void FixedUpdate () {
 	}
 }

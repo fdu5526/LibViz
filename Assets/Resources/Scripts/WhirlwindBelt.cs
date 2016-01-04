@@ -41,8 +41,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		wwObjs = new List<WhirlwindObject>(w);
 		wwObjs.Sort(delegate(WhirlwindObject w1, WhirlwindObject w2) { return w1.name.CompareTo(w2.name); });
 		for (int i = 0; i < wwObjs.Count; i++) {
-			wwObjs[i].speed = speed;
-			wwObjs[i].height = height;
+			wwObjs[i].Initialize(this, speed, height);
 		}
 
 		// initialize the slots
@@ -69,7 +68,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
-	float RandomStirUpSpeed { get { return UnityEngine.Random.Range(0.1f, 0.4f); } }
+	float RandomStirUpWaitTime { get { return UnityEngine.Random.Range(0.1f, 0.4f); } }
 
 
 /////// private helper functions //////
@@ -84,7 +83,7 @@ public class WhirlwindBelt : MonoBehaviour {
 			if (IndexIsInSlots(i)) {
 				wwObjs[i].StirUp(speed, slots[slotIndex].transform);
 				slotIndex++;
-				yield return new WaitForSeconds(RandomStirUpSpeed);
+				yield return new WaitForSeconds(RandomStirUpWaitTime);
 			} else {
 				yield return null;
 			}
@@ -157,8 +156,13 @@ public class WhirlwindBelt : MonoBehaviour {
 			for (int i = 0; i < slots.Length; i++) {
 				slots[i].direction = direction;
 				slots[i].speed = s;
-				slots[i].isDragged = true;
 			}
+
+			for (int i = 0; i < wwObjs.Count; i++) {
+				if (IndexIsInSlots(i)) {
+					wwObjs[i].isDragged = true;
+			}
+		}
 		}
 	}
 

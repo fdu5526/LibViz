@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 [RequireComponent (typeof (Rigidbody))]
-[RequireComponent (typeof (Collider))]
 public class WhirlwindBeltSlot : MonoBehaviour {
 	
 	// assigned properties
@@ -11,7 +10,6 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	public float height;
 	public float radius;
 	public float direction;
-	public bool isDragged;
 	
 	// internal variables
 	WhirlwindObject wwObject;
@@ -23,7 +21,6 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	Transform center;
 
 	// aliases
-	Collider collider;
 	Rigidbody rigidbody;
 
 	// Use this for initialization
@@ -32,7 +29,6 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		shouldSlowsDown = false;
 		speed = 0f;
 
-		collider = GetComponent<Collider>();
 		rigidbody = GetComponent<Rigidbody>();
 	}
 
@@ -120,26 +116,6 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 
 
 /////// inherited functions //////
-	void OnMouseDown () {
-		belt.SetMouseDownPosition();
-	}
-
-	void OnMouseDrag () {
-		if (isInteractable) {
-			belt.Spin();
-		}
-	}
-
-	void OnMouseUp () {
-		if (!isDragged && isInteractable && wwObject != null) {
-			wwObject.Enlarge();
-		}
-
-		isDragged = false;
-	}
-
-
-	
 	void FixedUpdate () {
 		Orbit();
 	}
