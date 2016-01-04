@@ -65,7 +65,6 @@ public class WhirlwindBelt : MonoBehaviour {
 
 
 /////// private helper functions //////
-
 	// stir up an item one at a time
 	IEnumerator StaggeredStirUp () {
 		// the number of items stirred up is based on radius

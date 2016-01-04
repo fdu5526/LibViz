@@ -33,6 +33,8 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		rigidbody = GetComponent<Rigidbody>();
 	}
 
+	
+/////// private helper functions //////
 	// spin around, most important function
 	void Orbit () {
 		float xc;
@@ -99,6 +101,9 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	public void Freeze () {
 		rigidbody.velocity = Vector3.zero;
 	}
+
+
+
 
 /////// inherited functions //////
 	void OnMouseDown () {

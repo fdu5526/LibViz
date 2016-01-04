@@ -45,6 +45,7 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 
+/////// private helper functions //////
 	// for setting initial angular velocity
 	float RandomAngularVelocityRange { 
 		get { 
@@ -78,7 +79,7 @@ public class WhirlwindObject : MonoBehaviour {
 		Debug.Assert(currentState == State.Idle);
 		Debug.Assert(slot != null);
 		Debug.Assert(slot.GetComponent<WhirlwindBeltSlot>() != null);
-		
+
 		ResetToIdle();
 		this.speed = speed;
 		this.slot = slot;
@@ -102,7 +103,6 @@ public class WhirlwindObject : MonoBehaviour {
 		LockToSlot();
 		SlowToStop();
 		ContextExam();
-		//Invoke("ContextExam", Global.TransitionToContextExamTime);
 	}
 
 	public void SlowToStop () {
