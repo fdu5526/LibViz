@@ -14,6 +14,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	public bool shouldSlowsDown;
 
 	// properties
+	WhirlwindObject wwObject;
 	WhirlwindBelt belt;
 	Transform center;
 
@@ -26,27 +27,10 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		center = GameObject.Find("WhirlwindCenter").transform;
 		shouldSlowsDown = false;
 		speed = 0f;
+		wwObject = null;
 
 		collider = GetComponent<Collider>();
 		rigidbody = GetComponent<Rigidbody>();
-	}
-
-	public void Initialize (Vector3 position, WhirlwindBelt belt, float height, float radius) {
-		transform.position = position;
-		this.belt = belt;
-		this.height = height;
-		this.radius = radius;
-	}
-
-
-	public void StirUp () {
-		speed = Global.StirUpSpeed;
-		direction = 1f;
-		shouldSlowsDown = false;
-	}
-	
-	public void SlowToStop () {
-		shouldSlowsDown = true;
 	}
 
 	// spin around, most important function
@@ -86,7 +70,32 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		
 	}
 
+
 /////// public functions for setting whirlwindObject state //////
+	public void Initialize (Vector3 position, WhirlwindBelt belt, float height, float radius) {
+		transform.position = position;
+		this.belt = belt;
+		this.height = height;
+		this.radius = radius;
+	}
+
+
+	public void SetWhirlwindObject (WhirlwindObject w) {
+		Debug.Assert(w != null);
+		this.wwObject = w;
+	}
+
+
+	public void StirUp () {
+		speed = Global.StirUpSpeed;
+		direction = 1f;
+		shouldSlowsDown = false;
+	}
+	
+	public void SlowToStop () {
+		shouldSlowsDown = true;
+	}
+
 	public void Freeze () {
 		rigidbody.velocity = Vector3.zero;
 	}

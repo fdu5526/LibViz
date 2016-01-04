@@ -75,12 +75,14 @@ public class WhirlwindObject : MonoBehaviour {
 /////// public functions for setting whirlwindObject state //////
 	// fly into orbit
 	public void StirUp (float speed, Transform slot) {
-		ResetToIdle();
-
 		Debug.Assert(currentState == State.Idle);
-
+		Debug.Assert(slot != null);
+		Debug.Assert(slot.GetComponent<WhirlwindBeltSlot>() != null);
+		
+		ResetToIdle();
 		this.speed = speed;
 		this.slot = slot;
+		this.slot.GetComponent<WhirlwindBeltSlot>().SetWhirlwindObject(this);
 		rigidbody.useGravity = false;
 		collider.enabled = false;
 		//trail.GetComponent<ParticleSystem>().Play();

@@ -10,10 +10,10 @@ kinect
 get data from mySQL
 
 interaction state machine
+	conveyor belt
+		better exit point collision detection
 	enlarged view
 		reduce view
 	Fullscreen view
-	conveyor belt
-		better exit point collision detection
 	search box
 		searching reorganization
