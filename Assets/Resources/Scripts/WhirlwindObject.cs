@@ -84,7 +84,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 		this.speed = speed;
 		this.slot = slot;
-		this.slot.GetComponent<WhirlwindBeltSlot>().wwObject = this;
+		this.slot.GetComponent<WhirlwindBeltSlot>().AttachWwObject(this);
 		rigidbody.useGravity = false;
 		collider.enabled = false;
 		//trail.GetComponent<ParticleSystem>().Play();
@@ -125,8 +125,13 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.ContextExam;
 	}
 
+	public void Enlarge () {
+		transform.localScale = defaultScale * 2f;
+	}
+
 	public void End () {
 		isLockedToSlot = false;
+		slot.GetComponent<WhirlwindBeltSlot>().DetachWwObject();
 		slot = null;
 		currentState = State.Idle;
 		transform.localScale = defaultScale;

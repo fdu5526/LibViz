@@ -12,7 +12,9 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	public float radius;
 	public float direction;
 	public bool shouldSlowsDown;
-	public WhirlwindObject wwObject;
+	WhirlwindObject wwObject;
+
+	bool isInteractable;
 
 	// properties
 	WhirlwindBelt belt;
@@ -91,11 +93,23 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		shouldSlowsDown = true;
 	}
 
+	public void ContextExam () {
+		isInteractable = true;
+	}
+
 	public void Freeze () {
 		rigidbody.velocity = Vector3.zero;
 	}
 
+	public void AttachWwObject (WhirlwindObject w) {
+		Debug.Assert(w != null);
+		wwObject = w;
+	}
 
+	public void DetachWwObject () {
+		wwObject = null;
+		isInteractable = false;
+	}
 
 
 /////// inherited functions //////
@@ -108,7 +122,9 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	}
 
 	void OnMouseUp () {
-		// TODO do enlarge view here
+		if (isInteractable && wwObject != null) {
+			wwObject.Enlarge();
+		}
 	}
 
 
