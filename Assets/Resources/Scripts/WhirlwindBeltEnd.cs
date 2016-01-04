@@ -15,7 +15,7 @@ public class WhirlwindBeltEnd : MonoBehaviour {
 	}
 
 
-	void OnTriggerEnter(Collider other) {
+	void Shift (Collider other) {
 		if (isInContextExam) {
 			Debug.Assert(other.GetComponent<WhirlwindBeltSlot>() != null);
 			Debug.Assert(belt != null);
@@ -26,5 +26,14 @@ public class WhirlwindBeltEnd : MonoBehaviour {
 				belt.ShiftByOne((int)w.direction);
 			}
 		}
+	}
+
+
+	void OnTriggerEnter(Collider other) {
+		Shift(other);
+	}
+
+	void OnTriggerExit(Collider other) {
+		Shift(other);
 	}
 }
