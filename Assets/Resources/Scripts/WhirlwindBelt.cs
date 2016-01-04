@@ -69,6 +69,9 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
+	float RandomStirUpSpeed { get { return UnityEngine.Random.Range(0.1f, 0.4f); } }
+
+
 /////// private helper functions //////
 	// stir up an item one at a time
 	IEnumerator StaggeredStirUp () {
@@ -81,7 +84,7 @@ public class WhirlwindBelt : MonoBehaviour {
 			if (IndexIsInSlots(i)) {
 				wwObjs[i].StirUp(speed, slots[slotIndex].transform);
 				slotIndex++;
-				yield return new WaitForSeconds(0.3f);
+				yield return new WaitForSeconds(RandomStirUpSpeed);
 			} else {
 				yield return null;
 			}
@@ -187,11 +190,19 @@ public class WhirlwindBelt : MonoBehaviour {
 			Transform slot = wwObjs[headIndex].slot;
 			Debug.Assert(slot != null);
 
+			if (wwObjs[NextIndex(tailIndex)].IsInWhirlwind) {
+				return;
+			}
+
 			wwObjs[headIndex].End();
 			wwObjs[NextIndex(tailIndex)].StirUpByShift(speed, slot);
 		} else { 							// shift prev
 			Transform slot = wwObjs[tailIndex].slot;
 			Debug.Assert(slot != null);
+
+			if (wwObjs[PrevIndex(headIndex)].IsInWhirlwind) {
+				return;
+			}
 
 			wwObjs[tailIndex].End();
 			wwObjs[PrevIndex(headIndex)].StirUpByShift(speed, slot);

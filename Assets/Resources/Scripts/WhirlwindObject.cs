@@ -113,6 +113,7 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.SlowToStop;
 	}
 
+	public bool IsInWhirlwind { get { return slot != null; } }
 	public bool IsInContextExam { get { return currentState == State.ContextExam; } }
 
 	public void ContextExam () {
