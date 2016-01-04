@@ -22,7 +22,7 @@ public class WhirlwindBeltEnd : MonoBehaviour {
 			WhirlwindBeltSlot w = other.GetComponent<WhirlwindBeltSlot>();
 			if ((belt.IsAtHead(other.transform) && w.direction > 0f) || 
 				 	(belt.IsAtTail(other.transform) && w.direction < 0f)) {
-				belt.ShiftByOne((int)w.direction);
+				belt.ShiftByOne((int)w.direction, w.wwObject.index);
 			}
 		}
 	}

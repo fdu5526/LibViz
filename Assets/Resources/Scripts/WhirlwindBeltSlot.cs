@@ -12,9 +12,9 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	public float radius;
 	public float direction;
 	public bool shouldSlowsDown;
+	public WhirlwindObject wwObject;
 
 	// properties
-	WhirlwindObject wwObject;
 	WhirlwindBelt belt;
 	Transform center;
 
@@ -27,7 +27,6 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		center = GameObject.Find("WhirlwindCenter").transform;
 		shouldSlowsDown = false;
 		speed = 0f;
-		wwObject = null;
 
 		collider = GetComponent<Collider>();
 		rigidbody = GetComponent<Rigidbody>();
@@ -79,12 +78,6 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		this.belt = belt;
 		this.height = height;
 		this.radius = radius;
-	}
-
-
-	public void SetWhirlwindObject (WhirlwindObject w) {
-		Debug.Assert(w != null);
-		this.wwObject = w;
 	}
 
 
