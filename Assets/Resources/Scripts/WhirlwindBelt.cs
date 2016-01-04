@@ -160,7 +160,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 			for (int i = 0; i < wwObjs.Count; i++) {
 				if (IndexIsInSlots(i)) {
-					wwObjs[i].isDragged = true;
+					wwObjs[i].isBeltBeingDragged = true;
 			}
 		}
 		}

@@ -18,7 +18,7 @@ public class WhirlwindObject : MonoBehaviour {
 	
 	public Transform slot;
 	bool isLockedToSlot;
-	public bool isDragged;
+	public bool isBeltBeingDragged;
 
 	// properties
 	Whirlwind whirlwind;
@@ -138,9 +138,15 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void Enlarge () {
-		currentState = State.EnlargeSelect;
 		whirlwind.Freeze();
-		transform.localScale = defaultScale * 2f;
+		currentState = State.EnlargeSelect;
+		transform.localScale = defaultScale * Global.EnlargeMultipler;
+	}
+
+	public void UnEnlarge () {
+		whirlwind.UnFreeze();
+		currentState = State.ContextExam;
+		transform.localScale = defaultScale;
 	}
 
 	public void End () {
@@ -175,8 +181,9 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void UnFreeze () {
-		Debug.Assert(currentState == State.Frozen);
-		currentState = State.ContextExam;
+		if (currentState == State.Frozen) {
+			currentState = State.ContextExam;
+		}
 	}
 
 
@@ -217,21 +224,27 @@ public class WhirlwindObject : MonoBehaviour {
 
 /////// inherited functions //////	
 	void OnMouseDown () {
-		belt.SetMouseDownPosition();
+		if (currentState == State.ContextExam) {
+			belt.SetMouseDownPosition();
+		}
 	}
 
 	void OnMouseDrag () {
 		if (currentState == State.ContextExam) {
 			belt.Spin();
+		} else if (currentState == State.EnlargeSelect) {
+			// TODO draggable to desk here
 		}
 	}
 
 	void OnMouseUp () {
-		if (!isDragged && currentState == State.ContextExam) {
-			Enlarge();
+		if (!isBeltBeingDragged && currentState == State.ContextExam)  {
+				Enlarge();
+		} else if (currentState == State.EnlargeSelect) {
+			UnEnlarge();
 		}
 
-		isDragged = false;
+		isBeltBeingDragged = false;		
 	}
 
 	void FixedUpdate () {
