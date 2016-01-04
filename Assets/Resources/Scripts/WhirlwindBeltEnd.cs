@@ -19,8 +19,9 @@ public class WhirlwindBeltEnd : MonoBehaviour {
 			Debug.Assert(other.GetComponent<WhirlwindBeltSlot>() != null);
 			Debug.Assert(belt != null);
 
-			if (belt.IsAtHeadOrTail(other.transform)) {
-				WhirlwindBeltSlot w = other.GetComponent<WhirlwindBeltSlot>();
+			WhirlwindBeltSlot w = other.GetComponent<WhirlwindBeltSlot>();
+			if ((belt.IsAtHead(other.transform) && w.direction > 0f) || 
+				 	(belt.IsAtTail(other.transform) && w.direction < 0f)) {
 				belt.ShiftByOne((int)w.direction);
 			}
 		}

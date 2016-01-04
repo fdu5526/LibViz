@@ -178,11 +178,15 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
-	public bool IsAtHeadOrTail (Transform slot) {
+	public bool IsAtHead (Transform slot) {
 		bool isHead = (slot.position - wwObjs[headIndex].slot.position).sqrMagnitude < 0.1f;
-		bool isTail = (slot.position - wwObjs[PrevIndex(tailIndex)].slot.position).sqrMagnitude < 0.1f;
+		return isHead;
+	}
 
-		return isHead || isTail;
+
+	public bool IsAtTail (Transform slot) {
+		bool isTail = (slot.position - wwObjs[PrevIndex(tailIndex)].slot.position).sqrMagnitude < 0.1f;
+		return isTail;
 	}
 
 	// shift to the left or right by one
