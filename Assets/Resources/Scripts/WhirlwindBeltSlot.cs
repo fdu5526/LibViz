@@ -6,14 +6,16 @@ using System.Collections.Generic;
 [RequireComponent (typeof (Collider))]
 public class WhirlwindBeltSlot : MonoBehaviour {
 	
-	// assigned
+	// assigned properties
 	public float speed;
 	public float height;
 	public float radius;
 	public float direction;
-	public bool shouldSlowsDown;
+	public bool isDragged;
+	
+	// internal variables
 	WhirlwindObject wwObject;
-
+	bool shouldSlowsDown;
 	bool isInteractable;
 
 	// properties
@@ -98,7 +100,12 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	}
 
 	public void Freeze () {
+		isInteractable = false;
 		rigidbody.velocity = Vector3.zero;
+	}
+
+	public void UnFreeze () {
+		isInteractable = true;
 	}
 
 	public void AttachWwObject (WhirlwindObject w) {
@@ -118,13 +125,17 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	}
 
 	void OnMouseDrag () {
-		belt.Spin();
+		if (isInteractable) {
+			belt.Spin();
+		}
 	}
 
 	void OnMouseUp () {
-		if (isInteractable && wwObject != null) {
+		if (!isDragged && isInteractable && wwObject != null) {
 			wwObject.Enlarge();
 		}
+
+		isDragged = false;
 	}
 
 

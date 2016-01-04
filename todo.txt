@@ -12,6 +12,8 @@ get data from mySQL
 interaction state machine
 	enlarged view
 		reduce view
+		draggable when it is large
+		freeze the whirlwind
 	Fullscreen view
 	search box
 		searching reorganization

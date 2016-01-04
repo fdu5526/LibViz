@@ -157,6 +157,7 @@ public class WhirlwindBelt : MonoBehaviour {
 			for (int i = 0; i < slots.Length; i++) {
 				slots[i].direction = direction;
 				slots[i].speed = s;
+				slots[i].isDragged = true;
 			}
 		}
 	}
@@ -264,11 +265,23 @@ public class WhirlwindBelt : MonoBehaviour {
 				wwObjs[i].Freeze();
 			}
 		}
+
+		for (int i = 0; i < slots.Length; i++) {
+			slots[i].Freeze();
+		}
 	}
 
 	// unfreeze the belt, can move again
 	public void UnFreeze () {
 		isInteractable = true;
+		for (int i = 0; i < wwObjs.Count; i++) {
+			if (IndexIsInSlots(i)) {
+				wwObjs[i].UnFreeze();
+			}
+		}
+		for (int i = 0; i < slots.Length; i++) {
+			slots[i].UnFreeze();
+		}
 	}
 
 	// update all the ones that are in slots

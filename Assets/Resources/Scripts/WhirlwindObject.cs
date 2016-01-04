@@ -20,6 +20,7 @@ public class WhirlwindObject : MonoBehaviour {
 	bool isLockedToSlot;
 
 	// properties
+	Whirlwind whirlwind;
 	WhirlwindBelt belt;
 	GameObject trail;
 	Vector3 defaultScale;
@@ -36,6 +37,7 @@ public class WhirlwindObject : MonoBehaviour {
 		Vector3 p = transform.position;
 		idlePosition = p;
 		isLockedToSlot = false;
+		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		belt = transform.parent.GetComponent<WhirlwindBelt>();
 		trail = transform.Find("Trail").gameObject;
 		trail.GetComponent<ParticleSystem>().Stop();
@@ -124,9 +126,12 @@ public class WhirlwindObject : MonoBehaviour {
 		rigidbody.rotation = Quaternion.identity;
 		rigidbody.freezeRotation = true;
 		currentState = State.ContextExam;
+		slot.GetComponent<WhirlwindBeltSlot>().ContextExam();
 	}
 
 	public void Enlarge () {
+		currentState = State.EnlargeSelect;
+		whirlwind.Freeze();
 		transform.localScale = defaultScale * 2f;
 	}
 
@@ -157,7 +162,13 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void Freeze () {
+		currentState = State.Frozen;
 		rigidbody.velocity = Vector3.zero;
+	}
+
+	public void UnFreeze () {
+		Debug.Assert(currentState == State.Frozen);
+		currentState = State.ContextExam;
 	}
 
 
