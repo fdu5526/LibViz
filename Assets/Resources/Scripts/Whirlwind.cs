@@ -89,7 +89,6 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
-
 	void UnFreeze () {
 		currentState = State.ContextExam; // TODO watch for edge case
 		for (int i = 0; i < belts.Length; i++) {
@@ -106,6 +105,7 @@ public class Whirlwind : MonoBehaviour {
 /////// public functions for manipulating whirlwind state //////
 	// only call this from WhirlwindObject.Enlarge()
 	public void Enlarge (WhirlwindObject wwObj) {
+		Debug.Assert(enlargedObject == null);
 		Debug.Assert(wwObj != null);
 
 		Freeze();
@@ -119,6 +119,7 @@ public class Whirlwind : MonoBehaviour {
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
 		
 		UnFreeze();
+		enlargedObject.UnEnlarge();
 		enlargedObject = null;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 	}

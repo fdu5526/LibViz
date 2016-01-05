@@ -134,16 +134,13 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.ContextExam;
 	}
 
-	void Enlarge () {
+	public void Enlarge () {
 		whirlwind.Enlarge(this);
 		currentState = State.EnlargeSelect;
-		transform.localScale = defaultScale * Global.EnlargeMultipler;
 	}
 
 	public void UnEnlarge () {
-		whirlwind.UnEnlarge();
 		currentState = State.ContextExam;
-		transform.localScale = defaultScale;
 	}
 
 	public void End () {
@@ -180,7 +177,6 @@ public class WhirlwindObject : MonoBehaviour {
 			currentState = State.ContextExam;
 		}
 	}
-
 
 	// do everything state machine here
 	public void ComputeState () {
@@ -243,8 +239,6 @@ public class WhirlwindObject : MonoBehaviour {
 	void OnMouseUp () {
 		if (!isBeltBeingDragged && currentState == State.ContextExam)  {
 				Enlarge();
-		} else if (currentState == State.EnlargeSelect) {
-			UnEnlarge();
 		}
 
 		isBeltBeingDragged = false;		
