@@ -8,6 +8,7 @@ public class WhirlwindObject : MonoBehaviour {
 	
 	// assigned
 	public float speed;
+	public float radius;
 	public float height;
 
 	// generated
@@ -49,8 +50,9 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 
-	public void Initialize (WhirlwindBelt belt, float height) {
+	public void Initialize (WhirlwindBelt belt, float radius, float height) {
 		this.belt = belt;
+		this.radius = radius;
 		this.height = height;
 	}
 
@@ -81,6 +83,13 @@ public class WhirlwindObject : MonoBehaviour {
 
 		isLockedToSlot = true;
 		rigidbody.velocity = Vector3.zero;
+	}
+
+
+	void UpdateFade () {
+		Color c = actualObject.GetComponent<Renderer>().material.color;
+		c.a = 1f - (transform.position.z + radius) / (2f * radius);
+		actualObject.GetComponent<Renderer>().material.color = c;
 	}
 
 /////// functions for setting whirlwindObject state //////
@@ -255,5 +264,6 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		UpdateFade();
 	}
 }

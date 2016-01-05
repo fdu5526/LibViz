@@ -39,7 +39,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		wwObjs = new List<WhirlwindObject>(w);
 		wwObjs.Sort(delegate(WhirlwindObject w1, WhirlwindObject w2) { return w1.name.CompareTo(w2.name); });
 		for (int i = 0; i < wwObjs.Count; i++) {
-			wwObjs[i].Initialize(this, height);
+			wwObjs[i].Initialize(this, radius, height);
 		}
 
 		// initialize the slots
