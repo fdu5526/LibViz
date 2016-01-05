@@ -29,7 +29,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 		center = GameObject.Find("WhirlwindCenter").transform;
 		height = transform.position.y;
-		radius = height / 3f  * 2f + 1f;
+		radius = height * 0.6f + 1f;
 		speed = 50f;
 		isInteractable = false;
 		numOfObjectsShownOnBelt = 3 + level * 2;
@@ -55,7 +55,7 @@ public class WhirlwindBelt : MonoBehaviour {
 			Vector3 v = new Vector3(center.position.x + radius * Mathf.Cos(t),
 															height,
 															center.position.z + radius * Mathf.Sin(t));
-			slots[i].Initialize(v, this, height, radius);
+			slots[i].Initialize(v, height, radius);
 		}
 		
 		// the end point of the belt that causes shifting
@@ -146,7 +146,6 @@ public class WhirlwindBelt : MonoBehaviour {
 			}
 
 			float direction = d > 0f ? 1f : -1f;
-			int di = (int)direction;
 			float s = Mathf.Min(Mathf.Abs(d), 50f);
 			s = s > 1f ? s : 0f;
 			prevMouseX = mouseX;
@@ -280,17 +279,12 @@ public class WhirlwindBelt : MonoBehaviour {
 				wwObjs[i].UnFreeze();
 			}
 		}
-		for (int i = 0; i < slots.Length; i++) {
-			slots[i].UnFreeze();
-		}
 	}
 
 	// update all the ones that are in slots
 	public void ComputeState (Whirlwind.State currentState) {
 		for (int i = 0; i < wwObjs.Count; i++) {
-			if (IndexIsInSlots(i)) {
-				wwObjs[i].ComputeState();
-			}
+			wwObjs[i].ComputeState();
 		}
 	}
 

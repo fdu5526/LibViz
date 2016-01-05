@@ -13,7 +13,7 @@ public class WhirlwindObject : MonoBehaviour {
 	// generated
 	Vector3 idlePosition;
 
-	enum State { Idle, StirUp, SlowToStop, ContextExam, EnlargeSelect, FullscreenSelect, Frozen };
+	enum State { Idle, StirUp, SlowToStop, ContextExam, EnlargeSelect, FullscreenSelect, End, Frozen };
 	State currentState;
 	
 	public Transform slot;
@@ -93,7 +93,6 @@ public class WhirlwindObject : MonoBehaviour {
 
 		this.speed = speed;
 		this.slot = slot;
-		this.slot.GetComponent<WhirlwindBeltSlot>().AttachWwObject(this);
 		rigidbody.useGravity = false;
 		collider.enabled = false;
 		//trail.GetComponent<ParticleSystem>().Play();
@@ -134,7 +133,6 @@ public class WhirlwindObject : MonoBehaviour {
 		rigidbody.rotation = Quaternion.identity;
 		rigidbody.freezeRotation = true;
 		currentState = State.ContextExam;
-		slot.GetComponent<WhirlwindBeltSlot>().ContextExam();
 	}
 
 	public void Enlarge () {
@@ -150,17 +148,15 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void End () {
+		Vector3 v;
+
 		isLockedToSlot = false;
-		slot.GetComponent<WhirlwindBeltSlot>().DetachWwObject();
 		slot = null;
-		currentState = State.Idle;
+		currentState = State.End;
 		transform.localScale = defaultScale;
 		collider.enabled = true;
 		rigidbody.useGravity = true;
 		rigidbody.freezeRotation = false;
-		Vector3 v = (idlePosition - transform.position).normalized * 30f;
-		v.Set(v.x, v.y + 5f, v.z);
-		rigidbody.velocity = v;
 		v = new Vector3(RandomAngularVelocityRange, 
 										RandomAngularVelocityRange, 
 										RandomAngularVelocityRange);
@@ -193,6 +189,13 @@ public class WhirlwindObject : MonoBehaviour {
 
 		// state machine transitions
 		switch (currentState) {
+			case State.End:
+				if ((idlePosition - p).sqrMagnitude < 1f) {
+					currentState = State.Idle;
+				} else {
+					transform.position = Vector3.Lerp(p, idlePosition, 0.1f);
+				}
+				break;
 			case State.ContextExam:
 			case State.SlowToStop:
 				Debug.Assert(isLockedToSlot);
@@ -207,8 +210,9 @@ public class WhirlwindObject : MonoBehaviour {
 				if (!isLockedToSlot && d.sqrMagnitude < 10f) { // dock at slot
 					LockToSlot();
 				} else if (!isLockedToSlot) {
-					speed = Mathf.Lerp(speed, Global.StirUpSpeed, 0.02f);
-					rigidbody.velocity = d.normalized * speed;
+					//speed = Mathf.Lerp(speed, Global.StirUpSpeed, 0.02f);
+					//rigidbody.velocity = d.normalized * speed;
+					transform.position = Vector3.Lerp(p, slot.position, 0.1f);
 				}
 				break;
 			default:

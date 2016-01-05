@@ -4,13 +4,11 @@ using System.Collections;
 [RequireComponent (typeof (Collider))]
 public class WhirlwindBeltEnd : MonoBehaviour {
 
-	int count;
 	public bool isInContextExam;
 	public WhirlwindBelt belt;
 
 	// Use this for initialization
 	void Start () {
-		count = 0;
 		isInContextExam = false;
 	}
 

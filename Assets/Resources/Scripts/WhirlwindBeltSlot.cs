@@ -12,12 +12,9 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	public float direction;
 	
 	// internal variables
-	WhirlwindObject wwObject;
 	bool shouldSlowsDown;
-	bool isInteractable;
 
 	// properties
-	WhirlwindBelt belt;
 	Transform center;
 
 	// aliases
@@ -73,9 +70,8 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 
 
 /////// public functions for setting whirlwindObject state //////
-	public void Initialize (Vector3 position, WhirlwindBelt belt, float height, float radius) {
+	public void Initialize (Vector3 position, float height, float radius) {
 		transform.position = position;
-		this.belt = belt;
 		this.height = height;
 		this.radius = radius;
 	}
@@ -91,29 +87,10 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		shouldSlowsDown = true;
 	}
 
-	public void ContextExam () {
-		isInteractable = true;
-	}
 
 	public void Freeze () {
-		isInteractable = false;
 		rigidbody.velocity = Vector3.zero;
 	}
-
-	public void UnFreeze () {
-		isInteractable = true;
-	}
-
-	public void AttachWwObject (WhirlwindObject w) {
-		Debug.Assert(w != null);
-		wwObject = w;
-	}
-
-	public void DetachWwObject () {
-		wwObject = null;
-		isInteractable = false;
-	}
-
 
 /////// inherited functions //////
 	void FixedUpdate () {
