@@ -10,13 +10,15 @@ kinect
 get data from mySQL
 
 interaction state machine
-	conveyor belt
-		make it so that the belts slowToStop when tail passes
+	
 	enlarged view
 		draggable when it is large
+	
 	Fullscreen view
 		actual image loading
 		actual text loading
+	
 	spin the entire whirlwind
+	
 	search box
 		searching reorganization

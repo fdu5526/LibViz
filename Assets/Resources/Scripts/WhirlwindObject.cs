@@ -215,7 +215,7 @@ public class WhirlwindObject : MonoBehaviour {
 				if (!isLockedToSlot && d.sqrMagnitude < 10f) { // dock at slot
 					LockToSlot();
 				} else if (!isLockedToSlot) {
-					speed = Mathf.Lerp(speed, Global.StirUpSpeed, 0.02f);
+					speed = Mathf.Lerp(speed, slot.GetComponent<WhirlwindBeltSlot>().speed, 0.02f);
 					rigidbody.velocity = d.normalized * speed;
 					//transform.position = Vector3.Lerp(p, slot.position, 0.02f);
 				}

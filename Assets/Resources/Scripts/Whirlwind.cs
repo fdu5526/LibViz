@@ -61,15 +61,30 @@ public class Whirlwind : MonoBehaviour {
 			belts[i].SlowToStop();
 		}
 		currentState = State.SlowToStop;
-		Invoke("ContextExam", Global.TransitionToContextExamTime);
+		StartCoroutine(CheckWhenToContextExam());
 	}
 
+	IEnumerator CheckWhenToContextExam () {
+		while (true) {
+			bool allDone = true;
+			for (int i = 0; i < belts.Length; i++) {
+				allDone &= belts[i].IsDoneSlowingDown;
+			}
+
+			if (allDone) {
+				currentState = State.ContextExam;
+				for (int i = 0; i < belts.Length; i++) {
+					belts[i].ContextExam();
+				}
+				break;
+			} else {
+				yield return new WaitForSeconds(0.01f);
+			}
+		}
+	}
 
 	void ContextExam () {
-		currentState = State.ContextExam;
-		for (int i = 0; i < belts.Length; i++) {
-			belts[i].ContextExam();
-		}
+
 	}
 
 

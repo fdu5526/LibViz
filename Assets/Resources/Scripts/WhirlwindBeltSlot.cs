@@ -70,6 +70,12 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 
 
 /////// public functions for setting whirlwindObject state //////
+	public bool IsDoneSlowingDown {
+		get {
+			return speed < 0.1f;
+		}
+	}
+
 	public void Initialize (Vector3 position, float height, float radius) {
 		transform.position = position;
 		this.height = height;
@@ -78,7 +84,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 
 
 	public void StirUp () {
-		speed = Global.StirUpSpeed;
+		speed = Global.StirUpSpeed * height / 5f;
 		direction = 1f;
 		shouldSlowsDown = false;
 	}

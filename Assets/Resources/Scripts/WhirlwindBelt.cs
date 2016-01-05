@@ -62,6 +62,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		g.transform.position = transform.position + new Vector3(radius, 0f, 0f);
 		beltEnd = g.GetComponent<WhirlwindBeltEnd>();
 		beltEnd.belt = this;
+		beltEnd.GetComponent<Collider>().enabled = false;
 	}
 
 
@@ -213,16 +214,40 @@ public class WhirlwindBelt : MonoBehaviour {
 		tailIndex = ShiftIndexByDirection(tailIndex, direction);
 	}
 
-	// slow down initial spin
-	public void SlowToStop () {
-		for (int i = 0; i < wwObjs.Count; i++) {
-			if (IndexIsInSlots(i)) {
-				wwObjs[i].SlowToStop();
+
+	IEnumerator CheckWhenToStop () {
+		while (true) {
+			if (beltEnd.mostRecentCollisionIsTail) {
+				for (int i = 0; i < wwObjs.Count; i++) {
+					if (IndexIsInSlots(i)) {
+						wwObjs[i].SlowToStop();
+					}
+				}
+				for (int i = 0; i < slots.Length; i++) {
+					slots[i].SlowToStop();
+				}
+				break;
+			} else {
+				yield return new WaitForSeconds(0.01f);
 			}
 		}
-		for (int i = 0; i < slots.Length; i++) {
-			slots[i].SlowToStop();
-		}
+		
+	}
+
+	// slow down initial spin
+	public void SlowToStop () {
+		beltEnd.GetComponent<Collider>().enabled = true;
+		StartCoroutine(CheckWhenToStop());
+	}
+
+	public bool IsDoneSlowingDown { 
+		get {
+			bool allDone = true;
+			for (int i = 0; i < slots.Length; i++) {
+				allDone &= slots[i].IsDoneSlowingDown;
+			}
+			return allDone;
+		} 
 	}
 
 	// is able to interact
@@ -240,6 +265,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	// end the entire belt
 	public void End () {
 		isInteractable = false;
+		beltEnd.GetComponent<Collider>().enabled = false;
 		beltEnd.isInContextExam = false;
 		for (int i = 0; i < wwObjs.Count; i++) {
 			if (IndexIsInSlots(i)) {
