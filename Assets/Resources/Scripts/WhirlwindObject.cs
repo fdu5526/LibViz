@@ -13,7 +13,7 @@ public class WhirlwindObject : MonoBehaviour {
 	// generated
 	Vector3 idlePosition;
 
-	enum State { Idle, StirUp, SlowToStop, ContextExam, EnlargeSelect, FullscreenSelect, End, Frozen };
+	enum State { Idle, StirUp, SlowToStop, ContextExam, EnlargeSelect, End, Frozen };
 	State currentState;
 	
 	public Transform slot;
@@ -135,7 +135,7 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void Enlarge () {
-		whirlwind.Enlarge(this);
+		whirlwind.EnterEnlargeSelection(this);
 		currentState = State.EnlargeSelect;
 	}
 

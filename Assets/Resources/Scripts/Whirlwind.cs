@@ -104,7 +104,7 @@ public class Whirlwind : MonoBehaviour {
 
 /////// public functions for manipulating whirlwind state //////
 	// only call this from WhirlwindObject.Enlarge()
-	public void Enlarge (WhirlwindObject wwObj) {
+	public void EnterEnlargeSelection (WhirlwindObject wwObj) {
 		Debug.Assert(enlargedObject == null);
 		Debug.Assert(wwObj != null);
 
@@ -114,7 +114,7 @@ public class Whirlwind : MonoBehaviour {
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 	}
 
-	public void UnEnlarge () {
+	public void ExitEnlargeSelection () {
 		Debug.Assert(enlargedObject != null);
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
 		
@@ -122,6 +122,20 @@ public class Whirlwind : MonoBehaviour {
 		enlargedObject.UnEnlarge();
 		enlargedObject = null;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
+	}
+
+
+	public void EnterFullScreen () {
+		Debug.Assert(enlargedObject != null);
+		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
+		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
+	}
+
+
+	public void ExitFullScreen () {
+		Debug.Assert(enlargedObject != null);
+		Debug.Assert(!enlargedSelectionUI.GetComponent<Canvas>().enabled);
+		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 	}
 
 
