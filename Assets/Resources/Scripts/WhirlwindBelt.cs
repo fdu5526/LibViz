@@ -61,8 +61,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		// the end point of the belt that causes shifting
 		g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindBeltEnd"));
 		g.transform.parent = transform;
-		g.transform.position = transform.position;
-		g.transform.localPosition = new Vector3(radius, 0f, 0f);
+		g.transform.position = transform.position + new Vector3(radius, 0f, 0f);
 		beltEnd = g.GetComponent<WhirlwindBeltEnd>();
 		beltEnd.belt = this;
 	}
