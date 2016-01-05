@@ -10,13 +10,18 @@ kinect
 get data from mySQL
 
 interaction state machine
-	
+	text next to belt
+
 	enlarged view
 		draggable when it is large
+		look at wireframe, make it look like that
+		reconfigure belt behind it
 	
 	Fullscreen view
 		actual image loading
 		actual text loading
+		scrollable interface
+		look at wireframe, make it look like that
 	
 	spin the entire whirlwind
 	

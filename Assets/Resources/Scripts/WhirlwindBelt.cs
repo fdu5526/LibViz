@@ -30,7 +30,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		height = transform.position.y;
 		radius = height * 0.6f + 1f;
 		isInteractable = false;
-		numOfObjectsShownOnBelt = 3 + level * 2;
+		numOfObjectsShownOnBelt = 3 + level * 3;
 
 		WhirlwindObject[] w = GetComponentsInChildren<WhirlwindObject>();
 		Debug.Assert(w != null && w.Length > 0);
