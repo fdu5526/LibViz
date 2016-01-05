@@ -8,6 +8,7 @@ public class Whirlwind : MonoBehaviour {
 	public State currentState;
 
 	Vector3 enlargedObjectPosition;
+	WhirlwindObject enlargedObject;
 	GameObject enlargedSelectionUI;
 
 	// a whirlwind is defined as an array of WhirlWindBelt
@@ -33,7 +34,7 @@ public class Whirlwind : MonoBehaviour {
 	void CheckInteractionWithWhirlwind () {
 		if (Input.GetKeyDown("a") &&
 				currentState == State.Idle) {
-			StirUp();
+			StirUp(50f);
 		} else if (Input.GetKeyDown("s") &&
 							 currentState == State.StirUp) {
 			SlowToStop();
@@ -44,9 +45,9 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// functions for setting whirlwind state //////
-	void StirUp () {
+	void StirUp (float speed) {
 		for (int i = 0; i < belts.Length; i++) {
-			belts[i].StirUp();
+			belts[i].StirUp(speed);
 		}
 		currentState = State.StirUp;
 	}
@@ -79,29 +80,9 @@ public class Whirlwind : MonoBehaviour {
 
 	void ResetToIdle () {
 		currentState = State.Idle;
-		for (int i = 0; i < belts.Length; i++) {
-			belts[i].ResetToIdle();
-		}
 	}
 
-	// only call this from WhirlwindObject
-	public void Enlarge (WhirlwindObject wwObj) {
-		Debug.Assert(wwObj != null);
-
-		Freeze();
-		wwObj.transform.position = enlargedObjectPosition;
-		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
-	}
-
-	public void UnEnlarge () {
-		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
-		
-		UnFreeze();
-		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
-	}
-
-
-	public void Freeze () {
+	void Freeze () {
 		currentState = State.Frozen;
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].Freeze();
@@ -109,18 +90,37 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 
-	public void UnFreeze () {
+	void UnFreeze () {
 		currentState = State.ContextExam; // TODO watch for edge case
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].UnFreeze();
 		}
 	}
 
-
 	void ComputeState () {
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].ComputeState(currentState);
 		}
+	}
+
+/////// public functions for manipulating whirlwind state //////
+	// only call this from WhirlwindObject.Enlarge()
+	public void Enlarge (WhirlwindObject wwObj) {
+		Debug.Assert(wwObj != null);
+
+		Freeze();
+		enlargedObject = wwObj;
+		wwObj.transform.position = enlargedObjectPosition;
+		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
+	}
+
+	public void UnEnlarge () {
+		Debug.Assert(enlargedObject != null);
+		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
+		
+		UnFreeze();
+		enlargedObject = null;
+		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 	}
 
 

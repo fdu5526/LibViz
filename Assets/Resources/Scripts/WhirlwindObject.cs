@@ -47,9 +47,8 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 
-	public void Initialize (WhirlwindBelt belt, float speed, float height) {
+	public void Initialize (WhirlwindBelt belt, float height) {
 		this.belt = belt;
-		this.speed = speed;
 		this.height = height;
 	}
 
@@ -82,7 +81,7 @@ public class WhirlwindObject : MonoBehaviour {
 		rigidbody.velocity = Vector3.zero;
 	}
 
-/////// public functions for setting whirlwindObject state //////
+/////// functions for setting whirlwindObject state //////
 	// fly into orbit
 	public void StirUp (float speed, Transform slot) {
 		ResetToIdle();
@@ -135,7 +134,7 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.ContextExam;
 	}
 
-	public void Enlarge () {
+	void Enlarge () {
 		whirlwind.Enlarge(this);
 		currentState = State.EnlargeSelect;
 		transform.localScale = defaultScale * Global.EnlargeMultipler;
@@ -210,9 +209,9 @@ public class WhirlwindObject : MonoBehaviour {
 				if (!isLockedToSlot && d.sqrMagnitude < 10f) { // dock at slot
 					LockToSlot();
 				} else if (!isLockedToSlot) {
-					//speed = Mathf.Lerp(speed, Global.StirUpSpeed, 0.02f);
-					//rigidbody.velocity = d.normalized * speed;
-					transform.position = Vector3.Lerp(p, slot.position, 0.1f);
+					speed = Mathf.Lerp(speed, Global.StirUpSpeed, 0.02f);
+					rigidbody.velocity = d.normalized * speed;
+					//transform.position = Vector3.Lerp(p, slot.position, 0.02f);
 				}
 				break;
 			default:

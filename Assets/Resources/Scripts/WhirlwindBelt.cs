@@ -9,7 +9,6 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	float radius;
 	float height;
-	float speed;
 
 	float prevMouseX;
 
@@ -30,7 +29,6 @@ public class WhirlwindBelt : MonoBehaviour {
 		center = GameObject.Find("WhirlwindCenter").transform;
 		height = transform.position.y;
 		radius = height * 0.6f + 1f;
-		speed = 50f;
 		isInteractable = false;
 		numOfObjectsShownOnBelt = 3 + level * 2;
 
@@ -41,7 +39,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		wwObjs = new List<WhirlwindObject>(w);
 		wwObjs.Sort(delegate(WhirlwindObject w1, WhirlwindObject w2) { return w1.name.CompareTo(w2.name); });
 		for (int i = 0; i < wwObjs.Count; i++) {
-			wwObjs[i].Initialize(this, speed, height);
+			wwObjs[i].Initialize(this, height);
 		}
 
 		// initialize the slots
@@ -72,7 +70,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 /////// private helper functions //////
 	// stir up an item one at a time
-	IEnumerator StaggeredStirUp () {
+	IEnumerator StaggeredStirUp (float speed) {
 		// the number of items stirred up is based on radius
 		tailIndex = Mathf.Max(BeltSize - 1, 0);
 		headIndex = 0;
@@ -178,11 +176,11 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 	// stir up objects, but stagger them so they have spaces in between them
-	public void StirUp () {
+	public void StirUp (float speed) {
 		for (int i = 0; i < slots.Length; i++) {
 			slots[i].StirUp();
 		}
-		StartCoroutine(StaggeredStirUp());
+		StartCoroutine(StaggeredStirUp(speed));
 	}
 
 	// shift to the left or right by one
@@ -198,7 +196,7 @@ public class WhirlwindBelt : MonoBehaviour {
 			}
 
 			wwObjs[headIndex].End();
-			wwObjs[NextIndex(tailIndex)].StirUpByShift(speed, slot);
+			wwObjs[NextIndex(tailIndex)].StirUpByShift(100f, slot);
 		} else { 							// shift prev
 			Transform slot = wwObjs[tailIndex].slot;
 			Debug.Assert(slot != null);
@@ -208,7 +206,7 @@ public class WhirlwindBelt : MonoBehaviour {
 			}
 
 			wwObjs[tailIndex].End();
-			wwObjs[PrevIndex(headIndex)].StirUpByShift(speed, slot);
+			wwObjs[PrevIndex(headIndex)].StirUpByShift(100f, slot);
 		}
 
 		headIndex = ShiftIndexByDirection(headIndex, direction);
