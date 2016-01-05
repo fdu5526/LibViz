@@ -15,7 +15,6 @@ interaction state machine
 	enlarged view
 		draggable when it is large
 		look at wireframe, make it look like that
-		reconfigure belt behind it
 	
 	Fullscreen view
 		actual image loading
@@ -27,3 +26,10 @@ interaction state machine
 	
 	search box
 		searching reorganization
+
+
+Non-coding related
+	test reconfiguring belt after enlarging
+		1. no reconfigure at all
+		2. 3 buttons (add to search, search, examine)
+		3. as soon as enlarge, reconfigure, no going back
