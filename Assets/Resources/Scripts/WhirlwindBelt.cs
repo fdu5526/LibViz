@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -22,14 +22,14 @@ public class WhirlwindBelt : MonoBehaviour {
 	int headIndex, tailIndex;
 	WhirlwindBeltSlot[] slots;
 	WhirlwindBeltEnd beltEnd;
-
+	
 	// Use this for initialization
 	void Start () {
 		GameObject g;
 
 		center = GameObject.Find("WhirlwindCenter").transform;
 		height = transform.position.y;
-		radius = height / 2f + 1f;
+		radius = height / 3f  * 2f + 1f;
 		speed = 50f;
 		isInteractable = false;
 		numOfObjectsShownOnBelt = 3 + level * 2;
@@ -68,7 +68,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
-	float RandomStirUpWaitTime { get { return UnityEngine.Random.Range(0.1f, 0.4f); } }
+	float RandomStirUpWaitTime { get { return UnityEngine.Random.Range(0.4f, 1f) / (float)BeltSize; } }
 
 
 /////// private helper functions //////
@@ -255,9 +255,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	// when a belt's items are all returned to position, reset them to a stack
 	public void ResetToIdle () {
 		for (int i = 0; i < wwObjs.Count; i++) {
-			if (IndexIsInSlots(i)) {
-				wwObjs[i].ResetToIdle();
-			}
+			wwObjs[i].ResetToIdle();
 		}
 	}
 
