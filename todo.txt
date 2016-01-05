@@ -13,6 +13,7 @@ interaction state machine
 	conveyor belt
 		make it so that the belts slowToStop when tail passes
 	enlarged view
+		UI
 		draggable when it is large
 	Fullscreen view
 	spin the entire whirlwind

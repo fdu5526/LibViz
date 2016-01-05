@@ -136,13 +136,13 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void Enlarge () {
-		whirlwind.Freeze();
+		whirlwind.Enlarge(this);
 		currentState = State.EnlargeSelect;
 		transform.localScale = defaultScale * Global.EnlargeMultipler;
 	}
 
 	public void UnEnlarge () {
-		whirlwind.UnFreeze();
+		whirlwind.UnEnlarge();
 		currentState = State.ContextExam;
 		transform.localScale = defaultScale;
 	}

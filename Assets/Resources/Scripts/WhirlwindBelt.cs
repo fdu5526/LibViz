@@ -67,7 +67,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
-	float RandomStirUpWaitTime { get { return UnityEngine.Random.Range(0.4f, 1f) / (float)BeltSize; } }
+	float RandomStirUpWaitTime { get { return 1f / (float)BeltSize; } }
 
 
 /////// private helper functions //////
