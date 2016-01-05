@@ -10,6 +10,7 @@ public class Whirlwind : MonoBehaviour {
 	Vector3 enlargedObjectPosition;
 	WhirlwindObject enlargedObject;
 	GameObject enlargedSelectionUI;
+	GameObject fullscreenSelectionUI;
 
 	// a whirlwind is defined as an array of WhirlWindBelt
 	WhirlwindBelt[] belts;
@@ -21,6 +22,8 @@ public class Whirlwind : MonoBehaviour {
 		enlargedObjectPosition = new Vector3(0f, 11.24f, -15.8f);
 		enlargedSelectionUI = GameObject.Find("EnlargedSelectionUI");
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
+		fullscreenSelectionUI = GameObject.Find("FullscreenSelectionUI");
+		fullscreenSelectionUI.GetComponent<Canvas>().enabled = false;
 		
 		GameObject[] gl = GameObject.FindGameObjectsWithTag("WhirlwindBelt");
 		belts = new WhirlwindBelt[gl.Length];
@@ -128,14 +131,21 @@ public class Whirlwind : MonoBehaviour {
 	public void EnterFullScreen () {
 		Debug.Assert(enlargedObject != null);
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
+		
+		enlargedObject.FullScreen();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
+		fullscreenSelectionUI.GetComponent<Canvas>().enabled = true;
 	}
 
 
 	public void ExitFullScreen () {
 		Debug.Assert(enlargedObject != null);
 		Debug.Assert(!enlargedSelectionUI.GetComponent<Canvas>().enabled);
+		Debug.Assert(fullscreenSelectionUI.GetComponent<Canvas>().enabled);
+		
+		enlargedObject.UnFullScreen();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
+		fullscreenSelectionUI.GetComponent<Canvas>().enabled = false;
 	}
 
 

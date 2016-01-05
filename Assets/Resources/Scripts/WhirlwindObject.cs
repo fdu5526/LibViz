@@ -24,6 +24,7 @@ public class WhirlwindObject : MonoBehaviour {
 	Whirlwind whirlwind;
 	WhirlwindBelt belt;
 	GameObject trail;
+	GameObject actualObject;
 	Vector3 defaultScale;
 
 	// aliases
@@ -40,6 +41,7 @@ public class WhirlwindObject : MonoBehaviour {
 		isLockedToSlot = false;
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		trail = transform.Find("Trail").gameObject;
+		actualObject = transform.Find("Object").gameObject;
 		trail.GetComponent<ParticleSystem>().Stop();
 
 		collider = GetComponent<Collider>();
@@ -141,6 +143,14 @@ public class WhirlwindObject : MonoBehaviour {
 
 	public void UnEnlarge () {
 		currentState = State.ContextExam;
+	}
+
+	public void FullScreen () {
+		actualObject.GetComponent<Renderer>().enabled = false;
+	}
+
+	public void UnFullScreen () {
+		actualObject.GetComponent<Renderer>().enabled = true;
 	}
 
 	public void End () {
