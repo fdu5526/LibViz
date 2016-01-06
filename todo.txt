@@ -25,7 +25,10 @@ interaction state machine
 	spin the entire whirlwind
 	
 	search box
+		put thing in belt
 		searching reorganization
+
+	reset UI if inactive for 60 secs
 
 
 Non-coding related

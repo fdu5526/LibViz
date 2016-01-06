@@ -4,7 +4,7 @@ using System.Collections;
 public class Whirlwind : MonoBehaviour {
 
 	// state machine
-	public enum State {Idle, StirUp, SlowToStop, ContextExam, End, Frozen };
+	public enum State {Idle, StirUp, SlowToStop, WhirlExam, ContextExam, End, Frozen };
 	public State currentState;
 
 	Vector3 enlargedObjectPosition;
