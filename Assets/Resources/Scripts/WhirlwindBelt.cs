@@ -276,8 +276,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// is able to interact
 	public void ContextExam () {
-		Debug.Assert(isInteractable);
-
+		isInteractable = true;
 		beltEnd.isInContextExam = true;
 
 		for (int i = 0; i < wwObjs.Count; i++) {

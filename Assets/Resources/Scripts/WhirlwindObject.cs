@@ -296,6 +296,8 @@ public class WhirlwindObject : MonoBehaviour {
 				 currentState == State.WhirlExam))  {
 				Enlarge();
 		}
+
+		isBeltBeingDragged = false;		
 	}
 
 	void FixedUpdate () {

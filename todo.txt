@@ -22,9 +22,7 @@ interaction state machine
 		scrollable interface
 		look at wireframe, make it look like that
 	
-	spin the entire whirlwind
-		after enlarge, everything need WhirlExam => stirUp => CheckWhenToStop, so freezing might need some work
-			aka need all the belts to move to good spots after enlarge, but only the first time
+	drag needs timer (after 0.1 seconds, its a drag now)
 	
 	search box
 		put thing in belt
