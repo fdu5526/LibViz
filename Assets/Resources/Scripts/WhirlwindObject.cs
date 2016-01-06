@@ -16,10 +16,11 @@ public class WhirlwindObject : MonoBehaviour {
 	// generated
 	Vector3 idlePosition;
 
-	enum State { Idle, StirUp, SlowToStop, WhirlExam, ContextExam, EnlargeSelect, End, Frozen };
+	enum State { Idle, StirUp, SlowToStop, WhirlExam, ContextExam, End, Frozen };
 	State currentState;
 	
-	bool isInteractable;	
+	bool isInteractable;
+	bool isEnlarged;
 	bool isLockedToSlot;
 	
 
@@ -123,7 +124,6 @@ public class WhirlwindObject : MonoBehaviour {
 	public void SlowToStopByShift () {
 		LockToSlot();
 		SlowToStop();
-		currentState = State.WhirlExam;
 		ContextExam();
 	}
 
@@ -151,7 +151,10 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 	public void ContextExam () {
-		Debug.Assert(currentState == State.SlowToStop);
+		//Debug.Assert(currentState == State.SlowToStop);
+		if (currentState != State.SlowToStop) {
+			print(currentState);
+		}
 		
 		isInteractable = true;
 		currentState = State.ContextExam;
@@ -159,11 +162,11 @@ public class WhirlwindObject : MonoBehaviour {
 
 	public void Enlarge () {
 		whirlwind.EnterEnlargeSelection(this);
-		currentState = State.EnlargeSelect;
+		isEnlarged = true;
 	}
 
 	public void UnEnlarge () {
-		currentState = State.ContextExam;
+		isEnlarged = false;
 	}
 
 	public void FullScreen () {
@@ -206,7 +209,6 @@ public class WhirlwindObject : MonoBehaviour {
 
 	public void UnFreeze () {
 		if (!isInteractable) {
-			currentState = State.ContextExam;
 			isInteractable = true;
 		}
 	}
@@ -261,9 +263,10 @@ public class WhirlwindObject : MonoBehaviour {
 			return;
 		}
 
-		if (currentState == State.ContextExam ||
-				currentState == State.WhirlExam) {
+		if (currentState == State.ContextExam) {
 			belt.SetMouseDownPosition();
+		} else if (currentState == State.WhirlExam) {
+			whirlwind.SetMouseDownPosition();
 		}
 	}
 
@@ -274,7 +277,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 		if (currentState == State.ContextExam) {
 			belt.Spin();
-		} else if (currentState == State.EnlargeSelect) {
+		} else if (isEnlarged) {
 			
 			// TODO draggable to desk here
 
@@ -293,8 +296,6 @@ public class WhirlwindObject : MonoBehaviour {
 				 currentState == State.WhirlExam))  {
 				Enlarge();
 		}
-
-		isBeltBeingDragged = false;		
 	}
 
 	void FixedUpdate () {

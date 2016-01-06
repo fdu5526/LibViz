@@ -146,12 +146,19 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// public functions for manipulating whirlwind state //////
+	public void SetMouseDownPosition () {
+		Debug.Assert(currentState == State.WhirlExam);
+
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].SetMouseDownPosition();
+		}
+	}
 	public void Spin () {
 		Debug.Assert(currentState == State.WhirlExam);
 
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].Spin();
-		}	
+		}
 	}
 
 
