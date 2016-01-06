@@ -4,8 +4,10 @@ using System.Collections;
 public class Whirlwind : MonoBehaviour {
 
 	// state machine
-	public enum State {Idle, StirUp, SlowToStop, WhirlExam, ContextExam, End, Frozen };
+	public enum State {Idle, StirUp, SlowToStop, WhirlExam, ContextExam, End };
 	public State currentState;
+
+	bool isFrozen;
 
 	Vector3 enlargedObjectPosition;
 	WhirlwindObject enlargedObject;
@@ -40,7 +42,7 @@ public class Whirlwind : MonoBehaviour {
 			StirUp(50f);
 		} else if (Input.GetKeyDown("s") &&
 							 currentState == State.StirUp) {
-			SlowToStop();
+			SlowToStop(false);
 		} else if (Input.GetKeyDown("d") &&
 							 currentState == State.ContextExam) {
 			End();
@@ -49,22 +51,30 @@ public class Whirlwind : MonoBehaviour {
 
 /////// functions for setting whirlwind state //////
 	void StirUp (float speed) {
+
+		Debug.Assert(currentState == State.Idle || 
+								 currentState == State.WhirlExam);
+
+		bool shouldLoadObjects = currentState == State.Idle;
+
 		for (int i = 0; i < belts.Length; i++) {
-			belts[i].StirUp(speed);
+			belts[i].StirUp(speed, shouldLoadObjects);
 		}
 		currentState = State.StirUp;
 	}
 
 
-	void SlowToStop () {
+	void SlowToStop (bool isTransitioningToContextExam) {
 		for (int i = 0; i < belts.Length; i++) {
-			belts[i].SlowToStop();
+			belts[i].SlowToStop(isTransitioningToContextExam);
 		}
 		currentState = State.SlowToStop;
-		StartCoroutine(CheckWhenToContextExam());
+		StartCoroutine(CheckBeltsStop(isTransitioningToContextExam));
 	}
 
-	IEnumerator CheckWhenToContextExam () {
+	IEnumerator CheckBeltsStop (bool isTransitioningToContextExam) {
+		Debug.Assert(currentState == State.SlowToStop);
+
 		while (true) {
 			bool allDone = true;
 			for (int i = 0; i < belts.Length; i++) {
@@ -72,10 +82,11 @@ public class Whirlwind : MonoBehaviour {
 			}
 
 			if (allDone) {
-				currentState = State.ContextExam;
-				for (int i = 0; i < belts.Length; i++) {
-					belts[i].ContextExam();
-				}
+				if (isTransitioningToContextExam) {
+					ContextExam();
+				} else {
+					WhirlExam();
+				}				
 				break;
 			} else {
 				yield return new WaitForSeconds(0.01f);
@@ -83,8 +94,22 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
-	void ContextExam () {
+	void WhirlExam () {
+		Debug.Assert(currentState == State.SlowToStop);
 
+		currentState = State.WhirlExam;
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].WhirlExam();
+		}
+	}
+
+	void ContextExam () {
+		Debug.Assert(currentState == State.SlowToStop);
+
+		currentState = State.ContextExam;
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].ContextExam();
+		}
 	}
 
 
@@ -101,14 +126,14 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	void Freeze () {
-		currentState = State.Frozen;
+		isFrozen = true;
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].Freeze();
 		}
 	}
 
 	void UnFreeze () {
-		currentState = State.ContextExam; // TODO watch for edge case
+		isFrozen = false;
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].UnFreeze();
 		}
@@ -121,10 +146,24 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// public functions for manipulating whirlwind state //////
+	public void Spin () {
+		Debug.Assert(currentState == State.WhirlExam);
+
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].Spin();
+		}	
+	}
+
+
 	// only call this from WhirlwindObject.Enlarge()
 	public void EnterEnlargeSelection (WhirlwindObject wwObj) {
 		Debug.Assert(enlargedObject == null);
 		Debug.Assert(wwObj != null);
+
+		if (currentState == State.WhirlExam) {
+			StirUp(50f);
+			SlowToStop(true);
+		}
 
 		Freeze();
 		enlargedObject = wwObj;
@@ -141,7 +180,6 @@ public class Whirlwind : MonoBehaviour {
 		enlargedObject = null;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 	}
-
 
 	public void EnterFullScreen () {
 		Debug.Assert(enlargedObject != null);
@@ -171,7 +209,7 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		if (currentState != State.Frozen) {
+		if (!isFrozen) {
 			ComputeState();
 		}
 	}

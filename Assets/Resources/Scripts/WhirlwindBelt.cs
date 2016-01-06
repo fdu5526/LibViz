@@ -177,11 +177,13 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 	// stir up objects, but stagger them so they have spaces in between them
-	public void StirUp (float speed) {
+	public void StirUp (float speed, bool shouldLoadObjects) {
 		for (int i = 0; i < slots.Length; i++) {
 			slots[i].StirUp();
 		}
-		StartCoroutine(StaggeredStirUp(speed));
+		if (shouldLoadObjects) {
+			StartCoroutine(StaggeredStirUp(speed));
+		}
 	}
 
 	// shift to the left or right by one
@@ -215,17 +217,22 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
+	void SlowToStopHelper () {
+		for (int i = 0; i < wwObjs.Count; i++) {
+			if (IndexIsInSlots(i)) {
+				wwObjs[i].SlowToStop();
+			}
+		}
+		for (int i = 0; i < slots.Length; i++) {
+			slots[i].SlowToStop();
+		}
+	}
+
+
 	IEnumerator CheckWhenToStop () {
 		while (true) {
 			if (beltEnd.mostRecentCollisionIsTail) {
-				for (int i = 0; i < wwObjs.Count; i++) {
-					if (IndexIsInSlots(i)) {
-						wwObjs[i].SlowToStop();
-					}
-				}
-				for (int i = 0; i < slots.Length; i++) {
-					slots[i].SlowToStop();
-				}
+				SlowToStopHelper();
 				break;
 			} else {
 				yield return new WaitForSeconds(0.01f);
@@ -235,9 +242,14 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 	// slow down initial spin
-	public void SlowToStop () {
+	public void SlowToStop (bool isTransitioningToContextExam) {
 		beltEnd.GetComponent<Collider>().enabled = true;
-		StartCoroutine(CheckWhenToStop());
+		if (isTransitioningToContextExam) {
+			StartCoroutine(CheckWhenToStop());
+		} else {
+			SlowToStopHelper();
+		}
+		
 	}
 
 	public bool IsDoneSlowingDown { 
@@ -251,8 +263,21 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 	// is able to interact
-	public void ContextExam () {
+	public void WhirlExam () {
 		isInteractable = true;
+
+		for (int i = 0; i < wwObjs.Count; i++) {
+			if (IndexIsInSlots(i)) {
+				wwObjs[i].WhirlExam();
+			}
+		}
+	}
+
+
+	// is able to interact
+	public void ContextExam () {
+		Debug.Assert(isInteractable);
+
 		beltEnd.isInContextExam = true;
 
 		for (int i = 0; i < wwObjs.Count; i++) {

@@ -10,16 +10,18 @@ public class WhirlwindObject : MonoBehaviour {
 	public float speed;
 	public float radius;
 	public float height;
+	public Transform slot;
+	public bool isBeltBeingDragged;
 
 	// generated
 	Vector3 idlePosition;
 
-	enum State { Idle, StirUp, SlowToStop, ContextExam, EnlargeSelect, End, Frozen };
+	enum State { Idle, StirUp, SlowToStop, WhirlExam, ContextExam, EnlargeSelect, End, Frozen };
 	State currentState;
 	
-	public Transform slot;
+	bool isInteractable;	
 	bool isLockedToSlot;
-	public bool isBeltBeingDragged;
+	
 
 	// properties
 	Whirlwind whirlwind;
@@ -121,6 +123,7 @@ public class WhirlwindObject : MonoBehaviour {
 	public void SlowToStopByShift () {
 		LockToSlot();
 		SlowToStop();
+		currentState = State.WhirlExam;
 		ContextExam();
 	}
 
@@ -133,15 +136,24 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public bool IsInWhirlwind { get { return slot != null; } }
-	public bool IsInContextExam { get { return currentState == State.ContextExam; } }
 
-	public void ContextExam () {
+
+	public void WhirlExam () {
 		Debug.Assert(currentState == State.SlowToStop);
 
+		isInteractable = true;
 		rigidbody.velocity = Vector3.zero;
 		rigidbody.angularVelocity = Vector3.zero;
 		rigidbody.rotation = Quaternion.identity;
 		rigidbody.freezeRotation = true;
+		currentState = State.WhirlExam;
+	}
+
+
+	public void ContextExam () {
+		Debug.Assert(currentState == State.SlowToStop);
+		
+		isInteractable = true;
 		currentState = State.ContextExam;
 	}
 
@@ -167,6 +179,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 		isLockedToSlot = false;
 		slot = null;
+		isInteractable = false;
 		currentState = State.End;
 		transform.localScale = defaultScale;
 		collider.enabled = true;
@@ -187,13 +200,14 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void Freeze () {
-		currentState = State.Frozen;
+		isInteractable = false;
 		rigidbody.velocity = Vector3.zero;
 	}
 
 	public void UnFreeze () {
-		if (currentState == State.Frozen) {
+		if (!isInteractable) {
 			currentState = State.ContextExam;
+			isInteractable = true;
 		}
 	}
 
@@ -211,6 +225,7 @@ public class WhirlwindObject : MonoBehaviour {
 				}
 				break;
 			case State.ContextExam:
+			case State.WhirlExam:
 			case State.SlowToStop:
 				Debug.Assert(isLockedToSlot);
 
@@ -242,21 +257,40 @@ public class WhirlwindObject : MonoBehaviour {
 
 /////// inherited functions //////	
 	void OnMouseDown () {
-		if (currentState == State.ContextExam) {
+		if (!isInteractable) {
+			return;
+		}
+
+		if (currentState == State.ContextExam ||
+				currentState == State.WhirlExam) {
 			belt.SetMouseDownPosition();
 		}
 	}
 
 	void OnMouseDrag () {
+		if (!isInteractable) {
+			return;
+		}
+
 		if (currentState == State.ContextExam) {
 			belt.Spin();
 		} else if (currentState == State.EnlargeSelect) {
+			
 			// TODO draggable to desk here
+
+		} else if (currentState == State.WhirlExam) {
+			whirlwind.Spin();
 		}
 	}
 
 	void OnMouseUp () {
-		if (!isBeltBeingDragged && currentState == State.ContextExam)  {
+		if (!isInteractable) {
+			return;
+		}
+
+		if (!isBeltBeingDragged && 
+				(currentState == State.ContextExam || 
+				 currentState == State.WhirlExam))  {
 				Enlarge();
 		}
 
