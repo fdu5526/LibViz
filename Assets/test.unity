@@ -2032,6 +2032,10 @@ Prefab:
       propertyPath: m_Name
       value: WhirlwindBelt (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 11462154, guid: 269b396d6494b474d8e02c4e66543a2c, type: 2}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 269b396d6494b474d8e02c4e66543a2c, type: 2}
   m_IsPrefabParent: 0

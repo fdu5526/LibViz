@@ -16,7 +16,7 @@ public class WhirlwindObject : MonoBehaviour {
 	// generated
 	Vector3 idlePosition;
 
-	enum State { Idle, StirUp, SlowToStop, WhirlExam, ContextExam, End, Frozen };
+	enum State { Idle, StirUp, SlowToStop, WhirlExam, ContextExam, StirUpByShift, End, Frozen };
 	State currentState;
 	
 	bool isInteractable;
@@ -69,20 +69,6 @@ public class WhirlwindObject : MonoBehaviour {
 		}
 	}
 
-	// for when an item is stirred up while whirlwind is in ContextExam state
-	IEnumerator CheckWhenToStop () {
-		while (currentState == State.StirUp) {
-			if (currentState == State.End) {
-				yield break;
-			}
-			if (height - transform.position.y < 1f) {
-				SlowToStopByShift();
-				break;
-			}
-			yield return new WaitForSeconds(0.1f);
-		}
-	}
-
 	// lock onto slot, hopefully slot isn't null
 	void LockToSlot () {
 		Debug.Assert(slot != null);
@@ -109,6 +95,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 		this.speed = speed;
 		this.slot = slot;
+		isInteractable = false;
 		slot.GetComponent<WhirlwindBeltSlot>().AttachObject();
 		rigidbody.useGravity = false;
 		collider.enabled = false;
@@ -122,7 +109,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 	public void StirUpByShift (float speed, Transform slot) {
 		StirUp(speed, slot);
-		StartCoroutine(CheckWhenToStop());
+		currentState = State.StirUpByShift;
 	}
 
 	public void SlowToStopByShift () {
@@ -225,6 +212,7 @@ public class WhirlwindObject : MonoBehaviour {
 			return;
 		}
 
+		Vector3 d;
 		Vector3 p = transform.position;
 
 		// state machine transitions
@@ -234,6 +222,17 @@ public class WhirlwindObject : MonoBehaviour {
 					ResetToIdle();
 				} else {
 					transform.position = Vector3.Lerp(p, idlePosition, 0.1f);
+				}
+				break;
+			case State.StirUpByShift:
+				Debug.Assert(slot != null);
+
+				d = (slot.position - p);
+				if (height - p.y < 1f) {
+					SlowToStopByShift();
+				} else {
+					speed = Mathf.Lerp(speed, slot.GetComponent<WhirlwindBeltSlot>().speed, 0.02f);
+					rigidbody.velocity = d.normalized * speed;
 				}
 				break;
 			case State.ContextExam:
@@ -247,7 +246,7 @@ public class WhirlwindObject : MonoBehaviour {
 			case State.StirUp:
 				Debug.Assert(slot != null);
 
-				Vector3 d = (slot.position - p);
+				d = (slot.position - p);
 				if (!isLockedToSlot && d.sqrMagnitude < 10f) { // dock at slot
 					LockToSlot();
 				} else if (!isLockedToSlot) {
