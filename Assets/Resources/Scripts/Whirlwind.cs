@@ -7,12 +7,13 @@ public class Whirlwind : MonoBehaviour {
 	public enum State {Idle, StirUp, SlowToStop, WhirlExam, ContextExam, End };
 	public State currentState;
 
-	bool isFrozen;
+	public bool isFrozen;
 
 	Vector3 enlargedObjectPosition;
 	WhirlwindObject enlargedObject;
 	GameObject enlargedSelectionUI;
 	GameObject fullscreenSelectionUI;
+	Transform enlargedObjectSlot;
 
 	// a whirlwind is defined as an array of WhirlWindBelt
 	WhirlwindBelt[] belts;
@@ -163,29 +164,31 @@ public class Whirlwind : MonoBehaviour {
 
 
 	// only call this from WhirlwindObject.Enlarge()
-	public void EnterEnlargeSelection (WhirlwindObject wwObj) {
+	public void EnterEnlargeSelection (WhirlwindObject wwObj, Transform slot) {
 		Debug.Assert(enlargedObject == null);
 		Debug.Assert(wwObj != null);
+
+		Freeze();
+		enlargedObject = wwObj;
+		enlargedObjectSlot = slot;
+		wwObj.transform.position = enlargedObjectPosition;
+		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 
 		if (currentState == State.WhirlExam) {
 			StirUp(50f);
 			SlowToStop(true);
 		}
-
-		Freeze();
-		enlargedObject = wwObj;
-		wwObj.transform.position = enlargedObjectPosition;
-		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 	}
 
 	public void ExitEnlargeSelection () {
 		Debug.Assert(enlargedObject != null);
+		Debug.Assert(enlargedObjectSlot != null);
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
 		
-		UnFreeze();
-		enlargedObject.UnEnlarge();
+		enlargedObject.UnEnlarge(enlargedObjectSlot);
 		enlargedObject = null;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
+		UnFreeze();
 	}
 
 	public void EnterFullScreen () {
@@ -216,8 +219,6 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		if (!isFrozen) {
-			ComputeState();
-		}
+		ComputeState();
 	}
 }

@@ -54,6 +54,7 @@ public class WhirlwindBelt : MonoBehaviour {
 															height,
 															center.position.z + radius * Mathf.Sin(t));
 			slots[i].Initialize(v, height, radius);
+			slots[i].transform.parent = transform;
 		}
 		
 		// the end point of the belt that causes shifting

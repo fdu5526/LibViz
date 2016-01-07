@@ -63,7 +63,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		rigidbody.velocity = nv;
 
 		if (shouldSlowsDown) {
-			speed *= 0.9f;
+			speed = Mathf.Lerp(speed, 0f, 0.3f);
 		}
 		
 	}

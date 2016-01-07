@@ -161,11 +161,15 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void Enlarge () {
-		whirlwind.EnterEnlargeSelection(this);
+		whirlwind.EnterEnlargeSelection(this, slot);
+		slot = null;
+		//isLockedToSlot = false;
 		isEnlarged = true;
 	}
 
-	public void UnEnlarge () {
+	public void UnEnlarge (Transform slot) {
+		this.slot = slot;
+		//isLockedToSlot = true;
 		isEnlarged = false;
 	}
 
@@ -215,6 +219,10 @@ public class WhirlwindObject : MonoBehaviour {
 
 	// do everything state machine here
 	public void ComputeState () {
+		if (isEnlarged) {
+			return;
+		}
+
 		Vector3 p = transform.position;
 
 		// state machine transitions
@@ -259,7 +267,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 /////// inherited functions //////	
 	void OnMouseDown () {
-		if (!isInteractable) {
+		if (!isInteractable || whirlwind.isFrozen) {
 			return;
 		}
 
@@ -271,7 +279,7 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	void OnMouseDrag () {
-		if (!isInteractable) {
+		if (!isInteractable || whirlwind.isFrozen) {
 			return;
 		}
 
@@ -287,7 +295,7 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	void OnMouseUp () {
-		if (!isInteractable) {
+		if (!isInteractable || whirlwind.isFrozen) {
 			return;
 		}
 
@@ -301,6 +309,8 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		UpdateFade();
+		if (IsInWhirlwind) {
+			UpdateFade();
+		}
 	}
 }
