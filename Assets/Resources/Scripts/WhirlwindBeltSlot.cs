@@ -13,6 +13,8 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	
 	// internal variables
 	bool shouldSlowsDown;
+	float slowDownLerpFactor;
+	float baseSlowDownLerpFactor = 0.1f;
 
 	// properties
 	Transform center;
@@ -65,7 +67,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		rigidbody.velocity = nv;
 
 		if (shouldSlowsDown) {
-			speed = Mathf.Lerp(speed, 0f, 0.3f);
+			speed = Mathf.Lerp(speed, 0f, slowDownLerpFactor);
 		}
 		
 	}
@@ -89,10 +91,14 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		speed = Global.StirUpSpeed * height / 5f;
 		direction = 1f;
 		shouldSlowsDown = false;
+		slowDownLerpFactor = baseSlowDownLerpFactor;
 	}
 	
-	public void SlowToStop () {
+	public void SlowToStop (bool isFastStop) {
 		shouldSlowsDown = true;
+		if (isFastStop) {
+			slowDownLerpFactor = 0.3f;
+		}
 	}
 
 	public void AttachObject () {

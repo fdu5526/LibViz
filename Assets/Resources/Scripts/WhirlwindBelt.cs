@@ -16,6 +16,8 @@ public class WhirlwindBelt : MonoBehaviour {
 	bool isOperating;
 
 	Vector2 shiftNextPoint, shiftPrevPoint;
+	bool isSlowingDown;
+	bool isTransitioningToContextExam;
 
 	Transform center;
 	List<WhirlwindObject> wwObjs;
@@ -74,8 +76,6 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
-	float RandomStirUpWaitTime { get { return 1f / (float)BeltSize; } }
-
 
 /////// private helper functions //////
 	// stir up an item one at a time
@@ -84,6 +84,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		tailIndex = Mathf.Max(BeltSize - 1, 0);
 		headIndex = 0;
 		int slotIndex = 0;
+		float t = 1f / (float)BeltSize;
 
 		for (int i = 0; i < wwObjs.Count; i++) {
 			if (!isOperating) {
@@ -93,7 +94,7 @@ public class WhirlwindBelt : MonoBehaviour {
 			if (IndexIsInSlots(i)) {
 				wwObjs[i].StirUp(speed, slots[slotIndex].transform);
 				slotIndex++;
-				yield return new WaitForSeconds(RandomStirUpWaitTime);
+				yield return new WaitForSeconds(t);
 			} else {
 				yield return null;
 			}
@@ -135,7 +136,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
-
+	// show or hide the text label on the side
 	IEnumerator FadeLabel (bool isFadeIn) {
 		float increment = 0.05f;
 		for (float f = 0f; f <= 1f + increment; f += increment) {
@@ -235,40 +236,26 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
-	void SlowToStopHelper () {
+	void SlowAllToStop (bool isFastStop) {
+		isSlowingDown = false;
 		for (int i = 0; i < wwObjs.Count; i++) {
 			if (IndexIsInSlots(i)) {
 				wwObjs[i].SlowToStop();
 			}
 		}
 		for (int i = 0; i < slots.Length; i++) {
-			slots[i].SlowToStop();
+			slots[i].SlowToStop(isFastStop);
 		}
-	}
-
-
-	IEnumerator CheckWhenToStop () {
-		while (true) {
-			if (!isOperating) {
-				yield break;
-			}
-			if (beltEnd.mostRecentCollisionIsTail) {
-				SlowToStopHelper();
-				break;
-			} else {
-				yield return new WaitForSeconds(0.01f);
-			}
-		}
-		
 	}
 
 	// slow down initial spin
 	public void SlowToStop (bool isTransitioningToContextExam) {
+		isSlowingDown = true;
+		this.isTransitioningToContextExam = isTransitioningToContextExam;
 		beltEnd.GetComponent<Collider>().enabled = true;
-		if (isTransitioningToContextExam) {
-			StartCoroutine(CheckWhenToStop());
-		} else {
-			SlowToStopHelper();
+
+		if (!isTransitioningToContextExam) {
+			SlowAllToStop(false);
 		}
 		
 	}
@@ -348,6 +335,14 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// update all the ones that are in slots
 	public void ComputeState (Whirlwind.State currentState) {
+		
+		// swirl belt to correct locatin
+		if (isSlowingDown && isTransitioningToContextExam) {
+			if (beltEnd.mostRecentCollisionIsTail) {
+				SlowAllToStop(true);
+			}
+		}
+
 		for (int i = 0; i < wwObjs.Count; i++) {
 			wwObjs[i].ComputeState();
 		}
