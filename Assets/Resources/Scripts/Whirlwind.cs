@@ -9,11 +9,12 @@ public class Whirlwind : MonoBehaviour {
 
 	public bool isFrozen;
 
+	Timer userInputTimer;
+
 	Vector3 enlargedObjectPosition;
 	WhirlwindObject enlargedObject;
 	GameObject enlargedSelectionUI;
 	GameObject fullscreenSelectionUI;
-	Transform enlargedObjectSlot;
 
 	// a whirlwind is defined as an array of WhirlWindBelt
 	WhirlwindBelt[] belts;
@@ -21,6 +22,8 @@ public class Whirlwind : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentState = State.Idle;
+
+		userInputTimer = new Timer(60f);
 
 		enlargedObjectPosition = new Vector3(0f, 11.24f, -15.8f);
 		enlargedSelectionUI = GameObject.Find("EnlargedSelectionUI");
@@ -44,7 +47,9 @@ public class Whirlwind : MonoBehaviour {
 		} else if (Input.GetKeyDown("s") &&
 							 currentState == State.StirUp) {
 			SlowToStop(false);
-		} else if (Input.GetKeyDown("d")) {
+		} else if (Input.GetKeyDown("d") && 
+							 currentState != State.End && 
+							 currentState != State.Idle) {
 			End();
 		}
 	}
@@ -61,6 +66,7 @@ public class Whirlwind : MonoBehaviour {
 			belts[i].StirUp(speed, shouldLoadObjects);
 		}
 		currentState = State.StirUp;
+		LogUserInput();
 	}
 
 
@@ -70,6 +76,7 @@ public class Whirlwind : MonoBehaviour {
 		}
 		currentState = State.SlowToStop;
 		StartCoroutine(CheckBeltsStop(isTransitioningToContextExam));
+		LogUserInput();
 	}
 
 	IEnumerator CheckBeltsStop (bool isTransitioningToContextExam) {
@@ -105,6 +112,7 @@ public class Whirlwind : MonoBehaviour {
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].WhirlExam();
 		}
+		LogUserInput();
 	}
 
 	void ContextExam () {
@@ -114,10 +122,16 @@ public class Whirlwind : MonoBehaviour {
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].ContextExam();
 		}
+		LogUserInput();
 	}
 
 
 	void End () {
+		if (enlargedObject != null) {
+			ExitFullScreen();
+			ExitEnlargeSelection();
+		}
+
 		currentState = State.End;
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].End();
@@ -150,6 +164,11 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// public functions for manipulating whirlwind state //////
+	
+	public void LogUserInput () {
+		userInputTimer.Reset();
+	}
+
 	public void SetMouseDownPosition () {
 		Debug.Assert(currentState == State.WhirlExam);
 
@@ -157,23 +176,25 @@ public class Whirlwind : MonoBehaviour {
 			belts[i].SetMouseDownPosition();
 		}
 	}
+
+
 	public void Spin () {
 		Debug.Assert(currentState == State.WhirlExam);
 
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].Spin();
 		}
+		LogUserInput();
 	}
 
 
 	// only call this from WhirlwindObject.Enlarge()
-	public void EnterEnlargeSelection (WhirlwindObject wwObj, Transform slot) {
+	public void EnterEnlargeSelection (WhirlwindObject wwObj) {
 		Debug.Assert(enlargedObject == null);
 		Debug.Assert(wwObj != null);
 
 		Freeze();
 		enlargedObject = wwObj;
-		enlargedObjectSlot = slot;
 		wwObj.transform.position = enlargedObjectPosition;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 
@@ -181,17 +202,17 @@ public class Whirlwind : MonoBehaviour {
 			StirUp(50f);
 			SlowToStop(true);
 		}
+		LogUserInput();
 	}
 
 	public void ExitEnlargeSelection () {
 		Debug.Assert(enlargedObject != null);
-		Debug.Assert(enlargedObjectSlot != null);
-		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
 		
-		enlargedObject.UnEnlarge(enlargedObjectSlot);
+		enlargedObject.UnEnlarge();
 		enlargedObject = null;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 		UnFreeze();
+		LogUserInput();
 	}
 
 	public void EnterFullScreen () {
@@ -201,17 +222,17 @@ public class Whirlwind : MonoBehaviour {
 		enlargedObject.FullScreen();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 		fullscreenSelectionUI.GetComponent<Canvas>().enabled = true;
+		LogUserInput();
 	}
 
 
 	public void ExitFullScreen () {
 		Debug.Assert(enlargedObject != null);
-		Debug.Assert(!enlargedSelectionUI.GetComponent<Canvas>().enabled);
-		Debug.Assert(fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 		
 		enlargedObject.UnFullScreen();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 		fullscreenSelectionUI.GetComponent<Canvas>().enabled = false;
+		LogUserInput();
 	}
 
 
@@ -222,6 +243,11 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		if (currentState != State.Idle && 
+				currentState != State.End &&
+				userInputTimer.IsOffCooldown) {
+			End();
+		}
 		ComputeState();
 	}
 }

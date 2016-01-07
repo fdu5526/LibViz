@@ -28,8 +28,6 @@ interaction state machine
 		put thing in belt
 		searching reorganization
 
-	reset UI if inactive for 60 secs
-
 
 Non-coding related
 	test reconfiguring belt after enlarging

@@ -164,15 +164,11 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void Enlarge () {
-		whirlwind.EnterEnlargeSelection(this, slot);
-		slot = null;
-		//isLockedToSlot = false;
+		whirlwind.EnterEnlargeSelection(this);
 		isEnlarged = true;
 	}
 
-	public void UnEnlarge (Transform slot) {
-		this.slot = slot;
-		//isLockedToSlot = true;
+	public void UnEnlarge () {
 		isEnlarged = false;
 	}
 
@@ -193,6 +189,7 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.End;
 		transform.localScale = defaultScale;
 		collider.enabled = true;
+		rigidbody.velocity = Vector3.zero;
 		rigidbody.useGravity = true;
 		rigidbody.freezeRotation = false;
 		v = new Vector3(RandomAngularVelocityRange, 
@@ -273,6 +270,7 @@ public class WhirlwindObject : MonoBehaviour {
 		if (!isInteractable || whirlwind.isFrozen) {
 			return;
 		}
+		whirlwind.LogUserInput();
 
 		if (currentState == State.ContextExam) {
 			belt.SetMouseDownPosition();
@@ -285,6 +283,7 @@ public class WhirlwindObject : MonoBehaviour {
 		if (!isInteractable || whirlwind.isFrozen) {
 			return;
 		}
+		whirlwind.LogUserInput();
 
 		if (currentState == State.ContextExam) {
 			belt.Spin();
@@ -301,6 +300,7 @@ public class WhirlwindObject : MonoBehaviour {
 		if (!isInteractable || whirlwind.isFrozen) {
 			return;
 		}
+		whirlwind.LogUserInput();
 
 		if (!isBeltBeingDragged && 
 				(currentState == State.ContextExam || 
