@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,7 +13,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	float prevMouseX;
 
-	bool isNotOperating;
+	bool isOperating;
 
 	Vector2 shiftNextPoint, shiftPrevPoint;
 
@@ -30,7 +31,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		center = GameObject.Find("WhirlwindCenter").transform;
 		height = transform.position.y;
 		radius = height * 0.6f + 1f;
-		isNotOperating = true;
+		isOperating = false;
 		numOfObjectsShownOnBelt = 3 + level * 3;
 
 		WhirlwindObject[] w = GetComponentsInChildren<WhirlwindObject>();
@@ -61,6 +62,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		// get the label
 		label = transform.Find("Label").gameObject;
 		label.transform.position = transform.position + new Vector3(-radius - (float)(level * 1f) - 2f, 0f, 0f);
+		label.GetComponent<CanvasGroup>().alpha = 0f;
 		
 		// the end point of the belt that causes shifting
 		g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindBeltEnd"));
@@ -84,7 +86,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		int slotIndex = 0;
 
 		for (int i = 0; i < wwObjs.Count; i++) {
-			if (isNotOperating) {
+			if (!isOperating) {
 				yield break;
 			}
 
@@ -105,12 +107,11 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
-	// helper function for wrap around indices
+	// helper functions for wrap around indices
 	int PrevIndex (int index) {
 		int i = index - 1;
 		return i < 0 ? wwObjs.Count - 1 : i;
 	}
-
 	int NextIndex (int index) {
 		return (index + 1) % wwObjs.Count;
 	}
@@ -127,11 +128,20 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
+	// max number of stuffs on the belt at a time
 	int BeltSize {
 		get {
 			return Mathf.Min(numOfObjectsShownOnBelt, wwObjs.Count);
 		}
+	}
 
+
+	IEnumerator FadeLabel (bool isFadeIn) {
+		float increment = 0.05f;
+		for (float f = 0f; f <= 1f + increment; f += increment) {
+			label.GetComponent<CanvasGroup>().alpha = isFadeIn ? f : 1f - f;
+			yield return new WaitForSeconds(0.05f);
+		}
 	}
 
 /////// public functions used by whirlwindObjects //////
@@ -184,7 +194,8 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// stir up objects, but stagger them so they have spaces in between them
 	public void StirUp (float speed, bool shouldLoadObjects) {
-		isNotOperating = false;
+		isOperating = true;
+		StartCoroutine(FadeLabel(isOperating));
 		for (int i = 0; i < slots.Length; i++) {
 			slots[i].StirUp();
 		}
@@ -238,7 +249,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	IEnumerator CheckWhenToStop () {
 		while (true) {
-			if (isNotOperating) {
+			if (!isOperating) {
 				yield break;
 			}
 			if (beltEnd.mostRecentCollisionIsTail) {
@@ -295,7 +306,8 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// end the entire belt
 	public void End () {
-		isNotOperating = true;
+		isOperating = false;
+		StartCoroutine(FadeLabel(isOperating));
 		beltEnd.GetComponent<Collider>().enabled = false;
 		beltEnd.isInContextExam = false;
 		for (int i = 0; i < wwObjs.Count; i++) {

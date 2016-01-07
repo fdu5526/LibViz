@@ -220,6 +220,7 @@ GameObject:
   - 223: {fileID: 22320558}
   - 114: {fileID: 11479496}
   - 114: {fileID: 11415842}
+  - 225: {fileID: 22513192}
   m_Layer: 9
   m_Name: Label
   m_TagString: Untagged
@@ -1400,7 +1401,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175214}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: 0, y: 15, z: 0}
+  m_LocalPosition: {x: 0, y: 6.2, z: 0}
   m_LocalScale: {x: 0.7517158, y: 0.7517158, z: 0.7517158}
   m_Children:
   - {fileID: 22439540}
@@ -27598,6 +27599,17 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000030518, y: 0.000012397766}
   m_SizeDelta: {x: 401, y: 189}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &22513192
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111974}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
