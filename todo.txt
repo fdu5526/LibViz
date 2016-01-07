@@ -9,6 +9,9 @@ kinect
 
 get data from mySQL
 
+
+
+
 interaction state machine
 
 	enlarged view
@@ -26,6 +29,9 @@ interaction state machine
 	search box
 		put objects in box
 		searching reorganization / rearrangement
+
+
+
 
 
 Non-coding related

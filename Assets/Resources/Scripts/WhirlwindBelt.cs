@@ -24,7 +24,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	int headIndex, tailIndex;
 	WhirlwindBeltSlot[] slots;
 	WhirlwindBeltEnd beltEnd;
-	GameObject label;
+	WhirlwindBeltLabel label;
 	
 	// Use this for initialization
 	void Start () {
@@ -62,9 +62,9 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 
 		// get the label
-		label = transform.Find("Label").gameObject;
+		label = transform.Find("Label").GetComponent<WhirlwindBeltLabel>();
 		label.transform.position = transform.position + new Vector3(-radius - (float)(level * 1f) - 2f, 0f, 0f);
-		label.GetComponent<CanvasGroup>().alpha = 0f;
+		label.SetToTransparent();
 		
 		// the end point of the belt that causes shifting
 		g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindBeltEnd"));
@@ -149,15 +149,6 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
-	// show or hide the text label on the side
-	IEnumerator FadeLabel (bool isFadeIn) {
-		float increment = 0.05f;
-		for (float f = 0f; f <= 1f + increment; f += increment) {
-			label.GetComponent<CanvasGroup>().alpha = isFadeIn ? f : 1f - f;
-			yield return new WaitForSeconds(0.05f);
-		}
-	}
-
 /////// public functions used for user interaction //////
 	
 	// for when user initially places mouse down to drag it
@@ -209,7 +200,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	// stir up objects, but stagger them so they have spaces in between them
 	public void StirUp (float speed, bool shouldLoadObjects) {
 		isOperating = true;
-		StartCoroutine(FadeLabel(isOperating));
+		label.Fade(isOperating);
 		for (int i = 0; i < slots.Length; i++) {
 			slots[i].StirUp();
 		}
@@ -309,7 +300,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	// end the entire belt, return all objects
 	public void End () {
 		isOperating = false;
-		StartCoroutine(FadeLabel(isOperating));
+		label.Fade(isOperating);
 		beltEnd.GetComponent<Collider>().enabled = false;
 		beltEnd.isInContextExam = false;
 		for (int i = 0; i < wwObjs.Count; i++) {
