@@ -21,6 +21,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	int headIndex, tailIndex;
 	WhirlwindBeltSlot[] slots;
 	WhirlwindBeltEnd beltEnd;
+	GameObject label;
 	
 	// Use this for initialization
 	void Start () {
@@ -56,6 +57,10 @@ public class WhirlwindBelt : MonoBehaviour {
 			slots[i].Initialize(v, height, radius);
 			slots[i].transform.parent = transform;
 		}
+
+		// get the label
+		label = transform.Find("Label").gameObject;
+		label.transform.position = transform.position + new Vector3(-radius - (float)(level * 1f) - 2f, 0f, 0f);
 		
 		// the end point of the belt that causes shifting
 		g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindBeltEnd"));
