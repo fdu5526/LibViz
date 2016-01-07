@@ -19,6 +19,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 
 	// aliases
 	Rigidbody rigidbody;
+	Collider collider;
 
 	// Use this for initialization
 	void Start () {	
@@ -27,6 +28,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		speed = 0f;
 
 		rigidbody = GetComponent<Rigidbody>();
+		collider = GetComponent<Collider>();
 	}
 
 	
@@ -91,6 +93,14 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	
 	public void SlowToStop () {
 		shouldSlowsDown = true;
+	}
+
+	public void AttachObject () {
+		collider.enabled = true;
+	}
+
+	public void DettachObject () {
+		collider.enabled = false;
 	}
 
 

@@ -33,7 +33,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		numOfObjectsShownOnBelt = 3 + level * 3;
 
 		WhirlwindObject[] w = GetComponentsInChildren<WhirlwindObject>();
-		Debug.Assert(w != null && w.Length > 0);
+		Debug.Assert(w != null);
 		
 		// find all the objects of this belt
 		wwObjs = new List<WhirlwindObject>(w);

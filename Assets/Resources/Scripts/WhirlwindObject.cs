@@ -109,6 +109,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 		this.speed = speed;
 		this.slot = slot;
+		slot.GetComponent<WhirlwindBeltSlot>().AttachObject();
 		rigidbody.useGravity = false;
 		collider.enabled = false;
 		//trail.GetComponent<ParticleSystem>().Play();
@@ -184,6 +185,7 @@ public class WhirlwindObject : MonoBehaviour {
 		Vector3 v;
 
 		isLockedToSlot = false;
+		slot.GetComponent<WhirlwindBeltSlot>().DettachObject();
 		slot = null;
 		isInteractable = false;
 		currentState = State.End;
