@@ -44,8 +44,7 @@ public class Whirlwind : MonoBehaviour {
 		} else if (Input.GetKeyDown("s") &&
 							 currentState == State.StirUp) {
 			SlowToStop(false);
-		} else if (Input.GetKeyDown("d") &&
-							 currentState == State.ContextExam) {
+		} else if (Input.GetKeyDown("d")) {
 			End();
 		}
 	}
@@ -77,6 +76,10 @@ public class Whirlwind : MonoBehaviour {
 		Debug.Assert(currentState == State.SlowToStop);
 
 		while (true) {
+			if (currentState == State.End) {
+				yield break;
+			}
+
 			bool allDone = true;
 			for (int i = 0; i < belts.Length; i++) {
 				allDone &= belts[i].IsDoneSlowingDown;

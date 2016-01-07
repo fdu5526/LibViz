@@ -72,6 +72,9 @@ public class WhirlwindObject : MonoBehaviour {
 	// for when an item is stirred up while whirlwind is in ContextExam state
 	IEnumerator CheckWhenToStop () {
 		while (currentState == State.StirUp) {
+			if (currentState == State.End) {
+				yield break;
+			}
 			if (height - transform.position.y < 1f) {
 				SlowToStopByShift();
 				break;
@@ -229,7 +232,7 @@ public class WhirlwindObject : MonoBehaviour {
 		switch (currentState) {
 			case State.End:
 				if ((idlePosition - p).sqrMagnitude < 1f) {
-					currentState = State.Idle;
+					ResetToIdle();
 				} else {
 					transform.position = Vector3.Lerp(p, idlePosition, 0.1f);
 				}

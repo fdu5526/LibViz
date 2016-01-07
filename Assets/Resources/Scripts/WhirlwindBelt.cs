@@ -12,7 +12,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	float prevMouseX;
 
-	bool isInteractable;
+	bool isNotOperating;
 
 	Vector2 shiftNextPoint, shiftPrevPoint;
 
@@ -29,7 +29,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		center = GameObject.Find("WhirlwindCenter").transform;
 		height = transform.position.y;
 		radius = height * 0.6f + 1f;
-		isInteractable = false;
+		isNotOperating = true;
 		numOfObjectsShownOnBelt = 3 + level * 3;
 
 		WhirlwindObject[] w = GetComponentsInChildren<WhirlwindObject>();
@@ -79,6 +79,10 @@ public class WhirlwindBelt : MonoBehaviour {
 		int slotIndex = 0;
 
 		for (int i = 0; i < wwObjs.Count; i++) {
+			if (isNotOperating) {
+				yield break;
+			}
+
 			if (IndexIsInSlots(i)) {
 				wwObjs[i].StirUp(speed, slots[slotIndex].transform);
 				slotIndex++;
@@ -129,38 +133,34 @@ public class WhirlwindBelt : MonoBehaviour {
 	
 	// for when user initially places mouse down to drag it
 	public void SetMouseDownPosition () {
-		if (isInteractable) {
-			prevMouseX = Input.mousePosition.x;
-		}
+		prevMouseX = Input.mousePosition.x;
 	}
 
 	// spin the belt
 	public void Spin () {
-		if (isInteractable) {
-			float mouseX = Input.mousePosition.x;
-			float d = mouseX - prevMouseX;
-			
-			// ignore extraneous input
-			if (Mathf.Abs(d) < 1f) {
-				return;
-			}
-
-			float direction = d > 0f ? 1f : -1f;
-			float s = Mathf.Min(Mathf.Abs(d), 50f);
-			s = s > 1f ? s : 0f;
-			prevMouseX = mouseX;
-
-			// actually spin the belt here
-			for (int i = 0; i < slots.Length; i++) {
-				slots[i].direction = direction;
-				slots[i].speed = s;
-			}
-
-			for (int i = 0; i < wwObjs.Count; i++) {
-				if (IndexIsInSlots(i)) {
-					wwObjs[i].isBeltBeingDragged = true;
-			}
+		float mouseX = Input.mousePosition.x;
+		float d = mouseX - prevMouseX;
+		
+		// ignore extraneous input
+		if (Mathf.Abs(d) < 1f) {
+			return;
 		}
+
+		float direction = d > 0f ? 1f : -1f;
+		float s = Mathf.Min(Mathf.Abs(d), 50f);
+		s = s > 1f ? s : 0f;
+		prevMouseX = mouseX;
+
+		// actually spin the belt here
+		for (int i = 0; i < slots.Length; i++) {
+			slots[i].direction = direction;
+			slots[i].speed = s;
+		}
+
+		for (int i = 0; i < wwObjs.Count; i++) {
+			if (IndexIsInSlots(i)) {
+				wwObjs[i].isBeltBeingDragged = true;
+			}
 		}
 	}
 
@@ -179,6 +179,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// stir up objects, but stagger them so they have spaces in between them
 	public void StirUp (float speed, bool shouldLoadObjects) {
+		isNotOperating = false;
 		for (int i = 0; i < slots.Length; i++) {
 			slots[i].StirUp();
 		}
@@ -232,6 +233,9 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	IEnumerator CheckWhenToStop () {
 		while (true) {
+			if (isNotOperating) {
+				yield break;
+			}
 			if (beltEnd.mostRecentCollisionIsTail) {
 				SlowToStopHelper();
 				break;
@@ -265,8 +269,6 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// is able to interact
 	public void WhirlExam () {
-		isInteractable = true;
-
 		for (int i = 0; i < wwObjs.Count; i++) {
 			if (IndexIsInSlots(i)) {
 				wwObjs[i].WhirlExam();
@@ -277,7 +279,6 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// is able to interact
 	public void ContextExam () {
-		isInteractable = true;
 		beltEnd.isInContextExam = true;
 
 		for (int i = 0; i < wwObjs.Count; i++) {
@@ -289,7 +290,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// end the entire belt
 	public void End () {
-		isInteractable = false;
+		isNotOperating = true;
 		beltEnd.GetComponent<Collider>().enabled = false;
 		beltEnd.isInContextExam = false;
 		for (int i = 0; i < wwObjs.Count; i++) {
@@ -308,7 +309,6 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// freeze the entire belt from moving
 	public void Freeze () {
-		isInteractable = false;
 		for (int i = 0; i < wwObjs.Count; i++) {
 			if (IndexIsInSlots(i)) {
 				wwObjs[i].Freeze();
@@ -322,7 +322,6 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// unfreeze the belt, can move again
 	public void UnFreeze () {
-		isInteractable = true;
 		for (int i = 0; i < wwObjs.Count; i++) {
 			if (IndexIsInSlots(i)) {
 				wwObjs[i].UnFreeze();
