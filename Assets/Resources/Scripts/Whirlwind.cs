@@ -59,6 +59,7 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// functions for setting whirlwind state //////
+	// whether all the objects are stirred up
 	public bool IsDoneStirUp {
 		get {
 			bool allDone = true;
