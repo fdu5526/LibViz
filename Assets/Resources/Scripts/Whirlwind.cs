@@ -136,7 +136,7 @@ public class Whirlwind : MonoBehaviour {
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].End();
 		}
-		Invoke("ResetToIdle", Global.ResetToIdleTime);
+		ResetToIdle();
 	}
 
 	void ResetToIdle () {
@@ -164,11 +164,12 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// public functions for manipulating whirlwind state //////
-	
+	// user did something, no need to reset to idle any time soon
 	public void LogUserInput () {
 		userInputTimer.Reset();
 	}
 
+	// log most recent mouse position for all belts
 	public void SetMouseDownPosition () {
 		Debug.Assert(currentState == State.WhirlExam);
 
@@ -177,7 +178,7 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
-
+	// spin the entire whirlwind
 	public void Spin () {
 		Debug.Assert(currentState == State.WhirlExam);
 
@@ -189,6 +190,7 @@ public class Whirlwind : MonoBehaviour {
 
 
 	// only call this from WhirlwindObject.Enlarge()
+	// open the UI for enlarge selection of selected object
 	public void EnterEnlargeSelection (WhirlwindObject wwObj) {
 		Debug.Assert(enlargedObject == null);
 		Debug.Assert(wwObj != null);
@@ -205,6 +207,7 @@ public class Whirlwind : MonoBehaviour {
 		LogUserInput();
 	}
 
+	// close the UI for enlarge selection, return item to slot
 	public void ExitEnlargeSelection () {
 		Debug.Assert(enlargedObject != null);
 		
@@ -215,6 +218,7 @@ public class Whirlwind : MonoBehaviour {
 		LogUserInput();
 	}
 
+	// show detailed information about selected item
 	public void EnterFullScreen () {
 		Debug.Assert(enlargedObject != null);
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
@@ -225,7 +229,7 @@ public class Whirlwind : MonoBehaviour {
 		LogUserInput();
 	}
 
-
+	// show detailed information about selected item
 	public void ExitFullScreen () {
 		Debug.Assert(enlargedObject != null);
 		
