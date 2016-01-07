@@ -218,6 +218,19 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
+	// whether all the slots are filled
+	public bool IsDoneStirUp { 
+		get {
+			bool allDone = true;
+			for (int i = 0; i < wwObjs.Count; i++) {
+				if (IndexIsInSlots(i)) {
+					allDone &= wwObjs[i].IsDoneStirUp;
+				}
+			}
+			return allDone;
+		}
+	}
+
 	// shift to the left or right by one
 	public void ShiftByOne (int direction) {
 		Debug.Assert(direction == -1 || direction == 1);
@@ -269,7 +282,7 @@ public class WhirlwindBelt : MonoBehaviour {
 				allDone &= slots[i].IsDoneSlowingDown;
 			}
 			return allDone;
-		} 
+		}
 	}
 
 	// is able to interact, spin the entire whirlwind
@@ -317,7 +330,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	public void Freeze () {
 		for (int i = 0; i < wwObjs.Count; i++) {
 			if (IndexIsInSlots(i)) {
-				wwObjs[i].Freeze();
+				wwObjs[i].SetInteractable(false);
 			}
 		}
 
@@ -330,7 +343,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	public void UnFreeze () {
 		for (int i = 0; i < wwObjs.Count; i++) {
 			if (IndexIsInSlots(i)) {
-				wwObjs[i].UnFreeze();
+				wwObjs[i].SetInteractable(true);
 			}
 		}
 	}

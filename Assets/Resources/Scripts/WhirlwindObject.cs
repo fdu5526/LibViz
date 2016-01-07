@@ -126,6 +126,7 @@ public class WhirlwindObject : MonoBehaviour {
 		currentState = State.SlowToStop;
 	}
 
+	public bool IsDoneStirUp { get { return slot != null && isLockedToSlot; } }
 	public bool IsInWhirlwind { get { return slot != null; } }
 
 
@@ -195,14 +196,11 @@ public class WhirlwindObject : MonoBehaviour {
 		rigidbody.rotation = Quaternion.identity;
 	}
 
-	public void Freeze () {
-		isInteractable = false;
-		rigidbody.velocity = Vector3.zero;
-	}
 
-	public void UnFreeze () {
+	public void SetInteractable (bool isInteractable) {
+		this.isInteractable = isInteractable;
 		if (!isInteractable) {
-			isInteractable = true;
+			rigidbody.velocity = Vector3.zero;
 		}
 	}
 

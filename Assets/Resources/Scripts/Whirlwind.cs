@@ -48,7 +48,8 @@ public class Whirlwind : MonoBehaviour {
 				currentState == State.Idle) {
 			StirUp(50f);
 		} else if (Input.GetKeyDown("s") &&
-							 currentState == State.StirUp) {
+							 currentState == State.StirUp && 
+							 IsDoneStirUp) {
 			SlowToStop();
 		} else if (Input.GetKeyDown("d") && 
 							 currentState != State.End && 
@@ -58,6 +59,16 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// functions for setting whirlwind state //////
+	public bool IsDoneStirUp {
+		get {
+			bool allDone = true;
+			for (int i = 0; i < belts.Length; i++) {
+				allDone &= belts[i].IsDoneStirUp;
+			}
+			return allDone;
+		}
+	}
+
 	void StirUp (float speed) {
 
 		Debug.Assert(currentState == State.Idle || 
@@ -106,6 +117,7 @@ public class Whirlwind : MonoBehaviour {
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].ContextExam();
 		}
+		UnFreeze();
 		LogUserInput();
 	}
 
@@ -134,6 +146,7 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
+	// stop 
 	void UnFreeze () {
 		isFrozen = false;
 		for (int i = 0; i < belts.Length; i++) {
@@ -215,11 +228,14 @@ public class Whirlwind : MonoBehaviour {
 	// close the UI for enlarge selection, return item to slot
 	public void ExitEnlargeSelection () {
 		Debug.Assert(enlargedObject != null);
+
+		if (currentState == State.ContextExam) {
+			UnFreeze();
+		}
 		
 		enlargedObject.UnEnlarge();
 		enlargedObject = null;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
-		UnFreeze();
 		LogUserInput();
 	}
 
@@ -246,11 +262,12 @@ public class Whirlwind : MonoBehaviour {
 
 
 /////// inherited from MonoBehaviour //////
-	// Update is called once per frame
+	// checks user input
 	void Update () {
 		CheckInteractionWithWhirlwind();
 	}
 
+	// do all state computation here
 	void FixedUpdate () {
 		if (currentState != State.Idle && 
 				currentState != State.End &&
