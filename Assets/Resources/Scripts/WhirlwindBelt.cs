@@ -136,6 +136,19 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
+	// belt has reached optimal position, slow all objects and slots
+	void SlowAllToStop (bool isFastStop) {
+		isSlowingDown = false;
+		for (int i = 0; i < wwObjs.Count; i++) {
+			if (IndexIsInSlots(i)) {
+				wwObjs[i].SlowToStop();
+			}
+		}
+		for (int i = 0; i < slots.Length; i++) {
+			slots[i].SlowToStop(isFastStop);
+		}
+	}
+
 	// show or hide the text label on the side
 	IEnumerator FadeLabel (bool isFadeIn) {
 		float increment = 0.05f;
@@ -145,7 +158,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
-/////// public functions used by whirlwindObjects //////
+/////// public functions used for user interaction //////
 	
 	// for when user initially places mouse down to drag it
 	public void SetMouseDownPosition () {
@@ -180,7 +193,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
-/////// public functions for setting whirlwindObject state //////
+/////// public functions used by state transition //////
 	
 	public bool IsAtHead (Transform slot) {
 		bool isHead = (slot.position - wwObjs[headIndex].slot.position).sqrMagnitude < 1f;
@@ -236,18 +249,6 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
-	void SlowAllToStop (bool isFastStop) {
-		isSlowingDown = false;
-		for (int i = 0; i < wwObjs.Count; i++) {
-			if (IndexIsInSlots(i)) {
-				wwObjs[i].SlowToStop();
-			}
-		}
-		for (int i = 0; i < slots.Length; i++) {
-			slots[i].SlowToStop(isFastStop);
-		}
-	}
-
 	// slow down initial spin
 	public void SlowToStop (bool isTransitioningToContextExam) {
 		isSlowingDown = true;
@@ -260,6 +261,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		
 	}
 
+	// whether all the slots are at velocity zero
 	public bool IsDoneSlowingDown { 
 		get {
 			bool allDone = true;
@@ -270,7 +272,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		} 
 	}
 
-	// is able to interact
+	// is able to interact, spin the entire whirlwind
 	public void WhirlExam () {
 		for (int i = 0; i < wwObjs.Count; i++) {
 			if (IndexIsInSlots(i)) {
@@ -280,7 +282,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
-	// is able to interact
+	// is able to interact, spin individual belts
 	public void ContextExam () {
 		beltEnd.isInContextExam = true;
 
@@ -291,7 +293,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
-	// end the entire belt
+	// end the entire belt, return all objects
 	public void End () {
 		isOperating = false;
 		StartCoroutine(FadeLabel(isOperating));
