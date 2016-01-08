@@ -28,7 +28,7 @@ public class WhirlwindObject : MonoBehaviour {
 	Whirlwind whirlwind;
 	WhirlwindBelt belt;
 	GameObject trail;
-	GameObject actualObject;
+	GameObject objectImage;
 	Vector3 defaultScale;
 
 	// aliases
@@ -45,7 +45,7 @@ public class WhirlwindObject : MonoBehaviour {
 		isLockedToSlot = false;
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		trail = transform.Find("Trail").gameObject;
-		actualObject = transform.Find("Object").gameObject;
+		objectImage = transform.Find("ObjectImage").gameObject;
 		trail.GetComponent<ParticleSystem>().Stop();
 
 		collider = GetComponent<Collider>();
@@ -79,9 +79,9 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 	void UpdateFade () {
-		Color c = actualObject.GetComponent<Renderer>().material.color;
-		c.a = 1f - (transform.position.z + radius) / (2f * radius);
-		actualObject.GetComponent<Renderer>().material.color = c;
+		Color c = objectImage.GetComponent<Renderer>().material.color;
+		c.a = Mathf.Max(1f - (transform.position.z + radius) / (2f * radius), 0.1f);
+		objectImage.GetComponent<Renderer>().material.color = c;
 	}
 
 /////// functions for setting whirlwindObject state //////
@@ -162,11 +162,11 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void FullScreen () {
-		actualObject.GetComponent<Renderer>().enabled = false;
+		objectImage.GetComponent<Renderer>().enabled = false;
 	}
 
 	public void UnFullScreen () {
-		actualObject.GetComponent<Renderer>().enabled = true;
+		objectImage.GetComponent<Renderer>().enabled = true;
 	}
 
 	public void End () {

@@ -1,7 +1,5 @@
----------------------------------------------
-
 touch interaction
-	TUIO?
+	if on Windows, all is well
 
 kinect
 	faster people movement => swirl up more stuff
