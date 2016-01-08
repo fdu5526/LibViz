@@ -79,8 +79,9 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 	void UpdateFade () {
+		float a = 1f - (transform.position.z + radius) / (2f * radius);
 		Color c = objectImage.GetComponent<Renderer>().material.color;
-		c.a = Mathf.Max(1f - (transform.position.z + radius) / (2f * radius), 0.1f);
+		c.a = Mathf.Clamp(a, 0f, 1f);
 		objectImage.GetComponent<Renderer>().material.color = c;
 	}
 
@@ -143,10 +144,7 @@ public class WhirlwindObject : MonoBehaviour {
 
 
 	public void ContextExam () {
-		//Debug.Assert(currentState == State.SlowToStop);
-		if (currentState != State.SlowToStop) {
-			print(currentState);
-		}
+		Debug.Assert(currentState == State.SlowToStop);
 		
 		isInteractable = true;
 		currentState = State.ContextExam;

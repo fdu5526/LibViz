@@ -118,7 +118,13 @@ public class Whirlwind : MonoBehaviour {
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].ContextExam();
 		}
-		UnFreeze();
+
+		if (enlargedObject == null) {
+			Debug.Assert(!enlargedSelectionUI.GetComponent<Canvas>().enabled);
+			Debug.Assert(!fullscreenSelectionUI.GetComponent<Canvas>().enabled);
+			UnFreeze();
+		}
+
 		LogUserInput();
 	}
 
@@ -168,6 +174,7 @@ public class Whirlwind : MonoBehaviour {
 					if (currentState == State.SlowToStop) {
 						WhirlExam();
 					} else {
+						bool isInteractable = enlargedObject == null;
 						ContextExam();
 					}
 					
