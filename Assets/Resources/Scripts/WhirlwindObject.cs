@@ -81,7 +81,7 @@ public class WhirlwindObject : MonoBehaviour {
 	void UpdateFade () {
 		float a = 1f - (transform.position.z + radius) / (2f * radius);
 		Color c = objectImage.GetComponent<Renderer>().material.color;
-		c.a = Mathf.Clamp(a, 0f, 1f);
+		c.a = Mathf.Clamp(a, 0.1f, 1f);
 		objectImage.GetComponent<Renderer>().material.color = c;
 	}
 
@@ -194,6 +194,11 @@ public class WhirlwindObject : MonoBehaviour {
 		rigidbody.rotation = Quaternion.identity;
 	}
 
+	public Sprite ObjectImage {
+		get {
+			return objectImage.GetComponent<SpriteRenderer>().sprite;
+		}
+	}
 
 	public void SetInteractable (bool isInteractable) {
 		this.isInteractable = isInteractable;
