@@ -14,7 +14,6 @@ interaction state machine
 
 	enlarged view
 		draggable when it is large
-		look at wireframe, make it look like that
 	
 	drag needs timer (after 0.1 seconds, its a drag now)
 	

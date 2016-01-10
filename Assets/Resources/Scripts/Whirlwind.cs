@@ -224,6 +224,7 @@ public class Whirlwind : MonoBehaviour {
 		enlargedObject = wwObj;
 		wwObj.transform.position = enlargedObjectPosition;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
+		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ObjectSprite = wwObj.ObjectSprite;
 
 		if (currentState == State.WhirlExam) {
 			StirUp(50f);
@@ -266,6 +267,11 @@ public class Whirlwind : MonoBehaviour {
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 		fullscreenSelectionUI.GetComponent<Canvas>().enabled = false;
 		LogUserInput();
+	}
+
+
+	public void AddToSearch () {
+
 	}
 
 

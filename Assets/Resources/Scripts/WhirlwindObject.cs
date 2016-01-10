@@ -152,10 +152,12 @@ public class WhirlwindObject : MonoBehaviour {
 
 	public void Enlarge () {
 		whirlwind.EnterEnlargeSelection(this);
+		objectImage.GetComponent<Renderer>().enabled = false;
 		isEnlarged = true;
 	}
 
 	public void UnEnlarge () {
+		objectImage.GetComponent<Renderer>().enabled = true;
 		isEnlarged = false;
 	}
 
