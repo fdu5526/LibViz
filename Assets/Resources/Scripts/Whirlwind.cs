@@ -174,7 +174,6 @@ public class Whirlwind : MonoBehaviour {
 					if (currentState == State.SlowToStop) {
 						WhirlExam();
 					} else {
-						bool isInteractable = enlargedObject == null;
 						ContextExam();
 					}
 					
@@ -255,6 +254,7 @@ public class Whirlwind : MonoBehaviour {
 		enlargedObject.FullScreen();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 		fullscreenSelectionUI.GetComponent<Canvas>().enabled = true;
+		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().ObjectSprite = enlargedObject.ObjectSprite;
 		LogUserInput();
 	}
 

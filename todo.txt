@@ -16,12 +16,6 @@ interaction state machine
 		draggable when it is large
 		look at wireframe, make it look like that
 	
-	Fullscreen view
-		scrollable interface
-		look at wireframe, make it look like that
-		actual image loading
-		actual text loading
-	
 	drag needs timer (after 0.1 seconds, its a drag now)
 	
 	search box

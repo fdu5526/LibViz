@@ -194,7 +194,7 @@ public class WhirlwindObject : MonoBehaviour {
 		rigidbody.rotation = Quaternion.identity;
 	}
 
-	public Sprite ObjectImage {
+	public Sprite ObjectSprite {
 		get {
 			return objectImage.GetComponent<SpriteRenderer>().sprite;
 		}
