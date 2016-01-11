@@ -12,9 +12,6 @@ get data from mySQL
 
 interaction state machine
 
-	enlarged view
-		draggable when it is large
-	
 	search box
 		put objects in box
 		searching reorganization / rearrangement
