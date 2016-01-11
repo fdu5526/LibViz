@@ -20,6 +20,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	bool isTransitioningToContextExam;
 
 	Transform center;
+	Whirlwind whirlwind;
 	List<WhirlwindObject> wwObjs;
 	int headIndex, tailIndex;
 	WhirlwindBeltSlot[] slots;
@@ -31,6 +32,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		GameObject g;
 
 		center = GameObject.Find("WhirlwindCenter").transform;
+		whirlwind = center.GetComponent<Whirlwind>();
 		height = transform.position.y;
 		radius = height * 0.6f + 1f;
 		isOperating = false;
@@ -177,10 +179,8 @@ public class WhirlwindBelt : MonoBehaviour {
 			slots[i].speed = s;
 		}
 
-		for (int i = 0; i < wwObjs.Count; i++) {
-			if (IndexIsInSlots(i)) {
-				wwObjs[i].isBeltBeingDragged = true;
-			}
+		if (s > 0f) {
+			whirlwind.isBeingDragged = true;
 		}
 	}
 
@@ -340,7 +340,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 	// update all the ones that are in slots
-	public void ComputeState (Whirlwind.State currentState) {
+	public void ComputeState () {
 		
 		// swirl belt to correct locatin
 		if (isSlowingDown && isTransitioningToContextExam) {

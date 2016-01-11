@@ -935,7 +935,7 @@ Transform:
   - {fileID: 143958274}
   - {fileID: 1985640041}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1001 &271160753
 Prefab:
   m_ObjectHideFlags: 0
@@ -1132,7 +1132,7 @@ Transform:
   m_LocalScale: {x: 0.42422792, y: 5.996818, z: 0.45161724}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!114 &303245549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2278,7 +2278,7 @@ Transform:
   - {fileID: 375141158}
   - {fileID: 1993830218}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &674133414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2623,7 +2623,7 @@ Transform:
   - {fileID: 1183030402}
   - {fileID: 1753178489}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!1001 &717263428
 Prefab:
   m_ObjectHideFlags: 0
@@ -5390,6 +5390,45 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
   m_PrefabInternal: {fileID: 1753178488}
+--- !u!1 &1765382217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1765382218}
+  - 114: {fileID: 1765382219}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1765382218
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1765382217}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 451.5561, y: 188.67856, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+--- !u!114 &1765382219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1765382217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8932f85ff254647a96d64fd3d05404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1769838547
 Transform:
   m_ObjectHideFlags: 0
@@ -5417,7 +5456,7 @@ Transform:
   - {fileID: 205246050}
   - {fileID: 1683056493}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1 &1798647741
 GameObject:
   m_ObjectHideFlags: 0
@@ -5450,7 +5489,7 @@ Transform:
   - {fileID: 505440586}
   - {fileID: 7893265}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!1001 &1842525949
 Prefab:
   m_ObjectHideFlags: 0

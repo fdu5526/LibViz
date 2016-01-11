@@ -11,7 +11,6 @@ public class WhirlwindObject : MonoBehaviour {
 	public float radius;
 	public float height;
 	public Transform slot;
-	public bool isBeltBeingDragged;
 
 	// generated
 	Vector3 idlePosition;
@@ -24,7 +23,8 @@ public class WhirlwindObject : MonoBehaviour {
 	bool isLockedToSlot;
 	
 
-	// properties
+	// other stuffs in the scene
+	InputManager inputManager;
 	Whirlwind whirlwind;
 	WhirlwindBelt belt;
 	GameObject trail;
@@ -47,6 +47,7 @@ public class WhirlwindObject : MonoBehaviour {
 		trail = transform.Find("Trail").gameObject;
 		objectImage = transform.Find("ObjectImage").gameObject;
 		trail.GetComponent<ParticleSystem>().Stop();
+		inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
 
 		collider = GetComponent<Collider>();
 		rigidbody = GetComponent<Rigidbody>();
@@ -287,6 +288,12 @@ public class WhirlwindObject : MonoBehaviour {
 		if (!isInteractable || whirlwind.isFrozen) {
 			return;
 		}
+
+		if (!inputManager.IsDragging) {
+			OnMouseDown();
+			return;
+		}
+
 		whirlwind.LogUserInput();
 
 		if (currentState == State.ContextExam) {
@@ -306,13 +313,12 @@ public class WhirlwindObject : MonoBehaviour {
 		}
 		whirlwind.LogUserInput();
 
-		if (!isBeltBeingDragged && 
+		if (!whirlwind.isBeingDragged && 
 				(currentState == State.ContextExam || 
 				 currentState == State.WhirlExam))  {
 				Enlarge();
 		}
-
-		isBeltBeingDragged = false;		
+		whirlwind.isBeingDragged = false;
 	}
 
 	void FixedUpdate () {

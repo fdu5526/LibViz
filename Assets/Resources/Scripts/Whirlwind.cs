@@ -4,11 +4,12 @@ using System.Collections;
 public class Whirlwind : MonoBehaviour {
 
 	// state machine
-	public enum State {Idle, StirUp, SlowToStop, WhirlExam, SlowToStopContextExam, ContextExam, End };
-	public State currentState;
+	enum State {Idle, StirUp, SlowToStop, WhirlExam, SlowToStopContextExam, ContextExam, End };
+	State currentState;
 
 	// is the whirlwind taking user inputs?
 	public bool isFrozen;
+	public bool isBeingDragged;
 
 	// set the whirlwind to Idle if it is 
 	Timer userInputTimer;
@@ -184,7 +185,7 @@ public class Whirlwind : MonoBehaviour {
 		}
 
 		for (int i = 0; i < belts.Length; i++) {
-			belts[i].ComputeState(currentState);
+			belts[i].ComputeState();
 		}
 	}
 
