@@ -15,13 +15,14 @@ public class WhirlwindItem : MonoBehaviour {
 	// generated
 	Vector3 idlePosition;
 
+	// state machine
 	enum State { Idle, StirUp, SlowToStop, WhirlExam, ContextExam, StirUpByShift, End, Frozen };
 	State currentState;
-	
+		
+	// internal data reprensentations
 	bool isInteractable;
 	bool isEnlarged;
 	bool isLockedToSlot;
-	
 
 	// other stuffs in the scene
 	Whirlwind whirlwind;

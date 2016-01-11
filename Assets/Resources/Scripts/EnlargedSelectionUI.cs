@@ -8,7 +8,6 @@ public class EnlargedSelectionUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 		itemImage = transform.Find("ItemImage").GetComponent<Image>();
 	}
 
