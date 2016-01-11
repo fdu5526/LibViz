@@ -161,11 +161,9 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void FullScreen () {
-		objectImage.GetComponent<Renderer>().enabled = false;
 	}
 
 	public void UnFullScreen () {
-		objectImage.GetComponent<Renderer>().enabled = true;
 	}
 
 	public void End () {

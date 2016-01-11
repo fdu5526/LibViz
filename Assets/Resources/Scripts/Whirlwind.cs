@@ -275,7 +275,8 @@ public class Whirlwind : MonoBehaviour {
 	// user starts dragging an object to search bar
 	public void DragObjectImage () {
 		Debug.Assert(enlargedObject != null);
-		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
+		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled || 
+								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 
 		searchUI.GetComponent<SearchUI>().EnableDragShadow(enlargedObject.ObjectSprite);
 	}
@@ -283,7 +284,8 @@ public class Whirlwind : MonoBehaviour {
 	// user starts dragging an object to search bar
 	public void DropObjectImage () {
 		Debug.Assert(enlargedObject != null);
-		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
+		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled || 
+								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 
 		searchUI.GetComponent<SearchUI>().DisableDragShadow();
 	}
