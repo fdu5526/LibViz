@@ -27,7 +27,7 @@ public class WhirlwindItem : MonoBehaviour {
 	Whirlwind whirlwind;
 	WhirlwindBelt belt;
 	GameObject trail;
-	GameObject itemtImage;
+	GameObject itemImage;
 	Vector3 defaultScale;
 
 	// aliases
@@ -44,7 +44,7 @@ public class WhirlwindItem : MonoBehaviour {
 		isLockedToSlot = false;
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		trail = transform.Find("Trail").gameObject;
-		itemtImage = transform.Find("ItemImage").gameObject;
+		itemImage = transform.Find("ItemImage").gameObject;
 		trail.GetComponent<ParticleSystem>().Stop();
 
 		collider = GetComponent<Collider>();
@@ -79,9 +79,9 @@ public class WhirlwindItem : MonoBehaviour {
 
 	void UpdateFade () {
 		float a = 1f - (transform.position.z + radius) / (2f * radius);
-		Color c = itemtImage.GetComponent<Renderer>().material.color;
+		Color c = itemImage.GetComponent<Renderer>().material.color;
 		c.a = Mathf.Clamp(a, 0.1f, 1f);
-		itemtImage.GetComponent<Renderer>().material.color = c;
+		itemImage.GetComponent<Renderer>().material.color = c;
 	}
 
 /////// functions for setting whirlwindItem state //////
@@ -151,12 +151,12 @@ public class WhirlwindItem : MonoBehaviour {
 
 	public void Enlarge () {
 		whirlwind.EnterEnlargeSelection(this);
-		itemtImage.GetComponent<Renderer>().enabled = false;
+		itemImage.GetComponent<Renderer>().enabled = false;
 		isEnlarged = true;
 	}
 
 	public void UnEnlarge () {
-		itemtImage.GetComponent<Renderer>().enabled = true;
+		itemImage.GetComponent<Renderer>().enabled = true;
 		isEnlarged = false;
 	}
 
@@ -198,7 +198,7 @@ public class WhirlwindItem : MonoBehaviour {
 
 	public Sprite ItemSprite {
 		get {
-			return itemtImage.GetComponent<SpriteRenderer>().sprite;
+			return itemImage.GetComponent<SpriteRenderer>().sprite;
 		}
 	}
 
