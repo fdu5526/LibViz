@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (Collider))]
-public class WhirlwindObject : MonoBehaviour {
+public class WhirlwindItem : MonoBehaviour {
 	
 	// assigned
 	public float speed;
@@ -27,7 +27,7 @@ public class WhirlwindObject : MonoBehaviour {
 	Whirlwind whirlwind;
 	WhirlwindBelt belt;
 	GameObject trail;
-	GameObject objectImage;
+	GameObject itemtImage;
 	Vector3 defaultScale;
 
 	// aliases
@@ -44,7 +44,7 @@ public class WhirlwindObject : MonoBehaviour {
 		isLockedToSlot = false;
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		trail = transform.Find("Trail").gameObject;
-		objectImage = transform.Find("ObjectImage").gameObject;
+		itemtImage = transform.Find("ItemImage").gameObject;
 		trail.GetComponent<ParticleSystem>().Stop();
 
 		collider = GetComponent<Collider>();
@@ -79,12 +79,12 @@ public class WhirlwindObject : MonoBehaviour {
 
 	void UpdateFade () {
 		float a = 1f - (transform.position.z + radius) / (2f * radius);
-		Color c = objectImage.GetComponent<Renderer>().material.color;
+		Color c = itemtImage.GetComponent<Renderer>().material.color;
 		c.a = Mathf.Clamp(a, 0.1f, 1f);
-		objectImage.GetComponent<Renderer>().material.color = c;
+		itemtImage.GetComponent<Renderer>().material.color = c;
 	}
 
-/////// functions for setting whirlwindObject state //////
+/////// functions for setting whirlwindItem state //////
 	// fly into orbit
 	public void StirUp (float speed, Transform slot) {
 		ResetToIdle();
@@ -96,7 +96,7 @@ public class WhirlwindObject : MonoBehaviour {
 		this.speed = speed;
 		this.slot = slot;
 		isInteractable = false;
-		slot.GetComponent<WhirlwindBeltSlot>().AttachObject();
+		slot.GetComponent<WhirlwindBeltSlot>().AttachItem();
 		rigidbody.useGravity = false;
 		collider.enabled = false;
 		//trail.GetComponent<ParticleSystem>().Play();
@@ -151,12 +151,12 @@ public class WhirlwindObject : MonoBehaviour {
 
 	public void Enlarge () {
 		whirlwind.EnterEnlargeSelection(this);
-		objectImage.GetComponent<Renderer>().enabled = false;
+		itemtImage.GetComponent<Renderer>().enabled = false;
 		isEnlarged = true;
 	}
 
 	public void UnEnlarge () {
-		objectImage.GetComponent<Renderer>().enabled = true;
+		itemtImage.GetComponent<Renderer>().enabled = true;
 		isEnlarged = false;
 	}
 
@@ -169,10 +169,11 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void End () {
+		Debug.Assert(slot != null);
 		Vector3 v;
 
 		isLockedToSlot = false;
-		slot.GetComponent<WhirlwindBeltSlot>().DettachObject();
+		slot.GetComponent<WhirlwindBeltSlot>().DettachItem();
 		slot = null;
 		isInteractable = false;
 		currentState = State.End;
@@ -195,9 +196,9 @@ public class WhirlwindObject : MonoBehaviour {
 		rigidbody.rotation = Quaternion.identity;
 	}
 
-	public Sprite ObjectSprite {
+	public Sprite ItemSprite {
 		get {
-			return objectImage.GetComponent<SpriteRenderer>().sprite;
+			return itemtImage.GetComponent<SpriteRenderer>().sprite;
 		}
 	}
 

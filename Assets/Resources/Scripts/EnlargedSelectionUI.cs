@@ -4,19 +4,19 @@ using System.Collections;
 
 public class EnlargedSelectionUI : MonoBehaviour {
 
-	Image objectImage;
+	Image itemImage;
 
 	// Use this for initialization
 	void Start () {
 
-		objectImage = transform.Find("ObjectImage").GetComponent<Image>();
+		itemImage = transform.Find("ItemImage").GetComponent<Image>();
 	}
 
 
 
-	public Sprite ObjectSprite {
+	public Sprite ItemSprite {
 		set {
-			objectImage.sprite = value;
+			itemImage.sprite = value;
 		}
 	}
 	

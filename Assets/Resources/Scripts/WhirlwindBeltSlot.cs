@@ -48,7 +48,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		d = center.position - p;
 		d2 = new Vector2(d.x, d.z);
 
-		// small corrections to prevent objects from escaping orbit
+		// small corrections to prevent items from escaping orbit
 		d2n = d2.normalized;
 		float rd = radius - d2.magnitude;
 		if (rd > 0.05f) {
@@ -73,7 +73,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	}
 
 
-/////// public functions for setting whirlwindObject state //////
+/////// public functions for setting whirlwindItem state //////
 	public bool IsDoneSlowingDown {
 		get {
 			return speed < 0.1f;
@@ -101,11 +101,11 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		}
 	}
 
-	public void AttachObject () {
+	public void AttachItem () {
 		collider.enabled = true;
 	}
 
-	public void DettachObject () {
+	public void DettachItem () {
 		collider.enabled = false;
 	}
 

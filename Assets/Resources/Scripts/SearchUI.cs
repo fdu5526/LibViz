@@ -5,7 +5,7 @@ using System.Collections;
 
 public class SearchUI : MonoBehaviour {
 
-	public bool isDraggingObject;
+	public bool isDraggingItem;
 	GameObject dragShadow;
 
 	// Use this for initialization
@@ -15,19 +15,19 @@ public class SearchUI : MonoBehaviour {
 	}
 
 	public void EnableDragShadow (Sprite sprite) {
-		isDraggingObject = true;
+		isDraggingItem = true;
 		dragShadow.GetComponent<Image>().enabled = true;
 		dragShadow.GetComponent<Image>().sprite = sprite;
 	}
 
 	public void DisableDragShadow () {
-		isDraggingObject = false;
+		isDraggingItem = false;
 		dragShadow.GetComponent<Image>().enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (isDraggingObject) {
+		if (isDraggingItem) {
 			dragShadow.transform.position = Input.mousePosition;
 		}
 	}

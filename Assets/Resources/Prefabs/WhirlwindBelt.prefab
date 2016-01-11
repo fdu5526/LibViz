@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11482132}
   - 65: {fileID: 6574650}
   m_Layer: 8
-  m_Name: WhirlwindObject (4)
+  m_Name: WhirlwindItem
   m_TagString: WhirlwindObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ GameObject:
   - 114: {fileID: 11421482}
   - 65: {fileID: 6500492}
   m_Layer: 8
-  m_Name: WhirlwindObject (1)
+  m_Name: WhirlwindItem
   m_TagString: WhirlwindObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ GameObject:
   - 4: {fileID: 434784}
   - 212: {fileID: 21225972}
   m_Layer: 0
-  m_Name: ObjectImage
+  m_Name: ItemImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ GameObject:
   - 4: {fileID: 430040}
   - 212: {fileID: 21233818}
   m_Layer: 0
-  m_Name: ObjectImage
+  m_Name: ItemImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +151,7 @@ GameObject:
   - 4: {fileID: 478710}
   - 212: {fileID: 21235926}
   m_Layer: 0
-  m_Name: ObjectImage
+  m_Name: ItemImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,7 +235,7 @@ GameObject:
   - 4: {fileID: 441956}
   - 212: {fileID: 21218734}
   m_Layer: 0
-  m_Name: ObjectImage
+  m_Name: ItemImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,7 @@ GameObject:
   - 4: {fileID: 484506}
   - 212: {fileID: 21200430}
   m_Layer: 0
-  m_Name: ObjectImage
+  m_Name: ItemImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,7 +286,7 @@ GameObject:
   - 114: {fileID: 11479670}
   - 65: {fileID: 6528530}
   m_Layer: 8
-  m_Name: WhirlwindObject (3)
+  m_Name: WhirlwindItem
   m_TagString: WhirlwindObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +304,7 @@ GameObject:
   - 114: {fileID: 11427458}
   - 65: {fileID: 6517422}
   m_Layer: 8
-  m_Name: WhirlwindObject (2)
+  m_Name: WhirlwindItem
   m_TagString: WhirlwindObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,7 +322,7 @@ GameObject:
   - 114: {fileID: 11437326}
   - 65: {fileID: 6589178}
   m_Layer: 8
-  m_Name: WhirlwindObject
+  m_Name: WhirlwindItem
   m_TagString: WhirlwindObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -714,7 +714,6 @@ MonoBehaviour:
   radius: 0
   height: 4.57
   slot: {fileID: 0}
-  isBeltBeingDragged: 0
 --- !u!114 &11427458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -730,7 +729,6 @@ MonoBehaviour:
   radius: 0
   height: 4.57
   slot: {fileID: 0}
-  isBeltBeingDragged: 0
 --- !u!114 &11427920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -812,7 +810,6 @@ MonoBehaviour:
   radius: 0
   height: 4.57
   slot: {fileID: 0}
-  isBeltBeingDragged: 0
 --- !u!114 &11439692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -851,7 +848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e16da39c212f549946b7e4e00131a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level: 0
 --- !u!114 &11479496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -888,7 +885,6 @@ MonoBehaviour:
   radius: 0
   height: 4.57
   slot: {fileID: 0}
-  isBeltBeingDragged: 0
 --- !u!114 &11482132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -904,7 +900,6 @@ MonoBehaviour:
   radius: 0
   height: 4.57
   slot: {fileID: 0}
-  isBeltBeingDragged: 0
 --- !u!198 &19826660
 ParticleSystem:
   m_ObjectHideFlags: 1

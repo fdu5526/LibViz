@@ -15,8 +15,8 @@ public class Whirlwind : MonoBehaviour {
 	Timer userInputTimer;
 
 	// for enlarge and fullscreen selection
-	Vector3 enlargedObjectPosition;
-	WhirlwindObject enlargedObject;
+	Vector3 enlargedItemPosition;
+	WhirlwindItem enlargedItem;
 	GameObject searchUI;
 	GameObject enlargedSelectionUI;
 	GameObject fullscreenSelectionUI;
@@ -30,7 +30,7 @@ public class Whirlwind : MonoBehaviour {
 
 		userInputTimer = new Timer(60f);
 
-		enlargedObjectPosition = new Vector3(0f, 11.24f, -15.8f);
+		enlargedItemPosition = new Vector3(0f, 11.24f, -15.8f);
 		searchUI = GameObject.Find("SearchUI");
 		enlargedSelectionUI = GameObject.Find("EnlargedSelectionUI");
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
@@ -62,7 +62,7 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// functions for setting whirlwind state //////
-	// whether all the objects are stirred up
+	// whether all the items are stirred up
 	public bool IsDoneStirUp {
 		get {
 			bool allDone = true;
@@ -78,10 +78,10 @@ public class Whirlwind : MonoBehaviour {
 		Debug.Assert(currentState == State.Idle || 
 								 currentState == State.WhirlExam);
 
-		bool shouldLoadObjects = currentState == State.Idle;
+		bool shouldLoadItems = currentState == State.Idle;
 
 		for (int i = 0; i < belts.Length; i++) {
-			belts[i].StirUp(speed, shouldLoadObjects);
+			belts[i].StirUp(speed, shouldLoadItems);
 		}
 		currentState = State.StirUp;
 		LogUserInput();
@@ -122,7 +122,7 @@ public class Whirlwind : MonoBehaviour {
 			belts[i].ContextExam();
 		}
 
-		if (enlargedObject == null) {
+		if (enlargedItem == null) {
 			Debug.Assert(!enlargedSelectionUI.GetComponent<Canvas>().enabled);
 			Debug.Assert(!fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 			UnFreeze();
@@ -133,7 +133,7 @@ public class Whirlwind : MonoBehaviour {
 
 
 	void End () {
-		if (enlargedObject != null) {
+		if (enlargedItem != null) {
 			ExitFullScreen();
 			ExitEnlargeSelection();
 		}
@@ -217,17 +217,17 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 
-	// only call this from WhirlwindObject.Enlarge()
-	// open the UI for enlarge selection of selected object
-	public void EnterEnlargeSelection (WhirlwindObject wwObj) {
-		Debug.Assert(enlargedObject == null);
-		Debug.Assert(wwObj != null);
+	// only call this from WhirlwindItem.Enlarge()
+	// open the UI for enlarge selection of selected item
+	public void EnterEnlargeSelection (WhirlwindItem wwItem) {
+		Debug.Assert(enlargedItem == null);
+		Debug.Assert(wwItem != null);
 
 		Freeze();
-		enlargedObject = wwObj;
-		wwObj.transform.position = enlargedObjectPosition;
+		enlargedItem = wwItem;
+		wwItem.transform.position = enlargedItemPosition;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
-		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ObjectSprite = wwObj.ObjectSprite;
+		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ItemSprite = wwItem.ItemSprite;
 
 		if (currentState == State.WhirlExam) {
 			StirUp(50f);
@@ -238,52 +238,52 @@ public class Whirlwind : MonoBehaviour {
 
 	// close the UI for enlarge selection, return item to slot
 	public void ExitEnlargeSelection () {
-		Debug.Assert(enlargedObject != null);
+		Debug.Assert(enlargedItem != null);
 
 		if (currentState == State.ContextExam) {
 			UnFreeze();
 		}
 		
-		enlargedObject.UnEnlarge();
-		enlargedObject = null;
+		enlargedItem.UnEnlarge();
+		enlargedItem = null;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 		LogUserInput();
 	}
 
 	// show detailed information about selected item
 	public void EnterFullScreen () {
-		Debug.Assert(enlargedObject != null);
+		Debug.Assert(enlargedItem != null);
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
 		
-		enlargedObject.FullScreen();
+		enlargedItem.FullScreen();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 		fullscreenSelectionUI.GetComponent<Canvas>().enabled = true;
-		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().ObjectSprite = enlargedObject.ObjectSprite;
+		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().ItemSprite = enlargedItem.ItemSprite;
 		LogUserInput();
 	}
 
 	// show detailed information about selected item
 	public void ExitFullScreen () {
-		Debug.Assert(enlargedObject != null);
+		Debug.Assert(enlargedItem != null);
 		
-		enlargedObject.UnFullScreen();
+		enlargedItem.UnFullScreen();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 		fullscreenSelectionUI.GetComponent<Canvas>().enabled = false;
 		LogUserInput();
 	}
 
-	// user starts dragging an object to search bar
-	public void DragObjectImage () {
-		Debug.Assert(enlargedObject != null);
+	// user starts dragging an item to search bar
+	public void DragItemImage () {
+		Debug.Assert(enlargedItem != null);
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled || 
 								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 
-		searchUI.GetComponent<SearchUI>().EnableDragShadow(enlargedObject.ObjectSprite);
+		searchUI.GetComponent<SearchUI>().EnableDragShadow(enlargedItem.ItemSprite);
 	}
 
-	// user starts dragging an object to search bar
-	public void DropObjectImage () {
-		Debug.Assert(enlargedObject != null);
+	// user starts dragging an item to search bar
+	public void DropItemImage () {
+		Debug.Assert(enlargedItem != null);
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled || 
 								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 

@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 465844}
   - 212: {fileID: 21299572}
   m_Layer: 0
-  m_Name: ObjectImage
+  m_Name: ItemImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ GameObject:
   - 114: {fileID: 11436596}
   - 65: {fileID: 6528186}
   m_Layer: 8
-  m_Name: WhirlwindObject
+  m_Name: WhirlwindItem
   m_TagString: WhirlwindObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,6 @@ MonoBehaviour:
   radius: 0
   height: 4.57
   slot: {fileID: 0}
-  isBeltBeingDragged: 0
 --- !u!198 &19806880
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1720,6 +1719,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

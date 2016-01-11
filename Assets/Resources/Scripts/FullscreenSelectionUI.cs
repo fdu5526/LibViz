@@ -5,13 +5,13 @@ using System.Collections;
 public class FullscreenSelectionUI : MonoBehaviour {
 
 	Text fields;
-	Image objectImage;
+	Image itemImage;
 
 	// Use this for initialization
 	void Start () {
 		fields = transform.Find("Fields/Viewport/Content/Text").GetComponent<Text>();
 
-		objectImage = transform.Find("ObjectBackground/ObjectImage").GetComponent<Image>();
+		itemImage = transform.Find("ItemBackground/ItemImage").GetComponent<Image>();
 	}
 
 
@@ -22,9 +22,9 @@ public class FullscreenSelectionUI : MonoBehaviour {
 	}
 
 
-	public Sprite ObjectSprite {
+	public Sprite ItemSprite {
 		set {
-			objectImage.sprite = value;
+			itemImage.sprite = value;
 		}
 	}
 	

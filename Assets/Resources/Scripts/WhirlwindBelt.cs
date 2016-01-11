@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class WhirlwindBelt : MonoBehaviour {
 	[Range(0, 5)]
 	public int level;
-	int numOfObjectsShownOnBelt;
+	int numOfItemsShownOnBelt;
 
 	float radius;
 	float height;
@@ -21,7 +21,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	Transform center;
 	Whirlwind whirlwind;
-	List<WhirlwindObject> wwObjs;
+	List<WhirlwindItem> wwItems;
 	int headIndex, tailIndex;
 	WhirlwindBeltSlot[] slots;
 	WhirlwindBeltEnd beltEnd;
@@ -36,26 +36,26 @@ public class WhirlwindBelt : MonoBehaviour {
 		height = transform.position.y;
 		radius = height * 0.6f + 1f;
 		isOperating = false;
-		numOfObjectsShownOnBelt = 3 + level * 3;
+		numOfItemsShownOnBelt = 3 + level * 3;
 
-		WhirlwindObject[] w = GetComponentsInChildren<WhirlwindObject>();
+		WhirlwindItem[] w = GetComponentsInChildren<WhirlwindItem>();
 		Debug.Assert(w != null);
 		
-		// find all the objects of this belt
-		wwObjs = new List<WhirlwindObject>(w);
-		wwObjs.Sort(delegate(WhirlwindObject w1, WhirlwindObject w2) { return w1.name.CompareTo(w2.name); });
-		for (int i = 0; i < wwObjs.Count; i++) {
-			wwObjs[i].Initialize(this, radius, height);
+		// find all the items of this belt
+		wwItems = new List<WhirlwindItem>(w);
+		wwItems.Sort(delegate(WhirlwindItem w1, WhirlwindItem w2) { return w1.name.CompareTo(w2.name); });
+		for (int i = 0; i < wwItems.Count; i++) {
+			wwItems[i].Initialize(this, radius, height);
 		}
 
 		// initialize the slots
-		slots = new WhirlwindBeltSlot[numOfObjectsShownOnBelt];
-		float deltaDegree = (360f / (float)(numOfObjectsShownOnBelt));
-		for (int i = 0; i < numOfObjectsShownOnBelt; i++) {
+		slots = new WhirlwindBeltSlot[numOfItemsShownOnBelt];
+		float deltaDegree = (360f / (float)(numOfItemsShownOnBelt));
+		for (int i = 0; i < numOfItemsShownOnBelt; i++) {
 			g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindBeltSlot"));
 			slots[i] = g.GetComponent<WhirlwindBeltSlot>();
 
-			float t = deltaDegree * (float)(numOfObjectsShownOnBelt - i) * Mathf.Deg2Rad;
+			float t = deltaDegree * (float)(numOfItemsShownOnBelt - i) * Mathf.Deg2Rad;
 			Vector3 v = new Vector3(center.position.x + radius * Mathf.Cos(t),
 															height,
 															center.position.z + radius * Mathf.Sin(t));
@@ -88,13 +88,13 @@ public class WhirlwindBelt : MonoBehaviour {
 		int slotIndex = 0;
 		float t = 1f / (float)BeltSize;
 
-		for (int i = 0; i < wwObjs.Count; i++) {
+		for (int i = 0; i < wwItems.Count; i++) {
 			if (!isOperating) {
 				yield break;
 			}
 
 			if (IndexIsInSlots(i)) {
-				wwObjs[i].StirUp(speed, slots[slotIndex].transform);
+				wwItems[i].StirUp(speed, slots[slotIndex].transform);
 				slotIndex++;
 				yield return new WaitForSeconds(t);
 			} else {
@@ -113,10 +113,10 @@ public class WhirlwindBelt : MonoBehaviour {
 	// helper functions for wrap around indices
 	int PrevIndex (int index) {
 		int i = index - 1;
-		return i < 0 ? wwObjs.Count - 1 : i;
+		return i < 0 ? wwItems.Count - 1 : i;
 	}
 	int NextIndex (int index) {
-		return (index + 1) % wwObjs.Count;
+		return (index + 1) % wwItems.Count;
 	}
 
 	// wrap around shifting indices
@@ -125,25 +125,25 @@ public class WhirlwindBelt : MonoBehaviour {
 
 		int i = index + direction;
 		if (direction > 0) {
-			return i > wwObjs.Count - 1 ? 0 : i;
+			return i > wwItems.Count - 1 ? 0 : i;
 		} else {
-			return i < 0 ? wwObjs.Count - 1 : i;
+			return i < 0 ? wwItems.Count - 1 : i;
 		}
 	}
 
 	// max number of stuffs on the belt at a time
 	int BeltSize {
 		get {
-			return Mathf.Min(numOfObjectsShownOnBelt, wwObjs.Count);
+			return Mathf.Min(numOfItemsShownOnBelt, wwItems.Count);
 		}
 	}
 
-	// belt has reached optimal position, slow all objects and slots
+	// belt has reached optimal position, slow all items and slots
 	void SlowAllToStop (bool isFastStop) {
 		isSlowingDown = false;
-		for (int i = 0; i < wwObjs.Count; i++) {
+		for (int i = 0; i < wwItems.Count; i++) {
 			if (IndexIsInSlots(i)) {
-				wwObjs[i].SlowToStop();
+				wwItems[i].SlowToStop();
 			}
 		}
 		for (int i = 0; i < slots.Length; i++) {
@@ -187,24 +187,24 @@ public class WhirlwindBelt : MonoBehaviour {
 /////// public functions used by state transition //////
 	
 	public bool IsAtHead (Transform slot) {
-		bool isHead = (slot.position - wwObjs[headIndex].slot.position).sqrMagnitude < 1f;
+		bool isHead = (slot.position - wwItems[headIndex].slot.position).sqrMagnitude < 1f;
 		return isHead;
 	}
 
 
 	public bool IsAtTail (Transform slot) {
-		bool isTail = (slot.position - wwObjs[tailIndex].slot.position).sqrMagnitude < 1f;
+		bool isTail = (slot.position - wwItems[tailIndex].slot.position).sqrMagnitude < 1f;
 		return isTail;
 	}
 
-	// stir up objects, but stagger them so they have spaces in between them
-	public void StirUp (float speed, bool shouldLoadObjects) {
+	// stir up items, but stagger them so they have spaces in between them
+	public void StirUp (float speed, bool shouldLoadItems) {
 		isOperating = true;
 		label.Fade(isOperating);
 		for (int i = 0; i < slots.Length; i++) {
 			slots[i].StirUp();
 		}
-		if (shouldLoadObjects) {
+		if (shouldLoadItems) {
 			StartCoroutine(StaggeredStirUp(speed));
 		}
 	}
@@ -213,9 +213,9 @@ public class WhirlwindBelt : MonoBehaviour {
 	public bool IsDoneStirUp { 
 		get {
 			bool allDone = true;
-			for (int i = 0; i < wwObjs.Count; i++) {
+			for (int i = 0; i < wwItems.Count; i++) {
 				if (IndexIsInSlots(i)) {
-					allDone &= wwObjs[i].IsDoneStirUp;
+					allDone &= wwItems[i].IsDoneStirUp;
 				}
 			}
 			return allDone;
@@ -227,25 +227,25 @@ public class WhirlwindBelt : MonoBehaviour {
 		Debug.Assert(direction == -1 || direction == 1);
 
 		if (direction == 1) { // shift next
-			Transform slot = wwObjs[headIndex].slot;
+			Transform slot = wwItems[headIndex].slot;
 			Debug.Assert(slot != null);
 
-			if (wwObjs[NextIndex(tailIndex)].IsInWhirlwind) {
+			if (wwItems[NextIndex(tailIndex)].IsInWhirlwind) {
 				return;
 			}
 
-			wwObjs[headIndex].End();
-			wwObjs[NextIndex(tailIndex)].StirUpByShift(100f, slot);
+			wwItems[headIndex].End();
+			wwItems[NextIndex(tailIndex)].StirUpByShift(100f, slot);
 		} else { 							// shift prev
-			Transform slot = wwObjs[tailIndex].slot;
+			Transform slot = wwItems[tailIndex].slot;
 			Debug.Assert(slot != null);
 
-			if (wwObjs[PrevIndex(headIndex)].IsInWhirlwind) {
+			if (wwItems[PrevIndex(headIndex)].IsInWhirlwind) {
 				return;
 			}
 
-			wwObjs[tailIndex].End();
-			wwObjs[PrevIndex(headIndex)].StirUpByShift(100f, slot);
+			wwItems[tailIndex].End();
+			wwItems[PrevIndex(headIndex)].StirUpByShift(100f, slot);
 		}
 
 		headIndex = ShiftIndexByDirection(headIndex, direction);
@@ -278,9 +278,9 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// is able to interact, spin the entire whirlwind
 	public void WhirlExam () {
-		for (int i = 0; i < wwObjs.Count; i++) {
+		for (int i = 0; i < wwItems.Count; i++) {
 			if (IndexIsInSlots(i)) {
-				wwObjs[i].WhirlExam();
+				wwItems[i].WhirlExam();
 			}
 		}
 	}
@@ -290,38 +290,38 @@ public class WhirlwindBelt : MonoBehaviour {
 	public void ContextExam () {
 		beltEnd.isInContextExam = true;
 
-		for (int i = 0; i < wwObjs.Count; i++) {
+		for (int i = 0; i < wwItems.Count; i++) {
 			if (IndexIsInSlots(i)) {
-				wwObjs[i].ContextExam();
+				wwItems[i].ContextExam();
 			}
 		}
 	}
 
-	// end the entire belt, return all objects
+	// end the entire belt, return all items
 	public void End () {
 		isOperating = false;
 		label.Fade(isOperating);
 		beltEnd.GetComponent<Collider>().enabled = false;
 		beltEnd.isInContextExam = false;
-		for (int i = 0; i < wwObjs.Count; i++) {
+		for (int i = 0; i < wwItems.Count; i++) {
 			if (IndexIsInSlots(i)) {
-				wwObjs[i].End();
+				wwItems[i].End();
 			}
 		}
 	}
 
 	// when a belt's items are all returned to position, reset them to a stack
 	public void ResetToIdle () {
-		for (int i = 0; i < wwObjs.Count; i++) {
-			wwObjs[i].ResetToIdle();
+		for (int i = 0; i < wwItems.Count; i++) {
+			wwItems[i].ResetToIdle();
 		}
 	}
 
 	// freeze the entire belt from moving
 	public void Freeze () {
-		for (int i = 0; i < wwObjs.Count; i++) {
+		for (int i = 0; i < wwItems.Count; i++) {
 			if (IndexIsInSlots(i)) {
-				wwObjs[i].SetInteractable(false);
+				wwItems[i].SetInteractable(false);
 			}
 		}
 
@@ -332,9 +332,9 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// unfreeze the belt, can move again
 	public void UnFreeze () {
-		for (int i = 0; i < wwObjs.Count; i++) {
+		for (int i = 0; i < wwItems.Count; i++) {
 			if (IndexIsInSlots(i)) {
-				wwObjs[i].SetInteractable(true);
+				wwItems[i].SetInteractable(true);
 			}
 		}
 	}
@@ -349,8 +349,8 @@ public class WhirlwindBelt : MonoBehaviour {
 			}
 		}
 
-		for (int i = 0; i < wwObjs.Count; i++) {
-			wwObjs[i].ComputeState();
+		for (int i = 0; i < wwItems.Count; i++) {
+			wwItems[i].ComputeState();
 		}
 	}
 

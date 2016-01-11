@@ -130,7 +130,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (5)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -148,6 +148,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -197,7 +201,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (11)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -215,6 +219,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -264,7 +272,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (17)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -282,6 +290,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -494,7 +506,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (5)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -512,6 +524,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -561,7 +577,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (6)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -579,6 +595,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -628,7 +648,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (20)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -646,6 +666,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -695,7 +719,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (23)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -713,6 +737,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -762,7 +790,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (11)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -780,6 +808,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -829,7 +861,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (13)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -847,6 +879,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -977,7 +1013,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (8)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -995,6 +1031,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -1044,7 +1084,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (2)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -1062,6 +1102,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -1187,7 +1231,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (7)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -1205,6 +1249,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -1324,7 +1372,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (5)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -1342,6 +1390,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -1401,6 +1453,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.10000001
       objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: WhirlwindItem
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
   m_IsPrefabParent: 0
@@ -1449,7 +1509,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (8)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -1467,6 +1527,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -1516,7 +1580,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (4)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -1534,6 +1598,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -1583,7 +1651,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (7)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -1601,6 +1669,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -1745,57 +1817,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 450092262}
---- !u!1 &453226821 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 110626, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
-  m_PrefabInternal: {fileID: 1842525949}
---- !u!114 &453226825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 453226821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 5
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 303245549}
-          m_MethodName: DragObjectImage
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 303245549}
-          m_MethodName: DropObjectImage
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!4 &505440586 stripped
 Transform:
   m_PrefabParentObject: {fileID: 442666, guid: 081f8c690162021419b954b020d444f7, type: 2}
@@ -1841,7 +1862,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (3)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -1859,6 +1880,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -1908,7 +1933,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (15)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -1926,6 +1951,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -1975,7 +2004,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (3)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -1993,6 +2022,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -2054,7 +2087,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (19)
+      value: WhirlwindItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -2104,7 +2141,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (8)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -2122,6 +2159,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -2171,7 +2212,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (4)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -2189,6 +2230,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -2238,7 +2283,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (22)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -2256,6 +2301,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -2720,7 +2769,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (2)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -2738,6 +2787,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -2787,7 +2840,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (6)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -2805,6 +2858,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -2854,7 +2911,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (21)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -2872,6 +2929,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -2921,7 +2982,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (11)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -2939,6 +3000,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -2997,6 +3062,14 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -3100,7 +3173,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (4)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -3118,6 +3191,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -3167,7 +3244,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (7)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -3185,6 +3262,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -3234,7 +3315,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (7)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -3252,6 +3333,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -3301,7 +3386,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (8)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -3319,6 +3404,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -3429,7 +3518,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (3)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -3447,6 +3536,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -3496,7 +3589,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (18)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -3514,6 +3607,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -3575,7 +3672,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (9)
+      value: WhirlwindItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -3625,7 +3726,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (1)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -3643,6 +3744,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -3692,7 +3797,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (6)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -3710,6 +3815,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -3759,7 +3868,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (1)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -3777,6 +3886,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -3826,7 +3939,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (12)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -3844,6 +3957,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -3893,7 +4010,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (1)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -3911,6 +4028,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -3960,7 +4081,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (10)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -3978,6 +4099,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -4027,7 +4152,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (12)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -4045,6 +4170,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -4094,7 +4223,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (13)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -4112,6 +4241,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -4161,7 +4294,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (2)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -4179,6 +4312,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -4228,7 +4365,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (2)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -4246,6 +4383,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -4375,6 +4516,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.10000001
       objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: WhirlwindItem
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
   m_IsPrefabParent: 0
@@ -4499,7 +4648,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (1)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -4517,6 +4666,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -4578,7 +4731,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (9)
+      value: WhirlwindItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -4666,6 +4823,18 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11461442, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 303245549}
+    - target: {fileID: 11427382, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 303245549}
+    - target: {fileID: 11473796, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 303245549}
     - target: {fileID: 11493896, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4674,18 +4843,14 @@ Prefab:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 303245549}
-    - target: {fileID: 11473796, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 303245549}
-    - target: {fileID: 11427382, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 303245549}
-    - target: {fileID: 11461442, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 303245549}
+    - target: {fileID: 11493896, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DragItemImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493896, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DropItemImage
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
   m_IsPrefabParent: 0
@@ -4949,10 +5114,6 @@ Prefab:
       propertyPath: m_Name
       value: WhirlwindBelt (0)
       objectReference: {fileID: 0}
-    - target: {fileID: 11462154, guid: 269b396d6494b474d8e02c4e66543a2c, type: 2}
-      propertyPath: level
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 269b396d6494b474d8e02c4e66543a2c, type: 2}
   m_IsPrefabParent: 0
@@ -5007,6 +5168,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.10000001
       objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: WhirlwindItem
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
   m_IsPrefabParent: 0
@@ -5055,7 +5224,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (5)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -5073,6 +5242,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -5253,7 +5426,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (14)
+      value: WhirlwindItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -5315,7 +5492,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (9)
+      value: WhirlwindItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -5365,7 +5546,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (10)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -5383,6 +5564,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -5444,7 +5629,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (14)
+      value: WhirlwindItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -5593,11 +5782,19 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11473508, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+    - target: {fileID: 11490252, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 303245549}
+    - target: {fileID: 11490252, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 303245549}
     - target: {fileID: 11407528, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 303245549}
+    - target: {fileID: 11473508, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 303245549}
@@ -5613,10 +5810,6 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 22368870, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -5629,9 +5822,13 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 22415562, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
+    - target: {fileID: 11490252, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DragItemImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 11490252, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DropItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
@@ -5739,7 +5936,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (13)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -5757,6 +5954,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -6079,7 +6280,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (16)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -6097,6 +6298,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -6158,7 +6363,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (24)
+      value: WhirlwindItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -6220,7 +6429,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (9)
+      value: WhirlwindItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -6270,7 +6483,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (10)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -6288,6 +6501,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -6349,7 +6566,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (14)
+      value: WhirlwindItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -6399,7 +6620,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (6)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -6417,6 +6638,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -6466,7 +6691,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (4)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -6484,6 +6709,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -6781,7 +7010,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (12)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -6799,6 +7028,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
@@ -6848,7 +7081,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186762, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Name
-      value: WhirlwindObject (3)
+      value: WhirlwindItem
       objectReference: {fileID: 0}
     - target: {fileID: 21299572, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_Sprite
@@ -6866,6 +7099,10 @@ Prefab:
     - target: {fileID: 404340, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 149444, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
+      propertyPath: m_Name
+      value: ItemImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c649ee23e51a1f5449a09fa26483b4b9, type: 2}
