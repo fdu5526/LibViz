@@ -17,6 +17,7 @@ public class Whirlwind : MonoBehaviour {
 	// for enlarge and fullscreen selection
 	Vector3 enlargedObjectPosition;
 	WhirlwindObject enlargedObject;
+	GameObject searchUI;
 	GameObject enlargedSelectionUI;
 	GameObject fullscreenSelectionUI;
 
@@ -30,6 +31,7 @@ public class Whirlwind : MonoBehaviour {
 		userInputTimer = new Timer(60f);
 
 		enlargedObjectPosition = new Vector3(0f, 11.24f, -15.8f);
+		searchUI = GameObject.Find("SearchUI");
 		enlargedSelectionUI = GameObject.Find("EnlargedSelectionUI");
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 		fullscreenSelectionUI = GameObject.Find("FullscreenSelectionUI");
@@ -268,6 +270,22 @@ public class Whirlwind : MonoBehaviour {
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 		fullscreenSelectionUI.GetComponent<Canvas>().enabled = false;
 		LogUserInput();
+	}
+
+	// user starts dragging an object to search bar
+	public void DragObjectImage () {
+		Debug.Assert(enlargedObject != null);
+		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
+
+		searchUI.GetComponent<SearchUI>().EnableDragShadow(enlargedObject.ObjectSprite);
+	}
+
+	// user starts dragging an object to search bar
+	public void DropObjectImage () {
+		Debug.Assert(enlargedObject != null);
+		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
+
+		searchUI.GetComponent<SearchUI>().DisableDragShadow();
 	}
 
 

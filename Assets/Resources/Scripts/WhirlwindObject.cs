@@ -24,7 +24,6 @@ public class WhirlwindObject : MonoBehaviour {
 	
 
 	// other stuffs in the scene
-	InputManager inputManager;
 	Whirlwind whirlwind;
 	WhirlwindBelt belt;
 	GameObject trail;
@@ -47,7 +46,6 @@ public class WhirlwindObject : MonoBehaviour {
 		trail = transform.Find("Trail").gameObject;
 		objectImage = transform.Find("ObjectImage").gameObject;
 		trail.GetComponent<ParticleSystem>().Stop();
-		inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
 
 		collider = GetComponent<Collider>();
 		rigidbody = GetComponent<Rigidbody>();
