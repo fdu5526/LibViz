@@ -161,9 +161,11 @@ public class WhirlwindObject : MonoBehaviour {
 	}
 
 	public void FullScreen () {
+		Debug.Assert(isEnlarged);
 	}
 
 	public void UnFullScreen () {
+		Debug.Assert(isEnlarged);
 	}
 
 	public void End () {
