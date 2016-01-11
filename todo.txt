@@ -15,8 +15,6 @@ interaction state machine
 	enlarged view
 		draggable when it is large
 	
-	drag needs timer (after 0.1 seconds, its a drag now)
-	
 	search box
 		put objects in box
 		searching reorganization / rearrangement

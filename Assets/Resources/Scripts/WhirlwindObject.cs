@@ -289,11 +289,6 @@ public class WhirlwindObject : MonoBehaviour {
 			return;
 		}
 
-		if (!inputManager.IsDragging) {
-			OnMouseDown();
-			return;
-		}
-
 		whirlwind.LogUserInput();
 
 		if (currentState == State.ContextExam) {
