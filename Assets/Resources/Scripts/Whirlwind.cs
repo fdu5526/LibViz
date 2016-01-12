@@ -290,7 +290,6 @@ public class Whirlwind : MonoBehaviour {
 								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 
 		searchUI.GetComponent<SearchUI>().DisableDragShadow();
-		print(isPointerOverSearchSlot);
 		if (isPointerOverSearchSlot) {
 			AddToSearch();
 		}
