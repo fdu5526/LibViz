@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Whirlwind : MonoBehaviour {
 
@@ -10,14 +11,13 @@ public class Whirlwind : MonoBehaviour {
 	// related to user inputs
 	public bool isFrozen;
 	public bool isBeingSpun;
-	bool isPointerOverSearchSlot;
 
 	// set the whirlwind to Idle if it is 
 	Timer userInputTimer;
 
 	// for enlarge and fullscreen selection
-	Vector3 enlargedItemPosition;
 	WhirlwindItem enlargedItem;
+	Vector3 enlargedItemPosition;
 	GameObject searchUI;
 	GameObject enlargedSelectionUI;
 	GameObject fullscreenSelectionUI;
@@ -25,11 +25,18 @@ public class Whirlwind : MonoBehaviour {
 	// a whirlwind is defined as an array of WhirlWindBelt
 	WhirlwindBelt[] belts;
 
+	// search 
+	List<SearchWhirlwindItem> itemsInSearch;
+	List<SearchSlot> searchSlots;
+
+
 	// Use this for initialization
 	void Start () {
 		currentState = State.Idle;
 
 		userInputTimer = new Timer(60f);
+		itemsInSearch = new List<SearchWhirlwindItem>();
+
 
 		enlargedItemPosition = new Vector3(0f, 11.24f, -15.8f);
 		searchUI = GameObject.Find("SearchUI");
@@ -273,6 +280,13 @@ public class Whirlwind : MonoBehaviour {
 		LogUserInput();
 	}
 
+	public Sprite EnlargedItemSprite {
+		get {
+			Debug.Assert(enlargedItem != null);
+			return enlargedItem.ItemSprite;
+		}
+	}
+
 	// user starts dragging an item to search bar
 	public void DragItemImage () {
 		Debug.Assert(enlargedItem != null);
@@ -282,7 +296,6 @@ public class Whirlwind : MonoBehaviour {
 		searchUI.GetComponent<SearchUI>().EnableDragShadow(enlargedItem.ItemSprite);
 	}
 
-
 	// user starts dragging an item to search bar
 	public void DropItemImage () {
 		Debug.Assert(enlargedItem != null);
@@ -290,18 +303,15 @@ public class Whirlwind : MonoBehaviour {
 								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 
 		searchUI.GetComponent<SearchUI>().DisableDragShadow();
-		if (isPointerOverSearchSlot) {
-			AddToSearch();
-		}
 	}
 
-	public void PointerOverSearchSlot (bool isOver) {
-		isPointerOverSearchSlot = isOver;
-	}
-
-	public void AddToSearch () {
+	public void AddEnlargedItemToSearch (int index) {
 		Debug.Assert(enlargedItem != null);
 		print("yay");
+
+		index = Mathf.Min(index, itemsInSearch.Count);
+		SearchWhirlwindItem swwi = new SearchWhirlwindItem(enlargedItem);
+		itemsInSearch.Insert(index, swwi);
 	}
 
 
