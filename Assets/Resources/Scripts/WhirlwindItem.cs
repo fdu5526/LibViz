@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (Collider))]
 public class WhirlwindItem : MonoBehaviour {
@@ -13,6 +14,7 @@ public class WhirlwindItem : MonoBehaviour {
 	public Transform slot;
 
 	// generated
+	WhirlWindItemData itemData;
 	Vector3 idlePosition;
 
 	// state machine
@@ -308,12 +310,12 @@ public class WhirlwindItem : MonoBehaviour {
 		}
 		whirlwind.LogUserInput();
 
-		if (!whirlwind.isBeingDragged && 
+		if (!whirlwind.isBeingSpun && 
 				(currentState == State.ContextExam || 
 				 currentState == State.WhirlExam))  {
 				Enlarge();
 		}
-		whirlwind.isBeingDragged = false;
+		whirlwind.isBeingSpun = false;
 	}
 
 	void FixedUpdate () {

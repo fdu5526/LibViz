@@ -10,13 +10,10 @@ get data from mySQL
 
 
 
-interaction state machine
-
+interaction
 	search box
 		put objects in box
 		searching reorganization / rearrangement
-
-
 
 
 
@@ -25,3 +22,10 @@ Non-coding related
 		1. no reconfigure at all
 		2. 3 buttons (add to search, search, examine)
 		3. as soon as enlarge, reconfigure, no going back
+
+
+--------------------------------
+Questions
+	when adding an item to search, does original disappear?
+		aka do we need to shift items to fill in gaps that open up?
+			that would be a huge pain

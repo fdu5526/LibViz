@@ -180,7 +180,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 
 		if (s > 0f) {
-			whirlwind.isBeingDragged = true;
+			whirlwind.isBeingSpun = true;
 		}
 	}
 

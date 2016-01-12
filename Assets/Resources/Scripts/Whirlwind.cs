@@ -7,9 +7,10 @@ public class Whirlwind : MonoBehaviour {
 	enum State {Idle, StirUp, SlowToStop, WhirlExam, SlowToStopContextExam, ContextExam, End };
 	State currentState;
 
-	// is the whirlwind taking user inputs?
+	// related to user inputs
 	public bool isFrozen;
-	public bool isBeingDragged;
+	public bool isBeingSpun;
+	bool isPointerOverSearchSlot;
 
 	// set the whirlwind to Idle if it is 
 	Timer userInputTimer;
@@ -288,11 +289,20 @@ public class Whirlwind : MonoBehaviour {
 								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 
 		searchUI.GetComponent<SearchUI>().DisableDragShadow();
+		print("drop, is over: " + isPointerOverSearchSlot);
+		if (isPointerOverSearchSlot) {
+			AddToSearch();
+		}
 	}
 
+	public void PointerOverSearchSlot (bool isOver) {
+		isPointerOverSearchSlot = isOver;
+		print("is over: " + isOver);
+	}
 
 	public void AddToSearch () {
-
+		Debug.Assert(enlargedItem != null);
+		print("yay");
 	}
 
 

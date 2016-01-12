@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SearchUI : MonoBehaviour {
 
 	public bool isDraggingItem;
 	GameObject dragShadow;
 
+	List<SearchWhirlwindItem> itemsInSearch;
+
 	// Use this for initialization
 	void Start () {
 		dragShadow = transform.Find("DragShadow").gameObject;
 		dragShadow.GetComponent<Image>().enabled = false;
+
+		itemsInSearch = new List<SearchWhirlwindItem>();
 	}
 
 	public void EnableDragShadow (Sprite sprite) {
@@ -23,6 +27,12 @@ public class SearchUI : MonoBehaviour {
 	public void DisableDragShadow () {
 		isDraggingItem = false;
 		dragShadow.GetComponent<Image>().enabled = false;
+	}
+
+
+
+	public void AddToSearch (WhirlwindItem item) {
+		
 	}
 	
 	// Update is called once per frame
