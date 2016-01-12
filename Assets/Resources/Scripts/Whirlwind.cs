@@ -282,6 +282,7 @@ public class Whirlwind : MonoBehaviour {
 		searchUI.GetComponent<SearchUI>().EnableDragShadow(enlargedItem.ItemSprite);
 	}
 
+
 	// user starts dragging an item to search bar
 	public void DropItemImage () {
 		Debug.Assert(enlargedItem != null);
@@ -289,7 +290,7 @@ public class Whirlwind : MonoBehaviour {
 								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 
 		searchUI.GetComponent<SearchUI>().DisableDragShadow();
-		print("drop, is over: " + isPointerOverSearchSlot);
+		print(isPointerOverSearchSlot);
 		if (isPointerOverSearchSlot) {
 			AddToSearch();
 		}
@@ -297,7 +298,6 @@ public class Whirlwind : MonoBehaviour {
 
 	public void PointerOverSearchSlot (bool isOver) {
 		isPointerOverSearchSlot = isOver;
-		print("is over: " + isOver);
 	}
 
 	public void AddToSearch () {

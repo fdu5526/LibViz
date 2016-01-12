@@ -295,10 +295,6 @@ public class WhirlwindItem : MonoBehaviour {
 
 		if (currentState == State.ContextExam) {
 			belt.Spin();
-		} else if (isEnlarged) {
-			
-			// TODO draggable to desk here
-
 		} else if (currentState == State.WhirlExam) {
 			whirlwind.Spin();
 		}
