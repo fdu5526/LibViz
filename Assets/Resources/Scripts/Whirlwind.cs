@@ -307,10 +307,18 @@ public class Whirlwind : MonoBehaviour {
 
 	public void AddEnlargedItemToSearch (int index) {
 		Debug.Assert(enlargedItem != null);
-		print("yay");
 
 		index = Mathf.Min(index, itemsInSearch.Count);
 		SearchWhirlwindItem swwi = new SearchWhirlwindItem(enlargedItem);
+		itemsInSearch.Insert(index, swwi);
+	}
+
+	public void AddEnlargedItemToSearchEnd () {
+		Debug.Assert(enlargedItem != null);
+
+		int index = itemsInSearch.Count;
+		SearchWhirlwindItem swwi = new SearchWhirlwindItem(enlargedItem);
+		// TODO put it in the slot
 		itemsInSearch.Insert(index, swwi);
 	}
 
