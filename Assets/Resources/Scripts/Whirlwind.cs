@@ -146,6 +146,7 @@ public class Whirlwind : MonoBehaviour {
 			ExitEnlargeSelection();
 		}
 
+		UnFreeze();
 		currentState = State.End;
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].End();
