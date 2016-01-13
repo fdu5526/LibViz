@@ -7,6 +7,8 @@ kinect
 
 get data from mySQL
 
+MxR
+	look at email, send codec, look how complicated
 
 
 
@@ -14,6 +16,12 @@ interaction
 	search box
 		put objects in box
 		searching reorganization / rearrangement
+
+	zoom in
+	make enlarged still interactable
+	exiting enlarge => to whirlExam
+	vertical scroll
+		keep width the same
 
 
 
