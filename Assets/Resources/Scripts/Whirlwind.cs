@@ -63,6 +63,7 @@ public class Whirlwind : MonoBehaviour {
 							 IsDoneStirUp) {
 			SlowToStop();
 		} else if (Input.GetKeyDown("d") && 
+							 IsDoneStirUp &&
 							 currentState != State.End && 
 							 currentState != State.Idle) {
 			End();
@@ -130,7 +131,7 @@ public class Whirlwind : MonoBehaviour {
 			belts[i].ContextExam();
 		}
 
-		if (enlargedItem == null) {
+		if (!IsEnlargedOrFullscreen) {
 			Debug.Assert(!enlargedSelectionUI.GetComponent<Canvas>().enabled);
 			Debug.Assert(!fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 			UnFreeze();
@@ -139,9 +140,11 @@ public class Whirlwind : MonoBehaviour {
 		LogUserInput();
 	}
 
+	bool IsEnlargedOrFullscreen { get { return enlargedItem != null; } }
+
 
 	void End () {
-		if (enlargedItem != null) {
+		if (IsEnlargedOrFullscreen) {
 			ExitFullScreen();
 			ExitEnlargeSelection();
 		}
@@ -229,7 +232,7 @@ public class Whirlwind : MonoBehaviour {
 	// only call this from WhirlwindItem.Enlarge()
 	// open the UI for enlarge selection of selected item
 	public void EnterEnlargeSelection (WhirlwindItem wwItem) {
-		Debug.Assert(enlargedItem == null);
+		Debug.Assert(!IsEnlargedOrFullscreen);
 		Debug.Assert(wwItem != null);
 
 		Freeze();
@@ -247,7 +250,7 @@ public class Whirlwind : MonoBehaviour {
 
 	// close the UI for enlarge selection, return item to slot
 	public void ExitEnlargeSelection () {
-		Debug.Assert(enlargedItem != null);
+		Debug.Assert(IsEnlargedOrFullscreen);
 
 		if (currentState == State.ContextExam) {
 			UnFreeze();
@@ -261,7 +264,7 @@ public class Whirlwind : MonoBehaviour {
 
 	// show detailed information about selected item
 	public void EnterFullScreen () {
-		Debug.Assert(enlargedItem != null);
+		Debug.Assert(IsEnlargedOrFullscreen);
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
 		
 		enlargedItem.FullScreen();
@@ -273,7 +276,7 @@ public class Whirlwind : MonoBehaviour {
 
 	// show detailed information about selected item
 	public void ExitFullScreen () {
-		Debug.Assert(enlargedItem != null);
+		Debug.Assert(IsEnlargedOrFullscreen);
 		
 		enlargedItem.UnFullScreen();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
@@ -283,14 +286,14 @@ public class Whirlwind : MonoBehaviour {
 
 	public Sprite EnlargedItemSprite {
 		get {
-			Debug.Assert(enlargedItem != null);
+			Debug.Assert(IsEnlargedOrFullscreen);
 			return enlargedItem.ItemSprite;
 		}
 	}
 
 	// user starts dragging an item to search bar
 	public void DragItemImage () {
-		Debug.Assert(enlargedItem != null);
+		Debug.Assert(IsEnlargedOrFullscreen);
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled || 
 								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 
@@ -299,7 +302,7 @@ public class Whirlwind : MonoBehaviour {
 
 	// user starts dragging an item to search bar
 	public void DropItemImage () {
-		Debug.Assert(enlargedItem != null);
+		Debug.Assert(IsEnlargedOrFullscreen);
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled || 
 								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 
@@ -307,7 +310,7 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	public void AddEnlargedItemToSearch (int index) {
-		Debug.Assert(enlargedItem != null);
+		Debug.Assert(IsEnlargedOrFullscreen);
 
 		index = Mathf.Min(index, itemsInSearch.Count);
 		SearchWhirlwindItem swwi = new SearchWhirlwindItem(enlargedItem);
@@ -315,7 +318,7 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	public void AddEnlargedItemToSearchEnd () {
-		Debug.Assert(enlargedItem != null);
+		Debug.Assert(IsEnlargedOrFullscreen);
 
 		int index = itemsInSearch.Count;
 		SearchWhirlwindItem swwi = new SearchWhirlwindItem(enlargedItem);
