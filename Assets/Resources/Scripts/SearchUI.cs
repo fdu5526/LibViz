@@ -6,11 +6,13 @@ public class SearchUI : MonoBehaviour {
 
 	public bool isDraggingItem;
 	GameObject dragShadow;
+	Whirlwind whirlwind;
 
 	// Use this for initialization
 	void Start () {
 		dragShadow = transform.Find("DragShadow").gameObject;
 		dragShadow.GetComponent<Image>().enabled = false;
+		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 	}
 
 	public void EnableDragShadow (Sprite sprite) {
@@ -28,6 +30,7 @@ public class SearchUI : MonoBehaviour {
 	void Update () {
 		if (isDraggingItem) {
 			dragShadow.transform.position = Input.mousePosition;
+			whirlwind.LogUserInput();
 		}
 	}
 }
