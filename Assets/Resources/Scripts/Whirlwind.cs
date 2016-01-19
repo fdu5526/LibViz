@@ -5,14 +5,16 @@ using System.Collections.Generic;
 public class Whirlwind : MonoBehaviour {
 
 	// state machine
-	enum State {Idle, StirUp, StirUpAutoStop, SlowToStop, WhirlExam, SlowToStopContextExam, ContextExam, End };
+	enum State { Idle, StirUp, StirUpAutoStopWhirlExam, 
+							 SlowToStop, WhirlExam, 
+							 SlowToStopContextExam, ContextExam, End };
 	State currentState;
 
 	// related to user inputs
 	public bool isFrozen;
 	public bool isBeingSpun;
 
-	// set the whirlwind to Idle if it is 
+	// set the whirlwind to Idle if it is
 	Timer userInputTimer;
 
 	// for enlarge and fullscreen selection
@@ -83,10 +85,10 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	void StirUp (float speed) {
-
 		Debug.Assert(currentState == State.Idle || 
 								 currentState == State.WhirlExam);
 
+		Freeze();
 		bool shouldLoadItems = currentState == State.Idle;
 
 		for (int i = 0; i < belts.Length; i++) {
@@ -97,9 +99,9 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 
-	void StirUpAutoStop (float speed) {
+	void StirUpAutoStopWhirlExam (float speed) {
 		StirUp(speed);
-		currentState = State.StirUpAutoStop;
+		currentState = State.StirUpAutoStopWhirlExam;
 	}
 
 
@@ -134,12 +136,11 @@ public class Whirlwind : MonoBehaviour {
 	void ContextExam () {
 		Debug.Assert(currentState == State.SlowToStopContextExam);
 
+		UnFreeze();
 		currentState = State.ContextExam;
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].ContextExam();
 		}
-
-		UnFreeze();
 		LogUserInput();
 	}
 
@@ -181,7 +182,7 @@ public class Whirlwind : MonoBehaviour {
 
 	void ComputeState () {
 		switch (currentState) {
-			case State.StirUpAutoStop:
+			case State.StirUpAutoStopWhirlExam:
 				if (IsDoneStirUp) {
 					SlowToStop();
 				}
@@ -241,6 +242,9 @@ public class Whirlwind : MonoBehaviour {
 	// open the UI for enlarge selection of selected item
 	public void EnterEnlargeSelection (WhirlwindItem wwItem) {
 		Freeze();
+
+		// TODO swap items in and out
+
 		enlargedItem = wwItem;
 		//wwItem.transform.position = enlargedItemPosition;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
@@ -263,7 +267,7 @@ public class Whirlwind : MonoBehaviour {
 
 		if (!isEnding) {
 			End();
-			StirUpAutoStop(50f);
+			StirUpAutoStopWhirlExam(50f);
 		}
 
 		LogUserInput();
