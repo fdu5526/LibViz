@@ -200,7 +200,6 @@ public class WhirlwindBelt : MonoBehaviour {
 	// stir up items, but stagger them so they have spaces in between them
 	public void StirUp (float speed, bool shouldLoadItems) {
 		isOperating = true;
-		label.Fade(isOperating);
 		for (int i = 0; i < slots.Length; i++) {
 			slots[i].StirUp();
 		}
@@ -346,6 +345,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		// swirl belt to correct locatin
 		if (isSlowingDown && isTransitioningToContextExam) {
 			if (beltEnd.mostRecentCollisionIsTail) {
+				label.Fade(isOperating);
 				SlowAllToStop(true);
 			}
 		}
