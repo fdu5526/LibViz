@@ -192,7 +192,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -400.00003, y: 0}
+  m_AnchoredPosition: {x: -770, y: 0}
   m_SizeDelta: {x: 770, y: 81}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &41551838
@@ -5138,6 +5138,10 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 303245549}
+    - target: {fileID: 11473796, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
   m_IsPrefabParent: 0
@@ -6017,7 +6021,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 509412105}
   m_HandleRect: {fileID: 509412104}
   m_Direction: 0
-  m_Value: 0.5194805
+  m_Value: 1
   m_Size: 0.50955415
   m_NumberOfSteps: 0
   m_OnValueChanged:

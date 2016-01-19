@@ -278,6 +278,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// is able to interact, spin the entire whirlwind
 	public void WhirlExam () {
+		beltEnd.isInContextExam = false;
 		for (int i = 0; i < wwItems.Count; i++) {
 			if (IndexIsInSlots(i)) {
 				wwItems[i].WhirlExam();

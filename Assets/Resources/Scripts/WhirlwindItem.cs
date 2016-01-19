@@ -134,7 +134,8 @@ public class WhirlwindItem : MonoBehaviour {
 
 
 	public void WhirlExam () {
-		Debug.Assert(currentState == State.SlowToStop);
+		Debug.Assert(currentState == State.SlowToStop || 
+								 currentState == State.ContextExam);
 
 		isInteractable = true;
 		rigidbody.velocity = Vector3.zero;
@@ -154,12 +155,12 @@ public class WhirlwindItem : MonoBehaviour {
 
 	public void Enlarge () {
 		whirlwind.EnterEnlargeSelection(this);
-		itemImage.GetComponent<Renderer>().enabled = false;
+		//itemImage.GetComponent<Renderer>().enabled = false;
 		isEnlarged = true;
 	}
 
 	public void UnEnlarge () {
-		itemImage.GetComponent<Renderer>().enabled = true;
+		//itemImage.GetComponent<Renderer>().enabled = true;
 		isEnlarged = false;
 	}
 
@@ -214,9 +215,9 @@ public class WhirlwindItem : MonoBehaviour {
 
 	// do everything state machine here
 	public void ComputeState () {
-		if (isEnlarged) {
+		/*if (isEnlarged) {
 			return;
-		}
+		}*/
 
 		Vector3 d;
 		Vector3 p = transform.position;

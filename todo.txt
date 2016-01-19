@@ -18,22 +18,14 @@ interaction
 		searching reorganization / rearrangement
 
 	zoom in
-	make enlarged still interactable
-	exiting enlarge => to whirlExam
-	vertical scroll
-		keep width the same
-
-
-
-Non-coding related
-	test reconfiguring belt after enlarging
-		1. no reconfigure at all
-		2. 3 buttons (add to search, search, examine)
-		3. as soon as enlarge, reconfigure, no going back
-
+	put enlarged item at center
+	make initializing items
 
 --------------------------------
 Questions
-	when adding an item to search, does original disappear?
-		aka do we need to shift items to fill in gaps that open up?
-			that would be a huge pain
+	when we enlarge an item, what happens to it in relation to the whirlwind?
+		Does it fly out? Does every item in its belt after it fill in its space?
+			The item order in the belt must be maintained
+			What happens when we put it back? Does everything shift to make space for it again?
+				If so, is it confusing to be shifting belts around?
+		Else, we can not take it out of the whirlwind, and instead just highlight it as "the enlarged one".

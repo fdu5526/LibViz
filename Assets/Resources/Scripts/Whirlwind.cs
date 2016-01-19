@@ -114,8 +114,10 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	void WhirlExam () {
-		Debug.Assert(currentState == State.SlowToStop);
+		Debug.Assert(currentState == State.SlowToStop ||
+								 currentState == State.ContextExam);
 
+		UnFreeze();
 		currentState = State.WhirlExam;
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].WhirlExam();
@@ -131,12 +133,7 @@ public class Whirlwind : MonoBehaviour {
 			belts[i].ContextExam();
 		}
 
-		if (!IsEnlargedOrFullscreen) {
-			Debug.Assert(!enlargedSelectionUI.GetComponent<Canvas>().enabled);
-			Debug.Assert(!fullscreenSelectionUI.GetComponent<Canvas>().enabled);
-			UnFreeze();
-		}
-
+		UnFreeze();
 		LogUserInput();
 	}
 
@@ -146,7 +143,7 @@ public class Whirlwind : MonoBehaviour {
 	void End () {
 		if (IsEnlargedOrFullscreen) {
 			ExitFullScreen();
-			ExitEnlargeSelection();
+			ExitEnlargeSelection(true);
 		}
 
 		UnFreeze();
@@ -232,12 +229,9 @@ public class Whirlwind : MonoBehaviour {
 	// only call this from WhirlwindItem.Enlarge()
 	// open the UI for enlarge selection of selected item
 	public void EnterEnlargeSelection (WhirlwindItem wwItem) {
-		Debug.Assert(!IsEnlargedOrFullscreen);
-		Debug.Assert(wwItem != null);
-
 		Freeze();
 		enlargedItem = wwItem;
-		wwItem.transform.position = enlargedItemPosition;
+		//wwItem.transform.position = enlargedItemPosition;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ItemSprite = wwItem.ItemSprite;
 
@@ -249,17 +243,19 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	// close the UI for enlarge selection, return item to slot
-	public void ExitEnlargeSelection () {
+	public void ExitEnlargeSelection (bool isEnding) {
 		Debug.Assert(IsEnlargedOrFullscreen);
 
-		if (currentState == State.ContextExam) {
-			UnFreeze();
-		}
-		
 		enlargedItem.UnEnlarge();
 		enlargedItem = null;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
+
+		if (!isEnding) {
+			WhirlExam();
+		}
+
 		LogUserInput();
+		
 	}
 
 	// show detailed information about selected item
