@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Whirlwind : MonoBehaviour {
 
 	// state machine
-	enum State {Idle, StirUp, SlowToStop, WhirlExam, SlowToStopContextExam, ContextExam, End };
+	enum State {Idle, StirUp, StirUpAutoStop, SlowToStop, WhirlExam, SlowToStopContextExam, ContextExam, End };
 	State currentState;
 
 	// related to user inputs
@@ -97,6 +97,12 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 
+	void StirUpAutoStop (float speed) {
+		StirUp(speed);
+		currentState = State.StirUpAutoStop;
+	}
+
+
 	void SlowToStop () {
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].SlowToStop(false);
@@ -175,6 +181,11 @@ public class Whirlwind : MonoBehaviour {
 
 	void ComputeState () {
 		switch (currentState) {
+			case State.StirUpAutoStop:
+				if (IsDoneStirUp) {
+					SlowToStop();
+				}
+				break;
 			case State.SlowToStop:
 			case State.SlowToStopContextExam:
 				bool allDone = true;
@@ -251,7 +262,8 @@ public class Whirlwind : MonoBehaviour {
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 
 		if (!isEnding) {
-			WhirlExam();
+			End();
+			StirUpAutoStop(50f);
 		}
 
 		LogUserInput();
