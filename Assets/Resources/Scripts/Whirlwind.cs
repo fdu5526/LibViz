@@ -60,11 +60,24 @@ public class Whirlwind : MonoBehaviour {
 	void CheckInteractionWithWhirlwind () {
 		if (Input.GetKeyDown("a") &&
 				currentState == State.Idle) {
-			StirUp(50f);
+			StirUp(Global.StirUpSpeed);
 		} else if (Input.GetKeyDown("s") &&
 							 currentState == State.StirUp && 
 							 IsDoneStirUp) {
 			SlowToStop();
+		} else if (Input.GetKeyDown("w") && 
+							 currentState == State.WhirlExam) {
+
+			string[][] ids =  new string [5][] {
+				new string[] {"1", "2", "3"},
+				new string[] {"1", "2", "3"},
+				new string[] {"1", "2", "3"},
+				new string[] {"1", "2", "3"},
+				new string[] {"1", "2", "3"}
+			};
+
+			LoadNewItems(ids);
+
 		} else if (Input.GetKeyDown("d") && 
 							 IsDoneStirUp &&
 							 currentState != State.End && 
@@ -73,7 +86,14 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
-/////// functions for setting whirlwind state //////
+/////// functions for manipulating data //////
+	public void LoadNewItems (string[][] itemIDs) {
+		Debug.Assert(itemIDs.Length == belts.Length);
+
+		for (int i = 0; i < itemIDs.Length; i++) {
+			belts[i].LoadNewItems(itemIDs[i]);
+		}
+	}
 	
 
 /////// public functions for setting whirlwind state //////
@@ -259,7 +279,7 @@ public class Whirlwind : MonoBehaviour {
 		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ItemSprite = wwItem.ItemSprite;
 
 		if (currentState == State.WhirlExam) {
-			StirUp(50f);
+			StirUp(Global.StirUpSpeed);
 			SlowToStopContextExam();
 		}
 		LogUserInput();
@@ -275,7 +295,7 @@ public class Whirlwind : MonoBehaviour {
 
 		if (!isEnding) {
 			End();
-			StirUpAutoStopWhirlExam(50f);
+			StirUpAutoStopWhirlExam(Global.StirUpSpeed);
 		}
 
 		LogUserInput();

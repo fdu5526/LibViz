@@ -15,6 +15,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	bool isOperating;
 
+	Vector3 defaultItemPosition;
 	Vector2 shiftNextPoint, shiftPrevPoint;
 	bool isSlowingDown;
 	bool isTransitioningToContextExam;
@@ -30,6 +31,8 @@ public class WhirlwindBelt : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GameObject g;
+
+		defaultItemPosition = new Vector3(-14.47f, 1.3f, -0.77f);
 
 		center = GameObject.Find("WhirlwindCenter").transform;
 		whirlwind = center.GetComponent<Whirlwind>();
@@ -78,7 +81,6 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 
-
 /////// private helper functions //////
 	// stir up an item one at a time
 	IEnumerator StaggeredStirUp (float speed) {
@@ -108,7 +110,6 @@ public class WhirlwindBelt : MonoBehaviour {
 		return (headIndex <= i && i <= tailIndex) || 
 					  (tailIndex < headIndex && (i >= headIndex || i <= tailIndex));
 	}
-
 
 	// helper functions for wrap around indices
 	int PrevIndex (int index) {
@@ -151,8 +152,30 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
+/////// public functions used for manipulating data //////
+	public void LoadNewItems (string[] itemIDs) {
+		GameObject g;
+
+		// wipe old items away
+		End();
+		for (int i = 0; i < wwItems.Count; i++) {
+			wwItems[i].DestroyInSeconds(3f);
+		}
+
+		// reinstantiate new items
+		wwItems = new List<WhirlwindItem>();
+		for (int i = 0; i < itemIDs.Length; i++) {
+			g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindItem"));
+			g.transform.position = defaultItemPosition;
+			WhirlwindItem wwi = g.GetComponent<WhirlwindItem>();
+			wwi.ItemSprite = (Sprite)Resources.Load("Sprites/Items/" + itemIDs[i]);
+			wwItems.Add(wwi);
+		}
+
+		StirUp(Global.StirUpSpeed, true);
+	}
+
 /////// public functions used for user interaction //////
-	
 	// for when user initially places mouse down to drag it
 	public void SetMouseDownPosition () {
 		prevMouseX = Input.mousePosition.x;
@@ -169,7 +192,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 
 		float direction = d > 0f ? 1f : -1f;
-		float s = Mathf.Min(Mathf.Abs(d), 50f);
+		float s = Mathf.Min(Mathf.Abs(d), Global.StirUpSpeed);
 		s = s > 1f ? s : 0f;
 		prevMouseX = mouseX;
 

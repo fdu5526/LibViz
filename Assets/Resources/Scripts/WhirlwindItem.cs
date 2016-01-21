@@ -84,6 +84,11 @@ public class WhirlwindItem : MonoBehaviour {
 		itemImage.GetComponent<Renderer>().material.color = c;
 	}
 
+
+	void DestroyItem () {
+		Destroy(this.gameObject);
+	}
+
 /////// functions for setting whirlwindItem state //////
 	// fly into orbit
 	public void StirUp (float speed, Transform slot) {
@@ -151,12 +156,10 @@ public class WhirlwindItem : MonoBehaviour {
 
 	public void Enlarge () {
 		whirlwind.EnterEnlargeSelection(this);
-		//itemImage.GetComponent<Renderer>().enabled = false;
 		isEnlarged = true;
 	}
 
 	public void UnEnlarge () {
-		//itemImage.GetComponent<Renderer>().enabled = true;
 		isEnlarged = false;
 	}
 
@@ -188,6 +191,10 @@ public class WhirlwindItem : MonoBehaviour {
 		rigidbody.angularVelocity = v;
 	}
 
+	public void DestroyInSeconds(float s) {
+		Invoke("DestroyItem", s);
+	}
+
 	public void ResetToIdle () {
 		currentState = State.Idle;
 		transform.position = idlePosition;
@@ -199,6 +206,9 @@ public class WhirlwindItem : MonoBehaviour {
 	public Sprite ItemSprite {
 		get {
 			return itemImage.GetComponent<SpriteRenderer>().sprite;
+		}
+		set {
+			itemImage.GetComponent<SpriteRenderer>().sprite = value;
 		}
 	}
 
@@ -255,7 +265,7 @@ public class WhirlwindItem : MonoBehaviour {
 				} else if (!isLockedToSlot) {
 					speed = Mathf.Lerp(speed, slot.GetComponent<WhirlwindBeltSlot>().speed, 0.02f);
 					rigidbody.velocity = d.normalized * speed;
-					//transform.position = Vector3.Lerp(p, slot.position, 0.02f);
+					transform.position = Vector3.Lerp(p, slot.position, 0.02f);
 				}
 				break;
 			default:
