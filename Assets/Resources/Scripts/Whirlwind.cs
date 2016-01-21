@@ -37,6 +37,7 @@ public class Whirlwind : MonoBehaviour {
 	void Start () {
 		currentState = State.Idle;
 
+
 		userInputTimer = new Timer(60f);
 		itemsInSearch = new List<SearchWhirlwindItem>();
 
@@ -67,17 +68,14 @@ public class Whirlwind : MonoBehaviour {
 			SlowToStop();
 		} else if (Input.GetKeyDown("w") && 
 							 currentState == State.WhirlExam) {
-
 			string[][] ids =  new string [5][] {
-				new string[] {"1", "2", "3"},
-				new string[] {"1", "2", "3"},
-				new string[] {"1", "2", "3"},
-				new string[] {"1", "2", "3"},
-				new string[] {"1", "2", "3"}
+				new string[] {"1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
+				new string[] {"1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
+				new string[] {"1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
+				new string[] {"1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
+				new string[] {"1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
 			};
-
 			LoadNewItems(ids);
-
 		} else if (Input.GetKeyDown("d") && 
 							 IsDoneStirUp &&
 							 currentState != State.End && 
@@ -89,12 +87,14 @@ public class Whirlwind : MonoBehaviour {
 /////// functions for manipulating data //////
 	public void LoadNewItems (string[][] itemIDs) {
 		Debug.Assert(itemIDs.Length == belts.Length);
+		//TODODebug.Assert(IsEnlargedOrFullscreen);
 
 		End();
 		for (int i = 0; i < itemIDs.Length; i++) {
 			belts[i].LoadNewItems(itemIDs[i]);
 		}
-		StirUpAutoStopWhirlExam(Global.StirUpSpeed);
+		StirUp(Global.StirUpSpeed);
+		SlowToStopContextExam();
 	}
 	
 

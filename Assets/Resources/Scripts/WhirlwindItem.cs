@@ -18,8 +18,8 @@ public class WhirlwindItem : MonoBehaviour {
 	Vector3 idlePosition;
 
 	// state machine
-	enum State { Idle, StirUp, SlowToStop, WhirlExam, ContextExam, StirUpByShift, End, Frozen };
-	State currentState;
+	public enum State { Idle, StirUp, SlowToStop, WhirlExam, ContextExam, StirUpByShift, End, Frozen };
+	public State currentState;
 		
 	// internal data reprensentations
 	bool isInteractable;
@@ -38,7 +38,9 @@ public class WhirlwindItem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Initialize();
+		if (collider == null) {
+			Initialize();
+		}
 	}
 
 	public void Initialize () {
