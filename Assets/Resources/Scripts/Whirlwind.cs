@@ -90,9 +90,11 @@ public class Whirlwind : MonoBehaviour {
 	public void LoadNewItems (string[][] itemIDs) {
 		Debug.Assert(itemIDs.Length == belts.Length);
 
+		End();
 		for (int i = 0; i < itemIDs.Length; i++) {
 			belts[i].LoadNewItems(itemIDs[i]);
 		}
+		StirUpAutoStopWhirlExam(Global.StirUpSpeed);
 	}
 	
 

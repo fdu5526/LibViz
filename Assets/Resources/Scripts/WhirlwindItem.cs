@@ -38,6 +38,10 @@ public class WhirlwindItem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Initialize();
+	}
+
+	public void Initialize () {
 		currentState = State.Idle;
 	
 		defaultScale = transform.localScale;
@@ -50,7 +54,6 @@ public class WhirlwindItem : MonoBehaviour {
 		collider = GetComponent<Collider>();
 		rigidbody = GetComponent<Rigidbody>();
 	}
-
 
 	public void Initialize (WhirlwindBelt belt, float radius, float height) {
 		this.belt = belt;

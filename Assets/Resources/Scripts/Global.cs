@@ -9,6 +9,7 @@ public class Global
 	public const float TransitionToContextExamTime = 1f;
 	public const float ResetToIdleTime = 2.5f;
 	public const float StirUpSpeed = 50f;
+	public const float SpinSpeed = 10f;
 	public const float EnlargeMultipler = 1.5f;
 
 	public static bool FiftyFifty { get { return UnityEngine.Random.value > 0.5f; } }

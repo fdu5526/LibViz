@@ -88,7 +88,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 
 
 	public void StirUp () {
-		speed = Global.StirUpSpeed * height / 5f;
+		speed = Global.SpinSpeed * height / 5f;
 		direction = 1f;
 		shouldSlowsDown = false;
 		slowDownLerpFactor = baseSlowDownLerpFactor;

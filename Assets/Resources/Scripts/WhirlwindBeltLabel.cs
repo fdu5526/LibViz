@@ -37,6 +37,11 @@ public class WhirlwindBeltLabel : MonoBehaviour {
 	}
 
 	public void Fade (bool isFadeIn) {
+		if ((isFadeIn && GetComponent<CanvasGroup>().alpha > 0.99f) ||
+				(!isFadeIn && GetComponent<CanvasGroup>().alpha < 0.01f)) {
+			return;
+		}
+
 		StartCoroutine(FadeLabel(isFadeIn));
 	}
 

@@ -157,7 +157,6 @@ public class WhirlwindBelt : MonoBehaviour {
 		GameObject g;
 
 		// wipe old items away
-		End();
 		for (int i = 0; i < wwItems.Count; i++) {
 			wwItems[i].DestroyInSeconds(3f);
 		}
@@ -168,11 +167,11 @@ public class WhirlwindBelt : MonoBehaviour {
 			g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindItem"));
 			g.transform.position = defaultItemPosition;
 			WhirlwindItem wwi = g.GetComponent<WhirlwindItem>();
-			wwi.ItemSprite = (Sprite)Resources.Load("Sprites/Items/" + itemIDs[i]);
+			wwi.Initialize();
+			wwi.Initialize(this, radius, height);
+			wwi.ItemSprite = Resources.Load<Sprite>("Sprites/Items/" + itemIDs[i]);
 			wwItems.Add(wwi);
 		}
-
-		StirUp(Global.StirUpSpeed, true);
 	}
 
 /////// public functions used for user interaction //////
