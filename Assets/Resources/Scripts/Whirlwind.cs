@@ -5,9 +5,10 @@ using System.Collections.Generic;
 public class Whirlwind : MonoBehaviour {
 
 	// state machine
-	enum State { Idle, StirUp, StirUpAutoStopWhirlExam, 
-							 SlowToStop, WhirlExam, 
-							 SlowToStopContextExam, ContextExam, End };
+	enum State { Idle, StirUp, SlowToStop,
+							 StirUpAutoStopWhirlExam, WhirlExam, 
+							 SlowToStopContextExam, ContextExam, 
+							 End };
 	State currentState;
 
 	// related to user inputs

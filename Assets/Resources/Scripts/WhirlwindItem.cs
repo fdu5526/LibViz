@@ -29,7 +29,6 @@ public class WhirlwindItem : MonoBehaviour {
 	// other stuffs in the scene
 	Whirlwind whirlwind;
 	WhirlwindBelt belt;
-	GameObject trail;
 	GameObject itemImage;
 	Vector3 defaultScale;
 
@@ -46,9 +45,7 @@ public class WhirlwindItem : MonoBehaviour {
 		idlePosition = p;
 		isLockedToSlot = false;
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
-		trail = transform.Find("Trail").gameObject;
 		itemImage = transform.Find("ItemImage").gameObject;
-		trail.GetComponent<ParticleSystem>().Stop();
 
 		collider = GetComponent<Collider>();
 		rigidbody = GetComponent<Rigidbody>();
@@ -102,7 +99,6 @@ public class WhirlwindItem : MonoBehaviour {
 		slot.GetComponent<WhirlwindBeltSlot>().AttachItem();
 		rigidbody.useGravity = false;
 		collider.enabled = false;
-		//trail.GetComponent<ParticleSystem>().Play();
 		Vector3 v = new Vector3(RandomAngularVelocityRange, 
 														RandomAngularVelocityRange, 
 														RandomAngularVelocityRange);
