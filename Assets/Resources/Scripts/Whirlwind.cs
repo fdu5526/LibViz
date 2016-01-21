@@ -74,18 +74,10 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// functions for setting whirlwind state //////
-	// whether all the items are stirred up
-	public bool IsDoneStirUp {
-		get {
-			bool allDone = true;
-			for (int i = 0; i < belts.Length; i++) {
-				allDone &= belts[i].IsDoneStirUp;
-			}
-			return allDone;
-		}
-	}
+	
 
-	void StirUp (float speed) {
+/////// public functions for setting whirlwind state //////
+	public void StirUp (float speed) {
 		Debug.Assert(currentState == State.Idle || 
 								 currentState == State.WhirlExam);
 
@@ -99,20 +91,47 @@ public class Whirlwind : MonoBehaviour {
 		LogUserInput();
 	}
 
-
-	void StirUpAutoStopWhirlExam (float speed) {
-		StirUp(speed);
-		currentState = State.StirUpAutoStopWhirlExam;
-	}
-
-
-	void SlowToStop () {
+	public void SlowToStop () {
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].SlowToStop(false);
 		}
 		currentState = State.SlowToStop;
 		LogUserInput();
 	}
+
+
+	public void End () {
+		if (IsEnlargedOrFullscreen) {
+			ExitFullScreen();
+			ExitEnlargeSelection(true);
+		}
+
+		UnFreeze();
+		currentState = State.End;
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].End();
+		}
+		ResetToIdle();
+	}
+
+	// whether all the items are stirred up
+	public bool IsDoneStirUp {
+		get {
+			bool allDone = true;
+			for (int i = 0; i < belts.Length; i++) {
+				allDone &= belts[i].IsDoneStirUp;
+			}
+			return allDone;
+		}
+	}
+
+/////// private functions for setting whirlwind state //////
+	// this is for contextExam => WhirlExam
+	void StirUpAutoStopWhirlExam (float speed) {
+		StirUp(speed);
+		currentState = State.StirUpAutoStopWhirlExam;
+	}
+
 
 	void SlowToStopContextExam () {
 		for (int i = 0; i < belts.Length; i++) {
@@ -148,20 +167,6 @@ public class Whirlwind : MonoBehaviour {
 	bool IsEnlargedOrFullscreen { get { return enlargedItem != null; } }
 
 
-	void End () {
-		if (IsEnlargedOrFullscreen) {
-			ExitFullScreen();
-			ExitEnlargeSelection(true);
-		}
-
-		UnFreeze();
-		currentState = State.End;
-		for (int i = 0; i < belts.Length; i++) {
-			belts[i].End();
-		}
-		ResetToIdle();
-	}
-
 	void ResetToIdle () {
 		currentState = State.Idle;
 	}
@@ -173,7 +178,7 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
-	// stop 
+	// prevent player interaction
 	void UnFreeze () {
 		isFrozen = false;
 		for (int i = 0; i < belts.Length; i++) {
@@ -181,6 +186,7 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
+	// do automatic state transitions here
 	void ComputeState () {
 		switch (currentState) {
 			case State.StirUpAutoStopWhirlExam:
@@ -208,12 +214,13 @@ public class Whirlwind : MonoBehaviour {
 				break;
 		}
 
+		// make sure all the belts are computed also
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].ComputeState();
 		}
 	}
 
-/////// public functions for manipulating whirlwind state //////
+/////// public functions for touch based whirlwind interaction //////
 	// user did something, no need to reset to idle any time soon
 	public void LogUserInput () {
 		userInputTimer.Reset();
@@ -348,6 +355,8 @@ public class Whirlwind : MonoBehaviour {
 
 	// do all state computation here
 	void FixedUpdate () {
+
+		// if no user input, end
 		if (currentState != State.Idle && 
 				currentState != State.End &&
 				userInputTimer.IsOffCooldown) {
