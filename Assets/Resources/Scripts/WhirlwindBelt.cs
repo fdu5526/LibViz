@@ -77,7 +77,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		g.transform.position = transform.position + new Vector3(radius, 0f, 0f);
 		beltEnd = g.GetComponent<WhirlwindBeltEnd>();
 		beltEnd.belt = this;
-		beltEnd.GetComponent<Collider>().enabled = false;
+		beltEnd.Enable(false);
 	}
 
 
@@ -140,7 +140,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 	// belt has reached optimal position, slow all items and slots
-	void SlowAllToStop (bool isFastStop) {
+	void SlowToStopNow (bool isFastStop) {
 		isSlowingDown = false;
 		for (int i = 0; i < wwItems.Count; i++) {
 			if (IndexIsInSlots(i)) {
@@ -156,7 +156,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	public void LoadNewItems (string[] itemIDs) {
 		GameObject g;
 
-		beltEnd.GetComponent<Collider>().enabled = false;
+		beltEnd.Enable(false);
 
 		// wipe old items away
 		for (int i = 0; i < wwItems.Count; i++) {
@@ -277,13 +277,13 @@ public class WhirlwindBelt : MonoBehaviour {
 
 
 	// slow down initial spin
-	public void SlowToStop (bool isTransitioningToContextExam) {
+	public void SlowToStop (bool slowToStopLater) {
 		isSlowingDown = true;
 		this.isTransitioningToContextExam = isTransitioningToContextExam;
-		beltEnd.GetComponent<Collider>().enabled = true;
+		beltEnd.Enable(true);
 
-		if (!isTransitioningToContextExam) {
-			SlowAllToStop(false);
+		if (!slowToStopLater) {
+			SlowToStopNow(false);
 		}
 		
 	}
@@ -325,7 +325,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	public void End () {
 		isOperating = false;
 		label.Fade(isOperating);
-		beltEnd.GetComponent<Collider>().enabled = false;
+		beltEnd.Enable(false);
 		beltEnd.isInContextExam = false;
 		for (int i = 0; i < wwItems.Count; i++) {
 			if (IndexIsInSlots(i)) {
@@ -370,7 +370,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		if (isSlowingDown && isTransitioningToContextExam) {
 			if (beltEnd.mostRecentCollisionIsTail) {
 				label.Fade(isOperating);
-				SlowAllToStop(true);
+				SlowToStopNow(true);
 			}
 		}
 

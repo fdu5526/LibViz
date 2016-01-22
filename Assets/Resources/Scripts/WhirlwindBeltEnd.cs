@@ -14,6 +14,11 @@ public class WhirlwindBeltEnd : MonoBehaviour {
 		isInContextExam = false;
 	}
 
+
+	public void Enable (bool isEnabled) {
+		GetComponent<Collider>().enabled = isEnabled;
+	}
+
 	// an end of the belt is reached, shift the belt
 	void Shift (WhirlwindBeltSlot w, bool isHead, bool isTail) {
 		if ((isHead && w.direction > 0f) || 
