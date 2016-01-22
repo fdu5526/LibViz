@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class Whirlwind : MonoBehaviour {
 
 	// state machine
-	enum State { Idle, StirUp, SlowToStop,
-							 StirUpAutoStopWhirlExam, WhirlExam, 
+	enum State { Idle, 
+							 StirUp, StirUpAutoStop, StirUpNewContextExam,
+							 SlowToStopWhirlExam, WhirlExam, 
 							 SlowToStopContextExam, ContextExam, 
-							 StirUpNewContextExam,
 							 End };
 	State currentState;
 
@@ -66,7 +66,7 @@ public class Whirlwind : MonoBehaviour {
 		} else if (Input.GetKeyDown("s") &&
 							 currentState == State.StirUp && 
 							 IsDoneStirUp) {
-			SlowToStop();
+			SlowToStopWhirlExam();
 		} else if (Input.GetKeyDown("w") && 
 							 currentState == State.WhirlExam) {
 			string[][] ids =  new string [5][] {
@@ -114,11 +114,11 @@ public class Whirlwind : MonoBehaviour {
 		LogUserInput();
 	}
 
-	public void SlowToStop () {
+	public void SlowToStopWhirlExam () {
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].SlowToStop(false);
 		}
-		currentState = State.SlowToStop;
+		currentState = State.SlowToStopWhirlExam;
 		LogUserInput();
 	}
 
@@ -150,9 +150,9 @@ public class Whirlwind : MonoBehaviour {
 
 /////// private functions for setting whirlwind state //////
 	// ContextExam => WhirlExam by exiting enlarge view
-	void StirUpAutoStopWhirlExam (float speed) {
+	void StirUpAutoStop (float speed) {
 		StirUp(speed);
-		currentState = State.StirUpAutoStopWhirlExam;
+		currentState = State.StirUpAutoStop;
 	}
 
 	// WhirlExam => ContextExam by enlarging
@@ -169,7 +169,7 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	void WhirlExam () {
-		Debug.Assert(currentState == State.SlowToStop ||
+		Debug.Assert(currentState == State.SlowToStopWhirlExam ||
 								 currentState == State.ContextExam);
 
 		UnFreeze();
@@ -216,9 +216,9 @@ public class Whirlwind : MonoBehaviour {
 	// do automatic state transitions here
 	void ComputeState () {
 		switch (currentState) {
-			case State.StirUpAutoStopWhirlExam:
+			case State.StirUpAutoStop:
 				if (IsDoneStirUp) {
-					SlowToStop();
+					SlowToStopWhirlExam();
 				}
 				break;
 			case State.StirUpNewContextExam:
@@ -226,7 +226,7 @@ public class Whirlwind : MonoBehaviour {
 					SlowToStopContextExam();
 				}
 				break;
-			case State.SlowToStop:
+			case State.SlowToStopWhirlExam:
 			case State.SlowToStopContextExam:
 				bool allDone = true;
 				for (int i = 0; i < belts.Length; i++) {
@@ -234,7 +234,7 @@ public class Whirlwind : MonoBehaviour {
 				}
 
 				if (allDone) {
-					if (currentState == State.SlowToStop) {
+					if (currentState == State.SlowToStopWhirlExam) {
 						WhirlExam();
 					} else {
 						ContextExam();
@@ -307,7 +307,7 @@ public class Whirlwind : MonoBehaviour {
 
 		if (!isEnding) {
 			End();
-			StirUpAutoStopWhirlExam(Global.StirUpSpeed);
+			StirUpAutoStop(Global.StirUpSpeed);
 		}
 
 		LogUserInput();
