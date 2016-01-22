@@ -156,6 +156,8 @@ public class WhirlwindBelt : MonoBehaviour {
 	public void LoadNewItems (string[] itemIDs) {
 		GameObject g;
 
+		beltEnd.GetComponent<Collider>().enabled = false;
+
 		// wipe old items away
 		for (int i = 0; i < wwItems.Count; i++) {
 			wwItems[i].DestroyInSeconds(3f);

@@ -52,6 +52,7 @@ public class WhirlwindItem : MonoBehaviour {
 		isLockedToSlot = false;
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		itemImage = transform.Find("ItemImage").gameObject;
+		slot = null;
 
 		collider = GetComponent<Collider>();
 		rigidbody = GetComponent<Rigidbody>();

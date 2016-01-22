@@ -148,14 +148,17 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// private functions for setting whirlwind state //////
-	// this is for contextExam => WhirlExam
+	// ContextExam => WhirlExam by exiting enlarge view
 	void StirUpAutoStopWhirlExam (float speed) {
 		StirUp(speed);
 		currentState = State.StirUpAutoStopWhirlExam;
 	}
 
-
+	// WhirlExam => ContextExam by enlarging
 	void SlowToStopContextExam () {
+		Debug.Assert(currentState == State.StirUp ||
+								 currentState == State.StirUpAutoStopWhirlExam);
+
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].SlowToStop(true);
 		}
