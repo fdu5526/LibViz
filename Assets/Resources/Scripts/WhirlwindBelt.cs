@@ -279,7 +279,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	// slow down initial spin
 	public void SlowToStop (bool slowToStopLater) {
 		isSlowingDown = true;
-		this.isTransitioningToContextExam = isTransitioningToContextExam;
+		this.isTransitioningToContextExam = slowToStopLater;
 		beltEnd.Enable(true);
 
 		if (!slowToStopLater) {
