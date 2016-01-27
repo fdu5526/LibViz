@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 /*
  * a bunch of global stuff that everyone needs put into the same place
@@ -52,4 +53,32 @@ public class Global
 		[FieldOffset(0)]
 		public int tmp;
 	}
+
+
+	static public int IntFilter(string num)
+	{
+		string res = Regex.Replace(num, @"[^\d]*", "");
+		return int.Parse(res);
+	}
 }
+
+
+public class BookInfo{
+	public int id;
+	public string Title;
+	public string Author;
+	public int Time;
+	public string Description;
+	public string Location;
+
+	public float v;
+
+	public void Init(string _title, string _author, int _time, string _description, string _location ) {
+		Title = _title;
+		Author = _author;
+		Time = _time;
+		Description =  _description;
+		Location = _location;
+	}
+}
+
