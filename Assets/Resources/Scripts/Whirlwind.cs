@@ -33,6 +33,9 @@ public class Whirlwind : MonoBehaviour {
 	List<SearchWhirlwindItem> itemsInSearch;
 	List<SearchSlot> searchSlots;
 
+	//TODO
+	string[][] defaultIds;
+
 
 	// Use this for initialization
 	void Start () {
@@ -56,6 +59,16 @@ public class Whirlwind : MonoBehaviour {
 		for (int i = 0; i < gl.Length; i++) {
 			belts[i] = gl[i].GetComponent<WhirlwindBelt>();
 		}
+
+
+		//TODO
+		defaultIds =  new string [5][] {
+			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
+			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
+			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
+			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
+			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"}
+		};
 	}
 
 	// current debugging based state machine triggers
@@ -77,9 +90,6 @@ public class Whirlwind : MonoBehaviour {
 
 /////// functions for manipulating data //////
 	void LoadNewItems (string[][] itemIDs) {
-		Debug.Assert(itemIDs.Length == belts.Length);
-		Debug.Assert(IsEnlargedOrFullscreen);
-
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].End();
 		}
@@ -87,12 +97,10 @@ public class Whirlwind : MonoBehaviour {
 		for (int i = 0; i < itemIDs.Length; i++) {
 			belts[i].LoadNewItems(itemIDs[i]);
 		}
-		StirUp(Global.StirUpSpeed);
-		currentState = State.StirUpNewContextExam;
 	}
 
 	void LoadNewWhirlwindBasedOnItem (WhirlwindItem wwItem) {
-		// TODO call database, actual queries here
+		// TODO actual database query here
 		string[][] ids =  new string [5][] {
 			new string[] {"1", "1", "1", "1", "1", "1", "1", "1"},
 			new string[] {"2", "2", "2", "2", "2", "2", "2", "2", "2", },
@@ -100,7 +108,14 @@ public class Whirlwind : MonoBehaviour {
 			new string[] {"4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4"},
 			new string[] {"5", "5", "5", "5", "5", "5", "5"},
 		};
+
+
+		Debug.Assert(ids.Length == belts.Length);
+		Debug.Assert(IsEnlargedOrFullscreen);
+
 		LoadNewItems(ids);
+		StirUp(Global.StirUpSpeed);
+		currentState = State.StirUpNewContextExam;
 	}
 
 /////// private functions for setting whirlwind state //////
@@ -308,7 +323,7 @@ public class Whirlwind : MonoBehaviour {
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 
 		if (!isEnding) {
-			End();
+			LoadNewItems(defaultIds);
 			StirUpAutoStop(Global.StirUpSpeed);
 		}
 

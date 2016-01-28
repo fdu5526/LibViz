@@ -20,7 +20,6 @@ interaction
 	put enlarged item at center
 	
 	detail implementations:
-		when swapping items, make it so that we have a transitional state
 		make sure belts are sorted
 
 --------------------------------
