@@ -161,8 +161,8 @@ public class WhirlwindItem : MonoBehaviour {
 	}
 
 	public void Enlarge () {
-		whirlwind.EnterEnlargeSelection(this);
 		isEnlarged = true;
+		whirlwind.EnterEnlargeSelection(this);
 	}
 
 	public void UnEnlarge () {
@@ -198,7 +198,9 @@ public class WhirlwindItem : MonoBehaviour {
 	}
 
 	public void DestroyInSeconds(float s) {
-		Invoke("DestroyItem", s);
+		if (!isEnlarged) {
+			Invoke("DestroyItem", s);
+		}
 	}
 
 	public void ResetToIdle () {
@@ -207,6 +209,7 @@ public class WhirlwindItem : MonoBehaviour {
 		rigidbody.velocity = Vector3.zero;
 		rigidbody.angularVelocity = Vector3.zero;
 		rigidbody.rotation = Quaternion.identity;
+		itemImage.GetComponent<Renderer>().material.color = Color.white;
 	}
 
 	public Sprite ItemSprite {

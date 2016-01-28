@@ -67,16 +67,6 @@ public class Whirlwind : MonoBehaviour {
 							 currentState == State.StirUp && 
 							 IsDoneStirUp) {
 			SlowToStopWhirlExam();
-		} else if (Input.GetKeyDown("w") && 
-							 currentState == State.WhirlExam) {
-			string[][] ids =  new string [5][] {
-				new string[] {"1", "1", "1", "1", "1", "1", "1", "1"},
-				new string[] {"2", "2", "2", "2", "2", "2", "2", "2", "2", },
-				new string[] {"3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"},
-				new string[] {"4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4"},
-				new string[] {"5", "5", "5", "5", "5", "5", "5"},
-			};
-			LoadNewItems(ids);
 		} else if (Input.GetKeyDown("d") && 
 							 IsDoneStirUp &&
 							 currentState != State.End && 
@@ -88,9 +78,12 @@ public class Whirlwind : MonoBehaviour {
 /////// functions for manipulating data //////
 	public void LoadNewItems (string[][] itemIDs) {
 		Debug.Assert(itemIDs.Length == belts.Length);
-		//TODODebug.Assert(IsEnlargedOrFullscreen);
+		Debug.Assert(IsEnlargedOrFullscreen);
 
-		End();
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].End();
+		}
+		currentState = State.Idle;
 		for (int i = 0; i < itemIDs.Length; i++) {
 			belts[i].LoadNewItems(itemIDs[i]);
 		}
@@ -193,6 +186,17 @@ public class Whirlwind : MonoBehaviour {
 
 	bool IsEnlargedOrFullscreen { get { return enlargedItem != null; } }
 
+	void LoadNewWhirlwindBasedOnItem (WhirlwindItem wwItem) {
+		// TODO call database, actual queries here
+		string[][] ids =  new string [5][] {
+			new string[] {"1", "1", "1", "1", "1", "1", "1", "1"},
+			new string[] {"2", "2", "2", "2", "2", "2", "2", "2", "2", },
+			new string[] {"3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"},
+			new string[] {"4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4"},
+			new string[] {"5", "5", "5", "5", "5", "5", "5"},
+		};
+		LoadNewItems(ids);
+	}
 
 	void ResetToIdle () {
 		currentState = State.Idle;
@@ -283,10 +287,8 @@ public class Whirlwind : MonoBehaviour {
 	public void EnterEnlargeSelection (WhirlwindItem wwItem) {
 		Freeze();
 
-		// TODO swap items in and out
-
 		enlargedItem = wwItem;
-		//wwItem.transform.position = enlargedItemPosition;
+		LoadNewWhirlwindBasedOnItem(wwItem);
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ItemSprite = wwItem.ItemSprite;
 
