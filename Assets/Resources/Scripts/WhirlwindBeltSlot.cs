@@ -94,21 +94,16 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		slowDownLerpFactor = baseSlowDownLerpFactor;
 	}
 	
-	public void SlowToStop (bool isFastStop) {
+	public void SlowToStopFast (bool isFastStop) {
 		shouldSlowsDown = true;
 		if (isFastStop) {
 			slowDownLerpFactor = 0.3f;
 		}
 	}
 
-	public void AttachItem () {
-		collider.enabled = true;
+	public void EnableCollider (bool e) {
+		collider.enabled = e;
 	}
-
-	public void DetachItem () {
-		collider.enabled = false;
-	}
-
 
 	public void Freeze () {
 		rigidbody.velocity = Vector3.zero;
