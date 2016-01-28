@@ -182,7 +182,7 @@ public class WhirlwindItem : MonoBehaviour {
 		Vector3 v;
 
 		isLockedToSlot = false;
-		slot.GetComponent<WhirlwindBeltSlot>().DettachItem();
+		slot.GetComponent<WhirlwindBeltSlot>().DetachItem();
 		slot = null;
 		isInteractable = false;
 		currentState = State.End;

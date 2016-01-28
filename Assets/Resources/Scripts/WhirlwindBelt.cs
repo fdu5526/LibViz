@@ -284,6 +284,8 @@ public class WhirlwindBelt : MonoBehaviour {
 
 		if (!slowToStopLater) {
 			SlowToStopNow(false);
+		} else {
+			//TODO enable all slot colliders here
 		}
 		
 	}
@@ -368,7 +370,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		
 		// swirl belt to correct locatin
 		if (isSlowingDown && isTransitioningToContextExam) {
-			if (beltEnd.mostRecentCollisionIsTail) {
+			if (beltEnd.mostRecentCollisionIsHead) {
 				label.Fade(isOperating);
 				SlowToStopNow(true);
 			}

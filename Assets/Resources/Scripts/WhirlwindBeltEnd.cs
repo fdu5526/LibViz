@@ -6,7 +6,7 @@ public class WhirlwindBeltEnd : MonoBehaviour {
 
 	public WhirlwindBelt belt;			// the belt this is a member of
 	public bool isInContextExam;
-	public bool mostRecentCollisionIsTail;
+	public bool mostRecentCollisionIsHead;
 
 
 	// Use this for initialization
@@ -39,7 +39,7 @@ public class WhirlwindBeltEnd : MonoBehaviour {
 		if (isInContextExam) {
 			Shift(w, isHead, isTail);
 		}
-		mostRecentCollisionIsTail = isTail;
+		mostRecentCollisionIsHead = isHead;
 	}
 
 	// collision is checked on enter and exit

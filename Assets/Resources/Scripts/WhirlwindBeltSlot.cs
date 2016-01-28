@@ -105,7 +105,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		collider.enabled = true;
 	}
 
-	public void DettachItem () {
+	public void DetachItem () {
 		collider.enabled = false;
 	}
 
