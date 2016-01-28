@@ -76,7 +76,7 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// functions for manipulating data //////
-	public void LoadNewItems (string[][] itemIDs) {
+	void LoadNewItems (string[][] itemIDs) {
 		Debug.Assert(itemIDs.Length == belts.Length);
 		Debug.Assert(IsEnlargedOrFullscreen);
 
@@ -90,55 +90,17 @@ public class Whirlwind : MonoBehaviour {
 		StirUp(Global.StirUpSpeed);
 		currentState = State.StirUpNewContextExam;
 	}
-	
 
-/////// public functions for setting whirlwind state //////
-	public void StirUp (float speed) {
-		Debug.Assert(currentState == State.Idle || 
-								 currentState == State.WhirlExam);
-
-		Freeze();
-		bool shouldLoadItems = currentState == State.Idle;
-
-		for (int i = 0; i < belts.Length; i++) {
-			belts[i].StirUp(speed, shouldLoadItems);
-		}
-		currentState = State.StirUp;
-		LogUserInput();
-	}
-
-	public void SlowToStopWhirlExam () {
-		for (int i = 0; i < belts.Length; i++) {
-			belts[i].SlowToStop(false);
-		}
-		currentState = State.SlowToStopWhirlExam;
-		LogUserInput();
-	}
-
-
-	public void End () {
-		if (IsEnlargedOrFullscreen) {
-			ExitFullScreen();
-			ExitEnlargeSelection(true);
-		}
-
-		UnFreeze();
-		currentState = State.End;
-		for (int i = 0; i < belts.Length; i++) {
-			belts[i].End();
-		}
-		ResetToIdle();
-	}
-
-	// whether all the items are stirred up
-	public bool IsDoneStirUp {
-		get {
-			bool allDone = true;
-			for (int i = 0; i < belts.Length; i++) {
-				allDone &= belts[i].IsDoneStirUp;
-			}
-			return allDone;
-		}
+	void LoadNewWhirlwindBasedOnItem (WhirlwindItem wwItem) {
+		// TODO call database, actual queries here
+		string[][] ids =  new string [5][] {
+			new string[] {"1", "1", "1", "1", "1", "1", "1", "1"},
+			new string[] {"2", "2", "2", "2", "2", "2", "2", "2", "2", },
+			new string[] {"3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"},
+			new string[] {"4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4"},
+			new string[] {"5", "5", "5", "5", "5", "5", "5"},
+		};
+		LoadNewItems(ids);
 	}
 
 /////// private functions for setting whirlwind state //////
@@ -185,18 +147,6 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	bool IsEnlargedOrFullscreen { get { return enlargedItem != null; } }
-
-	void LoadNewWhirlwindBasedOnItem (WhirlwindItem wwItem) {
-		// TODO call database, actual queries here
-		string[][] ids =  new string [5][] {
-			new string[] {"1", "1", "1", "1", "1", "1", "1", "1"},
-			new string[] {"2", "2", "2", "2", "2", "2", "2", "2", "2", },
-			new string[] {"3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"},
-			new string[] {"4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4"},
-			new string[] {"5", "5", "5", "5", "5", "5", "5"},
-		};
-		LoadNewItems(ids);
-	}
 
 	void ResetToIdle () {
 		currentState = State.Idle;
@@ -253,6 +203,56 @@ public class Whirlwind : MonoBehaviour {
 		// make sure all the belts are computed also
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].ComputeState();
+		}
+	}
+
+
+/////// public functions for setting whirlwind state //////
+	public void StirUp (float speed) {
+		Debug.Assert(currentState == State.Idle || 
+								 currentState == State.WhirlExam);
+
+		Freeze();
+		bool shouldLoadItems = currentState == State.Idle;
+
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].StirUp(speed, shouldLoadItems);
+		}
+		currentState = State.StirUp;
+		LogUserInput();
+	}
+
+	public void SlowToStopWhirlExam () {
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].SlowToStop(false);
+		}
+		currentState = State.SlowToStopWhirlExam;
+		LogUserInput();
+	}
+
+
+	public void End () {
+		if (IsEnlargedOrFullscreen) {
+			ExitFullScreen();
+			ExitEnlargeSelection(true);
+		}
+
+		UnFreeze();
+		currentState = State.End;
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].End();
+		}
+		ResetToIdle();
+	}
+
+	// whether all the items are stirred up
+	public bool IsDoneStirUp {
+		get {
+			bool allDone = true;
+			for (int i = 0; i < belts.Length; i++) {
+				allDone &= belts[i].IsDoneStirUp;
+			}
+			return allDone;
 		}
 	}
 
