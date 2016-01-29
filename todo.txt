@@ -22,6 +22,3 @@ interaction
 		Q: under what condition do they rearrange?
 	scrolling up and down the whirlwind
 	whirling the whirlwind
-
-	detail implementations:
-		make sure the array of belts in Whirlwind.cs is sorted
