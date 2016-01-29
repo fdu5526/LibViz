@@ -39,12 +39,10 @@ public class Whirlwind : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentState = State.Idle;
-
-
 		userInputTimer = new Timer(60f);
 		itemsInSearch = new List<SearchWhirlwindItem>();
 
-
+		// establish enlarge and fullscreen game objects
 		enlargedItemPosition = new Vector3(0f, 11.24f, -15.8f);
 		searchUI = GameObject.Find("SearchUI");
 		enlargedSelectionUI = GameObject.Find("EnlargedSelectionUI");
@@ -52,15 +50,14 @@ public class Whirlwind : MonoBehaviour {
 		fullscreenSelectionUI = GameObject.Find("FullscreenSelectionUI");
 		fullscreenSelectionUI.GetComponent<Canvas>().enabled = false;
 		
+		// get the belts
 		GameObject[] gl = GameObject.FindGameObjectsWithTag("WhirlwindBelt");
 		belts = new WhirlwindBelt[gl.Length];
-
 		for (int i = 0; i < gl.Length; i++) {
 			belts[i] = gl[i].GetComponent<WhirlwindBelt>();
 		}
 
-
-		//TODO
+		//TODO make this not a placeholder
 		defaultIds =  new string [5][] {
 			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
 			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
@@ -71,6 +68,7 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	// current debugging based state machine triggers
+	// TODO remove me at the end
 	void CheckInteractionWithWhirlwind () {
 		if (Input.GetKeyDown("a") &&
 				currentState == State.Idle) {
@@ -101,6 +99,7 @@ public class Whirlwind : MonoBehaviour {
 		for (int i = 0; i < itemIDs.Length; i++) {
 			belts[i].LoadNewItems(itemIDs[i]);
 		}
+		LogUserInput();
 	}
 
 	void LoadNewWhirlwindBasedOnItem (WhirlwindItem wwItem) {
@@ -126,6 +125,7 @@ public class Whirlwind : MonoBehaviour {
 	void StirUpAutoStopWhirlExam (float speed) {
 		StirUp(speed);
 		currentState = State.StirUpAutoStopWhirlExam;
+		LogUserInput();
 	}
 
 	// WhirlExam => ContextExam by enlarging

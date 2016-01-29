@@ -349,7 +349,6 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// update all the ones that are in slots
 	public void ComputeState () {
-		
 		// swirl belt to correct locatin
 		if (isSlowingDown && isTransitioningToContextExam) {
 			if (beltEnd.mostRecentCollisionIsHead) {
