@@ -89,6 +89,7 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// functions for manipulating data //////
+	// Set state to Idle, and load new items
 	void LoadNewItems (string[][] itemIDs) {
 		Debug.Assert(currentState == State.Idle ||
 								 currentState == State.ContextExam || 
@@ -99,14 +100,15 @@ public class Whirlwind : MonoBehaviour {
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].End();
 		}
-		currentState = State.Idle;
+		ResetToIdle();
 		for (int i = 0; i < itemIDs.Length; i++) {
 			belts[i].LoadNewItems(itemIDs[i]);
 		}
-		LogUserInput();
 	}
 
 	void LoadNewWhirlwindBasedOnItem (WhirlwindItem wwItem) {
+		Debug.Assert(IsEnlargedOrFullscreen);
+
 		// TODO actual database query here
 		string[][] ids =  new string [5][] {
 			new string[] {"1", "1", "1", "1", "1", "1", "1", "1"},
@@ -117,8 +119,7 @@ public class Whirlwind : MonoBehaviour {
 		};
 
 		Debug.Assert(ids.Length == belts.Length);
-		Debug.Assert(IsEnlargedOrFullscreen);
-
+		
 		LoadNewItems(ids);
 		StirUp(Global.StirUpSpeed);
 		currentState = State.StirUpNewContextExam;
@@ -293,11 +294,6 @@ public class Whirlwind : MonoBehaviour {
 		mainCamera.ZoomIn();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ItemSprite = wwItem.ItemSprite;
-
-		if (currentState == State.WhirlExam) {
-			StirUp(Global.StirUpSpeed);
-			SlowToStopContextExam();
-		}
 		LogUserInput();
 	}
 
@@ -307,16 +303,16 @@ public class Whirlwind : MonoBehaviour {
 
 		mainCamera.ZoomOut();
 		enlargedItem.UnEnlarge();
+		enlargedItem.DestroyInSeconds(0f);
 		enlargedItem = null;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 
+		// go back to WhirlExam if we aren't actually ending
 		if (!isEnding) {
 			LoadNewItems(defaultIds);
 			StirUpAutoStopWhirlExam(Global.StirUpSpeed);
 		}
-
 		LogUserInput();
-		
 	}
 
 	// show detailed information about selected item
@@ -351,7 +347,7 @@ public class Whirlwind : MonoBehaviour {
 	// user starts dragging an item to search bar
 	public void DragItemImage () {
 		Debug.Assert(IsEnlargedOrFullscreen);
-		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled || 
+		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled ||
 								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 
 		searchUI.GetComponent<SearchUI>().EnableDragShadow(enlargedItem.ItemSprite);

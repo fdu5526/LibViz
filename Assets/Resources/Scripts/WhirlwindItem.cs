@@ -230,10 +230,6 @@ public class WhirlwindItem : MonoBehaviour {
 
 	// do everything state machine here
 	public void ComputeState () {
-		/*if (isEnlarged) {
-			return;
-		}*/
-
 		Vector3 d;
 		Vector3 p = transform.position;
 
@@ -290,44 +286,40 @@ public class WhirlwindItem : MonoBehaviour {
 
 /////// inherited functions //////
 	void OnMouseDown () {
-		if (!isInteractable) {
-			return;
-		}
-		whirlwind.LogUserInput();
+		if (isInteractable) {
+			whirlwind.LogUserInput();
 
-		if (currentState == State.ContextExam) {
-			belt.SetMouseDownPosition();
-		} else if (currentState == State.WhirlExam) {
-			whirlwind.SetMouseDownPosition();
+			if (currentState == State.ContextExam) {
+				belt.SetMouseDownPosition();
+			} else if (currentState == State.WhirlExam) {
+				whirlwind.SetMouseDownPosition();
+			}
 		}
 	}
 
 	void OnMouseDrag () {
-		if (!isInteractable) {
-			return;
-		}
+		if (isInteractable) {
+			whirlwind.LogUserInput();
 
-		whirlwind.LogUserInput();
-
-		if (currentState == State.ContextExam) {
-			belt.Spin();
-		} else if (currentState == State.WhirlExam) {
-			whirlwind.Spin();
+			if (currentState == State.ContextExam) {
+				belt.Spin();
+			} else if (currentState == State.WhirlExam) {
+				whirlwind.Spin();
+			}
 		}
 	}
 
 	void OnMouseUp () {
-		if (!isInteractable) {
-			return;
-		}
-		whirlwind.LogUserInput();
+		if (isInteractable) {
+			whirlwind.LogUserInput();
 
-		if (!whirlwind.isBeingSpun && 
-				(currentState == State.ContextExam || 
-				 currentState == State.WhirlExam))  {
-				Enlarge();
+			if (!whirlwind.isBeingSpun && 
+					(currentState == State.ContextExam || 
+					 currentState == State.WhirlExam))  {
+					Enlarge();
+			}
+			whirlwind.isBeingSpun = false;
 		}
-		whirlwind.isBeingSpun = false;
 	}
 
 	void FixedUpdate () {
