@@ -116,16 +116,19 @@ public class WhirlwindItem : MonoBehaviour {
 		currentState = State.StirUp;
 	}
 
+	
 	public void StirUpByShift (float speed, Transform slot) {
 		StirUp(speed, slot);
 		currentState = State.StirUpByShift;
 	}
+
 
 	public void SlowToStopByShift () {
 		LockToSlot();
 		SlowToStop();
 		ContextExam();
 	}
+
 
 	public void SlowToStop () {
 		Debug.Assert(isLockedToSlot);
@@ -285,7 +288,7 @@ public class WhirlwindItem : MonoBehaviour {
 	}
 
 
-/////// inherited functions //////	
+/////// inherited functions //////
 	void OnMouseDown () {
 		if (!isInteractable) {
 			return;

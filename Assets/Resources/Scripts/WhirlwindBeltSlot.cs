@@ -86,7 +86,6 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		this.radius = radius;
 	}
 
-
 	public void StirUp () {
 		speed = Global.SpinSpeed * height / 5f;
 		direction = 1f;
@@ -104,7 +103,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	public void EnableCollider (bool e) {
 		collider.enabled = e;
 	}
-	
+
 /////// inherited functions //////
 	void FixedUpdate () {
 		Orbit();

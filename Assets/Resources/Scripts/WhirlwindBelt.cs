@@ -233,7 +233,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
-	// whether all the slots are filled
+	// whether all the slots are filled. Expensive operation
 	public bool IsDoneStirUp { 
 		get {
 			bool allDone = true;
@@ -254,24 +254,29 @@ public class WhirlwindBelt : MonoBehaviour {
 			Transform slot = wwItems[headIndex].slot;
 			Debug.Assert(slot != null);
 
+			// if the item that is coming in is already in, do nohing
 			if (wwItems[NextIndex(tailIndex)].IsInWhirlwind) {
 				return;
 			}
 
+			// swap
 			wwItems[headIndex].End();
 			wwItems[NextIndex(tailIndex)].StirUpByShift(100f, slot);
 		} else { 							// shift prev
 			Transform slot = wwItems[tailIndex].slot;
 			Debug.Assert(slot != null);
 
+			// if the item that is coming in is already in, do nohing
 			if (wwItems[PrevIndex(headIndex)].IsInWhirlwind) {
 				return;
 			}
 
+			// swap
 			wwItems[tailIndex].End();
 			wwItems[PrevIndex(headIndex)].StirUpByShift(100f, slot);
 		}
 
+		// move the indices
 		headIndex = ShiftIndexByDirection(headIndex, direction);
 		tailIndex = ShiftIndexByDirection(tailIndex, direction);
 	}

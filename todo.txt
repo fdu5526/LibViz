@@ -16,7 +16,7 @@ interaction
 		searching reorganization / rearrangement
 		2 ways of searching
 			drill down - by putting into desk or typing in search
-			open up - spin whirlwind, repopulate with ||
+			open up - whirl the whirlwind, repopulate with ||
 
 	rearranging of items
 		Q: under what condition do they rearrange?
