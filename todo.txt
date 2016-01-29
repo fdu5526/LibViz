@@ -19,11 +19,8 @@ interaction
 			open up - spin whirlwind, repopulate with ||
 
 	rearranging of items
-	zooming in
 	scrolling up and down the whirlwind
 	whirling the whirlwind
-	
-	meet with UI people to make sure everything is as expected
 
 	detail implementations:
 		make sure the array of belts in Whirlwind.cs is sorted
