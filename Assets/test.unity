@@ -7936,7 +7936,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22368320, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
       propertyPath: m_RenderMode
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22438042, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
       propertyPath: m_LocalScale.x

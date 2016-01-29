@@ -18,6 +18,10 @@ interaction
 			drill down - by putting into desk or typing in search
 			open up - spin whirlwind, repopulate with ||
 
+	rearranging of items
+	zooming in
+	scrolling up and down the whirlwind
+	whirling the whirlwind
 	
 	meet with UI people to make sure everything is as expected
 

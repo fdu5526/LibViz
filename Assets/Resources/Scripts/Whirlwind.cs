@@ -395,7 +395,7 @@ public class Whirlwind : MonoBehaviour {
 		if (currentState != State.Idle && 
 				currentState != State.End &&
 				userInputTimer.IsOffCooldown) {
-			End();
+			//End();
 		}
 		ComputeState();
 	}
