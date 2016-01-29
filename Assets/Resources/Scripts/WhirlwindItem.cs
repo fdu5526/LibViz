@@ -287,7 +287,7 @@ public class WhirlwindItem : MonoBehaviour {
 
 /////// inherited functions //////	
 	void OnMouseDown () {
-		if (!isInteractable || whirlwind.isFrozen) {
+		if (!isInteractable) {
 			return;
 		}
 		whirlwind.LogUserInput();
@@ -300,7 +300,7 @@ public class WhirlwindItem : MonoBehaviour {
 	}
 
 	void OnMouseDrag () {
-		if (!isInteractable || whirlwind.isFrozen) {
+		if (!isInteractable) {
 			return;
 		}
 
@@ -314,7 +314,7 @@ public class WhirlwindItem : MonoBehaviour {
 	}
 
 	void OnMouseUp () {
-		if (!isInteractable || whirlwind.isFrozen) {
+		if (!isInteractable) {
 			return;
 		}
 		whirlwind.LogUserInput();

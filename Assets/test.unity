@@ -1572,7 +1572,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb54a9dd9e87654aad30f313d13e2fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFrozen: 0
   isBeingSpun: 0
 --- !u!1 &305092539
 GameObject:
@@ -11003,7 +11002,7 @@ Prefab:
       objectReference: {fileID: 303245549}
     - target: {fileID: 22451836, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.4252199
+      value: 0.42521995
       objectReference: {fileID: 0}
     - target: {fileID: 22451836, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.x
@@ -11027,7 +11026,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22415562, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00012207031
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}

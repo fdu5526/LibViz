@@ -13,7 +13,6 @@ public class Whirlwind : MonoBehaviour {
 	State currentState;
 
 	// related to user inputs
-	public bool isFrozen;
 	public bool isBeingSpun;
 
 	// set the whirlwind to Idle if it is
@@ -146,7 +145,6 @@ public class Whirlwind : MonoBehaviour {
 		Debug.Assert(currentState == State.SlowToStopWhirlExam ||
 								 currentState == State.ContextExam);
 
-		UnFreeze();
 		currentState = State.WhirlExam;
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].WhirlExam();
@@ -157,7 +155,6 @@ public class Whirlwind : MonoBehaviour {
 	void ContextExam () {
 		Debug.Assert(currentState == State.SlowToStopContextExam);
 
-		UnFreeze();
 		currentState = State.ContextExam;
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].ContextExam();
@@ -169,21 +166,6 @@ public class Whirlwind : MonoBehaviour {
 
 	void ResetToIdle () {
 		currentState = State.Idle;
-	}
-
-	void Freeze () {
-		isFrozen = true;
-		for (int i = 0; i < belts.Length; i++) {
-			belts[i].Freeze();
-		}
-	}
-
-	// prevent player interaction
-	void UnFreeze () {
-		isFrozen = false;
-		for (int i = 0; i < belts.Length; i++) {
-			belts[i].UnFreeze();
-		}
 	}
 
 	// do automatic state transitions here
@@ -231,7 +213,6 @@ public class Whirlwind : MonoBehaviour {
 		Debug.Assert(currentState == State.Idle || 
 								 currentState == State.WhirlExam);
 
-		Freeze();
 		bool shouldLoadItems = currentState == State.Idle;
 
 		for (int i = 0; i < belts.Length; i++) {
@@ -256,7 +237,6 @@ public class Whirlwind : MonoBehaviour {
 			ExitEnlargeSelection(true);
 		}
 
-		UnFreeze();
 		currentState = State.End;
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].End();
@@ -304,8 +284,6 @@ public class Whirlwind : MonoBehaviour {
 	// only call this from WhirlwindItem.Enlarge()
 	// open the UI for enlarge selection of selected item
 	public void EnterEnlargeSelection (WhirlwindItem wwItem) {
-		Freeze();
-
 		enlargedItem = wwItem;
 		LoadNewWhirlwindBasedOnItem(wwItem);
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;

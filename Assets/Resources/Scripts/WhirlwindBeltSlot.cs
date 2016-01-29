@@ -104,11 +104,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	public void EnableCollider (bool e) {
 		collider.enabled = e;
 	}
-
-	public void Freeze () {
-		rigidbody.velocity = Vector3.zero;
-	}
-
+	
 /////// inherited functions //////
 	void FixedUpdate () {
 		Orbit();

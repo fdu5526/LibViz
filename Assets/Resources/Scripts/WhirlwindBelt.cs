@@ -347,28 +347,6 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 	}
 
-	// freeze the entire belt from moving
-	public void Freeze () {
-		for (int i = 0; i < wwItems.Count; i++) {
-			if (IndexIsInSlots(i)) {
-				wwItems[i].SetInteractable(false);
-			}
-		}
-
-		for (int i = 0; i < slots.Length; i++) {
-			slots[i].Freeze();
-		}
-	}
-
-	// unfreeze the belt, can move again
-	public void UnFreeze () {
-		for (int i = 0; i < wwItems.Count; i++) {
-			if (IndexIsInSlots(i)) {
-				wwItems[i].SetInteractable(true);
-			}
-		}
-	}
-
 	// update all the ones that are in slots
 	public void ComputeState () {
 		
