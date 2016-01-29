@@ -74,6 +74,7 @@ public class Whirlwind : MonoBehaviour {
 	void CheckInteractionWithWhirlwind () {
 		if (Input.GetKeyDown("a") &&
 				currentState == State.Idle) {
+			LoadNewItems(defaultIds);
 			StirUp(Global.StirUpSpeed);
 		} else if (Input.GetKeyDown("s") &&
 							 currentState == State.StirUp && 
@@ -89,7 +90,8 @@ public class Whirlwind : MonoBehaviour {
 
 /////// functions for manipulating data //////
 	void LoadNewItems (string[][] itemIDs) {
-		Debug.Assert(currentState == State.ContextExam || 
+		Debug.Assert(currentState == State.Idle ||
+								 currentState == State.ContextExam || 
 								 currentState == State.StirUpNewContextExam ||
 								 currentState == State.SlowToStopContextExam ||
 								 currentState == State.WhirlExam);
@@ -395,7 +397,7 @@ public class Whirlwind : MonoBehaviour {
 		if (currentState != State.Idle && 
 				currentState != State.End &&
 				userInputTimer.IsOffCooldown) {
-			//End();
+			End();
 		}
 		ComputeState();
 	}
