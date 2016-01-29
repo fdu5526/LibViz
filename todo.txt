@@ -6,8 +6,7 @@ kinect
 
 get data from mySQL
 
-MxR
-	look at email, send codec, look how complicated
+MxR - look at codec, look how complicated
 
 
 
