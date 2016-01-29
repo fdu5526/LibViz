@@ -188,21 +188,13 @@ public class Whirlwind : MonoBehaviour {
 				break;
 			case State.SlowToStopWhirlExam:
 			case State.SlowToStopContextExam:
-				bool allDone = true;
-				for (int i = 0; i < belts.Length; i++) {
-					allDone &= belts[i].IsDoneSlowingDown;
-				}
-
-				if (allDone) {
+				if (IsDoneSlowingDown) {
 					if (currentState == State.SlowToStopWhirlExam) {
 						WhirlExam();
 					} else {
 						ContextExam();
 					}
-					
 				}
-				break;
-			default:
 				break;
 		}
 
@@ -255,6 +247,16 @@ public class Whirlwind : MonoBehaviour {
 			bool allDone = true;
 			for (int i = 0; i < belts.Length; i++) {
 				allDone &= belts[i].IsDoneStirUp;
+			}
+			return allDone;
+		}
+	}
+
+	public bool IsDoneSlowingDown {
+		get {
+			bool allDone = true;
+			for (int i = 0; i < belts.Length; i++) {
+				allDone &= belts[i].IsDoneSlowingDown;
 			}
 			return allDone;
 		}
