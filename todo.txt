@@ -16,7 +16,6 @@ interaction
 		put objects in box
 		searching reorganization / rearrangement
 
-	zoom in
 	put enlarged item at center
 	
 	detail implementations:

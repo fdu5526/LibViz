@@ -19,6 +19,7 @@ public class Whirlwind : MonoBehaviour {
 	Timer userInputTimer;
 
 	// for enlarge and fullscreen selection
+	MainCamera mainCamera;
 	WhirlwindItem enlargedItem;
 	Vector3 enlargedItemPosition;
 	GameObject searchUI;
@@ -44,6 +45,7 @@ public class Whirlwind : MonoBehaviour {
 
 		// establish enlarge and fullscreen game objects
 		enlargedItemPosition = new Vector3(0f, 11.24f, -15.8f);
+		mainCamera = GameObject.Find("Main Camera").GetComponent<MainCamera>();
 		searchUI = GameObject.Find("SearchUI");
 		enlargedSelectionUI = GameObject.Find("EnlargedSelectionUI");
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
@@ -286,6 +288,7 @@ public class Whirlwind : MonoBehaviour {
 	public void EnterEnlargeSelection (WhirlwindItem wwItem) {
 		enlargedItem = wwItem;
 		LoadNewWhirlwindBasedOnItem(wwItem);
+		mainCamera.ZoomIn();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ItemSprite = wwItem.ItemSprite;
 
@@ -300,6 +303,7 @@ public class Whirlwind : MonoBehaviour {
 	public void ExitEnlargeSelection (bool isEnding) {
 		Debug.Assert(IsEnlargedOrFullscreen);
 
+		mainCamera.ZoomOut();
 		enlargedItem.UnEnlarge();
 		enlargedItem = null;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
