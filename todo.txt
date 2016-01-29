@@ -14,6 +14,10 @@ interaction
 	search box
 		put objects in box
 		searching reorganization / rearrangement
+		2 ways of searching
+			drill down - by putting into desk or typing in search
+			open up - spin whirlwind, repopulate with ||
+
 	
 	meet with UI people to make sure everything is as expected
 
