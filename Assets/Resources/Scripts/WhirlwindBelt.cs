@@ -335,6 +335,9 @@ public class WhirlwindBelt : MonoBehaviour {
 				wwItems[i].End();
 			}
 		}
+		for (int i = 0; i < slots.Length; i++) {
+			slots[i].EnableCollider(false);
+		}
 	}
 
 	// when a belt's items are all returned to position, reset them to a stack

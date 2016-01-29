@@ -6,7 +6,7 @@ public class Whirlwind : MonoBehaviour {
 
 	// state machine
 	enum State { Idle, 
-							 StirUp, StirUpAutoStop, StirUpNewContextExam,
+							 StirUp, StirUpAutoStopWhirlExam, StirUpNewContextExam,
 							 SlowToStopWhirlExam, WhirlExam, 
 							 SlowToStopContextExam, ContextExam, 
 							 End };
@@ -90,6 +90,11 @@ public class Whirlwind : MonoBehaviour {
 
 /////// functions for manipulating data //////
 	void LoadNewItems (string[][] itemIDs) {
+		Debug.Assert(currentState == State.ContextExam || 
+								 currentState == State.StirUpNewContextExam ||
+								 currentState == State.SlowToStopContextExam ||
+								 currentState == State.WhirlExam);
+
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].End();
 		}
@@ -109,7 +114,6 @@ public class Whirlwind : MonoBehaviour {
 			new string[] {"5", "5", "5", "5", "5", "5", "5"},
 		};
 
-
 		Debug.Assert(ids.Length == belts.Length);
 		Debug.Assert(IsEnlargedOrFullscreen);
 
@@ -120,9 +124,9 @@ public class Whirlwind : MonoBehaviour {
 
 /////// private functions for setting whirlwind state //////
 	// ContextExam => WhirlExam by exiting enlarge view
-	void StirUpAutoStop (float speed) {
+	void StirUpAutoStopWhirlExam (float speed) {
 		StirUp(speed);
-		currentState = State.StirUpAutoStop;
+		currentState = State.StirUpAutoStopWhirlExam;
 	}
 
 	// WhirlExam => ContextExam by enlarging
@@ -185,7 +189,7 @@ public class Whirlwind : MonoBehaviour {
 	// do automatic state transitions here
 	void ComputeState () {
 		switch (currentState) {
-			case State.StirUpAutoStop:
+			case State.StirUpAutoStopWhirlExam:
 				if (IsDoneStirUp) {
 					SlowToStopWhirlExam();
 				}
@@ -324,7 +328,7 @@ public class Whirlwind : MonoBehaviour {
 
 		if (!isEnding) {
 			LoadNewItems(defaultIds);
-			StirUpAutoStop(Global.StirUpSpeed);
+			StirUpAutoStopWhirlExam(Global.StirUpSpeed);
 		}
 
 		LogUserInput();

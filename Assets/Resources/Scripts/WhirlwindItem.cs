@@ -18,7 +18,7 @@ public class WhirlwindItem : MonoBehaviour {
 	Vector3 idlePosition;
 
 	// state machine
-	enum State { Idle, StirUp, SlowToStop, WhirlExam, ContextExam, StirUpByShift, End, Frozen };
+	enum State { Idle, StirUp, SlowToStop, WhirlExam, ContextExam, StirUpByShift, End };
 	State currentState;
 		
 	// internal data reprensentations
@@ -107,7 +107,6 @@ public class WhirlwindItem : MonoBehaviour {
 		this.speed = speed;
 		this.slot = slot;
 		isInteractable = false;
-		//slot.GetComponent<WhirlwindBeltSlot>().EnableCollider(true);
 		rigidbody.useGravity = false;
 		collider.enabled = false;
 		Vector3 v = new Vector3(RandomAngularVelocityRange, 
@@ -178,11 +177,9 @@ public class WhirlwindItem : MonoBehaviour {
 	}
 
 	public void End () {
-		Debug.Assert(slot != null);
 		Vector3 v;
 
 		isLockedToSlot = false;
-		slot.GetComponent<WhirlwindBeltSlot>().EnableCollider(false);
 		slot = null;
 		isInteractable = false;
 		currentState = State.End;
