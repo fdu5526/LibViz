@@ -12,9 +12,14 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	public float direction;
 	
 	// internal variables
+	bool isStirup;
 	bool shouldSlowsDown;
 	float slowDownLerpFactor;
 	float baseSlowDownLerpFactor = 0.1f;
+
+	bool isGoingUp;
+	int bobbleLifespan;
+	const int maxBobbleLifespan = 30;
 
 	// properties
 	Transform center;
@@ -47,6 +52,19 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		p = transform.position;
 		d = center.position - p;
 		d2 = new Vector2(d.x, d.z);
+
+		if (isStirup && !shouldSlowsDown) {
+			bobbleLifespan--;
+			dy = isGoingUp ? 0.2f : -0.2f;
+			if (bobbleLifespan <= 0) {
+				bobbleLifespan = maxBobbleLifespan;
+				isGoingUp = !isGoingUp;
+			}
+		} else {
+			float h = Mathf.Lerp(p.y, height, 0.5f);
+			p.y = h;
+			transform.position = p;
+		}
 
 		// small corrections to prevent items from escaping orbit
 		d2n = d2.normalized;
@@ -87,6 +105,8 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	}
 
 	public void StirUp () {
+		isStirup = true;
+		isGoingUp = UnityEngine.Random.Range(0f,1f) > 0.5f;
 		speed = Global.SpinSpeed * height / 5f;
 		direction = 1f;
 		shouldSlowsDown = false;
