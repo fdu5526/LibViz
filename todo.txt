@@ -20,6 +20,3 @@ interaction
 
 	scrolling up and down the whirlwind
 	whirling the whirlwind
-
-	in stirup (infinite spin), make objects more organic movement
-		aka move them up and down
