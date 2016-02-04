@@ -8,14 +8,20 @@ public class SearchSlot : MonoBehaviour, IBeginDragHandler, IDropHandler {
 	int index;
 
 	bool isFilled;
+	bool isSelected;
 	Whirlwind whirlwind;
 
 	// Use this for initialization
 	void Start () {
 		index = transform.GetSiblingIndex();
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
+		isFilled = false;
+		isSelected = false;
 	}
 
+	public void SetDraggedSearchItem (SearchWhirlwindItem s) {
+		GetComponent<Image>().sprite = s.sprite;
+	}
 
 	public int Index { get { return index; } }
 
@@ -26,12 +32,6 @@ public class SearchSlot : MonoBehaviour, IBeginDragHandler, IDropHandler {
 	}
 	
 	public void OnDrop(PointerEventData eventData) {
-		if (!isFilled) {
-			GetComponent<Image>().sprite = whirlwind.EnlargedItemSprite;
-			whirlwind.AddEnlargedItemToSearch(index);
-			isFilled = true;
-		}
-		
 	}
 
 }

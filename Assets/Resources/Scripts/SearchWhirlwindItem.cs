@@ -2,11 +2,11 @@ using UnityEngine;
 using System.Collections;
 
 public class SearchWhirlwindItem {
-	public WhirlwindItem wwItem;
-	public bool isSelected;
+	public Sprite sprite;
+	public string id;
 
 	public SearchWhirlwindItem (WhirlwindItem wwItem) {
-		this.wwItem = wwItem;
-		this.isSelected = true;
+		id = wwItem.name;
+		sprite = wwItem.ItemSprite;
 	}
 }

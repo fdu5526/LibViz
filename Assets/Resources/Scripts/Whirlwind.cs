@@ -22,7 +22,8 @@ public class Whirlwind : MonoBehaviour {
 	// for enlarge and fullscreen selection
 	MainCamera mainCamera;
 	WhirlwindItem enlargedItem;
-	GameObject SearchDragDrop;
+	SearchWhirlwindItem draggedSearchItem;
+	GameObject searchUI;
 	GameObject enlargedSelectionUI;
 	GameObject fullscreenSelectionUI;
 
@@ -40,11 +41,12 @@ public class Whirlwind : MonoBehaviour {
 	void Start () {
 		currentState = State.Idle;
 		userInputTimer = new Timer(60f);
+		draggedSearchItem = null;
 		itemsInSearch = new List<SearchWhirlwindItem>();
 
 		// establish enlarge and fullscreen game objects
 		mainCamera = GameObject.Find("Main Camera").GetComponent<MainCamera>();
-		SearchDragDrop = GameObject.Find("SearchDragDrop");
+		searchUI = GameObject.Find("SearchUI");
 		enlargedSelectionUI = GameObject.Find("EnlargedSelectionUI");
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 		fullscreenSelectionUI = GameObject.Find("FullscreenSelectionUI");
@@ -338,6 +340,10 @@ public class Whirlwind : MonoBehaviour {
 		LogUserInput();
 	}
 
+	public bool IsDraggingSearchItem { get { return draggedSearchItem != null; } }
+
+	public SearchWhirlwindItem DraggedSearchItem { get { return draggedSearchItem; } }
+
 	public Sprite EnlargedItemSprite {
 		get {
 			Debug.Assert(IsEnlargedOrFullscreen);
@@ -351,7 +357,8 @@ public class Whirlwind : MonoBehaviour {
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled ||
 								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 
-		SearchDragDrop.GetComponent<SearchDragDrop>().EnableDragShadow(enlargedItem.ItemSprite);
+		draggedSearchItem = new SearchWhirlwindItem(enlargedItem);
+		searchUI.GetComponent<SearchDragDrop>().EnableDragShadow(enlargedItem.ItemSprite);
 	}
 
 	// user starts dragging an item to search bar
@@ -360,24 +367,17 @@ public class Whirlwind : MonoBehaviour {
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled || 
 								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 
-		SearchDragDrop.GetComponent<SearchDragDrop>().DisableDragShadow();
+		draggedSearchItem = null;
+		searchUI.GetComponent<SearchDragDrop>().DisableDragShadow();
 	}
 
+	// add currently enlarged item into the search
 	public void AddEnlargedItemToSearch (int index) {
 		Debug.Assert(IsEnlargedOrFullscreen);
 
 		index = Mathf.Min(index, itemsInSearch.Count);
-		SearchWhirlwindItem swwi = new SearchWhirlwindItem(enlargedItem);
-		itemsInSearch.Insert(index, swwi);
-	}
-
-	public void AddEnlargedItemToSearchEnd () {
-		Debug.Assert(IsEnlargedOrFullscreen);
-
-		int index = itemsInSearch.Count;
-		SearchWhirlwindItem swwi = new SearchWhirlwindItem(enlargedItem);
-		// TODO put it in the slot
-		itemsInSearch.Insert(index, swwi);
+		SearchWhirlwindItem i = new SearchWhirlwindItem(enlargedItem);
+		itemsInSearch.Insert(index, i);
 	}
 
 
