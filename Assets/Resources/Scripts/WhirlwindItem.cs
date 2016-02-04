@@ -14,7 +14,6 @@ public class WhirlwindItem : MonoBehaviour {
 	public Transform slot;
 
 	// generated
-	public WhirlWindItemData itemData;
 	Vector3 idlePosition;
 
 	// state machine

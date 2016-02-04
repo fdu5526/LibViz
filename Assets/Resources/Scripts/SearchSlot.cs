@@ -5,15 +5,19 @@ using System.Collections;
 
 public class SearchSlot : MonoBehaviour, IBeginDragHandler, IDropHandler {
 
-	public int index;
+	int index;
 
 	bool isFilled;
 	Whirlwind whirlwind;
 
 	// Use this for initialization
 	void Start () {
+		index = transform.GetSiblingIndex();
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 	}
+
+
+	public int Index { get { return index; } }
 
 	public void OnBeginDrag(PointerEventData eventData) {
 		if (isFilled) {
