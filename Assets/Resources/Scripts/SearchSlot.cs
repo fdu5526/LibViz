@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 
-public class SearchSlot : MonoBehaviour, IBeginDragHandler, IDropHandler {
+public class SearchSlot : MonoBehaviour, IBeginDragHandler {
 
 	int index;
 
@@ -21,17 +21,15 @@ public class SearchSlot : MonoBehaviour, IBeginDragHandler, IDropHandler {
 
 	public void SetDraggedSearchItem (SearchWhirlwindItem s) {
 		GetComponent<Image>().sprite = s.sprite;
+		isFilled = true;
+		index = transform.GetSiblingIndex();
 	}
 
 	public int Index { get { return index; } }
 
 	public void OnBeginDrag(PointerEventData eventData) {
+		print("dragging a slot");
 		if (isFilled) {
-
 		}
 	}
-	
-	public void OnDrop(PointerEventData eventData) {
-	}
-
 }

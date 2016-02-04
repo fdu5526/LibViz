@@ -6,9 +6,10 @@ using System.Collections.Generic;
 
 public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 	Whirlwind whirlwind;
-
-	List<SearchSlot> slots;
 	Transform content;
+
+	// keep slot sorted
+	List<SearchSlot> slots;
 
 	// Use this for initialization
 	void Start () {
@@ -26,9 +27,10 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 			SearchSlot newSlot = ((GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/SearchSlot"))).GetComponent<SearchSlot>();
 			newSlot.transform.SetParent(content);
 			newSlot.transform.localScale = Vector3.one;
-			newSlot.SetDraggedSearchItem(whirlwind.DraggedSearchItem);
 
 			// TODO search through all the slots, find the index to put this guy in
+			
+			newSlot.SetDraggedSearchItem(whirlwind.DraggedSearchItem);
 		}
 		
 	}
