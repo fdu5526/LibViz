@@ -55,7 +55,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 
 		if (isStirup && !shouldSlowsDown) {
 			bobbleLifespan--;
-			dy = isGoingUp ? 0.2f : -0.2f;
+			dy = isGoingUp ? 0.08f : -0.08f;
 			if (bobbleLifespan <= 0) {
 				bobbleLifespan = maxBobbleLifespan;
 				isGoingUp = !isGoingUp;

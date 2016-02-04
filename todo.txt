@@ -18,8 +18,6 @@ interaction
 			drill down - by putting into desk or typing in search
 			open up - whirl the whirlwind, repopulate with ||
 
-	rearranging of items
-		Q: under what condition do they rearrange?
 	scrolling up and down the whirlwind
 	whirling the whirlwind
 
