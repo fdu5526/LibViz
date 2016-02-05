@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
-	Camera camera;
 	Whirlwind whirlwind;
 	Transform content;
 	ScrollRect scrollRect;
@@ -15,7 +14,6 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 
 	// Use this for initialization
 	void Start () {
-		camera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		content = transform.Find("Viewport/Content");
 		slots = new List<SearchSlot>();
@@ -49,6 +47,7 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 				}
 			}
 
+			// put the slot in the right place, give it the right things
 			newSlot.SetDraggedSearchItem(whirlwind.DraggedSearchItem);
 			newSlot.transform.SetSiblingIndex(i);
 			slots.Insert(i, newSlot);
