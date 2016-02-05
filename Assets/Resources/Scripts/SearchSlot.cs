@@ -9,7 +9,6 @@ public class SearchSlot : MonoBehaviour, IBeginDragHandler {
 
 	bool isSelected;
 	Whirlwind whirlwind;
-	Camera camera;
 	SearchWhirlwindItem searchWhirlwindItem;
 
 	// Use this for initialization
@@ -18,7 +17,6 @@ public class SearchSlot : MonoBehaviour, IBeginDragHandler {
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		isSelected = false;
 		searchWhirlwindItem = null;
-		camera = GameObject.Find("Main Camera").GetComponent<Camera>();
 	}
 
 	public bool IsFilled { get { return searchWhirlwindItem != null; } }

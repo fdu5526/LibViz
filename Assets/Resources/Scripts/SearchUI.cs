@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class SearchDragDrop : MonoBehaviour {
+public class SearchUI : MonoBehaviour {
 
 	public bool isDraggingItem;
 	GameObject dragShadow;
