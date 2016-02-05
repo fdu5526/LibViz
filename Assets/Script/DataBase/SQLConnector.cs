@@ -103,8 +103,12 @@ public class SQLConnector : MonoBehaviour {
 	    	+ " `Publisher` LIKE '%" +  text + "%' OR"
 	    	+ " `Location` LIKE '%" +  text + "%' ";
 
-
 		return EvaluateBookByKeyWord( GetBookListByCommand(command) , text );
+	}
+
+	public List<BookInfo> Search(string text, Field field)
+	{
+		return Search(text,Global.Field2String(field));
 	}
 
 	public List<BookInfo> Search(string text, string field)
@@ -158,8 +162,7 @@ public class SQLConnector : MonoBehaviour {
 
 	public List<BookInfo> SearchByTag(string tag)
 	{
-
-		string command = "SELECT * FROM `" + tableName + "` WHERE " 
+		string command = "SELECT * FROM `" + tableName + "` WHERE "
 	    	+ " `Genre` LIKE '%" +  tag + "%' OR"
 	    	+ " `Topical Term` LIKE '%" +  tag + "%' OR"
 	    	+ " `Form Subdivision` LIKE '%" +  tag + "%' OR"
