@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
-public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
+public class SearchBar : MonoBehaviour, IDropHandler {
 	Whirlwind whirlwind;
 	Transform content;
 	ScrollRect scrollRect;
@@ -21,8 +21,11 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 		scrollRect.horizontalNormalizedPosition = 0f;
 	}
 
-	public void AddSlot () {
+	public void AddSlotAtEnd () {
 		// create a new slot
+
+		SearchWhirlwindItem s = new SearchWhirlwindItem(whirlwind.EnlargedItem);
+
 		SearchSlot newSlot = ((GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/SearchSlot"))).GetComponent<SearchSlot>();
 		newSlot.transform.SetParent(content);
 		newSlot.transform.localScale = Vector3.one;
@@ -31,13 +34,14 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 		int i = slots.Count;
 
 		// put the slot in the right place, give it the right things
-		newSlot.SetDraggedSearchItem(whirlwind.DraggedSearchItem);
+		newSlot.SetDraggedSearchItem(s);
 		newSlot.transform.SetSiblingIndex(i);
 		slots.Insert(i, newSlot);
 	}
 
 
-	public void AddSlot (float mouseX) {
+	// at a slot at where the mouse is, fill it in
+	void AddSlot (float mouseX) {
 		// create a new slot
 		SearchSlot newSlot = ((GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/SearchSlot"))).GetComponent<SearchSlot>();
 		newSlot.transform.SetParent(content);
@@ -78,9 +82,6 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 		}
 	}
 
-	public void OnBeginDrag(PointerEventData eventData) {
-		
-	}
 	
 	public void OnDrop(PointerEventData eventData) {
 		if (whirlwind.IsDraggingSearchItem) {

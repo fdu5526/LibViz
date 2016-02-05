@@ -7841,7 +7841,7 @@ Prefab:
     - target: {fileID: 11461442, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 303245549}
+      objectReference: {fileID: 1419908872}
     - target: {fileID: 11473796, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
@@ -7861,6 +7861,10 @@ Prefab:
     - target: {fileID: 22438042, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.011668742
+      objectReference: {fileID: 0}
+    - target: {fileID: 11461442, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddSlotAtEnd
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d5a9b44028065c4c8e4d7ad9ab0ef54, type: 2}
@@ -8493,7 +8497,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDraggingItem: 0
-  searchBar: {fileID: 0}
 --- !u!114 &1406233990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10940,7 +10943,7 @@ Prefab:
     - target: {fileID: 11473508, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 303245549}
+      objectReference: {fileID: 1419908872}
     - target: {fileID: 11407528, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -10984,6 +10987,10 @@ Prefab:
     - target: {fileID: 11478022, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_Size
       value: 0.57478005
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473508, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddSlotAtEnd
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}

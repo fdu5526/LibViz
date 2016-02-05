@@ -340,6 +340,13 @@ public class Whirlwind : MonoBehaviour {
 
 	public SearchWhirlwindItem DraggedSearchItem { get { return draggedSearchItem; } }
 
+	public WhirlwindItem EnlargedItem {
+		get {
+			Debug.Assert(IsEnlargedOrFullscreen);
+			return enlargedItem;
+		}
+	}
+
 	public Sprite EnlargedItemSprite {
 		get {
 			Debug.Assert(IsEnlargedOrFullscreen);
