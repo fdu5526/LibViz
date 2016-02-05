@@ -33,7 +33,7 @@ public class LogicManager : MonoBehaviour {
 	[SerializeField] Image loginBlack;
 	public void Login()
 	{
-		string res = connector.TryConnectSQL(userName.text, password.text) ;
+		string res = connector.TryConnectSQL(userName.text, password.text);
 		if (res == "")
 		//login success
 		{
@@ -128,6 +128,15 @@ public class LogicManager : MonoBehaviour {
 		ShowBookList(infos);
 	}
 
+
+	[SerializeField] InputField tagSearch;
+	public void SearchTag()
+	{
+		List<BookInfo> infos = connector.SearchByTag( tagSearch.text );
+
+		ShowBookList(infos);
+	}
+
 	public void RemoveAllChild(Transform root )
 	{
 		foreach(Transform t in root)
@@ -173,8 +182,10 @@ public class LogicManager : MonoBehaviour {
 					t.text = info.Author;
 				if (t.name == "Time")
 					t.text = info.Time.ToString();
-				if (t.name == "Description")
-					t.text = info.Description;
+				if (t.name == "Note")
+					t.text = info.Note;
+				if (t.name == "Genre")
+					t.text = info.genre+'-'+info.topical_term;
 				if (t.name == "Location")
 					t.text = info.Location;
 

@@ -77,7 +77,9 @@ public class SQLConnector : MonoBehaviour {
 			    {
 			    	BookInfo info = new BookInfo();
 
-			    	info.Init(reader.GetString(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(4),reader.GetString(3));
+			    	info.Init(reader.GetString(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3),reader.GetString(7)
+			    		,reader.GetString(14) , reader.GetString(9),reader.GetString(10), reader.GetString(11),reader.GetString(12),
+			    		reader.GetString(13) );
 			    	res.Add(info);
 			    }
 	    	}
@@ -87,15 +89,17 @@ public class SQLConnector : MonoBehaviour {
 	    	}
 	    }
 
+	    Debug.Log("Get a booklist contains " + res.Count + " books");
 		return res;
-	}
+ 	}
 
 	public List<BookInfo> Search(string text)
 	{
+		Debug.Log("search for " + text );
 		string command = "SELECT * FROM `" + tableName + "` WHERE " 
 	    	+ " `Title` LIKE '%" +  text + "%' OR"
 	    	+ " `Name` LIKE '%" +  text + "%' OR"
-	    	+ " `Description` LIKE '%" +  text + "%' OR"
+	    	+ " `Note` LIKE '%" +  text + "%' OR"
 	    	+ " `Publisher` LIKE '%" +  text + "%' OR"
 	    	+ " `Location` LIKE '%" +  text + "%' ";
 
@@ -137,17 +141,33 @@ public class SQLConnector : MonoBehaviour {
 		return EvaluateBookByBook( GetBookListByCommand(command) , book );
 	}
 
+
+	public List<BookInfo> Search(List<BookInfo> booklist)
+	{
+		if (booklist == null || booklist.Count <= 0 )
+			return new List<BookInfo>();
+
+		List<List<BookInfo>> bookSave = new List<List<BookInfo>>();
+		for(int i = 0 ; i < booklist.Count ; ++i)
+		{
+			bookSave.Add(Search(booklist[i]));
+		}
+
+		return EvaluateBookByBookList(bookSave,booklist);
+	}
+
 	public List<BookInfo> SearchByTag(string tag)
 	{
 
 		string command = "SELECT * FROM `" + tableName + "` WHERE " 
 	    	+ " `Genre` LIKE '%" +  tag + "%' OR"
-	    	+ " `Name` LIKE '%" +  tag + "%' OR"
-	    	+ " `Description` LIKE '%" +  tag + "%' OR"
-	    	+ " `Publisher` LIKE '%" +  tag + "%' OR"
-	    	+ " `Location` LIKE '%" +  tag + "%' ";
+	    	+ " `Topical Term` LIKE '%" +  tag + "%' OR"
+	    	+ " `Form Subdivision` LIKE '%" +  tag + "%' OR"
+	    	+ " `General Subdivision` LIKE '%" +  tag + "%' OR"
+	    	+ " `Chronological Subdivision` LIKE '%" +  tag + "%' OR"
+	    	+ " `Geographic Subdivision` LIKE '%" +  tag + "%' ";
 
-		return EvaluateBookByKeyWord( GetBookListByCommand(command) , tag );
+		return EvaluateBookByKeyTag( GetBookListByCommand(command) , tag );
 
 	}
 
@@ -161,7 +181,7 @@ public class SQLConnector : MonoBehaviour {
 				b.v += 3f;
 			if (b.Author.Contains(keyWord) || b.Location.Contains(keyWord))
 				b.v += 2f;
-			if (b.Description.Contains(keyWord))
+			if (b.Note.Contains(keyWord))
 				b.v += 1f;
 		}
 
@@ -203,6 +223,39 @@ public class SQLConnector : MonoBehaviour {
 				b.v += 2f;
 		}
 		List<BookInfo> res = new List<BookInfo>(list);
+		res.Sort((x,y) => x.v.CompareTo(y.v));
+		return res;
+	}
+
+	public List<BookInfo> EvaluateBookByBookList(List<List<BookInfo>> list , List<BookInfo> keyBookList)
+	{
+		List<BookInfo> res = new List<BookInfo>();
+
+		for(int i = 0 ; i < list.Count && i < keyBookList.Count; ++ i )
+		{
+			for (int j = 0 ; j < list[i].Count ; ++ j)
+			{
+				BookInfo newBook = null;
+				foreach(BookInfo b in res)
+				{
+					if (b.Title.Equals(list[i][j]))
+					{
+						newBook = b;
+						break;
+					}
+				}
+				if (newBook == null )
+				{
+					newBook = list[i][j];
+					res.Add(newBook);
+				}else
+				{
+					newBook.v += list[i][j].v;
+				}
+
+			}
+		}
+
 		res.Sort((x,y) => x.v.CompareTo(y.v));
 		return res;
 	}
