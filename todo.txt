@@ -21,5 +21,12 @@ interaction
 				drill down - by putting into desk or typing in search
 				open up - whirl the whirlwind, repopulate with ||
 
+		5 belts
+			Author
+			Time
+			topical_term
+			geographic_subdivision
+			genre
+
 	scrolling up and down the whirlwind
 	whirling the whirlwind
