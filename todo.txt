@@ -14,12 +14,12 @@ interaction
 	search bar
 		move objects out of the bar
 		prevent duplicates
-		expandable search bar
+		expandable search bar (the more you add the longer)
 		select/deselect slot
-		
-		2 ways of searching
-			drill down - by putting into desk or typing in search
-			open up - whirl the whirlwind, repopulate with ||
+		searching hooray
+			2 ways of searching
+				drill down - by putting into desk or typing in search
+				open up - whirl the whirlwind, repopulate with ||
 
 	scrolling up and down the whirlwind
 	whirling the whirlwind
