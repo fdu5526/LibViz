@@ -108,6 +108,10 @@ public class SQLConnector : MonoBehaviour {
 
 	public List<BookInfo> Search(string text, Field field)
 	{
+		if (field.Equals(Field.TIME))
+		{
+			return Search(Int32.Parse(text),Global.Field2String(field), 0, 2);
+		}
 		return Search(text,Global.Field2String(field));
 	}
 
@@ -121,7 +125,7 @@ public class SQLConnector : MonoBehaviour {
 	    return GetBookListByCommand(command);
 	}
 
-	public List<BookInfo> Search(int time , string field , int relation = 1)
+	public List<BookInfo> Search(int time , string field , int relation = 1 , int range = 2)
 	{
 		string opea=" = ";
 		if (relation < 0) opea = " <= ";
@@ -129,6 +133,14 @@ public class SQLConnector : MonoBehaviour {
 
 		string command = "SELECT * FROM `" + tableName + "` WHERE " 
 	    	+ " `" + field + "` " + opea + time.ToString();
+
+	    if (relation == 0 )
+	    {
+			command = "SELECT * FROM `" + tableName + "` WHERE " 
+	    	+ "( `" + field + "` " + "<=" + (time + range).ToString() + " AND "
+	    	+ " `" + field + "` " + ">=" + (time - range).ToString() + ")";
+
+	    }
 
 	    return GetBookListByCommand(command);
 	}
