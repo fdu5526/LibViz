@@ -39,21 +39,18 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 			int i = 0;
 			float prevX = 0f;
 			float mouseX = eventData.position.x;
-			bool found = false;
 			for (int j = 0; j < slots.Count; j++) {
 				float x = slots[j].transform.position.x;
 				if (prevX <= mouseX && mouseX <= x) {
-					found = true;
-					i = j;
 					break;
 				} else {
+					i++;
 					prevX = x;
 				}
 			}
-			i = found ? i : slots.Count;
 
-			newSlot.transform.SetSiblingIndex(i);
 			newSlot.SetDraggedSearchItem(whirlwind.DraggedSearchItem);
+			newSlot.transform.SetSiblingIndex(i);
 			slots.Insert(i, newSlot);
 		}
 		
