@@ -5,17 +5,22 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
+	Camera camera;
 	Whirlwind whirlwind;
 	Transform content;
+	ScrollRect scrollRect;
 
 	// keep slot sorted
 	List<SearchSlot> slots;
 
 	// Use this for initialization
 	void Start () {
+		camera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		content = transform.Find("Viewport/Content");
 		slots = new List<SearchSlot>();
+		scrollRect = GetComponent<ScrollRect>();
+		scrollRect.horizontalNormalizedPosition = 0f;
 	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
@@ -25,18 +30,27 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 	public void OnDrop(PointerEventData eventData) {
 		if (whirlwind.IsDraggingSearchItem) {
 
-			print(eventData.pressPosition);
-
 			// create a new slot
 			SearchSlot newSlot = ((GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/SearchSlot"))).GetComponent<SearchSlot>();
 			newSlot.transform.SetParent(content);
 			newSlot.transform.localScale = Vector3.one;
 
-			// TODO search through all the slots, find the index to put this guy in
+			// search through all the slots, find the index to put this guy in
 			int i = 0;
-			for (i = 0; i < slots.Count; i++) {
-
+			float prevX = 0f;
+			float mouseX = eventData.position.x;
+			bool found = false;
+			for (int j = 0; j < slots.Count; j++) {
+				float x = slots[j].RectTransformPositionX;
+				if (prevX <= mouseX && mouseX <= x) {
+					found = true;
+					i = j;
+					break;
+				} else {
+					prevX = x;
+				}
 			}
+			i = found ? i : slots.Count;
 
 			newSlot.transform.SetSiblingIndex(i);
 			newSlot.SetDraggedSearchItem(whirlwind.DraggedSearchItem);
