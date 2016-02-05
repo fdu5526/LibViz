@@ -21,6 +21,16 @@ public class SearchBar : MonoBehaviour, IDropHandler {
 		scrollRect.horizontalNormalizedPosition = 0f;
 	}
 
+
+	void IncreaseBarByOne () {
+		if (slots.Count >= 6) {
+			Vector2 v = content.GetComponent<RectTransform>().sizeDelta;
+			v.x = v.x + 144f;
+			content.GetComponent<RectTransform>().sizeDelta = v;
+		}
+		
+	}
+
 	public void AddSlotAtEnd () {
 		// create a new slot
 
@@ -37,6 +47,8 @@ public class SearchBar : MonoBehaviour, IDropHandler {
 		newSlot.SetDraggedSearchItem(s);
 		newSlot.transform.SetSiblingIndex(i);
 		slots.Insert(i, newSlot);
+
+		IncreaseBarByOne();
 	}
 
 
@@ -67,6 +79,8 @@ public class SearchBar : MonoBehaviour, IDropHandler {
 		newSlot.SetDraggedSearchItem(whirlwind.DraggedSearchItem);
 		newSlot.transform.SetSiblingIndex(i);
 		slots.Insert(i, newSlot);
+
+		IncreaseBarByOne();
 	}
 
 
