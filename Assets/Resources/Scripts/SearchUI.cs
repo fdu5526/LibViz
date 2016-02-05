@@ -5,12 +5,15 @@ using System.Collections;
 public class SearchUI : MonoBehaviour {
 
 	public bool isDraggingItem;
+	public SearchBar searchBar;
+
 	GameObject dragShadow;
 	Whirlwind whirlwind;
 
 	// Use this for initialization
 	void Start () {
 		dragShadow = transform.Find("DragShadow").gameObject;
+		searchBar = transform.Find("SearchBar").GetComponent<SearchBar>();
 		dragShadow.GetComponent<Image>().enabled = false;
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 	}

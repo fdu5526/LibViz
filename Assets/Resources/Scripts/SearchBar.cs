@@ -21,6 +21,50 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 		scrollRect.horizontalNormalizedPosition = 0f;
 	}
 
+	public void AddSlot () {
+		// create a new slot
+		SearchSlot newSlot = ((GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/SearchSlot"))).GetComponent<SearchSlot>();
+		newSlot.transform.SetParent(content);
+		newSlot.transform.localScale = Vector3.one;
+
+		// put at the end
+		int i = slots.Count;
+
+		// put the slot in the right place, give it the right things
+		newSlot.SetDraggedSearchItem(whirlwind.DraggedSearchItem);
+		newSlot.transform.SetSiblingIndex(i);
+		slots.Insert(i, newSlot);
+	}
+
+
+	public void AddSlot (float mouseX) {
+		// create a new slot
+		SearchSlot newSlot = ((GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/SearchSlot"))).GetComponent<SearchSlot>();
+		newSlot.transform.SetParent(content);
+		newSlot.transform.localScale = Vector3.one;
+
+		// search through all the slots, find the index to put this guy in
+		int i = 0;
+		float prevX = 0f;
+		for (int j = 0; j < slots.Count; j++) {
+			float x = slots[j].transform.position.x;
+			if (prevX <= mouseX && mouseX <= x) {
+
+				//TODO remove duplicates if necessary?
+
+				break;
+			} else {
+				i++;
+				prevX = x;
+			}
+		}
+
+		// put the slot in the right place, give it the right things
+		newSlot.SetDraggedSearchItem(whirlwind.DraggedSearchItem);
+		newSlot.transform.SetSiblingIndex(i);
+		slots.Insert(i, newSlot);
+	}
+
 
 	public List<BookInfo> SelectedBookInfos {
 		get {
@@ -41,34 +85,8 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 	public void OnDrop(PointerEventData eventData) {
 		if (whirlwind.IsDraggingSearchItem) {
 
-			// create a new slot
-			SearchSlot newSlot = ((GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/SearchSlot"))).GetComponent<SearchSlot>();
-			newSlot.transform.SetParent(content);
-			newSlot.transform.localScale = Vector3.one;
-
-			// search through all the slots, find the index to put this guy in
-			int i = 0;
-			float prevX = 0f;
-			float mouseX = eventData.position.x;
-			for (int j = 0; j < slots.Count; j++) {
-				float x = slots[j].transform.position.x;
-				if (prevX <= mouseX && mouseX <= x) {
-
-					//TODO remove duplicates if necessary?
-
-					break;
-				} else {
-					i++;
-					prevX = x;
-				}
-			}
-
-			// put the slot in the right place, give it the right things
-			newSlot.SetDraggedSearchItem(whirlwind.DraggedSearchItem);
-			newSlot.transform.SetSiblingIndex(i);
-			slots.Insert(i, newSlot);
+			AddSlot(eventData.position.x);
 		}
-		
 	}
 
 }

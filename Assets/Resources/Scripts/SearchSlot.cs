@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 
-public class SearchSlot : MonoBehaviour, IBeginDragHandler {
+public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler {
 
 	int index;
 
@@ -24,7 +24,7 @@ public class SearchSlot : MonoBehaviour, IBeginDragHandler {
 		get { return isSelected; } 
 	}
 
-	public void FlipSelection () {
+	void FlipSelection () {
 		isSelected = !isSelected;
 	}
 
@@ -46,6 +46,11 @@ public class SearchSlot : MonoBehaviour, IBeginDragHandler {
 
 	public void DestroySelf () {
 		Destroy(this.gameObject);
+	}
+
+	public void OnPointerClick(PointerEventData eventData) {
+		print("yay");
+		FlipSelection();
 	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
