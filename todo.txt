@@ -11,9 +11,11 @@ MxR - look at codec, look how complicated
 
 
 interaction
-	search box
-		put objects in box
-		searching reorganization / rearrangement
+	search bar
+		move objects out of the bar
+		prevent duplicates
+		expandable search bar
+		
 		2 ways of searching
 			drill down - by putting into desk or typing in search
 			open up - whirl the whirlwind, repopulate with ||

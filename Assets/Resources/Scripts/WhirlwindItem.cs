@@ -13,6 +13,9 @@ public class WhirlwindItem : MonoBehaviour {
 	public float height;
 	public Transform slot;
 
+	// for searching
+	public BookInfo bookInfo;
+
 	// generated
 	Vector3 idlePosition;
 

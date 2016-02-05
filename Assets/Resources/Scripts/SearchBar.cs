@@ -41,7 +41,7 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 			float mouseX = eventData.position.x;
 			bool found = false;
 			for (int j = 0; j < slots.Count; j++) {
-				float x = slots[j].RectTransformPositionX;
+				float x = slots[j].transform.position.x;
 				if (prevX <= mouseX && mouseX <= x) {
 					found = true;
 					i = j;

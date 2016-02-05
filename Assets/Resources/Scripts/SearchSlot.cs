@@ -27,13 +27,6 @@ public class SearchSlot : MonoBehaviour, IBeginDragHandler {
 		set { isSelected = value; }
 	}
 
-	public float RectTransformPositionX {
-		get {
-			//return GetComponent<RectTransform>().localPosition.x;
-			return (transform.position).x;
-		}
-	}
-
 	public void SetDraggedSearchItem (SearchWhirlwindItem s) {
 		searchWhirlwindItem = s;
 		GetComponent<Image>().sprite = s.sprite;

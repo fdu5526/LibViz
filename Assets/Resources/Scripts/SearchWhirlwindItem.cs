@@ -3,11 +3,10 @@ using System.Collections;
 
 public class SearchWhirlwindItem {
 	public Sprite sprite;
-	public string id;
+	public BookInfo bookInfo;
 
 	public SearchWhirlwindItem (WhirlwindItem wwItem) {
-		// TODO have a better way of getting ID
-		id = wwItem.name;
+		bookInfo = wwItem.bookInfo;
 		sprite = wwItem.ItemSprite;
 	}
 }
