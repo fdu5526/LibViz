@@ -140,7 +140,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 	// belt has reached optimal position, slow all items and slots
-	void SlowToStopNow (bool isFastStop) {
+	void SlowToStopFast (bool isFastStop) {
 		isSlowingDown = false;
 		for (int i = 0; i < wwItems.Count; i++) {
 			if (IndexIsInSlots(i)) {
@@ -148,7 +148,7 @@ public class WhirlwindBelt : MonoBehaviour {
 			}
 		}
 		for (int i = 0; i < slots.Length; i++) {
-			slots[i].SlowToStop(isFastStop);
+			slots[i].SlowToStopFast(isFastStop);
 		}
 	}
 
@@ -210,8 +210,8 @@ public class WhirlwindBelt : MonoBehaviour {
 
 /////// public functions used by state transition //////
 	
-	public bool IsAtHead (Transform slot) {
-		bool isHead = (slot.position - wwItems[headIndex].slot.position).sqrMagnitude < 1f;
+	public bool IsAtHead (WhirlwindBeltSlot slot) {
+		bool isHead = slot == slots[0];
 		return isHead;
 	}
 
@@ -225,6 +225,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	public void StirUp (float speed, bool shouldLoadItems) {
 		isOperating = true;
 		for (int i = 0; i < slots.Length; i++) {
+			slots[i].EnableCollider(false);
 			slots[i].StirUp();
 		}
 		if (shouldLoadItems) {
@@ -281,11 +282,13 @@ public class WhirlwindBelt : MonoBehaviour {
 		isSlowingDown = true;
 		this.isTransitioningToContextExam = slowToStopLater;
 		beltEnd.Enable(true);
+		for (int i = 0; i < slots.Length; i++) {
+			slots[i].EnableCollider(true);
+		}
 
 		if (!slowToStopLater) {
-			SlowToStopNow(false);
+			SlowToStopFast(false);
 		}
-		
 	}
 
 	// whether all the slots are at velocity zero
@@ -368,9 +371,9 @@ public class WhirlwindBelt : MonoBehaviour {
 		
 		// swirl belt to correct locatin
 		if (isSlowingDown && isTransitioningToContextExam) {
-			if (beltEnd.mostRecentCollisionIsTail) {
+			if (beltEnd.mostRecentCollisionIsHead) {
 				label.Fade(isOperating);
-				SlowToStopNow(true);
+				SlowToStopFast(true);
 			}
 		}
 

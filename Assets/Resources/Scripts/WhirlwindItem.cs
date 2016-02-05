@@ -107,7 +107,7 @@ public class WhirlwindItem : MonoBehaviour {
 		this.speed = speed;
 		this.slot = slot;
 		isInteractable = false;
-		slot.GetComponent<WhirlwindBeltSlot>().AttachItem();
+		//slot.GetComponent<WhirlwindBeltSlot>().EnableCollider(true);
 		rigidbody.useGravity = false;
 		collider.enabled = false;
 		Vector3 v = new Vector3(RandomAngularVelocityRange, 
@@ -161,8 +161,8 @@ public class WhirlwindItem : MonoBehaviour {
 	}
 
 	public void Enlarge () {
-		whirlwind.EnterEnlargeSelection(this);
 		isEnlarged = true;
+		whirlwind.EnterEnlargeSelection(this);
 	}
 
 	public void UnEnlarge () {
@@ -182,7 +182,7 @@ public class WhirlwindItem : MonoBehaviour {
 		Vector3 v;
 
 		isLockedToSlot = false;
-		slot.GetComponent<WhirlwindBeltSlot>().DettachItem();
+		slot.GetComponent<WhirlwindBeltSlot>().EnableCollider(false);
 		slot = null;
 		isInteractable = false;
 		currentState = State.End;
@@ -198,7 +198,9 @@ public class WhirlwindItem : MonoBehaviour {
 	}
 
 	public void DestroyInSeconds(float s) {
-		Invoke("DestroyItem", s);
+		if (!isEnlarged) {
+			Invoke("DestroyItem", s);
+		}
 	}
 
 	public void ResetToIdle () {
@@ -207,6 +209,7 @@ public class WhirlwindItem : MonoBehaviour {
 		rigidbody.velocity = Vector3.zero;
 		rigidbody.angularVelocity = Vector3.zero;
 		rigidbody.rotation = Quaternion.identity;
+		itemImage.GetComponent<Renderer>().material.color = Color.white;
 	}
 
 	public Sprite ItemSprite {

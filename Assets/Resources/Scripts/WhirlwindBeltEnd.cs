@@ -6,7 +6,7 @@ public class WhirlwindBeltEnd : MonoBehaviour {
 
 	public WhirlwindBelt belt;			// the belt this is a member of
 	public bool isInContextExam;
-	public bool mostRecentCollisionIsTail;
+	public bool mostRecentCollisionIsHead;
 
 
 	// Use this for initialization
@@ -16,6 +16,7 @@ public class WhirlwindBeltEnd : MonoBehaviour {
 
 
 	public void Enable (bool isEnabled) {
+		mostRecentCollisionIsHead = false;
 		GetComponent<Collider>().enabled = isEnabled;
 	}
 
@@ -34,12 +35,12 @@ public class WhirlwindBeltEnd : MonoBehaviour {
 		Debug.Assert(belt != null);
 		WhirlwindBeltSlot w = other.GetComponent<WhirlwindBeltSlot>();
 
-		bool isHead = belt.IsAtHead(other.transform);
+		bool isHead = belt.IsAtHead(w);
 		bool isTail = belt.IsAtTail(other.transform);
 		if (isInContextExam) {
 			Shift(w, isHead, isTail);
 		}
-		mostRecentCollisionIsTail = isTail;
+		mostRecentCollisionIsHead = isHead;
 	}
 
 	// collision is checked on enter and exit

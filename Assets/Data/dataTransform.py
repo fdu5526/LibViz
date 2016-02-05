@@ -1,6 +1,6 @@
 import sys
 
-inFilePath = 'ori/SPECCOLL.ITEMS.20151117'
+inFilePath = 'ori/new_records_2_01_16.txt'
 inFile = open(inFilePath , 'r')
 
 outFilePath = 'sql/data.sql'

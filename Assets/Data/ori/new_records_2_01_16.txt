@@ -1,0 +1,480 @@
+*** DOCUMENT BOUNDARY ***
+FORM=MARC
+.000. |aamIa0n a
+.001. |aocn823521196
+.008. |a130107s2012    caua          000 p eng d
+.035.   |a(OCoLC)823521196
+.040.   |aCSL|cCSL
+.049.   |aCSL4
+.090.   |aPR4611|b.B63 2012
+.100. 1 |aThomas, Donna|q(Donna Sue)
+.245. 12|aA boat beneath a sunny sky /|cLewis Caroll ; calligraphy,
+illustrations, Donna Thomas ; handmade paper, Peter Thomas.
+.260.   |aSanta Cruz, CA :|bPeter & Donna Thomas,|c2012.
+.300.   |a[6] leaves :|bcol. ill. ;|c14 x 18 cm., in case 15 x 18 x 3 cm.
+.500.   |aTitle from container; imprint from Colophon.
+.500.   |aHoused in a beige cloth covered slipcase with an illustrated paper
+label. Illustrations and calligraphy by Donna Thomas. Bound in one-quarter deer
+hide over Japanese paper boards. Lettering on beige cloth covered  insert.
+|5CLSU
+.520.   |aPoem by Lewis Carroll, describing the boat ride with Alice Liddell,
+which inspired the work, Alice's adventures in Wonderland.
+.541.   |aG. Edward Cassady, M.D. and Margaret Elizabeth Cassady, R.N. ; Gift ;
+2012.|5CLSU
+.590.   |aPart of the G. Edward Cassady, M.D. and Margaret Elizabeth Cassady,
+R.N. Lewis Carroll Collection. Unnumbered, unsigned.
+.650.  0|aArtists' books|vSpecimens.
+.650.  0|aAlice (Fictitious character : Carroll)|vPoetry.
+.700. 1 |aThomas, Peter|q(Peter R.)
+.700. 1 |aCarroll, Lewis,|d1832-1898|tBoat beneath a sunny sky
+.710. 2 |aPeter & Donna Thomas (Firm)
+.710. 2 |aG. Edward Cassady Collection.|5CLSU
+.949.   |aPR4611 .B63 2012|wLC|c1|hSPEHORENDD|i31275053061041
+.994.   |a01|bCSL
+.596.   |a23
+*** DOCUMENT BOUNDARY ***
+FORM=MARC
+.000. |aamIanc a
+.001. |aocm41277382
+.008. |a990429s1998    caua          000 0 eng d
+.040.   |aORU|cORU|dCSL
+.049.   |aCSL4
+.090.   |aN7433.4.C55|bB66 1998
+.100. 1 |aChen, Julie.
+.245. 10|aBon bon mots :|ba fine assortment of books /|cdesigned, written, and
+produced by Julie Chen.
+.246. 30|aFine assortment of books
+.260.   |aBerkeley, Calif. :|bFlying Fish Press,|c1998.
+.300.   |a1 box :|bcol. ill. ;|c18 x 26 x 5 cm.
+.500.   |aThe box, which is designed to resemble a candy box, contains 3
+miniature books (2 of which are accordion folded), 1 folded octagonal object
+with text, and a small box with text containing 5 copper balls which are to be
+placed into 5 holes on box's bottom surface. All are designed to resemble
+pieces of candy and are nested in a cloth which fits over partitioned bottom of
+box. A leaf with box's contents is mounted on the inside lid.
+.500.   |aTitle from box.
+.500.   |aLetterpress printed in an edition of 100 copies.
+.505. 0 |aEither/Or -- Social graces -- Elegy -- Life cycle -- Labyrinth.
+.590.   |aFeatured in USC's exhibition, 100 Artists' books, January 26-May 15,
+2007.
+.650.  0|aArtists' books|vSpecimens
+.650.  0|aMiniature books|vSpecimens.
+.650.  0|aCandy|vMiscellanea.
+.650.  0|aCandy containers|vMiscellanea.
+.655.  7|aArtists' books|zCalifornia|zBerkeley|y1998.|2rbgenr
+.655.  7|aAccordion fold format|zCalifornia|zBerkeley|y1998.|2rbbin
+.710. 2 |aFlying Fish Press.
+.949.   |aN7433.4.C55B66 1998|wLC|c1|hSPERARLUSE
+.994.   |a01|bCSL
+.596.   |a23
+*** DOCUMENT BOUNDARY ***
+FORM=MARC
+.000. |aamIa0n a
+.001. |aocn519663378
+.008. |a100218s2004    caua          000 0 eng d
+.035.   |a(OCoLC)519663378
+.040.   |aCSL|beng|cCSL
+.043.   |an-us-ca
+.049.   |aCSL4
+.090.   |aN7433.4 .M86|bC38 2005
+.100. 1 |aMunson, Howard.
+.245. 10|aCathedral /|cHoward Munson.
+.260.   |a[San Francisco :|bHoward Munson],|c2004.
+.300.   |a[10] p. :|bill. ;|c29 cm.
+.500.   |aFour double-page pop-ups, of purely imagined cathedrals, which can be
+viewed one at a time in double-paged spreads.
+.500.   |aBinding closure buttons with black stretch loops. Boards half bound
+in red cloth with paper illustrated architectural drawings.
+.500.   |aSigned by the author.|5CLSU
+.650.  0|aCathedrals.
+.650.  0|aPop-up books|vSpecimens.
+.650.  0|aArtists' books|vSpecimens.
+.949.   |aN7433.4 .M86C38 2005|wLC|c1|hSPEVLTENDD|i31275040338007
+.994.   |a01|bCSL
+.596.   |a23
+*** DOCUMENT BOUNDARY ***
+FORM=VM
+.000. |armIa0n a
+.001. |aocn191732749
+.007. |akc cmm
+.008. |a080131s2006    njunnn            aneng d
+.035.   |a(OCoLC)191732749
+.040.   |aCSL|cCSL
+.049.   |aCSLG
+.090.   |aN7433.4.R543|bC43 2006
+.100. 1 |aRiker, Maryann J.
+.245. 10|aChangeling /|cM. Riker.
+.260.   |a[Phillipsburg, N.J. :|bMaryann Riker,|c2006]
+.300.   |a1 cabinet-shaped sculpture :|bill. ;|c6 x 9 x 6 cm.
+.500.   |aMixed media artist's sculpture; one-of-a-kind. A cabinet-shaped
+structure with two illustrated panels (moon, tape measure, butterfly). These
+unfold and reveal an intimate interior.  Collage on exterior and interior
+walls; interior contains mirrors on each panel, plus one shelf with mounted
+seashell. A third mirror and second seashell stand inside the slotted cabinet.
+.590.   |aUSC Libraries Special Collections' copy is signed by the artist.
+.600. 10|aRiker, Maryann J.
+.650.  0|aArtists' books|vSpecimens.
+.650.  0|aMetamorphosis in art.
+.655.  7|aArtists' books|zUnited States|y20th century.|2rbgenr
+.949.   |aN7433.4.R543C43 2006|wLC|c1|hSPERARENDD|i31275044255454
+.994.   |a01|bCSL
+.596.   |a23
+*** DOCUMENT BOUNDARY ***
+FORM=MANUSCRPT
+.000. |atcIa0naa
+.001. |aocn681796264
+.008. |a101117i19571994cau           000 0 eng d
+.035.   |a(OCoLC)681796264
+.040.   |aCSL|beng|cCSL|dCSL
+.043.   |an-us-ca
+.049.   |aCSL4
+.099.   |aCollection no. 0155
+.100. 1 |aBukowski, Charles.
+.245. 10|aCharles Bukowski papers,|f1957-1994, undated.
+.270.   |aSpecial Collections|aUSC Libraries|aUniversity of Southern California
+|aUniversity Park|bLos Angeles|cCA|e90089-0189|k1-213-740-5900|l1-213-740-2343
+|mspecol@usc.edu
+.300.   |a15|flinear ft.|a(15|fboxes)
+.351.   |bThe collection is generally arranged by type of material.
+.506. 1 |aCOLLECTION STORED OFF-SITE. Advance notice required for access.
+.520. 2 |aCharles Bukowski papers consists of drafts of Women, Factotum, Ham on
+Rye, Post Office, and Barfly; screenplays based on Bukowski's (1920-1994)
+fiction; periodical appearances; tape recordings; photographs; and ephemera.
+.524. 8 |a[Box/folder# or item name], Charles Bukowski papers, Collection no.
+0155, Special Collections, USC Libraries, University of Southern California
+.540.   |aAll requests for permission to publish or quote from manuscripts must
+be submitted in writing to the Manuscripts Librarian. Permission for
+publication is given on behalf of Special Collections as the owner of the
+physical items and is not intended to include or imply permission of the
+copyright holder, which must also be obtained.
+.541.   |cPurchased from|aMaurice Neville,|d1986.
+.541.   |cPurchased from|aJohn Martin,|dca. 1991.
+.545. 0 |aCharles Bukowski was born on August 16, 1920 in Andernach, Germany,
+the son of a US soldier and German woman.  His family immigrated to the United
+States in 1922 and settled in Los Angeles, where Bukowski spent most of his
+life.  His father was in and out of work during the Depression years and was a
+reputed tyrant, verbally and physically abusing his son throughout his
+childhood.  It was perhaps to numb himself from his father's abuse that
+Bukowski began drinking at the age of 13, initiating his life-long affair with
+alcohol.  After graduating from Los Angeles High School in 1939 Bukowski
+studied for a time at Los Angeles City College, taking courses in journalism
+and literature.  He left school and home in 1941 after his father, who had
+finally read some of Bukowski's stories, threw his son's possessions into the
+street.  Bukowski continued to write stories and traveled across America,
+supporting himself with a string of odd jobs: gas station attendant, elevator
+operator, truck driver, and overseer in a dog biscuit factory, to name a few.
+In 1944 his story Aftermath of a Lengthy Rejection Slip was published in the
+magazine Story.  He returned to Los Angeles and met Janet Cooney Baker, with
+whom he lived for the next ten years.  In 1955, Bukowski was hospitalized with
+an alcohol-induced bleeding ulcer and came close to death.  After a brief
+marriage to Barbara Frye, the rich publisher of a small poetry magazine,
+Bukowski took a job as a post office clerk in 1958, a job he held for the next
+twelve years.  In 1955, Bukowski also began writing poetry, publishing volumes
+almost annually.  His first collection, Flower, Fist, and Bestial Wail,
+appeared in 1959.  It was 30 pages long and the print run was only 200 copies.
+Bukowski's first volume of prose, All Assholes in the World and Mine, was
+published seven years later.  By 1963, the year Bukowski published It Catches
+My Heart in Its Hands--a collection of poetry about alcoholics, prostitutes,
+losing gamblers, and other down-and-outs--he had developed a loyal following,
+and was famous for his use of violent images and graphic language in his work.
+His column Notes of a Dirty Old Man appeared regularly in Open City and Los
+Angles Free Press, and its run was later collected in book by the same title
+(1969).  In 1970, Bukowski quit his job with the Postal Service when John
+Martin of the Black Sparrow Press offered him a $100 monthly stipend to
+continue his writing.  Although prolific, Bukowski remained a literary outsider
+who published his works with small presses, primarily on the West Coast.  His
+short stories are unsparingly realistic and usually comic.  They often observe
+the thoughts and actions of Bukowski's alter ego Henry Chinaski, a
+hard-drinking unskilled worker, a lover of classical music, and a racetrack
+gambler.  This character was introduced in Bukowski's 1965 autobiographical
+Confessions of a Man Insane Enough to Live with the Beasts.  In 1973, Bukowski
+gained a wider audience when an award-winning television documentary by
+director Taylor Hackford was aired, and he also began an incidental career in
+the film industry.  The 1983 film Tales of Ordinary Madness, directed by Marco
+Ferreri, was based on stories of the author.  Its script drew material from
+Erections, Ejaculations, Exhibitions and Tales of Ordinary Madness.  The
+screenplay for the film Barfly (1987) was written by Bukowski himself and
+directed by Barbet Schroeder, and the experience of the filming became the
+subject of the 1989 novel Hollywood.  Crazy Love/Love is a Dog from Hell
+(1989), directed by Dominique Deruddere, was based on The Copulating Mermaid of
+Venice and other stories by Bukowski.  In 1985 Bukowski married Linda Lee
+Beighle, a health food proprietor twenty-five years his junior.  He had one
+daughter, Marina Louise, who was born in 1965 to Bukowski and Francis Dean
+Smith.  In his later years, success caught up with the author at last and he
+evolved from down-and-out to up-and-in: he lived in a house with a swimming
+pool, drove a black BMW, wrote on a computer, and enjoyed his favorite
+recordings of Sibelius, Mahler, and Rossini on a new stereo.  Charles Bukowski
+died at age 73 on March 9, 1994, at a hospital in San Pedro, California, after
+an almost year-long bout with leukemia.
+.585.   |3Drawing|aexhibited: "The World From Here", Armand Hammer Museum,
+Los Angeles, CA, 2001; also exhibited: "Pages, ", Alyce de Roulet Williamson
+Gallery, Art Center College of Design, Pasadena, CA, October 12, 2012-January
+15, 2013.
+.600. 10|aBukowski, Charles|vArchives.
+.650.  0|aAmerican literature|y20th century.
+.650.  0|aAmerican literature|zCalifornia|zLos Angeles.
+.650.  0|aAuthors, American|xArchival resources.
+.651.  0|aLos Angeles (Calif.)|xIn literature.
+.655. 7 |aAudiotapes. |2aat
+.655. 7 |aCorrespondence. |2aat
+.655. 7 |aEphemera. |2aat
+.655. 7 |aManuscripts.|2aat
+.655. 7 |aPhotographs. |2gmgpc
+.790. 1 |aNeville, Maurice F.
+.790. 1 |aMartin, John
+.856. 42|3Finding aid online at|uhttp://www.usc.edu/libraries/finding_aids/records/finding_aid.php?fa=0155
+.910.   |aSEL; mkh-updated exhibition note
+.949.   |aCollection 0155|wasis|c1|hSPEARCENDD
+.994.   |a01|bCSL
+.035.   |a(OCoLC)681796264
+.596.   |a23
+*** DOCUMENT BOUNDARY ***
+FORM=MARC
+.000. |aamIanc a
+.001. |aocm44574048
+.008. |a000712s1999    caua          000 0 eng d
+.040.   |aHDC|cHDC|dCSL
+.041. 1 |aeng|hfre
+.049.   |aCSL4
+.090.   |aN7433.4.M67|bG37 1999
+.100. 1 |aMorton, Rebecca Brandeis.
+.245. 10|aGastronomy during wartime :|ba banquet menu /|cillustrated and
+rendered in carousel form by Rebecca Brandeis Morton ; with a facsimile reprint
+from L'Almanac gourmand by Charles Monselet.
+.260.   |a[San Francisco?] :|bRock Scissors Paper Press,|c1999.
+.300.   |a[6] leaves mounted on a paper carousel :|bill. ;|c19 x 28 x 28 cm. +
+|e1 booklet.
+.500.   |aMenu drafted by Marechal de Richelieu during the Hanoverian War,
+printed one course per side on a hexagonal carousel structure, topped by a
+papier mÃ¢chÃ© covered dish.
+.500.   |aTitle from container, 30 x 32 x 32 cm.
+.500.   |aMenu translated from the French by Michael Stein.
+.500.   |aLimited ed. of 30 signed and numbered copies.
+.500.   |aMenu originally published in L'Almanach gourmand by Charles Monselet
+(Paris : Librarie Pagnerre, 1870, p. [51]-54)
+.590.   |aSpecial Collections' copy is no. 2, with ms. incription of artist.
+.600. 10|aRichelieu, Louis FranÃ§ois Armand Du Plessis,|cduc de,|d1696-1788.
+.650.  0|aArtists' books|zUnited States.
+.650.  0|aMenus.
+.650.  0|aAnglo-French War, 1778-1783|vMiscellanea.
+.650.  0|aArtists' books.
+.655.  7|aAuthors' autographs (Provenance)|zUnited States|y20th century.
+|2rbprov
+.655.  7|aArtists' books|zUnited States|y20th century.|2rbgenr
+.700. 1 |aMonselet, Charles,|d1825-1888.|tAlmanach gourmand.
+.949.   |aN7433.4.M67G37 1999|wLC|c1|hSPERARENDD|i31275039568267
+.994.   |a01|bCSL
+.596.   |a23
+*** DOCUMENT BOUNDARY ***
+FORM=MANUSCRPT
+.000. |atcIa0naa
+.001. |aocn865515297
+.008. |a131217i19502009cau           000 0 eng d
+.035.   |a(OCoLC)865515297
+.040.   |aCSL|beng|edacs|cCSL
+.043.   |an-us-ca
+.049.   |aCSL4
+.099.   |aCollection no. 0315
+.100. 1 |aGrell, Dwight.
+.245. 10|aGrell/Colefax Russian Ballet Archive,|f1950s-2000s.
+.270.   |aSpecial Collections|aUSC Libraries|aUniversity of Southern California
+|aUniversity Park|bLos Angeles|cCA|e90089-0189|k1-213-740-5900|l1-213-740-2343
+|mspecol@usc.edu
+.300.   |a200|flinear ft.|a(199|fboxes)
+.506. 1 |aCOLLECTION STORED OFF-SITE. Advance notice required for access.
+Consult finding aid for additional information.
+.520. 3 |aThe collection consists of films, books, photographs, sound
+recordings, posters, costumes, and artwork related to Russian ballet, chiefly
+the Bolshoi Ballet Company. Collected by Los Angeles resident Dwight Grell from
+the early 1950s through the 2000s. Many of the materials are in Russian. This
+collection represents a broad range of subjects: Russian and Soviet Dance;
+choreography and costume design; and Russian and Soviet culture, including
+popular culture, as reflected in programs, print materials, and photographs.
+.524. 8 |a[Box/folder# or item name], Grell/Colefax Russian Ballet Archive,
+Collection no. 0315, Special Collections, USC Libraries, University of Southern
+California
+.540.   |aThe collection contains published materials; researchers are reminded
+of the copyright restrictions imposed by publishers on reusing their articles
+and parts of books. It is the responsibility of researchers to acquire
+permission from publishers when reusing such materials. The copyright to
+unpublished materials belongs to the heirs of the writers. Permission to
+publish, quote, or reproduce must be secured from the repository and the
+copyright holder.
+.541.   |cGift of|aDwight Grell,|d2003.
+.600. 10|aGrell, Dwight|vArchives.
+.600. 10|aPlisetÍ¡skaiÍ¡a, MaÄ­iÍ¡a,|d1925-2015|vArchives.
+.600. 10|aVasilÊ¹ev, Vladimir Viktorovich,|d1940-|vArchives.
+.610. 20|aBolÊ¹shoÄ­ teatr SSSR.|bBalet|vArchives.
+.610. 20|aLeningradskiÄ­ gosudarstvennyÄ­ akademicheskiÄ­ teatr opery i baleta
+imeni S.M. Kirova|vArchives.
+.650.  0|aBallet|zSoviet Union|xArchival resources.
+.650.  0|aBallet|zSoviet Union|vPhotographs.
+.650.  0|aBallet companies|zSoviet Union|xArchival resources.
+.650.  0|aBallet dancers|zSoviet Union|xArchival resources.
+.650.  0|aBallet|xCostume.
+.655.  7|aAudiotapes. |2aat
+.655.  7|aClippings. |2aat
+.655.  7|aCorrespondence. |2aat
+.655.  7|aCostumes (character dress). |2aat
+.655.  7|aEphemera. |2aat
+.655.  7|aPhotographs. |2aat
+.655.  7|aPublications. |2aat
+.655.  7|aVideotapes. |2aat
+.700. 1 |aGrell, Dwight.
+.856. 42|3Finding aid online at|uhttp://www.usc.edu/libraries/finding_aids/records/finding_aid.php?fa=0315
+.910.   |aSEL
+.949.   |aCollection 0315|wasis|c1|hSPEARCENDD
+.994.   |a01|bCSL
+.596.   |a23
+*** DOCUMENT BOUNDARY ***
+FORM=MARC
+.000. |aamIanc a
+.001. |aocm36093969
+.008. |a961216s1996    caua          000 p eng d
+.040.   |aCUF|cCUF|dCSL
+.049.   |aCSLG
+.090.   |aPS3566.A92|bH23 1996
+.100. 1 |aPayne, Emily.
+.245. 10|aHanging laundry /|cEmily Payne.
+.260.   |aSan Francisco :|bPea Pod Press,|c1996.
+.300.   |a1 box :|bill. ;|c19 cm.
+.500.   |aTitle from cover.
+.500.   |a"Letterpress printing, hand painting, cover linoleum cut and book
+construction by Emily Payne"--colophon.
+.500.   |aConsists of poetry printed on torn paper suspended from string inside
+box.
+.500.   |a"Edition of twenty."
+.590.   |aAmerican Literature's copy is no. 9, with ms. inscription of
+author/artist.
+.650.  0|aArtists' books.
+.655.  7|aArtists' books (Genre)|zCalifornia|zSan Francisco|y1996.|2rbgenr
+.655.  7|aAuthors' autographs (Provenance)|zUnited States|y20th century.
+|2rbprov
+.710. 2 |aPea Pod Press.
+.949.   |aPS3566.A92H23 1996|wLC|c1|hSPEAMLENDD|i31275037475879
+.994.   |a01|bCSL
+.596.   |a23
+*** DOCUMENT BOUNDARY ***
+FORM=MARC
+.000. |aamIanc a
+.001. |aocm37877469
+.008. |a971020s1997    nyua          000 0 eng d
+.040.   |aNUI|cNUI|dCSL
+.049.   |a[OVERSIZE] CSL4
+.090.   |aN7433.4.L5|bI5 1997
+.100. 1 |aLingen, Rez'.
+.245. 10|aI know where I'm going /|ccompiled by Ruth Lingen & Lois Lane ; with
+images by Lois Lane.
+.260.   |aNew York :|bPootÃ© Press,|c1997.
+.300.   |a[53] p. :|bchiefly col. ill. ;|c33 cm.
+.500.   |a"Edition of 30 copies plus 6 artist's proofs ... The images include
+woodcut, linoleum cut, color copies, photo-engraving, silkscreen and
+collage"--Colophon.
+.500.   |aBound in black velvet.
+.590.   |aSpecial Collections' copy is no. 22, with mss. inscriptions of the
+authors.
+.650.  0|aArtists' books|zNew York.
+.655.  7|aAuthors' autographs (Provenance)|zUnited States|y20th century|2rbprov
+.655.  7|aArtists' books|zNew York|y1997.|2rbgenr
+.655.  7|aVelvet bindings (Binding)|zUnited States|y20th century|2rbbin
+.700. 1 |aLane, Lois.
+.710. 2 |aPootÃ© Press.
+.910.   |amkh
+.949.   |aN7433.4.L5I5 1997|wLC|c1|hSPERARENDD|i31275037467454
+.994.   |a01|bCSL
+.596.   |a23
+*** DOCUMENT BOUNDARY ***
+FORM=MARC
+.000. |aamIanc a
+.001. |aocm51784994
+.008. |a030304s1996    bcca          000 p eng d
+.040.   |aCSL|cCSL
+.049.   |aCSL4
+.090.   |aN7433.4|bW6 1996
+.100. 1 |aWilde, Denise Carson.
+.245. 10|aLove poems to a vampire /|cby D. C. Wilde.
+.260.   |aVancouver, B.C., Canada :|b[the Author?],|c1996.
+.300.   |a[4] leaves :|bcol. ill. ;|c21 x 8 cm.
+.500.   |aPoems printed on hardboard planks inserted into wooden coffin, 24 x
+11 cm., fastened with metal clasp. Title on metal nameplate on cover.
+.500.   |aEdition of 12 copies.
+.590.   |aSpecial Collections' copy is no. 2, with ms. inscription of
+author/artist.
+.650.  0|aArtists' books|zCanada|y20th century.
+.655.  7|aArtists' books (Genre)|zBritish Columbia|zVancouver|y1996.|2rbgenr
+.655.  7|aAuthors' autographs (Provenance)|zBritish Columbia|y20th century.
+|2rbprov
+.949.   |aN7433.4W6 1996|wLC|c1|hSPERARENDD|i31275037474955
+.994.   |a01|bCSL
+.596.   |a23
+.910.   |aLA fixed call no. 6/10.
+*** DOCUMENT BOUNDARY ***
+FORM=MARC
+.000. |aamIanc a
+.001. |aocm54833335
+.008. |a040329s2003    caua          000 0 eng d
+.040.   |aCUS|cCUS|dCSL
+.043.   |an-us-ca
+.049.   |aCSL4
+.090.   |aN7433.4.C88|bS93 2002
+.100. 1 |aCutler-Shaw, Joyce,|d1932-
+.245. 14|aThe sycamore leaf canopy.
+.260.   |a[San Diego :|bs.n.],|cc2003.
+.300.   |a1 item :|bill. ;|c12 x 18 cm.
+.500.   |aEdition of 25 copies.
+.500.   |aBook opens to reveal a three-dimensional diorama of Cutler-Shaw's art
+installation, Sycamore leaf canopy, in the Mission Valley Branch of the San
+Diego Public Library.
+.500.   |aIssued in envelope.
+.590.   |aSpecial Collections' copy lacking envelope.
+.610. 20|aSan Diego Public Library.
+.650.  0|aPublic art|zCalifornia|zSan Diego.
+.650.  0|aTrees in art.
+.650.  0|aArtists' books.
+.655.  7|aArtists' books|zCalifornia|y2000-2009.|2rbgenr
+.910.   |amkh-deleted dupliate 590 note
+.949.   |aN7433.4.C88S93 2002|wLC|c1|hSPERARENDD|i31275040178593
+.994.   |a01|bCSL
+.596.   |a23
+*** DOCUMENT BOUNDARY ***
+FORM=MANUSCRPT
+.000. |atcIa0naa
+.001. |aocn873612379
+.008. |a140317s1918    cau           000 0 eng d
+.035.   |a(OCoLC)873612379
+.040.   |aCSL|beng|edacs|cCSL
+.049.   |aCSL4
+.099.   |aCollection no. 0123
+.245. 00|aWorld War I ephemera,|fcirca 1918.
+.270.   |aSpecial Collections|aUSC Libraries|aUniversity of Southern California
+|aUniversity Park|bLos Angeles|cCA|e90089-0189|k1-213-740-5900|l1-213-740-2343
+|mspecol@usc.edu
+.300.   |a2.42|flinear ft.|a(3|fboxes)
+.506. 1 |aCOLLECTION STORED OFF-SITE. Advance notice required for access.
+.520. 2 |aThis collection consists of household German materials used during
+and after World War I. It includes edible items, such as powdered eggs and tea.
+There are items meant to aid in the repairs of household items, such as buttons
+and boot soles. The collection contains some pins from the interwar years,
+including a pin made for the November 12, 1933 elections that reads "Ja, " the
+Nazi Party slogan (Box 2). There are collections of cigarette cards and
+American magazine covers. The Independent was a magazine based in New York
+City. It ran from 1848 to 1928. It absorbed Harper's Weekly in 1916. The
+Literary Digest was a magazine based in New York City that ran from 1890 to
+1938. The collection also contains German paper currency and coins.
+.524. 8 |a[Box/folder# or item name], World War I ephemera, Collection no.
+0123, Special Collections, USC Libraries, University of Southern California
+.540.   |aAll requests for permission to publish or quote from manuscripts must
+be submitted in writing to the Manuscripts Librarian. Permission for
+publication is given on behalf of Special Collections as the owner of the
+physical items and is not intended to include or imply permission of the
+copyright holder, which must also be obtained.
+.650.  0|aSouvenirs (Keepsakes)|zGermany|xArchival resources.
+.650.  0|aWorld War, 1914-1918|xSocial aspects|zGermany|xArchival resources.
+.650.  0|aWorld War, 1914-1918|xSocial aspects|zUnited States|xArchival
+resources.
+.655.  7|aEphemera. |2aat
+.856. 42|3Finding aid online at|uhttp://www.usc.edu/libraries/finding_aids/records/finding_aid.php?fa=0123
+.910.   |aSEL
+.949.   |aCollection 0123|wasis|c1|hSPESTOENDD
+.994.   |a01|bCSL
+.596.   |a23

@@ -67,16 +67,6 @@ public class Whirlwind : MonoBehaviour {
 							 currentState == State.StirUp && 
 							 IsDoneStirUp) {
 			SlowToStopWhirlExam();
-		} else if (Input.GetKeyDown("w") && 
-							 currentState == State.WhirlExam) {
-			string[][] ids =  new string [5][] {
-				new string[] {"1", "1", "1", "1", "1", "1", "1", "1"},
-				new string[] {"2", "2", "2", "2", "2", "2", "2", "2", "2", },
-				new string[] {"3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"},
-				new string[] {"4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4"},
-				new string[] {"5", "5", "5", "5", "5", "5", "5"},
-			};
-			LoadNewItems(ids);
 		} else if (Input.GetKeyDown("d") && 
 							 IsDoneStirUp &&
 							 currentState != State.End && 
@@ -86,66 +76,31 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// functions for manipulating data //////
-	public void LoadNewItems (string[][] itemIDs) {
+	void LoadNewItems (string[][] itemIDs) {
 		Debug.Assert(itemIDs.Length == belts.Length);
-		//TODODebug.Assert(IsEnlargedOrFullscreen);
+		Debug.Assert(IsEnlargedOrFullscreen);
 
-		End();
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].End();
+		}
+		currentState = State.Idle;
 		for (int i = 0; i < itemIDs.Length; i++) {
 			belts[i].LoadNewItems(itemIDs[i]);
 		}
 		StirUp(Global.StirUpSpeed);
 		currentState = State.StirUpNewContextExam;
 	}
-	
 
-/////// public functions for setting whirlwind state //////
-	public void StirUp (float speed) {
-		Debug.Assert(currentState == State.Idle || 
-								 currentState == State.WhirlExam);
-
-		Freeze();
-		bool shouldLoadItems = currentState == State.Idle;
-
-		for (int i = 0; i < belts.Length; i++) {
-			belts[i].StirUp(speed, shouldLoadItems);
-		}
-		currentState = State.StirUp;
-		LogUserInput();
-	}
-
-	public void SlowToStopWhirlExam () {
-		for (int i = 0; i < belts.Length; i++) {
-			belts[i].SlowToStop(false);
-		}
-		currentState = State.SlowToStopWhirlExam;
-		LogUserInput();
-	}
-
-
-	public void End () {
-		if (IsEnlargedOrFullscreen) {
-			ExitFullScreen();
-			ExitEnlargeSelection(true);
-		}
-
-		UnFreeze();
-		currentState = State.End;
-		for (int i = 0; i < belts.Length; i++) {
-			belts[i].End();
-		}
-		ResetToIdle();
-	}
-
-	// whether all the items are stirred up
-	public bool IsDoneStirUp {
-		get {
-			bool allDone = true;
-			for (int i = 0; i < belts.Length; i++) {
-				allDone &= belts[i].IsDoneStirUp;
-			}
-			return allDone;
-		}
+	void LoadNewWhirlwindBasedOnItem (WhirlwindItem wwItem) {
+		// TODO call database, actual queries here
+		string[][] ids =  new string [5][] {
+			new string[] {"1", "1", "1", "1", "1", "1", "1", "1"},
+			new string[] {"2", "2", "2", "2", "2", "2", "2", "2", "2", },
+			new string[] {"3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"},
+			new string[] {"4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4"},
+			new string[] {"5", "5", "5", "5", "5", "5", "5"},
+		};
+		LoadNewItems(ids);
 	}
 
 /////// private functions for setting whirlwind state //////
@@ -192,7 +147,6 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	bool IsEnlargedOrFullscreen { get { return enlargedItem != null; } }
-
 
 	void ResetToIdle () {
 		currentState = State.Idle;
@@ -252,6 +206,56 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
+
+/////// public functions for setting whirlwind state //////
+	public void StirUp (float speed) {
+		Debug.Assert(currentState == State.Idle || 
+								 currentState == State.WhirlExam);
+
+		Freeze();
+		bool shouldLoadItems = currentState == State.Idle;
+
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].StirUp(speed, shouldLoadItems);
+		}
+		currentState = State.StirUp;
+		LogUserInput();
+	}
+
+	public void SlowToStopWhirlExam () {
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].SlowToStop(false);
+		}
+		currentState = State.SlowToStopWhirlExam;
+		LogUserInput();
+	}
+
+
+	public void End () {
+		if (IsEnlargedOrFullscreen) {
+			ExitFullScreen();
+			ExitEnlargeSelection(true);
+		}
+
+		UnFreeze();
+		currentState = State.End;
+		for (int i = 0; i < belts.Length; i++) {
+			belts[i].End();
+		}
+		ResetToIdle();
+	}
+
+	// whether all the items are stirred up
+	public bool IsDoneStirUp {
+		get {
+			bool allDone = true;
+			for (int i = 0; i < belts.Length; i++) {
+				allDone &= belts[i].IsDoneStirUp;
+			}
+			return allDone;
+		}
+	}
+
 /////// public functions for touch based whirlwind interaction //////
 	// user did something, no need to reset to idle any time soon
 	public void LogUserInput () {
@@ -283,10 +287,8 @@ public class Whirlwind : MonoBehaviour {
 	public void EnterEnlargeSelection (WhirlwindItem wwItem) {
 		Freeze();
 
-		// TODO swap items in and out
-
 		enlargedItem = wwItem;
-		//wwItem.transform.position = enlargedItemPosition;
+		LoadNewWhirlwindBasedOnItem(wwItem);
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ItemSprite = wwItem.ItemSprite;
 
