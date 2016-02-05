@@ -8493,6 +8493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDraggingItem: 0
+  searchBar: {fileID: 0}
 --- !u!114 &1406233990
 MonoBehaviour:
   m_ObjectHideFlags: 0
