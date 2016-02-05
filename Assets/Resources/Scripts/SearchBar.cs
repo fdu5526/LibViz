@@ -40,6 +40,9 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 			for (int j = 0; j < slots.Count; j++) {
 				float x = slots[j].transform.position.x;
 				if (prevX <= mouseX && mouseX <= x) {
+
+					//TODO remove duplicates if necessary?
+
 					break;
 				} else {
 					i++;

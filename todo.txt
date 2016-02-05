@@ -15,6 +15,7 @@ interaction
 		move objects out of the bar
 		prevent duplicates
 		expandable search bar
+		select/deselect slot
 		
 		2 ways of searching
 			drill down - by putting into desk or typing in search
