@@ -68,7 +68,7 @@ public class BookInfo{
 	public string Title;
 	public string Author;
 	public int Time;
-	public string Description;
+	public string Note;
 	public string Location;
 
 	public string genre;
@@ -80,12 +80,21 @@ public class BookInfo{
 
 	public float v;
 
-	public void Init(string _title, string _author, int _time, string _description, string _location ) {
+	public void Init(string _title, string _author, int _time , string _location , string _note 
+		, string _genre , string _topical_term , string _form_subdivision , string _general_subdivision
+		, string _chronological_subdivision , string _geographic_subdivision) {
 		Title = _title;
 		Author = _author;
 		Time = _time;
-		Description =  _description;
+		Note =  _note;
 		Location = _location;
+
+		genre = _genre;
+		topical_term = _topical_term;
+		form_subdivision = _form_subdivision;
+		general_subdivision = _general_subdivision;
+		chronological_subdivision = _chronological_subdivision;
+		geographic_subdivision = _geographic_subdivision;
 	}
 }
 

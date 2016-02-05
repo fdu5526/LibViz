@@ -18,22 +18,21 @@ S_DESCRIPTION = '.500'
 
 
 INFO_INDEX = [
-		['title'					,'.245','a','tinytext'],
-		['name'						,'.100','a','tinytext'],
-		['time'						,'.260','c','year(4)'],
-		['location'					,'.260','a','tinytext'],
-		['publisher'				,'.260','b','tinytext'],
-		['subtitle'					,'.245','b','tinytext'],
-		['author_translator'		,'.245','c','tinytext'],
-		['note'						,'.500','a','text'],
-		['publish_date'				,'.260','c','year(4)'],
-		['topical_term'				,'.650','a','tinytext'],
-		['form_subdivision'			,'.650','v','tinytext'],
-		['general_subdivision'		,'.650','x','tinytext'],
-		['chronological_subdivision','.650','y','tinytext'],
-		['geographic_subdivision'	,'.650','z','tinytext'],
-		['genre'					,'.655','a','tinytext'],
-		['note'						,'.500','a','text'],
+		['title'					,'.245','a','tinytext'],  # 0
+		['name'						,'.100','a','tinytext'],  # 1 
+		['time'						,'.260','c','year(4)'],   # 2
+		['location'					,'.260','a','tinytext'],  # 3
+		['publisher'				,'.260','b','tinytext'],  # 4
+		['subtitle'					,'.245','b','tinytext'],  # 5
+		['author_translator'		,'.245','c','tinytext'],  # 6
+		['note'						,'.500','a','text'],      # 7
+		['publish_date'				,'.260','c','year(4)'],   # 8
+		['topical_term'				,'.650','a','tinytext'],  # 9
+		['form_subdivision'			,'.650','v','tinytext'],  # 10
+		['general_subdivision'		,'.650','x','tinytext'],  # 11
+		['chronological_subdivision','.650','y','tinytext'],  # 12
+		['geographic_subdivision'	,'.650','z','tinytext'],  # 13
+		['genre'					,'.655','a','tinytext'],  # 14
 		]
 SQL_CREATE = []
 SQL_INSERT = []
@@ -153,7 +152,7 @@ class Data:
 				if content != "":
 					# add the entry only if the item does not exsit in the dict
 					if GetIndexName(index) in self.__DICT__.keys():
-						if (self.__DICT__[GetIndexName(index)]=="")
+						if (self.__DICT__[GetIndexName(index)]==""):
 							self.__DICT__[GetIndexName(index)] = content
 					else:
 						self.__DICT__[GetIndexName(index)] = content
