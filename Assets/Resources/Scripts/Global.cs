@@ -71,6 +71,13 @@ public class BookInfo{
 	public string Description;
 	public string Location;
 
+	public string genre;
+	public string topical_term;
+	public string form_subdivision;
+	public string general_subdivision;
+	public string chronological_subdivision;
+	public string geographic_subdivision;
+
 	public float v;
 
 	public void Init(string _title, string _author, int _time, string _description, string _location ) {

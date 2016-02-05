@@ -1,6 +1,6 @@
 import sys
 
-inFilePath = 'ori/SPECCOLL.ITEMS.20151117'
+inFilePath = 'ori/new_records_2_01_16.txt'
 inFile = open(inFilePath , 'r')
 
 outFilePath = 'sql/data.sql'
@@ -18,19 +18,22 @@ S_DESCRIPTION = '.500'
 
 
 INFO_INDEX = [
-		['title','.245','a','tinytext'],
-		['name','.100','a','tinytext'],
-		['time','.260','c','year(4)'],
-		['location','.260','a','tinytext'],
-		['description','.500','a','text'],
-		['publisher','.260','b','tinytext'],
-		['publish_date','.260','c','year(4)'],
-		['topical_term','.650','a','tinytext'],
-		['form_subdivision','.650','v','tinytext'],
-		['general_subdivision','.650','x','tinytext'],
+		['title'					,'.245','a','tinytext'],
+		['name'						,'.100','a','tinytext'],
+		['time'						,'.260','c','year(4)'],
+		['location'					,'.260','a','tinytext'],
+		['publisher'				,'.260','b','tinytext'],
+		['subtitle'					,'.245','b','tinytext'],
+		['author_translator'		,'.245','c','tinytext'],
+		['note'						,'.500','a','text'],
+		['publish_date'				,'.260','c','year(4)'],
+		['topical_term'				,'.650','a','tinytext'],
+		['form_subdivision'			,'.650','v','tinytext'],
+		['general_subdivision'		,'.650','x','tinytext'],
 		['chronological_subdivision','.650','y','tinytext'],
-		['geographic_subdivision','.650','z','tinytext'],
-		['note','.500','a','text'],
+		['geographic_subdivision'	,'.650','z','tinytext'],
+		['genre'					,'.655','a','tinytext'],
+		['note'						,'.500','a','text'],
 		]
 SQL_CREATE = []
 SQL_INSERT = []
@@ -55,6 +58,11 @@ SQL_INSERT = []
 
 
 CLEAR_LIST = [' ',';',':','.',',','/','[',']','(',')']
+
+#######
+# All the following functions is used for 
+# get the information from the info entry
+#######
 
 def GetIndexName(index):
 	return index[0];
@@ -81,6 +89,11 @@ def TypeToDefaultValue(t):
 	if (t.startswith('year')):
 		return '0000'
 	return '-'
+
+
+########
+# Used for output
+#######
 
 def SetupSQLInstructions():
 	global SQL_CREATE
@@ -138,8 +151,10 @@ class Data:
 			if line.startswith(GetIndexNumber(index)):
 				content = self.GetSubLine(line,GetIndexSubNumber(index),GetIndexTextType(index));
 				if content != "":
+					# add the entry only if the item does not exsit in the dict
 					if GetIndexName(index) in self.__DICT__.keys():
-						self.__DICT__[GetIndexName(index)] += '-' + content
+						if (self.__DICT__[GetIndexName(index)]=="")
+							self.__DICT__[GetIndexName(index)] = content
 					else:
 						self.__DICT__[GetIndexName(index)] = content
 
