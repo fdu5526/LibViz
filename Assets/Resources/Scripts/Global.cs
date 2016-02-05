@@ -60,6 +60,39 @@ public class Global
 		string res = Regex.Replace(num, @"[^\d]*", "");
 		return int.Parse(res);
 	}
+
+
+	static public string Field2String(Field field)
+	{
+	switch(field)
+	{
+		case Field.TITLE:
+			return "Title";
+		case Field.AUTHOR:
+			return "Name";
+		case Field.TIME:
+			return "Time";
+		case Field.NOTE:
+			return "Note";
+		case Field.PUBLISH_LOCATION:
+			return "Location";
+		case Field.GENRE:
+			return "Genre";
+		case Field.TOPICAL_TERM:
+			return "Topical Term";
+		case Field.FORM_SUBDIVISION:
+			return "Form Subdivision";
+		case Field.GENERAL_SUBDIVISION:
+			return "General Subdivision";
+		case Field.CHRONOLOGICAL_SUBDIVISION:
+			return "Chronological Subdivision";
+		case Field.GEOGRAPHIC_SUBDIVISION:
+			return "Geographic Subdivision";
+		default:
+			break;
+	}
+	return "";
+}
 }
 
 
@@ -97,4 +130,19 @@ public class BookInfo{
 		geographic_subdivision = _geographic_subdivision;
 	}
 }
+
+public enum Field{
+	TITLE,
+	AUTHOR,
+	TIME,
+	NOTE,
+	PUBLISH_LOCATION,
+	GENRE,
+	TOPICAL_TERM,
+	FORM_SUBDIVISION,
+	GENERAL_SUBDIVISION,
+	CHRONOLOGICAL_SUBDIVISION,
+	GEOGRAPHIC_SUBDIVISION,
+}
+
 
