@@ -19,18 +19,28 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
-		print("on begin drag");
+		
 	}
 	
 	public void OnDrop(PointerEventData eventData) {
 		if (whirlwind.IsDraggingSearchItem) {
+
+			print(eventData.pressPosition);
+
+			// create a new slot
 			SearchSlot newSlot = ((GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/SearchSlot"))).GetComponent<SearchSlot>();
 			newSlot.transform.SetParent(content);
 			newSlot.transform.localScale = Vector3.one;
 
 			// TODO search through all the slots, find the index to put this guy in
-			
+			int i = 0;
+			for (i = 0; i < slots.Count; i++) {
+
+			}
+
+			newSlot.transform.SetSiblingIndex(i);
 			newSlot.SetDraggedSearchItem(whirlwind.DraggedSearchItem);
+			slots.Insert(i, newSlot);
 		}
 		
 	}

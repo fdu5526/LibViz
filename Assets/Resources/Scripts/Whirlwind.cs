@@ -30,9 +30,6 @@ public class Whirlwind : MonoBehaviour {
 	// a whirlwind is defined as an array of WhirlWindBelt
 	WhirlwindBelt[] belts;
 
-	// search 
-	List<SearchWhirlwindItem> itemsInSearch;
-
 	//TODO
 	string[][] defaultIds;
 
@@ -42,7 +39,6 @@ public class Whirlwind : MonoBehaviour {
 		currentState = State.Idle;
 		userInputTimer = new Timer(60f);
 		draggedSearchItem = null;
-		itemsInSearch = new List<SearchWhirlwindItem>();
 
 		// establish enlarge and fullscreen game objects
 		mainCamera = GameObject.Find("Main Camera").GetComponent<MainCamera>();
@@ -369,15 +365,6 @@ public class Whirlwind : MonoBehaviour {
 
 		draggedSearchItem = null;
 		searchUI.GetComponent<SearchDragDrop>().DisableDragShadow();
-	}
-
-	// add currently enlarged item into the search
-	public void AddEnlargedItemToSearch (int index) {
-		Debug.Assert(IsEnlargedOrFullscreen);
-
-		index = Mathf.Min(index, itemsInSearch.Count);
-		SearchWhirlwindItem i = new SearchWhirlwindItem(enlargedItem);
-		itemsInSearch.Insert(index, i);
 	}
 
 
