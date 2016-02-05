@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 public class SQLConnector : MonoBehaviour {
 
-	[SerializeField] string server = "localhost/~atwood";
+	[SerializeField] string server = "localhost";
 	[SerializeField] string database = "test";
 	// string user ="";
 	// string pass = "";
@@ -137,6 +137,20 @@ public class SQLConnector : MonoBehaviour {
 		return EvaluateBookByBook( GetBookListByCommand(command) , book );
 	}
 
+	public List<BookInfo> SearchByTag(string tag)
+	{
+
+		string command = "SELECT * FROM `" + tableName + "` WHERE " 
+	    	+ " `Genre` LIKE '%" +  tag + "%' OR"
+	    	+ " `Name` LIKE '%" +  tag + "%' OR"
+	    	+ " `Description` LIKE '%" +  tag + "%' OR"
+	    	+ " `Publisher` LIKE '%" +  tag + "%' OR"
+	    	+ " `Location` LIKE '%" +  tag + "%' ";
+
+		return EvaluateBookByKeyWord( GetBookListByCommand(command) , tag );
+
+	}
+
 
 	public List<BookInfo> EvaluateBookByKeyWord(List<BookInfo> list , string keyWord)
 	{
@@ -148,6 +162,27 @@ public class SQLConnector : MonoBehaviour {
 			if (b.Author.Contains(keyWord) || b.Location.Contains(keyWord))
 				b.v += 2f;
 			if (b.Description.Contains(keyWord))
+				b.v += 1f;
+		}
+
+		List<BookInfo> res = new List<BookInfo>(list);
+		res.Sort((x,y) => x.v.CompareTo(y.v));
+		return res;
+	}
+
+	public List<BookInfo> EvaluateBookByKeyTag(List<BookInfo> list , string keyWord)
+	{
+		foreach(BookInfo b in list)
+		{
+			b.v = 0;
+			if (b.genre.Contains(keyWord))
+				b.v += 3f;
+			if (b.topical_term.Contains(keyWord))
+				b.v += 2f;
+			if (b.chronological_subdivision.Contains(keyWord) ||
+				b.form_subdivision.Contains(keyWord) ||
+				b.general_subdivision.Contains(keyWord) ||
+				b.geographic_subdivision.Contains(keyWord))
 				b.v += 1f;
 		}
 
