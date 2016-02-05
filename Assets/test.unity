@@ -217,8 +217,8 @@ MonoBehaviour:
   m_StartAxis: 0
   m_CellSize: {x: 124, y: 70}
   m_Spacing: {x: 20, y: 20}
-  m_Constraint: 0
-  m_ConstraintCount: 2
+  m_Constraint: 2
+  m_ConstraintCount: 1
 --- !u!4 &53572138
 Transform:
   m_ObjectHideFlags: 0
@@ -10966,15 +10966,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_SizeDelta.x
-      value: -17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22415562, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchoredPosition.y

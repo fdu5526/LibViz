@@ -21,6 +21,19 @@ public class SearchBar : MonoBehaviour, IBeginDragHandler, IDropHandler {
 		scrollRect.horizontalNormalizedPosition = 0f;
 	}
 
+
+	public List<BookInfo> SelectedBookInfos {
+		get {
+			List<BookInfo> infos = new List<BookInfo>();
+			for (int i = 0; i < slots.Count; i++) {
+				if (slots[i].IsSelected) {
+					infos.Add(slots[i].BookInfo);
+				}
+			}
+			return infos;
+		}
+	}
+
 	public void OnBeginDrag(PointerEventData eventData) {
 		
 	}

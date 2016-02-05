@@ -22,8 +22,20 @@ public class SearchSlot : MonoBehaviour, IBeginDragHandler {
 	public bool IsFilled { get { return searchWhirlwindItem != null; } }
 	public bool IsSelected { 
 		get { return isSelected; } 
-		set { isSelected = value; }
 	}
+
+	public void FlipSelection () {
+		isSelected = !isSelected;
+	}
+
+	public BookInfo BookInfo {
+		get {
+			Debug.Assert(IsFilled);
+			return searchWhirlwindItem.bookInfo;
+		}
+	}
+
+	public int Index { get { return index; } }
 
 	public void SetDraggedSearchItem (SearchWhirlwindItem s) {
 		searchWhirlwindItem = s;
@@ -32,7 +44,9 @@ public class SearchSlot : MonoBehaviour, IBeginDragHandler {
 		isSelected = true;
 	}
 
-	public int Index { get { return index; } }
+	public void DestroySelf () {
+		Destroy(this.gameObject);
+	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
 		print("dragging a slot");
