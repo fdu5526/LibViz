@@ -31,6 +31,7 @@ public class Whirlwind : MonoBehaviour {
 	WhirlwindBelt[] belts;
 
 	//TODO
+	[SerializeField] SQLConnector connector {get { return SQLConnector.Instance;}}
 	string[][] defaultIds;
 
 
@@ -64,6 +65,14 @@ public class Whirlwind : MonoBehaviour {
 			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
 			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"}
 		};
+
+		string res = connector.TryConnectSQL();
+		if (res == "") { //login success
+			print("success!");
+		} else { // error
+			print("failure");
+		}
+
 	}
 
 	// current debugging based state machine triggers

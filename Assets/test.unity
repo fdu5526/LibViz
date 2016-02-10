@@ -1520,6 +1520,7 @@ GameObject:
   - 33: {fileID: 303245547}
   - 23: {fileID: 303245545}
   - 114: {fileID: 303245549}
+  - 114: {fileID: 303245546}
   m_Layer: 8
   m_Name: WhirlwindCenter
   m_TagString: Untagged
@@ -1553,6 +1554,22 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!114 &303245546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 303245544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050dde20c2576494cb782743d1922dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  server: localhost
+  database: test
+  defaultUser: root
+  defaultPass: 7144234alqn
+  tableName: InfoTable
 --- !u!33 &303245547
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11081,15 +11098,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_SizeDelta.x
-      value: -17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22415562, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchoredPosition.y
