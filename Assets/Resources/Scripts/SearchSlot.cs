@@ -13,11 +13,11 @@ public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 	SearchBar searchBar;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		index = transform.GetSiblingIndex();
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		searchBar = GameObject.Find("SearchUI/SearchBar").GetComponent<SearchBar>();
-		isSelected = true;
+		isSelected = false;
 	}
 
 	public bool IsFilled { get { return searchWhirlwindItem != null; } }
