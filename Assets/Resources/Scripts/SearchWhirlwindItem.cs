@@ -9,4 +9,9 @@ public class SearchWhirlwindItem {
 		bookInfo = wwItem.bookInfo;
 		sprite = wwItem.ItemSprite;
 	}
+
+	public SearchWhirlwindItem (SearchWhirlwindItem s) {
+		this.bookInfo = s.bookInfo;
+		this.sprite = s.sprite;
+	}
 }

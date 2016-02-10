@@ -338,7 +338,9 @@ public class Whirlwind : MonoBehaviour {
 
 	public bool IsDraggingSearchItem { get { return draggedSearchItem != null; } }
 
-	public SearchWhirlwindItem DraggedSearchItem { get { return draggedSearchItem; } }
+	public SearchWhirlwindItem DraggedSearchItem { 
+		get { return draggedSearchItem; } 
+	}
 
 	public WhirlwindItem EnlargedItem {
 		get {
@@ -368,7 +370,7 @@ public class Whirlwind : MonoBehaviour {
 		Debug.Assert(s != null);
 
 		draggedSearchItem = s;
-		searchUI.GetComponent<SearchUI>().EnableDragShadow(enlargedItem.ItemSprite);
+		searchUI.GetComponent<SearchUI>().EnableDragShadow(s.sprite);
 	}
 
 	// user starts dragging an item to search bar

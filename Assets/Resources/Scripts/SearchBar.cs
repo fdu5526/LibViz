@@ -51,8 +51,25 @@ public class SearchBar : MonoBehaviour, IDropHandler {
 		IncreaseBarByOne();
 	}
 
+	public void RemoveSlot (SearchSlot slot) {
+		slots.Remove(slot);
+	}
 
-	// at a slot at where the mouse is, fill it in
+
+	public List<BookInfo> SelectedBookInfos {
+		get {
+			List<BookInfo> infos = new List<BookInfo>();
+			for (int i = 0; i < slots.Count; i++) {
+				if (slots[i].IsSelected) {
+					infos.Add(slots[i].BookInfo);
+				}
+			}
+			return infos;
+		}
+	}
+
+
+		// at a slot at where the mouse is, fill it in
 	void AddSlot (float mouseX) {
 		// create a new slot
 		SearchSlot newSlot = ((GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/SearchSlot"))).GetComponent<SearchSlot>();
@@ -81,19 +98,6 @@ public class SearchBar : MonoBehaviour, IDropHandler {
 		slots.Insert(i, newSlot);
 
 		IncreaseBarByOne();
-	}
-
-
-	public List<BookInfo> SelectedBookInfos {
-		get {
-			List<BookInfo> infos = new List<BookInfo>();
-			for (int i = 0; i < slots.Count; i++) {
-				if (slots[i].IsSelected) {
-					infos.Add(slots[i].BookInfo);
-				}
-			}
-			return infos;
-		}
 	}
 
 	

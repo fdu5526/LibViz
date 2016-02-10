@@ -12,8 +12,6 @@ MxR - look at codec, look how complicated
 
 interaction
 	search bar
-		move objects out of the bar
-		prevent duplicates
 		searching hooray
 			2 ways of searching
 				drill down - by putting into desk or typing in search
@@ -22,3 +20,8 @@ interaction
 			Author, Time, topical_term, geographic_subdivision, genre
 	scrolling up and down the whirlwind
 	whirling the whirlwind
+	put center item in correct place
+
+
+questions
+	what to do when duplicates in bar?

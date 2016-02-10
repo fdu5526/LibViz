@@ -3,20 +3,21 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 
-public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler {
+public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
 	int index;
 
 	bool isSelected;
 	Whirlwind whirlwind;
 	SearchWhirlwindItem searchWhirlwindItem;
+	SearchBar searchBar;
 
 	// Use this for initialization
 	void Start () {
 		index = transform.GetSiblingIndex();
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
-		isSelected = false;
-		searchWhirlwindItem = null;
+		searchBar = GameObject.Find("SearchUI/SearchBar").GetComponent<SearchBar>();
+		isSelected = true;
 	}
 
 	public bool IsFilled { get { return searchWhirlwindItem != null; } }
@@ -51,14 +52,22 @@ public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 	}
 
 	public void OnPointerClick(PointerEventData eventData) {
-		print("yay");
+		// TODO if not drag
 		FlipSelection();
 	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
-		print("dragging a slot");
 		if (IsFilled) {
-
+			// TODO determine if this is vertical
+			whirlwind.DragItemImage(searchWhirlwindItem);
 		}
+	}
+
+	public void OnDrag(PointerEventData data) { }
+
+	public void OnEndDrag (PointerEventData data) {
+		whirlwind.DropItemImage();
+		searchBar.RemoveSlot(this);
+		DestroySelf();
 	}
 }
