@@ -24,13 +24,15 @@ public class Whirlwind : MonoBehaviour {
 	WhirlwindItem enlargedItem;
 	SearchWhirlwindItem draggedSearchItem;
 	GameObject searchUI;
+	SearchBar searchBar;
 	GameObject enlargedSelectionUI;
 	GameObject fullscreenSelectionUI;
 
 	// a whirlwind is defined as an array of WhirlWindBelt
 	WhirlwindBelt[] belts;
 
-	//TODO
+	// database 
+	DatabaseManager databaseManager;
 	string[][] defaultIds;
 
 
@@ -43,6 +45,7 @@ public class Whirlwind : MonoBehaviour {
 		// establish enlarge and fullscreen game objects
 		mainCamera = GameObject.Find("Main Camera").GetComponent<MainCamera>();
 		searchUI = GameObject.Find("SearchUI");
+		searchBar = GameObject.Find("SearchBar").GetComponent<SearchBar>();
 		enlargedSelectionUI = GameObject.Find("EnlargedSelectionUI");
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 		fullscreenSelectionUI = GameObject.Find("FullscreenSelectionUI");
@@ -57,6 +60,8 @@ public class Whirlwind : MonoBehaviour {
 		Array.Sort(belts, delegate(WhirlwindBelt b1, WhirlwindBelt b2) { return b1.level.CompareTo(b2.level); });
 
 		//TODO make this not a placeholder
+		databaseManager = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
+		databaseManager.Login();
 		defaultIds =  new string [5][] {
 			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
 			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
@@ -86,6 +91,12 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// functions for manipulating data //////
+	public void Search () {
+		List<BookInfo> bookinfos = searchBar.SelectedBookInfos;
+		//TODO do real search here
+		databaseManager.Search(bookinfos);
+	}
+
 	// Set state to Idle, and load new items
 	void LoadNewItems (string[][] itemIDs) {
 		Debug.Assert(currentState == State.Idle ||
