@@ -1512,6 +1512,7 @@ MonoBehaviour:
   advanceSearch: {fileID: 1711566760}
   advanceDropdown: {fileID: 944803505}
   bookSearch: {fileID: 895877328}
+  tagSearch: {fileID: 0}
 --- !u!1 &485746392
 GameObject:
   m_ObjectHideFlags: 0
@@ -5567,8 +5568,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: AdvancedSearch
+      - m_Target: {fileID: 469583154}
+        m_MethodName: Search
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
