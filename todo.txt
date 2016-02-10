@@ -14,19 +14,11 @@ interaction
 	search bar
 		move objects out of the bar
 		prevent duplicates
-		expandable search bar (the more you add the longer)
-		select/deselect slot (lights up)
 		searching hooray
 			2 ways of searching
 				drill down - by putting into desk or typing in search
 				open up - whirl the whirlwind, repopulate with ||
-
 		5 belts
-			Author
-			Time
-			topical_term
-			geographic_subdivision
-			genre
-
+			Author, Time, topical_term, geographic_subdivision, genre
 	scrolling up and down the whirlwind
 	whirling the whirlwind

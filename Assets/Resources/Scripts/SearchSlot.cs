@@ -26,6 +26,7 @@ public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 
 	void FlipSelection () {
 		isSelected = !isSelected;
+		GetComponent<Outline>().enabled = isSelected;
 	}
 
 	public BookInfo BookInfo {
@@ -42,6 +43,7 @@ public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 		GetComponent<Image>().sprite = s.sprite;
 		index = transform.GetSiblingIndex();
 		isSelected = true;
+		GetComponent<Outline>().enabled = isSelected;
 	}
 
 	public void DestroySelf () {
