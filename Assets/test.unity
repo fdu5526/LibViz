@@ -10003,10 +10003,6 @@ MonoBehaviour:
   bookInfoBarPrefab: {fileID: 191756, guid: 4a21c652981c343e8b58f07ce1997da5, type: 2}
   barHeight: 35
   black: {fileID: 141776382}
-  userName: {fileID: 1581524278}
-  password: {fileID: 1187182274}
-  tips: {fileID: 192311672}
-  loginBlack: {fileID: 1800014522}
   search: {fileID: 2049872200}
   searchInfo: {fileID: 647022607}
   advanceSearch: {fileID: 442165671}
@@ -13154,7 +13150,7 @@ GameObject:
   - 114: {fileID: 1525904670}
   - 114: {fileID: 1525904669}
   m_Layer: 0
-  m_Name: Button
+  m_Name: ExploreButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13216,7 +13212,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1525904670}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 303245549}
+        m_MethodName: Search
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1525904670
@@ -15832,15 +15839,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 22415562, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchoredPosition.y

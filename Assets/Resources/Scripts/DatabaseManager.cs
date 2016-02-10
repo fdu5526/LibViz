@@ -14,81 +14,23 @@ public class DatabaseManager : MonoBehaviour {
 	[SerializeField] Image black;
 
 	[SerializeField] SQLConnector connector {get { return SQLConnector.Instance;}}
-	// Use this for initialization
-	void Awake () {
 
-		login.SetActive(true);
-		loginBlack.gameObject.SetActive(false);
-		Navi.SetActive(false);
-		foreach(GameObject f in fields)
-		{
-			f.SetActive(false);
-		}
-	}
-	
-
-	[SerializeField] InputField userName;
-	[SerializeField] InputField password;
-	[SerializeField] Text tips;
-	[SerializeField] Image loginBlack;
-	public void Login()
-	{
-		string res = connector.TryConnectSQL(userName.text, password.text);
-		if (res == "")
-		//login success
-		{
-			tips.text = "success!";
-			loginBlack.gameObject.SetActive(true);
-			loginBlack.DOFade(1f, 1.2f).OnComplete(()=>
-			{
-				Navi.SetActive(true);
-				Navi.transform.DOMoveY(1280f, 1f).From();
-				Show(fields[0]);
-				});
+	public void Login() {
+		string res = connector.TryConnectSQL();
+		if (res == "") {
 			print("success!");
-
 		}
-		else
-		//error
-		{
-			tips.text = res;
+		else {
 			print("failure...");
 		}
-	}
-
-	public void OnEndUserName()
-	{
-		password.ActivateInputField();
-	}
-
-	public void OnEndPass()
-	{
-		Login();
-	}
-
-	public void Show(GameObject _sobj)
-	{
-		black.gameObject.SetActive(true);
-		black.DOFade(1f, 0.5f).OnComplete(()=>
-		{
-		foreach(GameObject obj in fields)
-			obj.SetActive(false);
-		_sobj.SetActive(true);
-		black.DOFade( 0, 0.5f).OnComplete(() =>
-		{
-			black.gameObject.SetActive(false);
-			});
-		});
 	}
 
 
 	[SerializeField] InputField search;
 	[SerializeField] RectTransform searchInfo;
-	public void Search()
+	public void Search(List<BookInfo> inputInfos)
 	{
 		List<BookInfo> infos = connector.Search(search.text);
-
-		ShowBookList(infos);
 	}
 
 	[SerializeField] InputField advanceSearch;
@@ -119,15 +61,12 @@ public class DatabaseManager : MonoBehaviour {
 			else
 				infos = connector.Search( Global.IntFilter( advanceSearch.text) , "Time" , 0);	
 		}
-		ShowBookList(infos);
 	}
 
 	[SerializeField] InputField bookSearch;
 	public void SearchBook()
 	{
 		List<BookInfo> infos = connector.Search( connector.Search(bookSearch.text,"Title")[0]);
-
-		ShowBookList(infos);
 	}
 
 
@@ -135,8 +74,6 @@ public class DatabaseManager : MonoBehaviour {
 	public void SearchTag()
 	{
 		List<BookInfo> infos = connector.SearchByTag( tagSearch.text );
-
-		ShowBookList(infos);
 	}
 
 	public void RemoveAllChild(Transform root )
@@ -145,22 +82,6 @@ public class DatabaseManager : MonoBehaviour {
 		{
 			Destroy(t.gameObject);
 		}
-	}
-
-	public void ShowBookList(List<BookInfo> books )
-	{
-		int index = 0;
-		//Clear all bars
-		RemoveAllChild(searchInfo);
-		CreateBookInfoBar(searchInfo,index++);
-
-		foreach(BookInfo info in books)
-		{
-			CreateBookInfoBar(searchInfo,index++,info);
-			if (index >= 11 )
-				break;
-		}
-
 	}
 
 	public void CreateBookInfoBar(RectTransform parent, int index , BookInfo info = null)
