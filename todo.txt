@@ -1,4 +1,5 @@
 touch interaction
+	tell andreas when I am ready to work on this
 
 kinect
 	faster people movement => swirl up more stuff
@@ -15,9 +16,8 @@ interaction
 		searching hooray
 			2 ways of searching
 				drill down - by putting into desk or typing in search
-				open up - whirl the whirlwind, repopulate with ||
-		5 belts
-			Author, Time, topical_term, geographic_subdivision, genre
+				open up -	 whirl the whirlwind, repopulate with ||
+		5 belts - the 5 most populated fields
 	scrolling up and down the whirlwind
 	whirling the whirlwind
 	put center item in correct place
@@ -25,3 +25,4 @@ interaction
 
 questions
 	what to do when duplicates in bar?
+		display a message about it's already in the bar
