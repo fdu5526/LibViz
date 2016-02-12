@@ -35,12 +35,12 @@ public class WhirlwindBeltEnd : MonoBehaviour {
 		Debug.Assert(belt != null);
 		WhirlwindBeltSlot w = other.GetComponent<WhirlwindBeltSlot>();
 
-		bool isHead = belt.IsAtHead(w);
+		bool isHead = belt.IsAtHead(other.transform);
 		bool isTail = belt.IsAtTail(other.transform);
 		if (isInContextExam) {
 			Shift(w, isHead, isTail);
 		}
-		mostRecentCollisionIsHead = isHead;
+		mostRecentCollisionIsHead = isTail;
 	}
 
 	// collision is checked on enter and exit
