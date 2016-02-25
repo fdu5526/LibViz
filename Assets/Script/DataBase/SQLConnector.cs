@@ -77,9 +77,24 @@ public class SQLConnector : MonoBehaviour {
 			    {
 			    	BookInfo info = new BookInfo();
 
-			    	info.Init(reader.GetString(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3),reader.GetString(7)
-			    		,reader.GetString(14) , reader.GetString(9),reader.GetString(10), reader.GetString(11),reader.GetString(12),
-			    		reader.GetString(13) );
+			    	/*
+				    	0 title
+				    	1 author
+				    	2 time
+				    	3 location
+				    	4 description
+				    	5 publisher
+				    	6 publish data
+				    	7 topical term
+				    	8 form subdivision
+				    	9 general sub
+				    	10 chronological sub
+				    	11 geographic sub
+				    	12 note
+			    	*/
+			    	info.Init(reader.GetString(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3),reader.GetString(12)
+			    		,reader.GetString(4) , reader.GetString(7),reader.GetString(8), reader.GetString(9),reader.GetString(10),
+			    		reader.GetString(11) );
 			    	res.Add(info);
 			    }
 	    	}
