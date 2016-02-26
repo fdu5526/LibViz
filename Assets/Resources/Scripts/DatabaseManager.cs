@@ -17,13 +17,12 @@ public class DatabaseManager : MonoBehaviour {
 	// call login first
 	public void Login() {
 		string res = connector.TryConnectSQL();
-		if (res == "") {
+		connectionSuccess = res == "";
+		if (connectionSuccess) {
 			print("success!");
-			connectionSuccess = true;
-		}
-		else {
+			
+		} else {
 			print("failure...");
-			connectionSuccess = false;
 		}
 	}
 
@@ -71,11 +70,9 @@ public class DatabaseManager : MonoBehaviour {
 		return null;
 	}
 
-	public List<BookInfo> AdvancedSearch(int dropdownValue, string searchText)
-	{
+	public List<BookInfo> AdvancedSearch(int dropdownValue, string searchText) {
 		List<BookInfo> infos = new List<BookInfo>();
-		if (dropdownValue <= 3)
-		{
+		if (dropdownValue <= 3) {
 			string field = "";
 			if (dropdownValue == 0)
 				field = "Title";
@@ -87,8 +84,8 @@ public class DatabaseManager : MonoBehaviour {
 				field = "Description";
 			infos = connector.Search(searchText, field );
 		}
-		if (dropdownValue == 4)
-		{
+		
+		if (dropdownValue == 4) {
 			if (searchText.EndsWith("-"))
 				infos = connector.Search( Global.IntFilter(searchText) , "Time" , -1);
 			else
@@ -101,8 +98,7 @@ public class DatabaseManager : MonoBehaviour {
 		return infos;
 	}
 
-	public List<BookInfo> SearchTag(string tag)
-	{
+	public List<BookInfo> SearchTag(string tag) {
 		return connector.SearchByTag(tag);
 	}
 }
