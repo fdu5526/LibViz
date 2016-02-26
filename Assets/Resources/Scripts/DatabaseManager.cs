@@ -8,6 +8,7 @@ public class DatabaseManager : MonoBehaviour {
 
 	[SerializeField] SQLConnector connector {get { return SQLConnector.Instance;}}
 
+
 	public void Login() {
 		string res = connector.TryConnectSQL();
 		if (res == "") {
@@ -20,6 +21,9 @@ public class DatabaseManager : MonoBehaviour {
 
 	public List<BookInfo> Search(List<BookInfo> inputInfos)
 	{
+		Debug.Assert(inputInfos != null);
+		Debug.Assert(inputInfos.Count > 0);
+
 		List<BookInfo> outputInfos = connector.Search(inputInfos);
 		print(inputInfos.Count + " " + outputInfos.Count);
 		return outputInfos;
