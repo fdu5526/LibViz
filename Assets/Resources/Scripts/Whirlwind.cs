@@ -94,7 +94,12 @@ public class Whirlwind : MonoBehaviour {
 	public void Search () {
 		List<BookInfo> bookinfos = searchBar.SelectedBookInfos;
 		//TODO do real search here
-		databaseManager.Search(bookinfos);
+		if (bookinfos.Count > 0) {
+			databaseManager.Search(bookinfos);
+		} else {
+			// TODO do nothing?
+		}
+		
 	}
 
 	// Set state to Idle, and load new items
