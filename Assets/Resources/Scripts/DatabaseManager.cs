@@ -41,7 +41,7 @@ public class DatabaseManager : MonoBehaviour {
 			retVal.Add(wwbi);
 		}
 
-		// TODO sort the search results
+		// sort the search results by popularity
 		retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b1.InfosCount.CompareTo(b2.InfosCount); });
 
 		// return the top 5 fields results (pad if necessary)

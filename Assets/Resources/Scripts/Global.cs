@@ -130,6 +130,35 @@ public class BookInfo{
 		geographic_subdivision = _geographic_subdivision;
 	}
 
+	public BookInfo () {
+		
+	}
+
+	public BookInfo(string _title, string _author, int _time , string _location , string _note 
+		, string _genre , string _topical_term , string _form_subdivision , string _general_subdivision
+		, string _chronological_subdivision , string _geographic_subdivision) {
+
+		Init(_title, _author, _time , _location , _note 
+		, _genre , _topical_term , _form_subdivision , _general_subdivision
+		, _chronological_subdivision , _geographic_subdivision);
+	}
+
+	public string ToString () {
+		string s = "\"" + Title + "\"," + 
+			   "\"" + Author + "\"," + 
+			   "\"" + Time + "\"," + 
+			   "\"" + Location + "\"," + 
+			   "\"" + Note + "\"," + 
+			   "\"" + genre + "\"," + 
+			   "\"" + topical_term + "\"," + 
+			   "\"" + form_subdivision + "\"," + 
+			   "\"" + general_subdivision + "\"," + 
+			   "\"" + chronological_subdivision + "\"," + 
+			   "\"" + geographic_subdivision + "\"";
+
+		return s;
+	}
+
 
 	public string GetField (Field field) {
 
