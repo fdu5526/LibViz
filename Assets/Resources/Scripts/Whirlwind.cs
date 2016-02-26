@@ -309,6 +309,8 @@ public class Whirlwind : MonoBehaviour {
 		mainCamera.ZoomIn();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ItemSprite = wwItem.ItemSprite;
+		databaseManager.Search(wwItem.bookInfo);
+
 		LogUserInput();
 	}
 

@@ -18,6 +18,12 @@ interaction
 				drill down - by putting into desk or typing in search
 				open up -	 whirl the whirlwind, repopulate with ||
 		5 belts - the 5 most populated fields
+	
+	search by enlarge
+		only based on the 5 most common ones
+		completely new population
+		each belt is sorted highest to lowest
+	
 	scrolling up and down the whirlwind
 	whirling the whirlwind
 	put center item in correct place

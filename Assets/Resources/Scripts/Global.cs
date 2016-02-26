@@ -129,6 +129,50 @@ public class BookInfo{
 		chronological_subdivision = _chronological_subdivision;
 		geographic_subdivision = _geographic_subdivision;
 	}
+
+
+	public string GetField (Field field) {
+
+		string retVal = null;
+		switch (field) {
+			case Field.TITLE:
+				retVal = this.Title;
+				break;
+			case Field.AUTHOR:
+				retVal = this.Author;
+				break;
+			case Field.TIME:
+				retVal = Time.ToString();
+				break;
+			case Field.NOTE:
+				retVal = this.Note;
+				break;
+			case Field.PUBLISH_LOCATION:
+				retVal = this.Location;
+				break;
+			case Field.GENRE:
+				retVal = this.genre;
+				break;
+			case Field.TOPICAL_TERM:
+				retVal = this.topical_term;
+				break;
+			case Field.FORM_SUBDIVISION:
+				retVal = this.form_subdivision;
+				break;
+			case Field.GENERAL_SUBDIVISION:
+				retVal = this.general_subdivision;
+				break;
+			case Field.CHRONOLOGICAL_SUBDIVISION:
+				retVal = this.chronological_subdivision;
+				break;
+			case Field.GEOGRAPHIC_SUBDIVISION:
+				retVal = this.geographic_subdivision;
+				break;
+		}
+
+		Debug.Assert(retVal != null);
+		return retVal;
+	}
 }
 
 public enum Field{
