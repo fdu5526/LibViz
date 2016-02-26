@@ -46,16 +46,6 @@ public class SQLConnector : MonoBehaviour {
 
 		return "Failed";
 
-		//We pull up a command
-	    MySqlCommand dbcmd  = new MySqlCommand("SELECT * FROM `InfoTable`", connection);
-		//And we execute it
-	    MySqlDataReader reader = dbcmd.ExecuteReader();
-
-	    while(reader.Read())
-	    {
-	    	Debug.Log("Read " + reader.GetString(0) + "|" + reader.GetString(1) + "|" + reader.GetString(2) + "|" + reader.GetString(3) + "|" + reader.GetString(4));
-	    }
-
 	}
 
 	public List<BookInfo> GetBookListByCommand(string command)
@@ -174,13 +164,23 @@ public class SQLConnector : MonoBehaviour {
 
 	public List<BookInfo> SearchByTag(string tag)
 	{
-		string command = "SELECT * FROM `" + tableName + "` WHERE "
-	    	+ " `Genre` LIKE '%" +  tag + "%' OR"
-	    	+ " `Topical Term` LIKE '%" +  tag + "%' OR"
-	    	+ " `Form Subdivision` LIKE '%" +  tag + "%' OR"
-	    	+ " `General Subdivision` LIKE '%" +  tag + "%' OR"
-	    	+ " `Chronological Subdivision` LIKE '%" +  tag + "%' OR"
-	    	+ " `Geographic Subdivision` LIKE '%" +  tag + "%' ";
+	// 	string command = "SELECT * FROM `" + tableName + "` WHERE "
+	//     	+ " `Genre` LIKE '%" +  tag + "%' OR"
+	//     	+ " `Topical Term` LIKE '%" +  tag + "%' OR"
+	//     	+ " `Form Subdivision` LIKE '%" +  tag + "%' OR"
+	//     	+ " `General Subdivision` LIKE '%" +  tag + "%' OR"
+	//     	+ " `Chronological Subdivision` LIKE '%" +  tag + "%' OR"
+	//     	+ " `Geographic Subdivision` LIKE '%" +  tag + "%' ";
+
+
+		string command = "SELECT * FROM `" + tableName + "` WHERE ";
+
+		foreach(string t in Global.TAG_FIELDS)
+		{
+			command += " `" + t + "` LIKE '%" +  tag + "%' OR";
+		}
+
+		command = command.Remove(command.Length-3, 2);
 
 		return EvaluateBookByKeyTag( GetBookListByCommand(command) , tag );
 
@@ -191,7 +191,7 @@ public class SQLConnector : MonoBehaviour {
 	{
 		foreach(BookInfo b in list)
 		{
-			b.v = 0;
+			b.v = UnityEngine.Random.Range(-0.05f, 0.05f);
 			if (b.Title.Contains(keyWord))
 				b.v += 3f;
 			if (b.Author.Contains(keyWord) || b.Location.Contains(keyWord))
@@ -209,7 +209,7 @@ public class SQLConnector : MonoBehaviour {
 	{
 		foreach(BookInfo b in list)
 		{
-			b.v = 0;
+			b.v = UnityEngine.Random.Range(-0.05f, 0.05f);
 			if (b.genre.Contains(keyWord))
 				b.v += 3f;
 			if (b.topical_term.Contains(keyWord))
@@ -231,7 +231,7 @@ public class SQLConnector : MonoBehaviour {
 
 		foreach(BookInfo b in list)
 		{
-			b.v = 0;
+			b.v = UnityEngine.Random.Range(-0.05f, 0.05f);
 			if (b.Author.Contains(keyBook.Author))
 				b.v += 3f;
 			if (b.Location.Contains(keyBook.Location))
@@ -265,7 +265,7 @@ public class SQLConnector : MonoBehaviour {
 					res.Add(newBook);
 				}else
 				{
-					newBook.v += list[i][j].v;
+					newBook.v += list[i][j].v + UnityEngine.Random.Range(-0.05f, 0.05f);
 				}
 
 			}
