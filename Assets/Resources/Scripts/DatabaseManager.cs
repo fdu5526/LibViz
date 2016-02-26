@@ -9,15 +9,21 @@ public class DatabaseManager : MonoBehaviour {
 	[SerializeField] SQLConnector connector {get { return SQLConnector.Instance;}}
 
 	int numOfFields = Enum.GetNames(typeof(Field)).Length;
+	bool connectionSuccess;
 
 
+	public bool ConnectionSuccess { get { return connectionSuccess; } }
+
+	// call login first
 	public void Login() {
 		string res = connector.TryConnectSQL();
 		if (res == "") {
 			print("success!");
+			connectionSuccess = true;
 		}
 		else {
 			print("failure...");
+			connectionSuccess = false;
 		}
 	}
 
