@@ -104,7 +104,6 @@ public class SQLConnector : MonoBehaviour {
 	    	}
 	    }
 
-	    Debug.Log("Get a booklist contains " + res.Count + " books");
 		return res;
  	}
 

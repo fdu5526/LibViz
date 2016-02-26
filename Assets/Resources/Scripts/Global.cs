@@ -61,6 +61,10 @@ public class Global
 		return int.Parse(res);
 	}
 
+	static public string RemoveCharacters (string s) {
+		return s.Replace("'", "''");
+	}
+
 
 	static public string Field2String(Field field)
 	{
@@ -77,7 +81,8 @@ public class Global
 		case Field.PUBLISH_LOCATION:
 			return "Location";
 		case Field.GENRE:
-			return "Genre";
+			return "Description"; //TODO no genre in database as of now
+			//return "Genre";
 		case Field.TOPICAL_TERM:
 			return "Topical Term";
 		case Field.FORM_SUBDIVISION:
@@ -116,22 +121,22 @@ public class BookInfo{
 	public void Init(string _title, string _author, int _time , string _location , string _note 
 		, string _genre , string _topical_term , string _form_subdivision , string _general_subdivision
 		, string _chronological_subdivision , string _geographic_subdivision) {
-		Title = _title;
-		Author = _author;
+		Title = Global.RemoveCharacters(_title);
+		Author = Global.RemoveCharacters(_author);
 		Time = _time;
-		Note =  _note;
-		Location = _location;
+		Note =  Global.RemoveCharacters(_note);
+		Location = Global.RemoveCharacters(_location);
 
-		genre = _genre;
-		topical_term = _topical_term;
-		form_subdivision = _form_subdivision;
-		general_subdivision = _general_subdivision;
-		chronological_subdivision = _chronological_subdivision;
-		geographic_subdivision = _geographic_subdivision;
+		genre = Global.RemoveCharacters(_genre);
+		topical_term = Global.RemoveCharacters(_topical_term);
+		form_subdivision = Global.RemoveCharacters(_form_subdivision);
+		general_subdivision = Global.RemoveCharacters(_general_subdivision);
+		chronological_subdivision = Global.RemoveCharacters(_chronological_subdivision);
+		geographic_subdivision = Global.RemoveCharacters(_geographic_subdivision);
 	}
 
 	public BookInfo () {
-		
+
 	}
 
 	public BookInfo(string _title, string _author, int _time , string _location , string _note 

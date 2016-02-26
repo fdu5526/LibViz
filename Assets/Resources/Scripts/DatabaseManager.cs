@@ -42,10 +42,14 @@ public class DatabaseManager : MonoBehaviour {
 		}
 
 		// sort the search results by popularity
-		retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b1.InfosCount.CompareTo(b2.InfosCount); });
+		retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b2.InfosCount.CompareTo(b1.InfosCount); });
 
 		// return the top 5 fields results (pad if necessary)
 		retVal = retVal.GetRange(0, 5);
+
+		for (int i = 0; i < retVal.Count; i++) {
+			print(retVal[i].Label + " " + retVal[i].InfosCount);
+		}
 		return retVal;
 	}
 

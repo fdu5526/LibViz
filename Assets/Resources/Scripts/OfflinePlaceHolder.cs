@@ -23,6 +23,7 @@ public class OfflinePlaceHolder
 
 
 	public static BookInfo RandomBookInfo () {
+		//return bookInfos[1];
 		return bookInfos[(int)UnityEngine.Random.Range(0f, (float)bookInfos.Length)];
 	}
 }
