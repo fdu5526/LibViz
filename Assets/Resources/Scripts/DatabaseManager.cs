@@ -46,10 +46,6 @@ public class DatabaseManager : MonoBehaviour {
 
 		// return the top 5 fields results (pad if necessary)
 		retVal = retVal.GetRange(0, 5);
-
-		for (int i = 0; i < retVal.Count; i++) {
-			print(retVal[i].Label + " " + retVal[i].InfosCount);
-		}
 		return retVal;
 	}
 
