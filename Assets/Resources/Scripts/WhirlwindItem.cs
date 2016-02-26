@@ -39,22 +39,16 @@ public class WhirlwindItem : MonoBehaviour {
 	Rigidbody rigidbody;
 
 	// Use this for initialization
-	void Start () {
-		if (collider == null) {
-			Initialize();
-		}
-	}
-
-	public void Initialize () {
+	public void Awake () {
 		currentState = State.Idle;
 	
 		defaultScale = transform.localScale;
-		Vector3 p = transform.position;
-		idlePosition = p;
 		isLockedToSlot = false;
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		itemImage = transform.Find("ItemImage").gameObject;
 		slot = null;
+
+		bookInfo = OfflinePlaceHolder.RandomBookInfo();
 
 		collider = GetComponent<Collider>();
 		rigidbody = GetComponent<Rigidbody>();
@@ -64,6 +58,7 @@ public class WhirlwindItem : MonoBehaviour {
 		this.belt = belt;
 		this.radius = radius;
 		this.height = height;
+		idlePosition = transform.position;
 	}
 
 

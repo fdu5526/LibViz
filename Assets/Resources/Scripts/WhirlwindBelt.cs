@@ -169,7 +169,6 @@ public class WhirlwindBelt : MonoBehaviour {
 			g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindItem"));
 			g.transform.position = defaultItemPosition;
 			WhirlwindItem wwi = g.GetComponent<WhirlwindItem>();
-			wwi.Initialize();
 			wwi.Initialize(this, radius, height);
 			wwi.ItemSprite = Resources.Load<Sprite>("Sprites/Items/" + itemIDs[i]);
 			wwItems.Add(wwi);

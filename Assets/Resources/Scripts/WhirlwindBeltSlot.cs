@@ -29,7 +29,7 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	Collider collider;
 
 	// Use this for initialization
-	void Start () {	
+	void Awake () {	
 		center = GameObject.Find("WhirlwindCenter").transform;
 		shouldSlowsDown = false;
 		speed = 0f;
