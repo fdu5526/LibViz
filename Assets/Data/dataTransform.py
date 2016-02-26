@@ -33,6 +33,8 @@ INFO_INDEX = [
 		['chronological_subdivision','.650','y','tinytext'],  # 12
 		['geographic_subdivision'	,'.650','z','tinytext'],  # 13
 		['genre'					,'.655','a','tinytext'],  # 14
+		['genre'					,'.655','a','tinytext'],  # 14
+		
 		]
 SQL_CREATE = []
 SQL_INSERT = []
