@@ -140,6 +140,62 @@ public class SQLConnector : MonoBehaviour {
 	    return GetBookListByCommand(command);
 	}
 
+	//////////
+	// search a key word in mutiple fields
+	//////////
+
+	public List<BookInfo> Search( List<string> texts, Field field)
+	{
+		if (field.Equals(Field.TIME))
+		{
+			List<int> times = new List<int>();
+			foreach(string time in texts)
+			{
+				times.Add(Int32.Parse(time));
+			}
+			return Search(times,Global.Field2String(field), 2);
+		}
+		return Search(texts,Global.Field2String(field));
+	}
+
+	public List<BookInfo> Search( List<string> texts, string field)
+	{
+		// return null if there is no texts
+		if (texts == null || texts.Count <= 0 )
+			return null;
+
+		string command = "SELECT * FROM `" + tableName + "` WHERE ";
+
+		foreach(string text in texts)
+		{
+	    	command +=  " `" + field + "` LIKE '%" +  text + "%' OR";
+		}
+		command = command.Substring(0, command.Length-2);
+
+	    return GetBookListByCommand(command);
+	}	
+
+
+
+
+	public List<BookInfo> Search(List<int> values , string field , int range = 2)
+	{
+
+	    
+		string command = "SELECT * FROM `" + tableName + "` WHERE ";
+
+
+		foreach( int value in values )
+		{
+	    	command += "( `" + field + "` " + "<=" + (value + range).ToString() + " AND "
+	    	+ " `" + field + "` " + ">=" + (value - range).ToString() + ") OR";
+		}
+
+		command = command.Substring(0, command.Length-2);
+
+	    return GetBookListByCommand(command);
+	}
+
 	public List<BookInfo> Search(int time , string field , int relation = 1 , int range = 2)
 	{
 		string opea=" = ";
