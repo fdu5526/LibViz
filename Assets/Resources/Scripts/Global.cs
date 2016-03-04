@@ -185,19 +185,19 @@ public class BookInfo{
 	public string Title
 	{
 		get {
-			return GetData(Field.TITLE);
+			return GetData("title");
 		}
 	}
 	public string Author
 	{
 		get {
-			return GetData(Field.AUTHOR);
+			return GetData("name");
 		}
 	}
 	public int Time
 	{
 		get {
-			return int.Parse(GetData(Field.TIME));
+			return int.Parse(GetData("date"));
 		}
 	}
 	public int TimeFrom
@@ -222,13 +222,13 @@ public class BookInfo{
 	public string Note
 	{
 		get {
-			return GetData(Field.NOTE);
+			return GetData("note");
 		}
 	}
 	public string Location
 	{
 		get {
-			return GetData(Field.PUBLISH_LOCATION);
+			return GetData("pub_place");
 		}
 	}
 
@@ -254,33 +254,33 @@ public class BookInfo{
 			dict.Add(key, value);
 	}
 
-	public string GetData(Field f)
-	{
-		switch(f)
-		{
-		case Field.TITLE:
-			return GetData("title");
-			break;
-		case Field.AUTHOR:
-			return GetData("name");
-			break;
-		case Field.TIME:
-			return GetData("date");
-			break;
-		case Field.NOTE:
-			return GetData("note");
-			break;
-		case Field.PUBLISH_LOCATION:
-			return GetData("pub_place");
-			break;
-		case Field.GENRE:
-			return GetData("genre");
-			break;
-		default:
-			return "";
-			break;
-		};
-	}
+	// public string GetData(Field f)
+	// {
+	// 	switch(f)
+	// 	{
+	// 	case Field.TITLE:
+	// 		return GetData("title");
+	// 		break;
+	// 	case Field.AUTHOR:
+	// 		return GetData("name");
+	// 		break;
+	// 	case Field.TIME:
+	// 		return GetData("date");
+	// 		break;
+	// 	case Field.NOTE:
+	// 		return GetData("note");
+	// 		break;
+	// 	case Field.PUBLISH_LOCATION:
+	// 		return GetData("pub_place");
+	// 		break;
+	// 	case Field.GENRE:
+	// 		return GetData("genre");
+	// 		break;
+	// 	default:
+	// 		return "";
+	// 		break;
+	// 	};
+	// }
 
 	public List<string> GetSubjects()
 	{

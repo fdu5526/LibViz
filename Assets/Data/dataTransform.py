@@ -241,8 +241,13 @@ class DataAnalyzer:
 
 
 if __name__ == '__main__':
-	dataAnalyzer = DataAnalyzer()
 
+	if (len(sys.argv) > 1 ):
+		inFilePath = sys.argv[1]
+
+	print " INPUT FILE : " , inFilePath	
+
+	dataAnalyzer = DataAnalyzer()
 	i = 0 
 	last = ''
 	for line in inFile:
