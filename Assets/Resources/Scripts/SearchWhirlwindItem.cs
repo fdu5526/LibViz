@@ -2,16 +2,14 @@ using UnityEngine;
 using System.Collections;
 
 public class SearchWhirlwindItem {
-	public Sprite sprite;
-	public BookInfo bookInfo;
+	Sprite sprite;
+	BookInfo bookInfo;
 
 	public SearchWhirlwindItem (WhirlwindItem wwItem) {
 		bookInfo = wwItem.bookInfo;
 		sprite = wwItem.ItemSprite;
 	}
 
-	public SearchWhirlwindItem (SearchWhirlwindItem s) {
-		this.bookInfo = s.bookInfo;
-		this.sprite = s.sprite;
-	}
+	public Sprite Sprite { get { return sprite; } }
+	public BookInfo BookInfo { get { return bookInfo; } }
 }

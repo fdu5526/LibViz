@@ -33,7 +33,7 @@ public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 	public BookInfo BookInfo {
 		get {
 			Debug.Assert(IsFilled);
-			return searchWhirlwindItem.bookInfo;
+			return searchWhirlwindItem.BookInfo;
 		}
 	}
 
@@ -41,7 +41,7 @@ public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 
 	public void SetDraggedSearchItem (SearchWhirlwindItem s) {
 		searchWhirlwindItem = s;
-		GetComponent<Image>().sprite = s.sprite;
+		GetComponent<Image>().sprite = s.Sprite;
 		index = transform.GetSiblingIndex();
 		isSelected = true;
 		GetComponent<Outline>().enabled = isSelected;

@@ -332,7 +332,7 @@ public class Whirlwind : MonoBehaviour {
 		
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 		fullscreenSelectionUI.GetComponent<Canvas>().enabled = true;
-		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().ItemSprite = enlargedItem.sprite;
+		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().ItemSprite = enlargedItem.Sprite;
 		LogUserInput();
 	}
 
@@ -361,25 +361,26 @@ public class Whirlwind : MonoBehaviour {
 	public Sprite EnlargedItemSprite {
 		get {
 			Debug.Assert(IsEnlargedOrFullscreen);
-			return enlargedItem.sprite;
+			return enlargedItem.Sprite;
 		}
 	}
 
-	// user starts dragging an item to search bar
+	// user starts dragging the enlarged item
 	public void DragItemImage () {
 		Debug.Assert(IsEnlargedOrFullscreen);
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled ||
 								 fullscreenSelectionUI.GetComponent<Canvas>().enabled);
 
 		draggedSearchItem = enlargedItem;
-		searchUI.GetComponent<SearchUI>().EnableDragShadow(enlargedItem.sprite);
+		searchUI.GetComponent<SearchUI>().EnableDragShadow(enlargedItem.Sprite);
 	}
 
+	// user starts dragging an item from the search bar
 	public void DragItemImage (SearchWhirlwindItem s) {
 		Debug.Assert(s != null);
 
 		draggedSearchItem = s;
-		searchUI.GetComponent<SearchUI>().EnableDragShadow(s.sprite);
+		searchUI.GetComponent<SearchUI>().EnableDragShadow(s.Sprite);
 	}
 
 	// user starts dragging an item to search bar
