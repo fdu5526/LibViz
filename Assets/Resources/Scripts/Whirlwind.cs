@@ -91,7 +91,7 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 /////// functions for manipulating data //////
-	public void Search () {
+	public void SearchDeskExplore () {
 		List<BookInfo> bookinfos = searchBar.SelectedBookInfos;
 		//TODO do real search here
 		if (bookinfos.Count > 0) {
