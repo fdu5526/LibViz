@@ -2,6 +2,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using System.Text.RegularExpressions;
 
+
 /*
  * a bunch of global stuff that everyone needs put into the same place
  */
@@ -144,11 +145,12 @@ public class BookInfo{
 		general_subdivision = Global.RemoveCharacters(_general_subdivision);
 		chronological_subdivision = Global.RemoveCharacters(_chronological_subdivision);
 		geographic_subdivision = Global.RemoveCharacters(_geographic_subdivision);
-	}
 
+
+	}
 	public BookInfo () {
-
 	}
+
 
 	public BookInfo(string _title, string _author, int _time , string _location , string _note 
 		, string _genre , string _topical_term , string _form_subdivision , string _general_subdivision

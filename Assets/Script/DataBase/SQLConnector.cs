@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using MySql.Data;
 using MySql.Data.MySqlClient;
@@ -82,6 +82,7 @@ public class SQLConnector : MonoBehaviour {
 				    	11 geographic sub
 				    	12 note
 			    	*/
+				    
 			    	info.Init(reader.GetString(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3),reader.GetString(12)
 			    		,reader.GetString(4) , reader.GetString(7),reader.GetString(8), reader.GetString(9),reader.GetString(10),
 			    		reader.GetString(11) );
