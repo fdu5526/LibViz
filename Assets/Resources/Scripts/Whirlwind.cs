@@ -33,7 +33,7 @@ public class Whirlwind : MonoBehaviour {
 
 	// database 
 	DatabaseManager databaseManager;
-	string[][] defaultIds;
+	List<WhirlwindBeltInfo> defaultBookinfos;
 
 
 	// Use this for initialization
@@ -59,16 +59,12 @@ public class Whirlwind : MonoBehaviour {
 		}
 		Array.Sort(belts, delegate(WhirlwindBelt b1, WhirlwindBelt b2) { return b1.level.CompareTo(b2.level); });
 
-		//TODO make this not a placeholder
+		// Log into the database
 		databaseManager = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();
 		databaseManager.Login();
-		defaultIds =  new string [5][] {
-			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
-			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
-			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
-			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"},
-			new string[] {"2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5", "1", "2", "3", "4", "5"}
-		};
+
+		//create the default whirlwind
+		defaultBookinfos = databaseManager.GetDefaultBookInfos(belts.Length);
 	}
 
 	// current debugging based state machine triggers
@@ -76,7 +72,7 @@ public class Whirlwind : MonoBehaviour {
 	void CheckInteractionWithWhirlwind () {
 		if (Input.GetKeyDown("a") &&
 				currentState == State.Idle) {
-			LoadNewItems(defaultIds);
+			LoadNewItems(defaultBookinfos);
 			StirUp(Global.StirUpSpeed);
 		} else if (Input.GetKeyDown("s") &&
 							 currentState == State.StirUp && 
@@ -103,19 +99,20 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	// Set state to Idle, and load new items
-	void LoadNewItems (string[][] itemIDs) {
+	void LoadNewItems (List<WhirlwindBeltInfo> infos) {
 		Debug.Assert(currentState == State.Idle ||
 								 currentState == State.ContextExam || 
 								 currentState == State.StirUpNewContextExam ||
 								 currentState == State.SlowToStopContextExam ||
 								 currentState == State.WhirlExam);
+		Debug.Assert(infos.Count == belts.Length);
 
 		for (int i = 0; i < belts.Length; i++) {
 			belts[i].End();
 		}
 		ResetToIdle();
-		for (int i = 0; i < itemIDs.Length; i++) {
-			belts[i].LoadNewItems(itemIDs[i]);
+		for (int i = 0; i < infos.Count; i++) {
+			belts[i].LoadNewItems(infos[i]);
 		}
 	}
 
@@ -123,26 +120,14 @@ public class Whirlwind : MonoBehaviour {
 	void LoadNewWhirlwindBasedOnItem (WhirlwindItem wwItem) {
 		Debug.Assert(IsEnlargedOrFullscreen);
 
-		// TODO actual database query here
-		string[][] ids =  new string [5][] {
-			new string[] {"1", "1", "1", "1", "1", "1", "1", "1"},
-			new string[] {"2", "2", "2", "2", "2", "2", "2", "2", "2", },
-			new string[] {"3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"},
-			new string[] {"4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4"},
-			new string[] {"5", "5", "5", "5", "5", "5", "5"},
-		};
-		Debug.Assert(ids.Length == belts.Length);
-
-
-
 		// search based on this single item
-		//List<WhirlwindBeltInfo> newInfos = databaseManager.Search(wwItem.bookInfo, belts.Length);
-		//Debug.Assert(newInfos.Count == belts.Length);
+		List<WhirlwindBeltInfo> newInfos = databaseManager.Search(wwItem.bookInfo, belts.Length);
+		Debug.Assert(newInfos.Count == belts.Length);
 
-		// TODO reload the information
-		//LoadNewItems(newInfos);
-		
-		LoadNewItems(ids);
+		// load a new whirlwind
+		LoadNewItems(newInfos);
+			
+		// stir up the new items
 		StirUp(Global.StirUpSpeed);
 		currentState = State.StirUpNewContextExam;
 	}
@@ -334,7 +319,7 @@ public class Whirlwind : MonoBehaviour {
 
 		// go back to WhirlExam if we aren't actually ending
 		if (!isEnding) {
-			LoadNewItems(defaultIds);
+			LoadNewItems(defaultBookinfos);
 			StirUpAutoStopWhirlExam(Global.StirUpSpeed);
 		}
 		LogUserInput();

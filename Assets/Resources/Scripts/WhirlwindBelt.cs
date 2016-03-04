@@ -153,7 +153,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 /////// public functions used for manipulating data //////
-	public void LoadNewItems (string[] itemIDs) {
+	public void LoadNewItems (WhirlwindBeltInfo infos) {
 		GameObject g;
 
 		beltEnd.Enable(false);
@@ -165,14 +165,17 @@ public class WhirlwindBelt : MonoBehaviour {
 
 		// reinstantiate new items
 		wwItems = new List<WhirlwindItem>();
-		for (int i = 0; i < itemIDs.Length; i++) {
+		for (int i = 0; i < infos.Infos.Count; i++) {
 			g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindItem"));
 			g.transform.position = defaultItemPosition;
 			WhirlwindItem wwi = g.GetComponent<WhirlwindItem>();
 			wwi.Initialize(this, radius, height);
-			wwi.ItemSprite = Resources.Load<Sprite>("Sprites/Items/" + itemIDs[i]);
+			wwi.ItemSprite = Resources.Load<Sprite>("Sprites/Items/" + infos.Infos[i].Title);
 			wwItems.Add(wwi);
 		}
+
+		// set the label
+		label.Text = infos.Label;
 	}
 
 /////// public functions used for user interaction //////
