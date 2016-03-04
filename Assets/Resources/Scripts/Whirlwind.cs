@@ -57,7 +57,7 @@ public class Whirlwind : MonoBehaviour {
 		for (int i = 0; i < gl.Length; i++) {
 			belts[i] = gl[i].GetComponent<WhirlwindBelt>();
 		}
-		Array.Sort(belts, delegate(WhirlwindBelt b1, WhirlwindBelt b2) { return b1.level.CompareTo(b2.level); });
+		Array.Sort(belts, delegate(WhirlwindBelt b1, WhirlwindBelt b2) { return b2.level.CompareTo(b1.level); });
 
 		// Log into the database
 		databaseManager = GameObject.Find("DatabaseManager").GetComponent<DatabaseManager>();

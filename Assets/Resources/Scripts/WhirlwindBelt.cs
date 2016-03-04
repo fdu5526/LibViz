@@ -40,16 +40,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		radius = height * 0.6f + 1f;
 		isOperating = false;
 		numOfItemsShownOnBelt = 3 + level * 3;
-
-		WhirlwindItem[] w = GetComponentsInChildren<WhirlwindItem>();
-		Debug.Assert(w != null);
-		
-		// find all the items of this belt
-		wwItems = new List<WhirlwindItem>(w);
-		wwItems.Sort(delegate(WhirlwindItem w1, WhirlwindItem w2) { return w1.name.CompareTo(w2.name); });
-		for (int i = 0; i < wwItems.Count; i++) {
-			wwItems[i].Initialize(this, radius, height);
-		}
+		wwItems = new List<WhirlwindItem>();
 
 		// initialize the slots
 		slots = new WhirlwindBeltSlot[numOfItemsShownOnBelt];
