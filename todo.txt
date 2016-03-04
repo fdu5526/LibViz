@@ -17,7 +17,8 @@ interaction
 			2 ways of searching
 				drill down - by putting into desk or typing in search
 				open up -	 whirl the whirlwind, repopulate with ||
-	
+		what is subject?
+		
 	scrolling up and down the whirlwind
 	whirling the whirlwind
 	put center item in correct place
