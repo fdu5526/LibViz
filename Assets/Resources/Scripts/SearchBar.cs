@@ -34,7 +34,7 @@ public class SearchBar : MonoBehaviour, IDropHandler {
 	public void AddSlotAtEnd () {
 		// create a new slot
 
-		SearchWhirlwindItem s = new SearchWhirlwindItem(whirlwind.EnlargedItem);
+		SearchWhirlwindItem s = whirlwind.EnlargedItem;
 
 		SearchSlot newSlot = ((GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/SearchSlot"))).GetComponent<SearchSlot>();
 		newSlot.transform.SetParent(content);

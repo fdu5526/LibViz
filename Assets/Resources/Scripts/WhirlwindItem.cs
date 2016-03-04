@@ -24,6 +24,7 @@ public class WhirlwindItem : PhysicsBody {
 	bool isInteractable;
 	bool isEnlarged;
 	bool isLockedToSlot;
+	bool isToBeDestroyed;
 
 	// other stuffs in the scene
 	Whirlwind whirlwind;
@@ -36,24 +37,24 @@ public class WhirlwindItem : PhysicsBody {
 		currentState = State.Idle;
 	
 		defaultScale = transform.localScale;
-		isLockedToSlot = false;
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		itemImage = transform.Find("ItemImage").gameObject;
+		isLockedToSlot = false;
 		slot = null;
-
-		bookInfo = OfflinePlaceHolder.RandomBookInfo();
-
-		collider = GetComponent<Collider>();
-		rigidbody = GetComponent<Rigidbody>();
 
 		base.Awake();
 	}
 
-	public void Initialize (WhirlwindBelt belt, float radius, float height) {
+
+	// initialize important information passed from the belt this item belongs to
+	public void Initialize (WhirlwindBelt belt, float radius, float height, Vector3 idlePosition, BookInfo bookInfo) {
 		this.belt = belt;
 		this.radius = radius;
 		this.height = height;
-		idlePosition = transform.position;
+		this.idlePosition = idlePosition;
+		this.bookInfo = bookInfo;
+
+		transform.position = idlePosition;
 	}
 
 
@@ -80,11 +81,6 @@ public class WhirlwindItem : PhysicsBody {
 		Color c = itemImage.GetComponent<Renderer>().material.color;
 		c.a = Mathf.Clamp(a, 0.1f, 1f);
 		itemImage.GetComponent<Renderer>().material.color = c;
-	}
-
-
-	void DestroyItem () {
-		Destroy(this.gameObject);
 	}
 
 /////// functions for setting whirlwindItem state //////
@@ -189,10 +185,8 @@ public class WhirlwindItem : PhysicsBody {
 		rigidbody.angularVelocity = v;
 	}
 
-	public void DestroyInSeconds(float s) {
-		if (!isEnlarged) {
-			Invoke("DestroyItem", s);
-		}
+	public void SlatedToBeDestroyed () {
+		isToBeDestroyed = true;
 	}
 
 	public void ResetToIdle () {
@@ -317,6 +311,14 @@ public class WhirlwindItem : PhysicsBody {
 	void FixedUpdate () {
 		if (IsInWhirlwind) {
 			UpdateFade();
+		} else if (isToBeDestroyed) {
+			Vector3 p = transform.position;
+			float d = (p - idlePosition).sqrMagnitude;
+			if (d < 1f) {
+				Destroy(this.gameObject);
+			} else {
+				transform.position = Vector3.Lerp(p, idlePosition, 0.05f);
+			}
 		}
 	}
 }

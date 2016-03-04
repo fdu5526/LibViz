@@ -18,6 +18,7 @@ interaction
 				drill down - by putting into desk or typing in search
 				open up -	 whirl the whirlwind, repopulate with ||
 	
+	enlargedItem in whirlwind.cs could be bad news, probably want to reduce it down to a SearchWhirlwindItem
 	scrolling up and down the whirlwind
 	whirling the whirlwind
 	put center item in correct place

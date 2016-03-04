@@ -151,16 +151,15 @@ public class WhirlwindBelt : MonoBehaviour {
 
 		// wipe old items away
 		for (int i = 0; i < wwItems.Count; i++) {
-			wwItems[i].DestroyInSeconds(3f);
+			wwItems[i].SlatedToBeDestroyed();
 		}
 
-		// reinstantiate new items
+		// instantiate new items
 		wwItems = new List<WhirlwindItem>();
 		for (int i = 0; i < infos.Infos.Count; i++) {
 			g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindItem"));
-			g.transform.position = defaultItemPosition;
 			WhirlwindItem wwi = g.GetComponent<WhirlwindItem>();
-			wwi.Initialize(this, radius, height);
+			wwi.Initialize(this, radius, height, defaultItemPosition, infos.Infos[i]);
 			wwi.ItemSprite = Resources.Load<Sprite>("Sprites/Items/" + infos.Infos[i].Title);
 			wwItems.Add(wwi);
 		}
