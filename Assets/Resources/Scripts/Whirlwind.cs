@@ -95,7 +95,7 @@ public class Whirlwind : MonoBehaviour {
 		List<BookInfo> bookinfos = searchBar.SelectedBookInfos;
 		//TODO do real search here
 		if (bookinfos.Count > 0) {
-			databaseManager.Search(bookinfos);
+			databaseManager.Search(bookinfos, belts.Length);
 		} else {
 			// TODO do nothing?
 		}
@@ -119,6 +119,7 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
+	// clicked on a single whirlwind item, do a search based on it
 	void LoadNewWhirlwindBasedOnItem (WhirlwindItem wwItem) {
 		Debug.Assert(IsEnlargedOrFullscreen);
 
@@ -130,8 +131,16 @@ public class Whirlwind : MonoBehaviour {
 			new string[] {"4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4"},
 			new string[] {"5", "5", "5", "5", "5", "5", "5"},
 		};
-
 		Debug.Assert(ids.Length == belts.Length);
+
+
+
+		// search based on this single item
+		//List<WhirlwindBeltInfo> newInfos = databaseManager.Search(wwItem.bookInfo, belts.Length);
+		//Debug.Assert(newInfos.Count == belts.Length);
+
+		// TODO reload the information
+		//LoadNewItems(newInfos);
 		
 		LoadNewItems(ids);
 		StirUp(Global.StirUpSpeed);
@@ -309,7 +318,6 @@ public class Whirlwind : MonoBehaviour {
 		mainCamera.ZoomIn();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ItemSprite = wwItem.ItemSprite;
-		databaseManager.Search(wwItem.bookInfo);
 
 		LogUserInput();
 	}

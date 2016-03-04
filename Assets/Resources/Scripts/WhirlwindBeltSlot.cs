@@ -2,8 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent (typeof (Rigidbody))]
-public class WhirlwindBeltSlot : MonoBehaviour {
+
+public class WhirlwindBeltSlot : PhysicsBody {
 	
 	// assigned properties
 	public float speed;
@@ -24,18 +24,13 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 	// properties
 	Transform center;
 
-	// aliases
-	Rigidbody rigidbody;
-	Collider collider;
-
 	// Use this for initialization
-	void Awake () {	
+	protected override void Awake () {
 		center = GameObject.Find("WhirlwindCenter").transform;
 		shouldSlowsDown = false;
 		speed = 0f;
 
-		rigidbody = GetComponent<Rigidbody>();
-		collider = GetComponent<Collider>();
+		base.Awake();
 	}
 
 	
@@ -54,12 +49,12 @@ public class WhirlwindBeltSlot : MonoBehaviour {
 		d2 = new Vector2(d.x, d.z);
 
 		if (isStirup && !shouldSlowsDown) {
-			/*bobbleLifespan--;
-			dy = isGoingUp ? 0.08f : -0.08f;
+			bobbleLifespan--;
+			//dy = isGoingUp ? 0.08f : -0.08f;
 			if (bobbleLifespan <= 0) {
 				bobbleLifespan = maxBobbleLifespan;
 				isGoingUp = !isGoingUp;
-			}*/
+			}
 		} else {
 			float h = Mathf.Lerp(p.y, height, 0.5f);
 			p.y = h;

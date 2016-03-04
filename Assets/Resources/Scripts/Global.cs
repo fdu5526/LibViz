@@ -159,7 +159,7 @@ public class BookInfo{
 		, _chronological_subdivision , _geographic_subdivision);
 	}
 
-	public string ToString () {
+	public override string ToString () {
 		string s = "\"" + Title + "\"," + 
 			   "\"" + Author + "\"," + 
 			   "\"" + Time + "\"," + 

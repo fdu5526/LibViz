@@ -22,6 +22,7 @@ interaction
 	scrolling up and down the whirlwind
 	whirling the whirlwind
 	put center item in correct place
+	prevent clicking on another item in fullscreen view
 
 
 questions

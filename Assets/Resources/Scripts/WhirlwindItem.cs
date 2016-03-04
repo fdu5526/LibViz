@@ -2,10 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-
-[RequireComponent (typeof (Rigidbody))]
-[RequireComponent (typeof (Collider))]
-public class WhirlwindItem : MonoBehaviour {
+public class WhirlwindItem : PhysicsBody {
 	
 	// assigned
 	public float speed;
@@ -34,12 +31,8 @@ public class WhirlwindItem : MonoBehaviour {
 	GameObject itemImage;
 	Vector3 defaultScale;
 
-	// aliases
-	Collider collider;
-	Rigidbody rigidbody;
-
 	// Use this for initialization
-	public void Awake () {
+	protected override void Awake () {
 		currentState = State.Idle;
 	
 		defaultScale = transform.localScale;
@@ -52,6 +45,8 @@ public class WhirlwindItem : MonoBehaviour {
 
 		collider = GetComponent<Collider>();
 		rigidbody = GetComponent<Rigidbody>();
+
+		base.Awake();
 	}
 
 	public void Initialize (WhirlwindBelt belt, float radius, float height) {
