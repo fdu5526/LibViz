@@ -89,9 +89,16 @@ public class Whirlwind : MonoBehaviour {
 /////// functions for manipulating data //////
 	public void SearchDeskExplore () {
 		List<BookInfo> bookinfos = searchBar.SelectedBookInfos;
-		//TODO do real search here
-		if (bookinfos.Count > 0) {
-			databaseManager.Search(bookinfos, belts.Length);
+		
+		if (bookinfos.Count > 0) { // actually stuffs in the search
+			List<WhirlwindBeltInfo> newInfos = databaseManager.Search(bookinfos, belts.Length);
+
+			// load a new whirlwind
+			LoadNewItems(newInfos);
+				
+			// stir up the new items
+			StirUp(Global.StirUpSpeed);
+			currentState = State.StirUpNewContextExam;
 		} else {
 			// TODO do nothing?
 		}

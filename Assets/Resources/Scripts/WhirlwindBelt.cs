@@ -64,10 +64,8 @@ public class WhirlwindBelt : MonoBehaviour {
 		
 		// the end point of the belt that causes shifting
 		g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindBeltEnd"));
-		g.transform.parent = transform;
-		g.transform.position = transform.position + new Vector3(-radius, 0f, 0f);
 		beltEnd = g.GetComponent<WhirlwindBeltEnd>();
-		beltEnd.belt = this;
+		beltEnd.Initialize(transform, transform.position + new Vector3(-radius, 0f, 0f), this);
 		beltEnd.Enable(false);
 	}
 
@@ -300,7 +298,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// is able to interact, spin the entire whirlwind
 	public void WhirlExam () {
-		beltEnd.isInContextExam = false;
+		beltEnd.IsInContextExam = false;
 		for (int i = 0; i < wwItems.Count; i++) {
 			if (IndexIsInSlots(i)) {
 				wwItems[i].WhirlExam();
@@ -311,7 +309,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 	// is able to interact, spin individual belts
 	public void ContextExam () {
-		beltEnd.isInContextExam = true;
+		beltEnd.IsInContextExam = true;
 
 		for (int i = 0; i < wwItems.Count; i++) {
 			if (IndexIsInSlots(i)) {
@@ -325,7 +323,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		isOperating = false;
 		label.Fade(isOperating);
 		beltEnd.Enable(false);
-		beltEnd.isInContextExam = false;
+		beltEnd.IsInContextExam = false;
 		for (int i = 0; i < wwItems.Count; i++) {
 			if (IndexIsInSlots(i)) {
 				wwItems[i].End();
@@ -347,7 +345,7 @@ public class WhirlwindBelt : MonoBehaviour {
 	public void ComputeState () {
 		// swirl belt to correct locatin
 		if (isSlowingDown && isTransitioningToContextExam) {
-			if (beltEnd.mostRecentCollisionIsHead) {
+			if (beltEnd.MostRecentCollisionIsHead) {
 				label.Fade(isOperating);
 				SlowToStopFast(true);
 			}

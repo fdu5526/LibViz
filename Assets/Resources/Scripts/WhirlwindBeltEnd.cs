@@ -4,15 +4,28 @@ using System.Collections;
 [RequireComponent (typeof (Collider))]
 public class WhirlwindBeltEnd : MonoBehaviour {
 
-	public WhirlwindBelt belt;			// the belt this is a member of
-	public bool isInContextExam;
-	public bool mostRecentCollisionIsHead;
+	WhirlwindBelt belt;			// the belt this is a member of
+	bool isInContextExam;
+	bool mostRecentCollisionIsHead;
 
 
 	// Use this for initialization
 	void Start () {
 		isInContextExam = false;
 	}
+
+	// initialize key values called from the belt this belongs to
+	public void Initialize (Transform parent, Vector3 position, WhirlwindBelt belt) {
+		transform.parent = parent;
+		transform.position = position;
+		this.belt = belt;
+		Enable(false);
+	}
+
+	public bool IsInContextExam { 
+		get { return isInContextExam; }
+		set { isInContextExam = value; } }
+	public bool MostRecentCollisionIsHead { get { return mostRecentCollisionIsHead; } }
 
 
 	public void Enable (bool isEnabled) {
