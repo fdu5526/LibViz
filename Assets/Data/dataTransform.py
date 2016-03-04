@@ -18,22 +18,48 @@ S_DESCRIPTION = '.500'
 
 
 INFO_INDEX = [
-		['title'					,'.245','a','tinytext'],  # 0
-		['name'						,'.100','a','tinytext'],  # 1 
-		['time'						,'.260','c','year(4)'],   # 2
-		['location'					,'.260','a','tinytext'],  # 3
-		['publisher'				,'.260','b','tinytext'],  # 4
-		['subtitle'					,'.245','b','tinytext'],  # 5
-		['author_translator'		,'.245','c','tinytext'],  # 6
-		['note'						,'.500','a','text'],      # 7
-		['publish_date'				,'.260','c','year(4)'],   # 8
-		['topical_term'				,'.650','a','tinytext'],  # 9
-		['form_subdivision'			,'.650','v','tinytext'],  # 10
-		['general_subdivision'		,'.650','x','tinytext'],  # 11
-		['chronological_subdivision','.650','y','tinytext'],  # 12
-		['geographic_subdivision'	,'.650','z','tinytext'],  # 13
-		['genre'					,'.655','a','tinytext'],  # 14
-		['genre'					,'.655','a','tinytext'],  # 14
+		['name'						,'.100','a','tinytext'],
+
+		['title'					,'.245','a','tinytext'], 
+		['title_subtitle'			,'.245','b','tinytext'],  
+		['title_author'				,'.245','c','tinytext'],  
+		['title_remainder'			,'.245','p','tinytext'], 
+
+		['pub_place'				,'.260','a','tinytext'],  
+		['pub_publisher'			,'.260','b','tinytext'],   
+		['pub_date'					,'.260','c','tinytext'], 
+
+		['note'						,'.500','a','text'],  
+		['scope_content'			,'.520','a','text'], 
+		['history'					,'.545','a','tinytext'], 
+		['language'					,'.546','a','tinytext'],
+		['provenance'				,'.561','a','tinytext'],
+		['binding'					,'.563','a','tinytext'],
+		['pagination'				,'.505','a','tinytext'],
+
+
+		['personal_name'			,'.600','a','tinytext'],
+		['corporate_name'			,'.610','a','tinytext'],
+
+		['topical'					,'.650','a','tinytext'],
+		['topical_geo'				,'.650','z','tinytext'],
+		['topical_heading'			,'.650','x','tinytext'],
+		['topical_date'				,'.650','y','tinytext'],
+
+		['geo'						,'.651','a','tinytext'],
+		['geo_heading'				,'.651','x','tinytext'],
+		['geo_genre'				,'.651','v','tinytext'],
+
+
+		['genre'					,'.655','a','tinytext'],
+
+		['other_author_personal'	,'.700','a','tinytext'],
+
+		['other_author_corporate'	,'.710','a','tinytext'],
+
+		['physical_description'		,'.300','a','tinytext'],
+
+		['date'						,'.008','a','tinytext'],
 		
 		]
 SQL_CREATE = []
@@ -162,7 +188,7 @@ class Data:
 	def PrintTo(self,out):
 		if not('title' in self.__DICT__.keys() ):
 			return
-		# print 'Data ' , self.__DICT__['title']
+		print 'Book [' , self.__DICT__['title'] , ']'
 		MY_INSERT = list( SQL_INSERT)
 		MY_INSERT[0] = MY_INSERT[0].replace('table_name',TABLE_NAME)
 
@@ -204,11 +230,14 @@ class DataAnalyzer:
 			l = l.replace('table_name',TABLE_NAME)
 			out.write(l)
 
-		print 'sql create ' , TABLE_NAME
+		print 'sql create table' , TABLE_NAME
+
+		print "============================"
 
 		for d in self.__DATA__ :
 			d.PrintTo(out)
 
+		print "============================"
 
 
 if __name__ == '__main__':

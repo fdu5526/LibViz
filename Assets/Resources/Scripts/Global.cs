@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 /*
  * a bunch of global stuff that everyone needs put into the same place
@@ -109,16 +110,127 @@ public class Global
 		"Geographic Subdivision",
 
 	};
+
+	static public string[] ColunmNameDataBase = 
+	{
+		"name",
+		"title",
+		"title_subtitle",
+		"title_author",
+		"title_remainder",
+
+		"pub_place",
+		"pub_publisher",
+		"pub_date",
+
+		"note",
+		"scope_content",
+		"history",
+		"language",
+		"provenance",
+		"binding",
+		"pagination",
+
+		"personal_name",
+		"corporate_name",
+
+		"topical",
+		"topical_geo",
+		"topical_heading",
+		"topical_date",
+
+		"geo",
+		"geo_heading",
+		"geo_genre",
+
+		"genre",
+
+		"other_author_personal",
+
+		"other_author_corporate",
+
+		"physical_description",
+
+		"date",
+	};
+
+	static public string[] SubjectColumnList =
+	{
+		"personal_name",
+		"corporate_name",
+		"topical",
+		"topical_geo",
+		"topical_heading",
+		"topical_date",
+		"geo",
+		"geo_heading",
+		"geo_genre",
+		"genre",
+
+	};
+
+	static public string Index2ColunmName(int i )
+	{
+		if ( i >= 0 && i < ColunmNameDataBase.Length)
+			return ColunmNameDataBase[i];
+		return "";
+	}
 }
+
+
 
 
 public class BookInfo{
 	public int id;
-	public string Title;
-	public string Author;
-	public int Time;
-	public string Note;
-	public string Location;
+	public string Title
+	{
+		get {
+			return GetData(Field.TITLE);
+		}
+	}
+	public string Author
+	{
+		get {
+			return GetData(Field.AUTHOR);
+		}
+	}
+	public int Time
+	{
+		get {
+			return int.Parse(GetData(Field.TIME));
+		}
+	}
+	public int TimeFrom
+	{
+		get {
+			if (GetData("date") != null && GetData("date").Length > 11)
+				return int.Parse(GetData("date").Substring(7, 4));
+			return int.Parse(GetData("date"));
+		}
+	}
+	public int TimeTo
+	{
+		get {
+			if (GetData("date") != null && GetData("date").Length > 15)
+				if ( GetData("date").Substring(11, 4).Equals("    ") )
+					return -1;
+				else
+					return int.Parse(GetData("date").Substring(11, 4));
+			return int.Parse(GetData("date"));
+		}
+	}
+	public string Note
+	{
+		get {
+			return GetData(Field.NOTE);
+		}
+	}
+	public string Location
+	{
+		get {
+			return GetData(Field.PUBLISH_LOCATION);
+		}
+	}
 
 	public string genre;
 	public string topical_term;
@@ -129,22 +241,87 @@ public class BookInfo{
 
 	public float v;
 
-	public void Init(string _title, string _author, int _time , string _location , string _note 
-		, string _genre , string _topical_term , string _form_subdivision , string _general_subdivision
-		, string _chronological_subdivision , string _geographic_subdivision) {
-		Title = Global.RemoveCharacters(_title);
-		Author = Global.RemoveCharacters(_author);
-		Time = _time;
-		Note =  Global.RemoveCharacters(_note);
-		Location = Global.RemoveCharacters(_location);
+	Dictionary<string,string> dict = new Dictionary<string,string>();
 
-		genre = Global.RemoveCharacters(_genre);
-		topical_term = Global.RemoveCharacters(_topical_term);
-		form_subdivision = Global.RemoveCharacters(_form_subdivision);
-		general_subdivision = Global.RemoveCharacters(_general_subdivision);
-		chronological_subdivision = Global.RemoveCharacters(_chronological_subdivision);
-		geographic_subdivision = Global.RemoveCharacters(_geographic_subdivision);
+
+	public void AddData(int i , string value )
+	{
+		AddData( Global.Index2ColunmName(i),  value);
 	}
+	public void AddData(string key , string value)
+	{
+		if ( !dict.ContainsKey(key))
+			dict.Add(key, value);
+	}
+
+	public string GetData(Field f)
+	{
+		switch(f)
+		{
+		case Field.TITLE:
+			return GetData("title");
+			break;
+		case Field.AUTHOR:
+			return GetData("name");
+			break;
+		case Field.TIME:
+			return GetData("date");
+			break;
+		case Field.NOTE:
+			return GetData("note");
+			break;
+		case Field.PUBLISH_LOCATION:
+			return GetData("pub_place");
+			break;
+		case Field.GENRE:
+			return GetData("genre");
+			break;
+		default:
+			return "";
+			break;
+		};
+	}
+
+	public List<string> GetSubjects()
+	{
+		List<string> res = new List<string>();
+		for(int i = 0 ; i < Global.SubjectColumnList.Length; ++i)
+		{
+			res.Add(GetData(Global.SubjectColumnList[i]));
+		}
+		return res;
+	}
+
+	public string GetData(int i)
+	{
+		return GetData(Global.Index2ColunmName(i));
+	}
+
+	public string GetData(string key)
+	{
+		string res = "";
+		dict.TryGetValue( key, out res);
+		return res;
+	}
+
+
+
+	// public void Init(string _title, string _author, int _time , string _location , string _note 
+	// 	, string _genre , string _topical_term , string _form_subdivision , string _general_subdivision
+	// 	, string _chronological_subdivision , string _geographic_subdivision) {
+	// 	Title = Global.RemoveCharacters(_title);
+	// 	Author = Global.RemoveCharacters(_author);
+	// 	Time = _time;
+	// 	Note =  Global.RemoveCharacters(_note);
+	// 	Location = Global.RemoveCharacters(_location);
+
+	// 	genre = Global.RemoveCharacters(_genre);
+	// 	topical_term = Global.RemoveCharacters(_topical_term);
+	// 	form_subdivision = Global.RemoveCharacters(_form_subdivision);
+	// 	general_subdivision = Global.RemoveCharacters(_general_subdivision);
+	// 	chronological_subdivision = Global.RemoveCharacters(_chronological_subdivision);
+	// 	geographic_subdivision = Global.RemoveCharacters(_geographic_subdivision);
+	// }
 
 	public BookInfo () {
 
@@ -154,9 +331,17 @@ public class BookInfo{
 		, string _genre , string _topical_term , string _form_subdivision , string _general_subdivision
 		, string _chronological_subdivision , string _geographic_subdivision) {
 
-		Init(_title, _author, _time , _location , _note 
-		, _genre , _topical_term , _form_subdivision , _general_subdivision
-		, _chronological_subdivision , _geographic_subdivision);
+		dict.Add("title", _title);
+		dict.Add("name", _author);
+		dict.Add("date", _time.ToString());
+		dict.Add("pub_place", _location);
+		dict.Add("note", _note);
+		dict.Add("genre", _genre);
+		dict.Add("topical", _topical_term); 
+		dict.Add("geo_genre", _form_subdivision); 
+		dict.Add("topical_heading", _general_subdivision); 
+		dict.Add("topical_date", _chronological_subdivision); 
+		dict.Add("topical_geo", _geographic_subdivision); 
 	}
 
 	public override string ToString () {

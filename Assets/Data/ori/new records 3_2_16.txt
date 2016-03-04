@@ -1,0 +1,580 @@
+*** DOCUMENT BOUNDARY ***
+FORM=MANUSCRPT
+.000. |atcIa0naa
+.001. |aocn714145690
+.008. |a110422i193u195ucau           000 0 eng d
+.035.   |a(OCoLC)714145690
+.040.   |aCSL|beng|edacs|cCSL
+.043.   |an-us-ca
+.049.   |aCSL4
+.099.   |aCollection no. 0304, Box 1
+.245. 00|aCollection of Walt Disney Productions and Walt Disney ephemera,
+|f1930s-1950s. |p "Mickey Mouse and the Dude Ranch Bandit".
+.270.   |aSpecial Collections|aUSC Libraries|aUniversity of Southern California
+|aUniversity Park|bLos Angeles|cCA|e90089-0189|k1-213-740-5900|l1-213-740-2343
+|mspecol@usc.edu
+.300.   |a1.71|flinear ft.|a(1|fboxes)
+.506. 1 |aAdvance notice required for access.
+.520. 2 |aThis small collection of Walt Disney and Disney Company related
+ephemera consists of newsletters, posters, book jackets, clippings, prints,
+comic books, small books, drawings, and miscellaneous printed ephemera that
+feature Walt Disney-created characters, or that discuss Walt Disney and his
+studio.  The material dates from the 1930s to the 1950s.
+.524. 8 |a[Box/folder# or item name], Collection of Walt Disney Productions and
+Walt Disney ephemera, Collection no. 0304, Special Collections, USC Libraries,
+University of Southern California
+.540.   |aAll requests for permission to publish or quote from manuscripts must
+be submitted in writing to the Manuscripts Librarian. Permission for
+publication is given on behalf of Special Collections as the owner of the
+physical items and is not intended to include or imply permission of the
+copyright holder, which must also be obtained.
+.600. 10|aDisney, Walt,|d1901-1966|vArchives.
+.610. 20|aWalt Disney Productions|vArchives.
+.650.  0|aDisney characters|xArchival resources.
+.655.  7|aBook jackets. |2aat
+.655.  7|aClippings. |2aat
+.655.  7|aComic books. |2aat
+.655.  7|aEphemera. |2aat
+.655.  7|aNewsletters. |2aat
+.655.  7|aNotes. |2aat
+.655.  7|aPosters. |2aat
+.655.  7|aPrinted ephemera. |2aat
+.655.  7|aPrograms (documents). |2aat
+.856. 42|3Finding aid online at|uhttp://www.usc.edu/libraries/finding_aids/records/finding_aid.php?fa=0304
+.910.   |aSEL
+.949.   |aCollection 0304|wasis|c1|hSPEVLTENDD
+.994.   |a01|bCSL
+.035.   |a(UPRA)tmp19094114
+.596.   |a23
+
+*** DOCUMENT BOUNDARY ***
+FORM=MANUSCRPT
+.000. |atcIa0naa
+.001. |aocn714145690
+.008. |a110422i193u195ucau           000 0 eng d
+.035.   |a(OCoLC)714145690
+.040.   |aCSL|beng|edacs|cCSL
+.043.   |an-us-ca
+.049.   |aCSL4
+.099.   |aCollection no. 0304, Box 1
+.245. 00|aCollection of Walt Disney Productions and Walt Disney ephemera,
+|f1930s-1950s. |p [Donald Duck greeting card].
+.270.   |aSpecial Collections|aUSC Libraries|aUniversity of Southern California
+|aUniversity Park|bLos Angeles|cCA|e90089-0189|k1-213-740-5900|l1-213-740-2343
+|mspecol@usc.edu
+.300.   |a1.71|flinear ft.|a(1|fboxes)
+.506. 1 |aAdvance notice required for access.
+.520. 2 |aThis small collection of Walt Disney and Disney Company related
+ephemera consists of newsletters, posters, book jackets, clippings, prints,
+comic books, small books, drawings, and miscellaneous printed ephemera that
+feature Walt Disney-created characters, or that discuss Walt Disney and his
+studio.  The material dates from the 1930s to the 1950s.
+.524. 8 |a[Box/folder# or item name], Collection of Walt Disney Productions and
+Walt Disney ephemera, Collection no. 0304, Special Collections, USC Libraries,
+University of Southern California
+.540.   |aAll requests for permission to publish or quote from manuscripts must
+be submitted in writing to the Manuscripts Librarian. Permission for
+publication is given on behalf of Special Collections as the owner of the
+physical items and is not intended to include or imply permission of the
+copyright holder, which must also be obtained.
+.600. 10|aDisney, Walt,|d1901-1966|vArchives.
+.610. 20|aWalt Disney Productions|vArchives.
+.650.  0|aDisney characters|xArchival resources.
+.655.  7|aBook jackets. |2aat
+.655.  7|aClippings. |2aat
+.655.  7|aComic books. |2aat
+.655.  7|aEphemera. |2aat
+.655.  7|aNewsletters. |2aat
+.655.  7|aNotes. |2aat
+.655.  7|aPosters. |2aat
+.655.  7|aPrinted ephemera. |2aat
+.655.  7|aPrograms (documents). |2aat
+.856. 42|3Finding aid online at|uhttp://www.usc.edu/libraries/finding_aids/records/finding_aid.php?fa=0304
+.910.   |aSEL
+.949.   |aCollection 0304|wasis|c1|hSPEVLTENDD
+.994.   |a01|bCSL
+.035.   |a(UPRA)tmp19094114
+.596.   |a23
+
+*** DOCUMENT BOUNDARY ***
+FORM=VM
+.000. |armIa0n a
+.001. |aocn191732749
+.007. |akc cmm
+.008. |a080131s2006    njunnn            aneng d
+.035.   |a(OCoLC)191732749
+.040.   |aCSL|cCSL
+.049.   |aCSLG
+.090.   |aN7433.4.R543|bC43 2006
+.100. 1 |aRiker, Maryann J.
+.245. 10|aChangeling /|cM. Riker.
+.260.   |a[Phillipsburg, N.J. :|bMaryann Riker,|c2006]
+.300.   |a1 cabinet-shaped sculpture :|bill. ;|c6 x 9 x 6 cm.
+.500.   |aMixed media artist's sculpture; one-of-a-kind. A cabinet-shaped
+structure with two illustrated panels (moon, tape measure, butterfly). These
+unfold and reveal an intimate interior.  Collage on exterior and interior
+walls; interior contains mirrors on each panel, plus one shelf with mounted
+seashell. A third mirror and second seashell stand inside the slotted cabinet.
+.590.   |aUSC Libraries Special Collections' copy is signed by the artist.
+.600. 10|aRiker, Maryann J.
+.650.  0|aArtists' books|vSpecimens.
+.650.  0|aMetamorphosis in art.
+.655.  7|aArtists' books|zUnited States|y20th century.|2rbgenr
+.655.  7|aMiniature books.
+.949.   |aN7433.4.R543C43 2006|wLC|c1|hSPERARENDD|i31275044255454
+.994.   |a01|bCSL
+.596.   |a23
+
+*** DOCUMENT BOUNDARY ***
+FORM=MANUSCRPT
+.000. |atcIa0naa
+.001. |aocn688635770
+.008. |a101202i19491999cau           000 0 eng d
+.035.   |a(OCoLC)688635770
+.040.   |aCSL|beng|edacs|cCSL
+.043.   |an-us-ca
+.049.   |aCSL4
+.099.   |aCollection no. 0117
+.110. 2 |aWesterners.|bLos Angeles Corral.
+.245. 10|aLos Angeles Corral of the Westerners records,|f1949-1999. |p ["Hands Off Pardner!" plaque].
+.270.   |aSpecial Collections|aUSC Libraries|aUniversity of Southern California
+|aUniversity Park|bLos Angeles|cCA|e90089-0189|k1-213-740-5900|l1-213-740-2343
+|mspecol@usc.edu
+.300.   |a40|flinear ft.|a(23|fboxes, 1|ftube, 5|fscrapbooks)
+.351.   |bWithin series, records are arranged in chronological order.
+.506. 1 |aCOLLECTION STORED OFF-SITE. Advance notice required for access.
+Consult finding aid for additional information.
+.520. 2 |aThis collection contains the records of the Los Angeles Corral of the
+Westerners, including correspondence pertaining to Westerner activities,
+membership and publications, financial records, the publication records of
+works published by the group, audiocassettes of Westerner programs, and
+scrapbooks of photographs of Westerner events.  The publication records for the
+Branding Iron (a quarterly periodical), the  Brand Book (an annual or bi-annual
+monograph length publication) and Keepsakes (irregular publications) include
+correspondence with authors, drafts of articles including art, floppy and zip
+disks, and proofs.  Artifacts found in the collection include printing plates
+and a plaque.
+.524. 8 |a[Box/folder# or item name], Los Angeles Corral of the Westerners
+records, Collection no. 0117, Special Collections, USC Libraries, University of
+Southern California.
+.540.   |aThe collection contains published articles; researchers are reminded
+of the copyright restrictions imposed by publishers on reusing their articles
+and parts of books. It is the responsibility of researchers to acquire
+permission from publishers when reusing such materials. The copyright to
+unpublished materials belongs to the heirs of the writers. Permission to
+publish, quote, or reproduce must be secured from the repository and the
+copyright holder.
+.541. 1 |cDonated to USC Special Collections by the|aLos Angeles Corral of
+the Westerners in|d1985.  SInce 1985 additional accessions have been received.
+.545. 1 |aThe first Westerners Corral was established in Chicago in 1944 with
+the aim of promoting the study and understanding of Western history.  The first
+formal meeting of the Los Angeles Corral of the Westerners was held on December
+19, 1946.  The Los Angeles Corral of the Westerners published a quarterly
+periodical, the Branding Iron, and an annual book, the Brand Book.  In addition
+to its publication activities, the Corral also held a number of events
+("round-ups") throughout the year that included both social activities and
+speakers on historical topics.  When the Corral started, membership was all
+male, but it starting admitting women in 1995.
+.610. 20|aWesterners.|bLos Angeles Corral|vArchives.
+.650.  0|aPrivate clubs|zCalifornia|zLos Angeles|xArchival resources.
+.650.  0|aSocial history|xSocieties and clubs|xSocial aspects|xArchival
+resources.
+.651.  0|aCalifornia|xHistory|xArchival resources.
+.651.  0|aLos Angeles (Calif.)|xHistory|xArchival resources.
+.651.  0|aLos Angeles (Calif.)|xHistory|xPeriodicals.
+.651.  0|aLos Angeles (Calif.)|xSocial life and customs|xArchival resources.
+.655. 7 |aAudiocassettes. |2aat
+.655. 7 |aCorrespondence. |2gmgpc
+.655. 7 |aEphemera. |2aat
+.655. 7 |aPage proofs. |2aat
+.655. 7 |aPhotographs. |2gmgpc
+.655. 7 |aScrapbooks. |2aat
+.730. 0 |aBranding Iron.
+.856. 42|3Finding aid online:|uhttp://www.usc.edu/libraries/finding_aids/records/finding_aid.php?fa=0117
+.910.   |aSEL
+.949.   |aCollection 0117|wasis|c1|hGRAARCENDD
+.994.   |a01|bCSL
+.596.   |a23 27
+
+*** DOCUMENT BOUNDARY ***
+FORM=MANUSCRPT
+.000. |atcIa0naa
+.001. |aocn688635770
+.008. |a101202i19491999cau           000 0 eng d
+.035.   |a(OCoLC)688635770
+.040.   |aCSL|beng|edacs|cCSL
+.043.   |an-us-ca
+.049.   |aCSL4
+.099.   |aCollection no. 0117
+.110. 2 |aWesterners.|bLos Angeles Corral.
+.245. 10|aLos Angeles Corral of the Westerners records,|f1949-1999. |p [Sheriff's pin].
+.270.   |aSpecial Collections|aUSC Libraries|aUniversity of Southern California
+|aUniversity Park|bLos Angeles|cCA|e90089-0189|k1-213-740-5900|l1-213-740-2343
+|mspecol@usc.edu
+.300.   |a40|flinear ft.|a(23|fboxes, 1|ftube, 5|fscrapbooks)
+.351.   |bWithin series, records are arranged in chronological order.
+.506. 1 |aCOLLECTION STORED OFF-SITE. Advance notice required for access.
+Consult finding aid for additional information.
+.520. 2 |aThis collection contains the records of the Los Angeles Corral of the
+Westerners, including correspondence pertaining to Westerner activities,
+membership and publications, financial records, the publication records of
+works published by the group, audiocassettes of Westerner programs, and
+scrapbooks of photographs of Westerner events.  The publication records for the
+Branding Iron (a quarterly periodical), the  Brand Book (an annual or bi-annual
+monograph length publication) and Keepsakes (irregular publications) include
+correspondence with authors, drafts of articles including art, floppy and zip
+disks, and proofs.  Artifacts found in the collection include printing plates
+and a plaque.
+.524. 8 |a[Box/folder# or item name], Los Angeles Corral of the Westerners
+records, Collection no. 0117, Special Collections, USC Libraries, University of
+Southern California.
+.540.   |aThe collection contains published articles; researchers are reminded
+of the copyright restrictions imposed by publishers on reusing their articles
+and parts of books. It is the responsibility of researchers to acquire
+permission from publishers when reusing such materials. The copyright to
+unpublished materials belongs to the heirs of the writers. Permission to
+publish, quote, or reproduce must be secured from the repository and the
+copyright holder.
+.541. 1 |cDonated to USC Special Collections by the|aLos Angeles Corral of
+the Westerners in|d1985.  SInce 1985 additional accessions have been received.
+.545. 1 |aThe first Westerners Corral was established in Chicago in 1944 with
+the aim of promoting the study and understanding of Western history.  The first
+formal meeting of the Los Angeles Corral of the Westerners was held on December
+19, 1946.  The Los Angeles Corral of the Westerners published a quarterly
+periodical, the Branding Iron, and an annual book, the Brand Book.  In addition
+to its publication activities, the Corral also held a number of events
+("round-ups") throughout the year that included both social activities and
+speakers on historical topics.  When the Corral started, membership was all
+male, but it starting admitting women in 1995.
+.610. 20|aWesterners.|bLos Angeles Corral|vArchives.
+.650.  0|aPrivate clubs|zCalifornia|zLos Angeles|xArchival resources.
+.650.  0|aSocial history|xSocieties and clubs|xSocial aspects|xArchival
+resources.
+.651.  0|aCalifornia|xHistory|xArchival resources.
+.651.  0|aLos Angeles (Calif.)|xHistory|xArchival resources.
+.651.  0|aLos Angeles (Calif.)|xHistory|xPeriodicals.
+.651.  0|aLos Angeles (Calif.)|xSocial life and customs|xArchival resources.
+.655. 7 |aAudiocassettes. |2aat
+.655. 7 |aCorrespondence. |2gmgpc
+.655. 7 |aEphemera. |2aat
+.655. 7 |aPage proofs. |2aat
+.655. 7 |aPhotographs. |2gmgpc
+.655. 7 |aScrapbooks. |2aat
+.730. 0 |aBranding Iron.
+.856. 42|3Finding aid online:|uhttp://www.usc.edu/libraries/finding_aids/records/finding_aid.php?fa=0117
+.910.   |aSEL
+.949.   |aCollection 0117|wasis|c1|hGRAARCENDD
+.994.   |a01|bCSL
+.596.   |a23 27
+
+*** DOCUMENT BOUNDARY ***
+FORM=MANUSCRPT
+.000. |atcIa0naa
+.001. |aocn873612379
+.008. |a140317s1918    cau           000 0 eng d
+.035.   |a(OCoLC)873612379
+.040.   |aCSL|beng|edacs|cCSL
+.049.   |aCSL4
+.099.   |aCollection no. 0123
+.245. 00|aWorld War I ephemera,|fcirca 1918. |p [Allerfeinstes Eierkuchenpulver [The very best pancake mix].
+.270.   |aSpecial Collections|aUSC Libraries|aUniversity of Southern California
+|aUniversity Park|bLos Angeles|cCA|e90089-0189|k1-213-740-5900|l1-213-740-2343
+|mspecol@usc.edu
+.300.   |a2.42|flinear ft.|a(3|fboxes)
+.506. 1 |aCOLLECTION STORED OFF-SITE. Advance notice required for access.
+.520. 2 |aThis collection consists of household German materials used during
+and after World War I. It includes edible items, such as powdered eggs and tea.
+There are items meant to aid in the repairs of household items, such as buttons
+and boot soles. The collection contains some pins from the interwar years,
+including a pin made for the November 12, 1933 elections that reads "Ja, " the
+Nazi Party slogan (Box 2). There are collections of cigarette cards and
+American magazine covers. The Independent was a magazine based in New York
+City. It ran from 1848 to 1928. It absorbed Harper's Weekly in 1916. The
+Literary Digest was a magazine based in New York City that ran from 1890 to
+1938. The collection also contains German paper currency and coins.
+.524. 8 |a[Box/folder# or item name], World War I ephemera, Collection no.
+0123, Special Collections, USC Libraries, University of Southern California
+.540.   |aAll requests for permission to publish or quote from manuscripts must
+be submitted in writing to the Manuscripts Librarian. Permission for
+publication is given on behalf of Special Collections as the owner of the
+physical items and is not intended to include or imply permission of the
+copyright holder, which must also be obtained.
+.650.  0|aSouvenirs (Keepsakes)|zGermany|xArchival resources.
+.650.  0|aWorld War, 1914-1918|xSocial aspects|zGermany|xArchival resources.
+.650.  0|aWorld War, 1914-1918|xSocial aspects|zUnited States|xArchival
+resources.
+.655.  7|aEphemera. |2aat
+.856. 42|3Finding aid online at|uhttp://www.usc.edu/libraries/finding_aids/records/finding_aid.php?fa=0123
+.910.   |aSEL
+.949.   |aCollection 0123|wasis|c1|hSPESTOENDD
+.994.   |a01|bCSL
+.596.   |a23
+
+*** DOCUMENT BOUNDARY ***
+FORM=MANUSCRPT
+.000. |atcIa0naa
+.001. |aocn873612379
+.008. |a140317s1918    cau           000 0 eng d
+.035.   |a(OCoLC)873612379
+.040.   |aCSL|beng|edacs|cCSL
+.049.   |aCSL4
+.099.   |aCollection no. 0123
+.245. 00|aWorld War I ephemera,|fcirca 1918. |p [Toilette handwaschmittel [toilet laundry detergent substitute]].
+.270.   |aSpecial Collections|aUSC Libraries|aUniversity of Southern California
+|aUniversity Park|bLos Angeles|cCA|e90089-0189|k1-213-740-5900|l1-213-740-2343
+|mspecol@usc.edu
+.300.   |a2.42|flinear ft.|a(3|fboxes)
+.506. 1 |aCOLLECTION STORED OFF-SITE. Advance notice required for access.
+.520. 2 |aThis collection consists of household German materials used during
+and after World War I. It includes edible items, such as powdered eggs and tea.
+There are items meant to aid in the repairs of household items, such as buttons
+and boot soles. The collection contains some pins from the interwar years,
+including a pin made for the November 12, 1933 elections that reads "Ja, " the
+Nazi Party slogan (Box 2). There are collections of cigarette cards and
+American magazine covers. The Independent was a magazine based in New York
+City. It ran from 1848 to 1928. It absorbed Harper's Weekly in 1916. The
+Literary Digest was a magazine based in New York City that ran from 1890 to
+1938. The collection also contains German paper currency and coins.
+.524. 8 |a[Box/folder# or item name], World War I ephemera, Collection no.
+0123, Special Collections, USC Libraries, University of Southern California
+.540.   |aAll requests for permission to publish or quote from manuscripts must
+be submitted in writing to the Manuscripts Librarian. Permission for
+publication is given on behalf of Special Collections as the owner of the
+physical items and is not intended to include or imply permission of the
+copyright holder, which must also be obtained.
+.650.  0|aSouvenirs (Keepsakes)|zGermany|xArchival resources.
+.650.  0|aWorld War, 1914-1918|xSocial aspects|zGermany|xArchival resources.
+.650.  0|aWorld War, 1914-1918|xSocial aspects|zUnited States|xArchival
+resources.
+.655.  7|aEphemera. |2aat
+.856. 42|3Finding aid online at|uhttp://www.usc.edu/libraries/finding_aids/records/finding_aid.php?fa=0123
+.910.   |aSEL
+.949.   |aCollection 0123|wasis|c1|hSPESTOENDD
+.994.   |a01|bCSL
+.596.   |a23
+
+*** DOCUMENT BOUNDARY ***
+FORM=MANUSCRPT
+.000. |atcIa0naa
+.001. |aocn873612379
+.008. |a140317s1918    cau           000 0 eng d
+.035.   |a(OCoLC)873612379
+.040.   |aCSL|beng|edacs|cCSL
+.049.   |aCSL4
+.099.   |aCollection no. 0123
+.245. 00|aWorld War I ephemera,|fcirca 1918. |p [Skallers Sterilin-Sauger [Sterile dropper].
+.270.   |aSpecial Collections|aUSC Libraries|aUniversity of Southern California
+|aUniversity Park|bLos Angeles|cCA|e90089-0189|k1-213-740-5900|l1-213-740-2343
+|mspecol@usc.edu
+.300.   |a2.42|flinear ft.|a(3|fboxes)
+.506. 1 |aCOLLECTION STORED OFF-SITE. Advance notice required for access.
+.520. 2 |aThis collection consists of household German materials used during
+and after World War I. It includes edible items, such as powdered eggs and tea.
+There are items meant to aid in the repairs of household items, such as buttons
+and boot soles. The collection contains some pins from the interwar years,
+including a pin made for the November 12, 1933 elections that reads "Ja, " the
+Nazi Party slogan (Box 2). There are collections of cigarette cards and
+American magazine covers. The Independent was a magazine based in New York
+City. It ran from 1848 to 1928. It absorbed Harper's Weekly in 1916. The
+Literary Digest was a magazine based in New York City that ran from 1890 to
+1938. The collection also contains German paper currency and coins.
+.524. 8 |a[Box/folder# or item name], World War I ephemera, Collection no.
+0123, Special Collections, USC Libraries, University of Southern California
+.540.   |aAll requests for permission to publish or quote from manuscripts must
+be submitted in writing to the Manuscripts Librarian. Permission for
+publication is given on behalf of Special Collections as the owner of the
+physical items and is not intended to include or imply permission of the
+copyright holder, which must also be obtained.
+.650.  0|aSouvenirs (Keepsakes)|zGermany|xArchival resources.
+.650.  0|aWorld War, 1914-1918|xSocial aspects|zGermany|xArchival resources.
+.650.  0|aWorld War, 1914-1918|xSocial aspects|zUnited States|xArchival
+resources.
+.655.  7|aEphemera. |2aat
+.856. 42|3Finding aid online at|uhttp://www.usc.edu/libraries/finding_aids/records/finding_aid.php?fa=0123
+.910.   |aSEL
+.949.   |aCollection 0123|wasis|c1|hSPESTOENDD
+.994.   |a01|bCSL
+.596.   |a23
+
+** DOCUMENT BOUNDARY ***
+FORM=MARC
+.000. |aamIanc a
+.001. |aocm36093969
+.008. |a961216s1996    caua          000 p eng d
+.040.   |aCUF|cCUF|dCSL
+.049.   |aCSLG
+.090.   |aPS3566.A92|bH23 1996
+.100. 1 |aPayne, Emily.
+.245. 10|aHanging laundry /|cEmily Payne.
+.260.   |aSan Francisco :|bPea Pod Press,|c1996.
+.300.   |a1 box :|bill. ;|c19 cm.
+.500.   |aTitle from cover.
+.500.   |a"Letterpress printing, hand painting, cover linoleum cut and book
+construction by Emily Payne"--colophon.
+.500.   |aConsists of poetry printed on torn paper suspended from string inside
+box.
+.500.   |a"Edition of twenty."
+.590.   |aAmerican Literature's copy is no. 9, with ms. inscription of
+author/artist.
+.650.  0|aArtists' books.
+.650.  0|aDomestic science.
+.655.  7|aArtists' books (Genre)|zCalifornia|zSan Francisco|y1996.|2rbgenr
+.655.  7|aAuthors' autographs (Provenance)|zUnited States|y20th century.
+|2rbprov
+.710. 2 |aPea Pod Press.
+.949.   |aPS3566.A92H23 1996|wLC|c1|hSPEAMLENDD|i31275037475879
+.994.   |a01|bCSL
+.596.   |a23
+
+*** DOCUMENT BOUNDARY ***
+FORM=MANUSCRPT
+.000. |atcIa0naa
+.001. |aocn759537471
+.008. |a111103i19401987cau           000 0 eng d
+.035.   |a(OCoLC)759537471
+.040.   |aCSL|beng|edacs|cCSL
+.043.   |an-us-ca
+.049.   |aCSL4
+.099.   |aCollection no. 0206
+.100. 1 |aFeuchtwanger, Marta.
+.245. 10|aMarta Feuchtwanger papers.|f1940-1987.
+.270.   |aSpecial Collections|aUSC Libraries|aUniversity of Southern California
+|aUniversity Park|bLos Angeles|cCA|e90089-0189|k1-213-740-5900|l1-213-740-2343
+|mspecol@usc.edu
+.300.   |a97.13|flinear ft.|a(170|fboxes)
+.500.   |aProcessing Information: The collection was partly processed by Adi
+Ben-Michael in 2011.
+.506. 1 |aCOLLECTION STORED OFF-SITE. Advance notice required for access.
+.520. 2 |aThis archive contains the correspondence of Marta Feuchtwanger, wife
+of German-Jewish writer Lion Feuchtwanger, who survived her husband by almost
+thirty years. Marta Feuchtwanger remained an important figure in the exile
+community and devoted the remainder of her life to promoting the work of her
+husband. The collection contains Marta Feuchtwanger's personal correspondence,
+texts and manuscripts by her and others, royalty statements received for the
+works of her husband, correspondence with publishers, and newspaper clippings
+mentioning Lion and Marta Feuchtwanger and other exiles. The collection also
+includes correspondence regarding the establishment and administration of the
+Feuchtwanger Memorial Library and Villa Aurora.
+.524. 8 |a[Identification of item], Marta Feuchtwanger papers, Collection no.
+0206, Feuchtwanger Memorial Library, Special Collections, USC Libraries,
+University of Southern California.
+.540.   |aThe collection contains published materials; researchers are reminded
+of the copyright restrictions imposed by publishers on reusing their articles
+and parts of books. It is the responsibility of researchers to acquire
+permission from publishers when reusing such materials. The copyright to
+unpublished materials belongs to the heirs of the writers. Permission to
+publish, quote, or reproduce must be secured from the repository and the
+copyright holder.
+.545. 0 |aMarta Feuchtwanger was born Marta Loeffler on December 21, 1891 in
+Germany. In 1912 she married German-Jewish writer Lion Feuchtwanger and went
+with him into exile during WWII. First they lived in Southern France in
+Sanary-sur-mer but had to flee in 1940, escaping to the United States. Marta
+and Lion moved to Los Angeles in early 1941 where they eventually bought a
+house at 520 Paseo Miramar. During WWII the Feuchtwanger's house became a
+well-known gathering place for German-speaking exiles and their American
+friends. Both Marta and Lion also helped others persecuted by the Nazis to
+escape from Europe. After Lion Feuchtwanger's death in 1958, Marta dedicated
+her life to keeping his memory and his work alive. She willed her house and
+Lion's invaluable library to USC and became the first curator of the
+Feuchtwanger Memorial Library. Marta assisted researchers and gave tours to USC
+students on a regular basis and received an honorable doctorate from USC in
+1981. Marta survived her husband by almost 30 years. She died in Santa Monica
+in 1987.
+.600. 10|aFeuchtwanger, Marta|vArchives.
+.600. 10|aFeuchtwanger, Marta|vCorrespondence.
+.600. 10|aFeuchtwanger, Marta|xFriends and associates.
+.600. 10|aFeuchtwanger, Lion,|d1884-1958|vArchives.
+.600. 10|aChaplin, Charlie,|d1889-1977|vCorrespondence.
+.600. 10|aDieterle, William,|d1893-1972|vCorrespondence.
+.600. 10|aEisler, Hanns,|d1898-1962|vArchives.
+.600. 10|aFranklin, Carl Mason,|d1911-|vArchives.
+.600. 10|aGuggenheim, Felix,|d1904-1976|vCorrespondence.
+.600. 10|aMann, Heinrich,|d1871-1950|vArchives.
+.600. 10|aMann, Thomas,|d1875-1955|vArchives.
+.600. 10|aMierendorff, Marta|vCorrespondence.
+.600. 10|aRemarque, Erich Maria,|d1898-1970|vArchives.
+.600. 10|aSchoenberg, Arnold,|d1874-1951|vArchives.
+.600. 10|aWaldo, Hilde|vArchives.
+.600. 10|aWaldo, Hilde|vCorrespondence.
+.600. 10|aWolff, Victoria,|d1903-1992|vCorrespondence.
+.610. 20|aFeuchtwanger Memorial Library|vArchives.
+.610. 20|aUniversity of Southern California|vArchives.
+.650.  0|aArtists|zCalifornia|zLos Angeles|xArchival resources.
+.650.  0|aAuthors, German|y20th century|vBiography|xArchival resources.
+.650.  0|aAuthors, German|zCalifornia|zLos Angeles|y20th century|xArchival
+resources.
+.650.  0|aAuthors, German|zGermany|y20th century|xArchival resources.
+.650.  0|aCelebrities|zCalifornia|zLos Angeles|xArchival resources.
+.650.  0|aCharities|zCalifornia|xArchival resources.
+.650.  0|aComposers|zCalifornia|zLos Angeles|y20th century|xArchival resources.
+.650.  0|aConductors (Music)|zCalifornia|zLos Angeles|y20th century|xArchival
+resources.
+.650.  0|aExiles|zGermany|xHistory|y20th century|xArchival resources.
+.650.  0|aExiles|zUnited States|xHistory|y20th century|xArchival resources.
+.650.  0|aGerman language|xArchival resources.
+.650.  0|aGerman literature|xArchival resources.
+.650.  0|aInternational relations|y20th century|xArchival resources.
+.650.  0|aJews|zCalifornia|zLos Angeles|xHistory|y20th century|xArchival
+resources.
+.650.  0|aMusicians|zCalifornia|zLos Angeles|xArchival resources.
+.650.  0|aNonprofit organizations|zUnited States|xArchival resources.
+.650.  0|aPolitical campaigns|zCalifornia|y20th century|xArchival resources.
+.650.  0|aSimon Rodia's Towers (Los Angeles, Calif.)|xArchival resources.
+.650.  0|aTheater|zGermany|y20th century|xArchival resources.
+.651.  0|aGermany|xEmigration and immigration|xHistory|y1933-1945|xArchival
+resources.
+.651.  0|aLos Angeles (Calif.)|xEmigration and immigration|xArchival resources.
+.651.  0|aLos Angeles (Calif.)|xHistory|y20th century|xArchival resources.
+.655.  7|aAudiocassettes. |2 aat
+.655.  7|aClippings. |2 gmgpc
+.655.  7|aCorrespondence. |2 gmgpc
+.655.  7|aEphemera. |2 aat
+.655.  7|aFinancial records. |2 aat
+.655.  7|aManuscripts. |2 aat
+.655.  7|aMemoirs. |2 aat
+.655.  7|aNotes. |2 aat
+.655.  7|aPhotographs. |2 aat
+.655.  7|aScrapbooks. |2 aat
+.655.  7|aTheater programs. |2 aat
+.700. 1 |aFranklin, Carl Mason,|d1911-
+.700. 1 |aWaldo, Hilde.
+.856. 42|3Finding aid online at|uhttp://www.usc.edu/libraries/finding_aids/records/finding_aid.php?fa=0206
+.910.   |aSEL
+.949.   |aCollection 0206|wasis|c1|hSPESTOENDD
+.994.   |a01|bCSL
+.596.   |a23
+
+*** DOCUMENT BOUNDARY ***
+FORM=VM
+.000. |armIanc a
+.001. |aocm55136010
+.008. |a040513s1562    xx                anlat d
+.040.   |aCSL|cCSL
+.049.   |aCSL4
+.090.   |aNC982.5|b.L5 1562
+.245. 00|a[Mattioli woodblock]|h[art original].|n552.|pAmpeloprasum.
+.260.   |a[S.l. :|bs.n.,|c1562]
+.300.   |a1 woodblock :|bpear wood ;|c22 x 16 x 2 cm.
+.500.   |aInformation taken from the accompanying Mattioli woodblocks catalog
+produced by Bernard Quaritch.
+.500.   |aWoodblock was designed by Georgio Liberale and Wolfgang Meyerpeck for
+Pietro Mattioli's book "Commentarii in sex libros Pedacii Dioscoridis des
+medica materia, " printed in Prague in 1562 and in Venice in 1565.
+.590.   |aSpecial Collections' copy contains seal, originally from back of
+woodcut, now loose in envelope.
+.590.   |aSpecial Collections' copy includes catalog of related woodblocks.
+.600. 10|aMattioli, Pietro Andrea,|d1500-1577.|tCommentarii in libros sex
+Pedacii Dioscoridis ... de materia medica.
+.650.  0|aMateria medica|yEarly works to 1800|vPictorial works.
+.650.  0|aBotany, medical|yEarly works to 1800|vPictorial works.
+.650.  0|aGardens.
+.700. 1 |aLiberale, Georgio,|eartist.
+.700. 12|aMattioli, Pietro Andrea,|d1500-1577.|tCommentarii in libros sex
+Pedacii Dioscoridis ... de materia medica.
+.700. 1 |aMeyerpeck, Wolfgang,|d1505-1578,|eengraver.
+.910.   |amkh-updated tracings
+.949.   |aNC982.5.L5 1562|wLC|c1|hSPERARENDD|i31275039184784
+.994.   |a01|bCSL
+.590.   |aSpecial Collections' copy includes two copies of accompanying
+catalog.
+.596.   |a23
