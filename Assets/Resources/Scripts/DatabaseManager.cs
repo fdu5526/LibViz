@@ -62,12 +62,13 @@ public class DatabaseManager : MonoBehaviour {
 			for (int i = 0; i < numOfFields; i++) {
 				Field f = (Field)i;
 				
-				// search each field
+				// get all the strings of this field in our search
 				List<string> fields = new List<string>();
 				for (int j = 0; j < inputInfos.Count; j++) {
 					fields.Add(inputInfos[j].GetField(f));
 				}
 
+				// search each field
 				List<BookInfo> b = connector.Search(fields, f);
 				WhirlwindBeltInfo wwbi = new WhirlwindBeltInfo(b, Global.Field2String(f));
 				retVal.Add(wwbi);
