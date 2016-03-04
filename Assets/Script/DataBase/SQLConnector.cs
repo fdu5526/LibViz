@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using MySql.Data;
 using MySql.Data.MySqlClient;
@@ -82,10 +82,16 @@ public class SQLConnector : MonoBehaviour {
 				    	11 geographic sub
 				    	12 note
 			    	*/
-				    
-			    	info.Init(reader.GetString(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3),reader.GetString(12)
-			    		,reader.GetString(4) , reader.GetString(7),reader.GetString(8), reader.GetString(9),reader.GetString(10),
-			    		reader.GetString(11) );
+				    Debug.Log("field count " + reader.FieldCount);
+				    for ( int i = 0 ; i < reader.FieldCount; ++ i )
+				    {	
+				    	info.AddData(i, reader.GetString(i));
+				    }
+
+
+			    	// info.Init(reader.GetString(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3),reader.GetString(12)
+			    	// 	,reader.GetString(4) , reader.GetString(7),reader.GetString(8), reader.GetString(9),reader.GetString(10),
+			    	// 	reader.GetString(11) );
 			    	res.Add(info);
 			    }
 	    	}
@@ -105,8 +111,8 @@ public class SQLConnector : MonoBehaviour {
 	    	+ " `Title` LIKE '%" +  text + "%' OR"
 	    	+ " `Name` LIKE '%" +  text + "%' OR"
 	    	+ " `Note` LIKE '%" +  text + "%' OR"
-	    	+ " `Publisher` LIKE '%" +  text + "%' OR"
-	    	+ " `Location` LIKE '%" +  text + "%' ";
+	    	+ " `Pub Place` LIKE '%" +  text + "%' OR"
+	    	+ " `Pub Publisher` LIKE '%" +  text + "%' ";
 
 		return EvaluateBookByKeyWord( GetBookListByCommand(command) , text );
 	}
@@ -169,11 +175,8 @@ public class SQLConnector : MonoBehaviour {
 
 
 	public List<BookInfo> Search(List<int> values , string field , int range = 2)
-	{
-
-	    
+	{   
 		string command = "SELECT * FROM `" + tableName + "` WHERE ";
-
 
 		foreach( int value in values )
 		{
