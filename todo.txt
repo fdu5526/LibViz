@@ -17,7 +17,6 @@ interaction
 			2 ways of searching
 				drill down - by putting into desk or typing in search
 				open up -	 whirl the whirlwind, repopulate with ||
-		5 belts - the 5 most populated fields
 	
 	scrolling up and down the whirlwind
 	whirling the whirlwind

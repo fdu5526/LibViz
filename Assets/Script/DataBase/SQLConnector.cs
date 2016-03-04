@@ -25,27 +25,23 @@ public class SQLConnector : MonoBehaviour {
 
 	public string TryConnectSQL( string user = "" , string pass = "")
 	{
-		if (user == "" )
+		if (user == "" ) {
 			user = defaultUser;
-		if (pass == "" )
+		}
+		if (pass == "" ) {
 			pass = defaultPass;
-		try
-		{
-
+		}
+		
+		string result = "";
+		try {
 			string connectionString = string.Format("Server={0};port={4};Database={1};User ID = {2};Password={3};",server,database,user,pass,"3306");
 			Debug.Log("connect info " + connectionString);
 			connection = new MySqlConnection(connectionString);
 			connection.Open();
-			return "";
-		}catch (Exception e)
-		{
-			return e.Message.ToString();
-	        throw new Exception("Fail to connect the server. Please check if the MySql is opened..." + e.Message.ToString());  
- 	
+		}catch (Exception e) {
+			result = e.Message.ToString();
 		}
-
-		return "Failed";
-
+		return result;
 	}
 
 	public List<BookInfo> GetBookListByCommand(string command)

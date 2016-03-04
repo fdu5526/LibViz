@@ -58,8 +58,26 @@ public class DatabaseManager : MonoBehaviour {
 
 		if (connectionSuccess) {
 			List<WhirlwindBeltInfo> retVal = new List<WhirlwindBeltInfo>();
-			//TODO
+			// search by all fields, get all the results
+			for (int i = 0; i < numOfFields; i++) {
+				Field f = (Field)i;
+				
+				// search each field
+				List<string> fields = new List<string>();
+				for (int j = 0; j < inputInfos.Count; j++) {
+					fields.Add(inputInfos[j].GetField(f));
+				}
 
+				List<BookInfo> b = connector.Search(fields, f);
+				WhirlwindBeltInfo wwbi = new WhirlwindBeltInfo(b, Global.Field2String(f));
+				retVal.Add(wwbi);
+			}
+
+			// sort the search results by popularity
+			retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b2.InfosCount.CompareTo(b1.InfosCount); });
+
+			// return the top N results (pad if necessary)
+			retVal = retVal.GetRange(0, numBelts);
 			return retVal;
 		} else {
 			return OfflinePlaceHolderSearch(numBelts);
