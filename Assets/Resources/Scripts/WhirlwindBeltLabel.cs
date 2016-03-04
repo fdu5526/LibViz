@@ -9,7 +9,7 @@ public class WhirlwindBeltLabel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		text = transform.Find("Text").GetComponent<Text>();
+		text = transform.Find("LabelText").GetComponent<Text>();
 	}
 
 

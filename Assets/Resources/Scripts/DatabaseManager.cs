@@ -19,10 +19,9 @@ public class DatabaseManager : MonoBehaviour {
 		string res = connector.TryConnectSQL();
 		connectionSuccess = res == "";
 		if (connectionSuccess) {
-			print("success!");
-			
+			Debug.Log("Successful connection with database, using actual data");
 		} else {
-			print("failure...");
+			Debug.Log("Could not connect to database.Running in debug offline placeholder mode.");
 		}
 	}
 
@@ -68,10 +67,10 @@ public class DatabaseManager : MonoBehaviour {
 		
 	}
 
-
+	// the default bookInfos that greet a user at the beginning
 	public List<WhirlwindBeltInfo> GetDefaultBookInfos (int numBelts) {
 		if (connectionSuccess) {
-			//TODO
+			//TODO actual curated default list here
 			return OfflinePlaceHolderSearch(numBelts);
 		} else {
 			return OfflinePlaceHolderSearch(numBelts);
@@ -84,12 +83,12 @@ public class DatabaseManager : MonoBehaviour {
 	List<WhirlwindBeltInfo> OfflinePlaceHolderSearch (int numBelts) {
 		List<WhirlwindBeltInfo> retVal = new List<WhirlwindBeltInfo>();
 		for (int i = 0; i < numBelts; i++) {
-			int amount = (int)UnityEngine.Random.Range(5f, 15f);
+			int amount = (int)UnityEngine.Random.Range(15f, 30f);
 			List<BookInfo> b = new List<BookInfo>();
 			for (int j = 0; j < amount; j++) {
 				b.Add(OfflinePlaceHolder.RandomBookInfo());
 			}
-			retVal.Add(new WhirlwindBeltInfo(b, i.ToString()));
+			retVal.Add(new WhirlwindBeltInfo(b, "PLACEHOLDER " + i));
 		}
 
 		return retVal;

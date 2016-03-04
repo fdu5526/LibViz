@@ -192,7 +192,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 99.999954, y: -4.6000004}
+  m_AnchoredPosition: {x: 99.999985, y: -4.6000004}
   m_SizeDelta: {x: -100, y: 81}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &41551838
@@ -437,7 +437,7 @@ GameObject:
   - 222: {fileID: 81183545}
   - 114: {fileID: 81183544}
   m_Layer: 9
-  m_Name: Text
+  m_Name: LabelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -458,7 +458,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: 0.000012397766}
+  m_AnchoredPosition: {x: -0.000030518, y: -25}
   m_SizeDelta: {x: 401, y: 189}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &81183544
@@ -483,7 +483,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -3040,7 +3040,7 @@ GameObject:
   - 222: {fileID: 674133417}
   - 114: {fileID: 674133416}
   m_Layer: 9
-  m_Name: Text
+  m_Name: LabelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3061,7 +3061,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: 0.000012397766}
+  m_AnchoredPosition: {x: -0.000030518, y: -25}
   m_SizeDelta: {x: 401, y: 189}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674133416
@@ -3086,7 +3086,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -5696,7 +5696,7 @@ GameObject:
   - 222: {fileID: 1216810165}
   - 114: {fileID: 1216810164}
   m_Layer: 9
-  m_Name: Text
+  m_Name: LabelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5717,7 +5717,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: 0.000012397766}
+  m_AnchoredPosition: {x: -0.000030518, y: -25}
   m_SizeDelta: {x: 401, y: 189}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1216810164
@@ -5742,7 +5742,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -6160,6 +6160,14 @@ Prefab:
     - target: {fileID: 175214, guid: 269b396d6494b474d8e02c4e66543a2c, type: 2}
       propertyPath: m_Name
       value: WhirlwindBelt (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11430090, guid: 269b396d6494b474d8e02c4e66543a2c, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 22497068, guid: 269b396d6494b474d8e02c4e66543a2c, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 269b396d6494b474d8e02c4e66543a2c, type: 2}
@@ -7824,7 +7832,7 @@ GameObject:
   - 222: {fileID: 1658277904}
   - 114: {fileID: 1658277903}
   m_Layer: 9
-  m_Name: Text
+  m_Name: LabelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7845,7 +7853,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: 0.000012397766}
+  m_AnchoredPosition: {x: -0.000030518, y: -25}
   m_SizeDelta: {x: 401, y: 189}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1658277903
@@ -7870,7 +7878,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
