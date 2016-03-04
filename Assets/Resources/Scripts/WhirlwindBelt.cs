@@ -160,7 +160,6 @@ public class WhirlwindBelt : MonoBehaviour {
 			g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindItem"));
 			WhirlwindItem wwi = g.GetComponent<WhirlwindItem>();
 			wwi.Initialize(this, radius, height, defaultItemPosition, infos.Infos[i]);
-			wwi.ItemSprite = Resources.Load<Sprite>("Sprites/Items/" + infos.Infos[i].Title);
 			wwItems.Add(wwi);
 		}
 
@@ -203,13 +202,13 @@ public class WhirlwindBelt : MonoBehaviour {
 /////// public functions used by state transition //////
 	
 	public bool IsAtHead (Transform slot) {
-		bool isHead = (slot.position - wwItems[headIndex].slot.position).sqrMagnitude < 1f;
+		bool isHead = (slot.position - wwItems[headIndex].Slot.position).sqrMagnitude < 1f;
 		return isHead;
 	}
 
 
 	public bool IsAtTail (Transform slot) {
-		bool isTail = (slot.position - wwItems[tailIndex].slot.position).sqrMagnitude < 1f;
+		bool isTail = (slot.position - wwItems[tailIndex].Slot.position).sqrMagnitude < 1f;
 		return isTail;
 	}
 
@@ -243,7 +242,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		Debug.Assert(direction == -1 || direction == 1);
 
 		if (direction == 1) { // shift next
-			Transform slot = wwItems[headIndex].slot;
+			Transform slot = wwItems[headIndex].Slot;
 			Debug.Assert(slot != null);
 
 			// if the item that is coming in is already in, do nohing
@@ -255,7 +254,7 @@ public class WhirlwindBelt : MonoBehaviour {
 			wwItems[headIndex].End();
 			wwItems[NextIndex(tailIndex)].StirUpByShift(100f, slot);
 		} else { 							// shift prev
-			Transform slot = wwItems[tailIndex].slot;
+			Transform slot = wwItems[tailIndex].Slot;
 			Debug.Assert(slot != null);
 
 			// if the item that is coming in is already in, do nohing

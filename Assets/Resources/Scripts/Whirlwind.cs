@@ -124,7 +124,7 @@ public class Whirlwind : MonoBehaviour {
 		Debug.Assert(IsEnlargedOrFullscreen);
 
 		// search based on this single item
-		List<WhirlwindBeltInfo> newInfos = databaseManager.Search(wwItem.bookInfo, belts.Length);
+		List<WhirlwindBeltInfo> newInfos = databaseManager.Search(wwItem.BookInfo, belts.Length);
 
 		// load a new whirlwind
 		LoadNewItems(newInfos);
@@ -304,7 +304,7 @@ public class Whirlwind : MonoBehaviour {
 		LoadNewWhirlwindBasedOnItem(wwItem);
 		mainCamera.ZoomIn();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
-		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ItemSprite = wwItem.ItemSprite;
+		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ItemSprite = wwItem.Sprite;
 
 		LogUserInput();
 	}

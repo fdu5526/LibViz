@@ -5,13 +5,13 @@ using System.Collections.Generic;
 public class WhirlwindItem : PhysicsBody {
 	
 	// assigned
-	public float speed;
-	public float radius;
-	public float height;
-	public Transform slot;
+	float speed;
+	float radius;
+	float height;
+	Transform slot;
 
 	// for searching
-	public BookInfo bookInfo;
+	BookInfo bookInfo;
 
 	// generated
 	Vector3 idlePosition;
@@ -54,8 +54,14 @@ public class WhirlwindItem : PhysicsBody {
 		this.idlePosition = idlePosition;
 		this.bookInfo = bookInfo;
 
+		itemImage.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Items/" + bookInfo.Title);
+		
 		transform.position = idlePosition;
 	}
+
+
+	public BookInfo BookInfo { get { return bookInfo; } }
+	public Transform Slot { get { return slot; } }
 
 
 /////// private helper functions //////
@@ -198,7 +204,7 @@ public class WhirlwindItem : PhysicsBody {
 		itemImage.GetComponent<Renderer>().material.color = Color.white;
 	}
 
-	public Sprite ItemSprite {
+	public Sprite Sprite {
 		get {
 			return itemImage.GetComponent<SpriteRenderer>().sprite;
 		}

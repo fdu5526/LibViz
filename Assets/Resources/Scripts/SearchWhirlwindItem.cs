@@ -6,8 +6,8 @@ public class SearchWhirlwindItem {
 	BookInfo bookInfo;
 
 	public SearchWhirlwindItem (WhirlwindItem wwItem) {
-		bookInfo = wwItem.bookInfo;
-		sprite = wwItem.ItemSprite;
+		this.bookInfo = wwItem.BookInfo;
+		this.sprite = wwItem.Sprite;
 	}
 
 	public Sprite Sprite { get { return sprite; } }
