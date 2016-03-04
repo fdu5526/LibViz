@@ -100,16 +100,16 @@ public class Global
 		return "";
 	}
 
-	static public string[] TAG_FIELDS = 
-	{
-		"Genre",
-		"Topical Term",
-		"Form Subdivision",
-		"General Subdivision",
-		"Chronological Subdivision",
-		"Geographic Subdivision",
+	// static public string[] TAG_FIELDS = 
+	// {
+	// 	"Genre",
+	// 	"Topical Term",
+	// 	"Form Subdivision",
+	// 	"General Subdivision",
+	// 	"Chronological Subdivision",
+	// 	"Geographic Subdivision",
 
-	};
+	// };
 
 	static public string[] ColunmNameDataBase = 
 	{

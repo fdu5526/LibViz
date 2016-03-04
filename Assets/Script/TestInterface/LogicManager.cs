@@ -137,6 +137,8 @@ public class LogicManager : MonoBehaviour {
 		ShowBookList(infos);
 	}
 
+	
+
 	public void RemoveAllChild(Transform root )
 	{
 		foreach(Transform t in root)

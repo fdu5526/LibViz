@@ -220,17 +220,22 @@ public class SQLConnector : MonoBehaviour {
 	public List<BookInfo> SearchByTag(string tag)
 	{
 
+		return SearchBySubject(tag);
+	}
+
+	public List<BookInfo> SearchBySubject(string key)
+	{
+
 		string command = "SELECT * FROM `" + tableName + "` WHERE ";
 
-		foreach(string t in Global.TAG_FIELDS)
+		foreach(string s in Global.SubjectColumnList)
 		{
-			command += " `" + t + "` LIKE '%" +  tag + "%' OR";
+			command += " `" + s + "` LIKE '%" +  key + "%' OR";
 		}
 
 		command = command.Remove(command.Length-3, 2);
 
 		return EvaluateBookByKeyTag( GetBookListByCommand(command) , tag );
-
 	}
 
 
