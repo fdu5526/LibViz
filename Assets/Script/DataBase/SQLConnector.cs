@@ -63,31 +63,12 @@ public class SQLConnector : MonoBehaviour {
 			    {
 			    	BookInfo info = new BookInfo();
 
-			    	/*
-				    	0 title
-				    	1 author
-				    	2 time
-				    	3 location
-				    	4 description
-				    	5 publisher
-				    	6 publish data
-				    	7 topical term
-				    	8 form subdivision
-				    	9 general sub
-				    	10 chronological sub
-				    	11 geographic sub
-				    	12 note
-			    	*/
 				    Debug.Log("field count " + reader.FieldCount);
 				    for ( int i = 0 ; i < reader.FieldCount; ++ i )
 				    {	
 				    	info.AddData(i, reader.GetString(i));
 				    }
 
-
-			    	// info.Init(reader.GetString(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3),reader.GetString(12)
-			    	// 	,reader.GetString(4) , reader.GetString(7),reader.GetString(8), reader.GetString(9),reader.GetString(10),
-			    	// 	reader.GetString(11) );
 			    	res.Add(info);
 			    }
 	    	}
@@ -124,10 +105,14 @@ public class SQLConnector : MonoBehaviour {
 
 	public List<BookInfo> Search(string text, string field)
 	{
+
+		Debug.Log("Called");
 		if (text == null)
 			text = "";
+
+		Debug.Log(field + " " + Global.ConvertFieldName2DataBase(field) );
 		string command = "SELECT * FROM `" + tableName + "` WHERE " 
-	    	+ " `" + field + "` LIKE '%" +  text + "%'";
+	    	+ " `" +  Global.ConvertFieldName2DataBase(field)  + "` LIKE '%" +  text + "%'";
 
 	    return GetBookListByCommand(command);
 	}
@@ -160,7 +145,7 @@ public class SQLConnector : MonoBehaviour {
 
 		foreach(string text in texts)
 		{
-	    	command +=  " `" + field + "` LIKE '%" +  text + "%' OR";
+	    	command +=  " `" + Global.ConvertFieldName2DataBase(field) + "` LIKE '%" +  text + "%' OR";
 		}
 		command = command.Substring(0, command.Length-2);
 
@@ -176,8 +161,8 @@ public class SQLConnector : MonoBehaviour {
 
 		foreach( int value in values )
 		{
-	    	command += "( `" + field + "` " + "<=" + (value + range).ToString() + " AND "
-	    	+ " `" + field + "` " + ">=" + (value - range).ToString() + ") OR";
+	    	command += "( `" + Global.ConvertFieldName2DataBase(field) + "` " + "<=" + (value + range).ToString() + " AND "
+	    	+ " `" + Global.ConvertFieldName2DataBase(field) + "` " + ">=" + (value - range).ToString() + ") OR";
 		}
 
 		command = command.Substring(0, command.Length-2);
@@ -192,13 +177,13 @@ public class SQLConnector : MonoBehaviour {
 		if (relation > 0) opea = " >= ";
 
 		string command = "SELECT * FROM `" + tableName + "` WHERE " 
-	    	+ " `" + field + "` " + opea + time.ToString();
+	    	+ " `" + Global.ConvertFieldName2DataBase(field) + "` " + opea + time.ToString();
 
 	    if (relation == 0 )
 	    {
 			command = "SELECT * FROM `" + tableName + "` WHERE " 
-	    	+ "( `" + field + "` " + "<=" + (time + range).ToString() + " AND "
-	    	+ " `" + field + "` " + ">=" + (time - range).ToString() + ")";
+	    	+ "( `" + Global.ConvertFieldName2DataBase(field) + "` " + "<=" + (time + range).ToString() + " AND "
+	    	+ " `" + Global.ConvertFieldName2DataBase(field) + "` " + ">=" + (time - range).ToString() + ")";
 
 	    }
 
@@ -234,14 +219,6 @@ public class SQLConnector : MonoBehaviour {
 
 	public List<BookInfo> SearchByTag(string tag)
 	{
-	// 	string command = "SELECT * FROM `" + tableName + "` WHERE "
-	//     	+ " `Genre` LIKE '%" +  tag + "%' OR"
-	//     	+ " `Topical Term` LIKE '%" +  tag + "%' OR"
-	//     	+ " `Form Subdivision` LIKE '%" +  tag + "%' OR"
-	//     	+ " `General Subdivision` LIKE '%" +  tag + "%' OR"
-	//     	+ " `Chronological Subdivision` LIKE '%" +  tag + "%' OR"
-	//     	+ " `Geographic Subdivision` LIKE '%" +  tag + "%' ";
-
 
 		string command = "SELECT * FROM `" + tableName + "` WHERE ";
 

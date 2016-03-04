@@ -98,24 +98,24 @@ public class LogicManager : MonoBehaviour {
 		{
 			string field = "";
 			if (advanceDropdown.value == 0)
-				field = "Title";
+				field = "title";
 			if (advanceDropdown.value == 1)
-				field = "Name";
+				field = "name";
 			if (advanceDropdown.value == 2)
-				field = "Location";
+				field = "pub_place";
 			if (advanceDropdown.value == 3)
-				field = "Description";
+				field = "note";
 			infos = connector.Search(advanceSearch.text, field );
 		}
 		if (advanceDropdown.value == 4)
 		{
 			if (advanceSearch.text.EndsWith("-"))
-				infos = connector.Search( Global.IntFilter( advanceSearch.text) , "Time" , -1);	
+				infos = connector.Search( Global.IntFilter( advanceSearch.text) , "date" , -1);	
 			else
 			if (advanceSearch.text.EndsWith("+"))
-				infos = connector.Search( Global.IntFilter( advanceSearch.text) , "Time" , 1);	
+				infos = connector.Search( Global.IntFilter( advanceSearch.text) , "date" , 1);	
 			else
-				infos = connector.Search( Global.IntFilter( advanceSearch.text) , "Time" , 0);	
+				infos = connector.Search( Global.IntFilter( advanceSearch.text) , "date" , 0);	
 		}
 		ShowBookList(infos);
 	}

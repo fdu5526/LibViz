@@ -80,20 +80,20 @@ public class Global
 			case Field.NOTE:
 				return "Note";
 			case Field.PUBLISH_LOCATION:
-				return "Location";
+				return "Pub Place";
 			case Field.GENRE:
-				return "Description"; //TODO no genre in database as of now
+				return "Note"; //TODO no genre in database as of now
 				//return "Genre";
-			case Field.TOPICAL_TERM:
-				return "Topical Term";
-			case Field.FORM_SUBDIVISION:
-				return "Form Subdivision";
-			case Field.GENERAL_SUBDIVISION:
-				return "General Subdivision";
-			case Field.CHRONOLOGICAL_SUBDIVISION:
-				return "Chronological Subdivision";
-			case Field.GEOGRAPHIC_SUBDIVISION:
-				return "Geographic Subdivision";
+			// case Field.TOPICAL_TERM:
+			// 	return "Topical Term";
+			// case Field.FORM_SUBDIVISION:
+			// 	return "Form Subdivision";
+			// case Field.GENERAL_SUBDIVISION:
+			// 	return "General Subdivision";
+			// case Field.CHRONOLOGICAL_SUBDIVISION:
+			// 	return "Chronological Subdivision";
+			// case Field.GEOGRAPHIC_SUBDIVISION:
+			// 	return "Geographic Subdivision";
 			default:
 				break;
 		}
@@ -168,6 +168,20 @@ public class Global
 		"genre",
 
 	};
+
+	static public string ConvertFieldName2DataBase(string fieldNameScript)
+	{
+		string[] strs = fieldNameScript.Split('_');
+		string res = "";
+		for(int i = 0 ; i  < strs.Length ; ++ i )
+		{
+			if ( strs[i].Length > 0 )
+				strs[i].Substring(0,1).ToUpper() ;
+			res += strs[i] + " " ;
+		}
+		res = res.Substring(0,res.Length-1);
+		return res;
+	}
 
 	static public string Index2ColunmName(int i )
 	{
