@@ -5,19 +5,21 @@ kinect
 	faster people movement => swirl up more stuff
 	ensure it is same person interacting
 
-get data from mySQL
-
 MxR - look at codec, look how complicated
 
 
 
 interaction
 	search bar
-		searching hooray
-			2 ways of searching
-				drill down - by putting into desk or typing in search
-				open up -	 whirl the whirlwind, repopulate with ||
-		what is subject?
+		2 ways of searching
+			drill down - by putting into desk or typing in search
+			open up -	 whirl the whirlwind, repopulate with ||
+		5 searches
+			Author
+			Normalized date
+			Location
+			Subject headings (SearchBySubject())
+			Author other
 		
 	scrolling up and down the whirlwind
 	whirling the whirlwind
