@@ -16,6 +16,8 @@ S_TIME = '.260'
 S_LOCATION = '.260'
 S_DESCRIPTION = '.500'
 
+CONTENT_SPLITOR = '|'
+
 
 INFO_INDEX = [
 		['name'						,'.100','a','tinytext'],
@@ -182,8 +184,10 @@ class Data:
 					if GetIndexName(index) in self.__DICT__.keys():
 						if (self.__DICT__[GetIndexName(index)]==""):
 							self.__DICT__[GetIndexName(index)] = content
+						else:
+							self.__DICT__[GetIndexName(index)] = self.__DICT__[GetIndexName(index)] + CONTENT_SPLITOR + content;
 					else:
-						self.__DICT__[GetIndexName(index)] = content
+						self.__DICT__[GetIndexName(index)] = content 
 
 	def PrintTo(self,out):
 		if not('title' in self.__DICT__.keys() ):
