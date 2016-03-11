@@ -301,7 +301,9 @@ public class BookInfo{
 		List<string> res = new List<string>();
 		for(int i = 0 ; i < Global.SubjectColumnList.Length; ++i)
 		{
-			res.Add(GetData(Global.SubjectColumnList[i]));
+			string data = GetData(Global.SubjectColumnList[i]);
+			if (data != null && data != "" )
+				res.Add(data);
 		}
 		return res;
 	}
