@@ -246,6 +246,13 @@ public class BookInfo{
 		}
 	}
 
+	public string FileName
+	{
+		get {
+			return "";
+		}
+	}
+
 	public string genre;
 	public string topical_term;
 	public string form_subdivision;
