@@ -1,7 +1,7 @@
 import sys
 
 inFilePath = 'ori/new_records_2_01_16.txt'
-inFile = open(inFilePath , 'r')
+inFile = open(inFilePath , 'w') 
 
 outFilePath = 'sql/data.sql'
 outFile = open(outFilePath , 'w') 
@@ -15,6 +15,8 @@ S_TITLE = '.245'
 S_TIME = '.260'
 S_LOCATION = '.260'
 S_DESCRIPTION = '.500'
+
+CONTENT_SPLITOR = '|'
 
 
 INFO_INDEX = [
@@ -60,6 +62,7 @@ INFO_INDEX = [
 		['physical_description'		,'.300','a','tinytext'],
 
 		['date'						,'.008','a','tinytext'],
+		['file_name'				,'899' , '*', 'tinytext']
 		
 		]
 SQL_CREATE = []
@@ -129,6 +132,8 @@ def SetupSQLInstructions():
 		'SET time_zone = "+00:00";\n',
 		'-- ----------------------\n',
 		'CREATE TABLE IF NOT EXISTS `table_name` (\n']
+
+
 	for id, index in enumerate(INFO_INDEX):
 		content = '  `FormalName` Type NOT NULL,\n'
 		if id >= len(INFO_INDEX) -1:
@@ -136,6 +141,7 @@ def SetupSQLInstructions():
 		content = content.replace('FormalName',ToFormalName(GetIndexName(index)))
 		content = content.replace('Type',GetIndexTextType(index))
 		SQL_CREATE.append(content)
+
 	SQL_CREATE.extend([') ENGINE=InnoDB DEFAULT CHARSET=latin1;\n',
 						'-- ----------------------\n'])
 	SQL_INSERT = []
@@ -154,7 +160,15 @@ class Data:
 		self.__DICT__ = dict()
 
 	def GetSubLine(self,line,subFile,t='tinytext'):
+		# the file name has a spcial data form
+		if (subFile.startswith('*')):
+			index = 3;
+			while line[index] == ' ':
+				index = index + 1
+			return line[index:].strip()
+
 		lines = line.split('|')
+		# deal with the normal data field
 		for l in lines:
 			if l.startswith(subFile):
 				res =  l[len(subFile):]
@@ -182,8 +196,10 @@ class Data:
 					if GetIndexName(index) in self.__DICT__.keys():
 						if (self.__DICT__[GetIndexName(index)]==""):
 							self.__DICT__[GetIndexName(index)] = content
+						else:
+							self.__DICT__[GetIndexName(index)] = self.__DICT__[GetIndexName(index)] + CONTENT_SPLITOR + content;
 					else:
-						self.__DICT__[GetIndexName(index)] = content
+						self.__DICT__[GetIndexName(index)] = content 
 
 	def PrintTo(self,out):
 		if not('title' in self.__DICT__.keys() ):
@@ -245,6 +261,8 @@ if __name__ == '__main__':
 	if (len(sys.argv) > 1 ):
 		inFilePath = sys.argv[1]
 
+	inFile = open(inFilePath , 'r')
+
 	print " INPUT FILE : " , inFilePath	
 
 	dataAnalyzer = DataAnalyzer()
@@ -252,11 +270,14 @@ if __name__ == '__main__':
 	last = ''
 	for line in inFile:
 		line = line.strip()
-		if line.startswith('.') or line.startswith('*'):
+		if line.startswith('.') or line.startswith('*') or line.startswith('899'):
 			if ( dataAnalyzer.ReadLine(last) ):
 				i = i + 1 
 			last = ''
-		last = last + line + ' '
+		if (last == ''):
+			last = line
+		else:
+			last = last + ' ' + line
 
 	dataAnalyzer.ReadLine(last)
  

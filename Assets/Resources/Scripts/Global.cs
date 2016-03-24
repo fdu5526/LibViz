@@ -152,6 +152,8 @@ public class Global
 		"physical_description",
 
 		"date",
+
+		"file_name"
 	};
 
 	static public string[] SubjectColumnList =
@@ -246,6 +248,13 @@ public class BookInfo{
 		}
 	}
 
+	public string FileName
+	{
+		get {
+			return "";
+		}
+	}
+
 	public string genre;
 	public string topical_term;
 	public string form_subdivision;
@@ -301,7 +310,9 @@ public class BookInfo{
 		List<string> res = new List<string>();
 		for(int i = 0 ; i < Global.SubjectColumnList.Length; ++i)
 		{
-			res.Add(GetData(Global.SubjectColumnList[i]));
+			string data = GetData(Global.SubjectColumnList[i]);
+			if (data != null && data != "" )
+				res.Add(data);
 		}
 		return res;
 	}

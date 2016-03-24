@@ -152,9 +152,6 @@ public class SQLConnector : MonoBehaviour {
 	    return GetBookListByCommand(command);
 	}	
 
-
-
-
 	public List<BookInfo> Search(List<int> values , string field , int range = 2)
 	{   
 		string command = "SELECT * FROM `" + tableName + "` WHERE ";
