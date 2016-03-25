@@ -120,7 +120,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: -4.6000004}
+  m_AnchoredPosition: {x: 99.99997, y: -4.6000004}
   m_SizeDelta: {x: -100, y: 81}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &41551838
@@ -236,8 +236,6 @@ GameObject:
   - 124: {fileID: 82646851}
   - 81: {fileID: 82646850}
   - 114: {fileID: 82646855}
-  - 114: {fileID: 82646857}
-  - 114: {fileID: 82646856}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -322,33 +320,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bd29e1903267bc4792604957a5bb82c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &82646856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 82646849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1e636aad1b4f674495e0c5b17e12542, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fov: 60
-  near: 0.3
-  far: 1000
-  orthographicSize: 50
-  duration: 1
---- !u!114 &82646857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 82646849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41443483794b1ad4aad8fc12bad02f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &257887067
@@ -2875,15 +2846,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_SizeDelta.x
-      value: -17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22415562, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchoredPosition.y

@@ -70,10 +70,6 @@ public class Whirlwind : MonoBehaviour {
 	// current debugging based state machine triggers
 	// TODO remove me at the end
 	void CheckInteractionWithWhirlwind () {
-		if (Input.GetKeyDown("q")) {
-			mainCamera.GetComponent<PerspectiveSwitcher>().Activate();
-		}
-
 		if (Input.GetKeyDown("a") &&
 				currentState == State.Idle) {
 			LoadNewItems(defaultBookinfos);
