@@ -152,6 +152,8 @@ public class Global
 		"physical_description",
 
 		"date",
+
+		"file_name"
 	};
 
 	static public string[] SubjectColumnList =
