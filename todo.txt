@@ -25,6 +25,9 @@ interaction
 	whirling the whirlwind
 	put center item in correct place
 	prevent clicking on another item in fullscreen view
+	make close buton smaller
+	try to make camera more orthographic in context exam
+	fix drag threshold
 
 
 questions
