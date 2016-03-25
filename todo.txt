@@ -1,5 +1,5 @@
 touch interaction
-	tell andreas when I am ready to work on this
+	get it on Mac
 
 kinect
 	faster people movement => swirl up more stuff
@@ -25,9 +25,9 @@ interaction
 	whirling the whirlwind
 	put center item in correct place
 	prevent clicking on another item in fullscreen view
-	make close buton smaller
+	make close button smaller
 	try to make camera more orthographic in context exam
-	fix drag threshold
+	*****fix drag threshold
 
 
 questions

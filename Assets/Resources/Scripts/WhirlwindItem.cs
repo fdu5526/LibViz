@@ -31,6 +31,7 @@ public class WhirlwindItem : PhysicsBody {
 	WhirlwindBelt belt;
 	GameObject itemImage;
 	Vector3 defaultScale;
+	InputManager inputManager;
 
 	// Use this for initialization
 	protected override void Awake () {
@@ -39,6 +40,7 @@ public class WhirlwindItem : PhysicsBody {
 		defaultScale = transform.localScale;
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		itemImage = transform.Find("ItemImage").gameObject;
+		inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
 		isLockedToSlot = false;
 		slot = null;
 
@@ -293,10 +295,12 @@ public class WhirlwindItem : PhysicsBody {
 		if (isInteractable) {
 			whirlwind.LogUserInput();
 
-			if (currentState == State.ContextExam) {
-				belt.Spin();
-			} else if (currentState == State.WhirlExam) {
-				whirlwind.Spin();
+			if (inputManager.IsDragging) {
+				if (currentState == State.ContextExam) {
+					belt.Spin();
+				} else if (currentState == State.WhirlExam) {
+					whirlwind.Spin();
+				}
 			}
 		}
 	}
