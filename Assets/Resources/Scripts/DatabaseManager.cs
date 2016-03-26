@@ -144,11 +144,6 @@ public class DatabaseManager : MonoBehaviour {
 
 			// return the top N results (pad if necessary)
 			retVal = retVal.GetRange(0, numBelts);
-			for (int i = 0; i < retVal.Count; i++) {
-				for (int j = 0; j < retVal[i].Infos.Count; j++) {
-					print(retVal[i].Infos[j].FileName);
-				}
-			}
 			return retVal;
 		} else {
 			return OfflinePlaceHolderSearch(numBelts);

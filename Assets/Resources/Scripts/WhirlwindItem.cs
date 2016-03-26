@@ -23,7 +23,10 @@ public class WhirlwindItem : PhysicsBody {
 	static Sprite GetItemSprite (string fileName) {
 		Sprite s = null;
 		itemSprites.TryGetValue(fileName, out s);
-		Debug.Assert(s != null);
+		if (s == null) {
+			// TODO this should be an assertion
+			print(fileName);
+		}
 		return s;
 	}
 
