@@ -9,7 +9,6 @@ public class DatabaseManager : MonoBehaviour {
 	[SerializeField] SQLConnector connector {get { return SQLConnector.Instance;}}
 
 	int numOfFields = Enum.GetNames(typeof(Field)).Length;
-	Field[] fields = {Field.AUTHOR, Field.PUBLISH_LOCATION, Field.TIME, Field.TITLE};
 	bool connectionSuccess;
 
 
@@ -35,26 +34,26 @@ public class DatabaseManager : MonoBehaviour {
 
 			List<BookInfo> b;
 			WhirlwindBeltInfo wwbi;
-			Field f;
+			string column;
 
-			f = Field.TITLE;
-			b = connector.Search(inputInfo.Title, f);
-			wwbi = new WhirlwindBeltInfo(b, Global.Field2String(f));
+			column = "name";
+			b = connector.Search(inputInfo.Author, column);
+			wwbi = new WhirlwindBeltInfo(b, column);
 			retVal.Add(wwbi);
 
-			f = Field.AUTHOR;
-			b = connector.Search(inputInfo.Author, f);
-			wwbi = new WhirlwindBeltInfo(b, Global.Field2String(f));
+			column = "name";
+			b = connector.Search(inputInfo.Location, column);
+			wwbi = new WhirlwindBeltInfo(b, column);
 			retVal.Add(wwbi);
 
-			f = Field.PUBLISH_LOCATION;
-			b = connector.Search(inputInfo.Location, f);
-			wwbi = new WhirlwindBeltInfo(b, Global.Field2String(f));
+			column = "name";
+			b = connector.Search(inputInfo.Time.ToString(), column);
+			wwbi = new WhirlwindBeltInfo(b, column);
 			retVal.Add(wwbi);
 
-			f = Field.TIME;
-			b = connector.Search(inputInfo.Time.ToString(), f);
-			wwbi = new WhirlwindBeltInfo(b, Global.Field2String(f));
+			column = "name";
+			b = connector.Search(inputInfo.Author, column);
+			wwbi = new WhirlwindBeltInfo(b, column);
 			retVal.Add(wwbi);
 
 			List<string> subjects = inputInfo.GetSubjects();
@@ -62,10 +61,8 @@ public class DatabaseManager : MonoBehaviour {
 			for (int i = 0; i < subjects.Count; i++) {
 				b.AddRange(connector.SearchBySubject(subjects[i]));
 			}
-			wwbi = new WhirlwindBeltInfo(b, "Subjects");
+			wwbi = new WhirlwindBeltInfo(b, "subjects");
 			retVal.Add(wwbi);
-
-
 
 			// sort the search results by popularity
 			retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b2.InfosCount.CompareTo(b1.InfosCount); });
@@ -84,21 +81,7 @@ public class DatabaseManager : MonoBehaviour {
 
 		if (connectionSuccess) {
 			List<WhirlwindBeltInfo> retVal = new List<WhirlwindBeltInfo>();
-			// search by all fields, get all the results
-			for (int i = 0; i < numOfFields; i++) {
-				Field f = (Field)i;
-				
-				// get all the strings of this field in our search
-				List<string> fields = new List<string>();
-				for (int j = 0; j < inputInfos.Count; j++) {
-					fields.Add(inputInfos[j].GetField(f));
-				}
-
-				// search each field
-				List<BookInfo> b = connector.Search(fields, f);
-				WhirlwindBeltInfo wwbi = new WhirlwindBeltInfo(b, Global.Field2String(f));
-				retVal.Add(wwbi);
-			}
+			//TODO
 
 			// sort the search results by popularity
 			retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b2.InfosCount.CompareTo(b1.InfosCount); });
@@ -115,8 +98,54 @@ public class DatabaseManager : MonoBehaviour {
 	// the default bookInfos that greet a user at the beginning
 	public List<WhirlwindBeltInfo> GetDefaultBookInfos (int numBelts) {
 		if (connectionSuccess) {
-			//TODO actual curated default list here
-			return OfflinePlaceHolderSearch(numBelts);
+			List<WhirlwindBeltInfo> retVal = new List<WhirlwindBeltInfo>();
+
+			List<BookInfo> b;
+			WhirlwindBeltInfo wwbi;
+			string column;
+
+			column = "name";
+			b = connector.Search("", column);
+			wwbi = new WhirlwindBeltInfo(b, column);
+			retVal.Add(wwbi);
+
+			column = "date";
+			b = connector.Search("", column);
+			wwbi = new WhirlwindBeltInfo(b, column);
+			retVal.Add(wwbi);
+
+			column = "pub_place";
+			b = connector.Search("", column);
+			wwbi = new WhirlwindBeltInfo(b, column);
+			retVal.Add(wwbi);
+
+			column = "other_author_personal";
+			b = connector.Search("", column);
+			wwbi = new WhirlwindBeltInfo(b, column);
+			retVal.Add(wwbi);
+
+			//TODO
+			column = "name";
+			b = connector.Search("", column);
+			wwbi = new WhirlwindBeltInfo(b, column);
+			retVal.Add(wwbi);
+
+			/*TODO
+			b = connector.SearchBySubject("");
+			wwbi = new WhirlwindBeltInfo(b, "subjects");
+			re tVal.Add(wwbi);*/
+
+			// sort the search results by popularity
+			retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b2.InfosCount.CompareTo(b1.InfosCount); });
+
+			// return the top N results (pad if necessary)
+			retVal = retVal.GetRange(0, numBelts);
+			for (int i = 0; i < retVal.Count; i++) {
+				for (int j = 0; j < retVal[i].Infos.Count; j++) {
+					print(retVal[i].Infos[j].FileName);
+				}
+			}
+			return retVal;
 		} else {
 			return OfflinePlaceHolderSearch(numBelts);
 		}
