@@ -56,7 +56,7 @@ public class WhirlwindItem : PhysicsBody {
 		this.idlePosition = idlePosition;
 		this.bookInfo = bookInfo;
 
-		itemImage.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Items/" + bookInfo.Title);
+		itemImage.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Items/" + bookInfo.FileName);
 		
 		transform.position = idlePosition;
 	}

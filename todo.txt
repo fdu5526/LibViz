@@ -28,6 +28,7 @@ interaction
 	make close button smaller
 	try to make camera more orthographic in context exam
 	*****fix drag threshold
+	cache all the images so we do not load from file every time
 
 
 questions

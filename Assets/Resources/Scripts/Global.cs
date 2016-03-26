@@ -352,10 +352,11 @@ public class BookInfo{
 
 	}
 
-	public BookInfo(string _title, string _author, int _time , string _location , string _note 
+	public BookInfo(string _filename, string _title, string _author, int _time , string _location , string _note 
 		, string _genre , string _topical_term , string _form_subdivision , string _general_subdivision
 		, string _chronological_subdivision , string _geographic_subdivision) {
 
+		dict.Add("file_name", _filename);
 		dict.Add("title", _title);
 		dict.Add("name", _author);
 		dict.Add("date", _time.ToString());
