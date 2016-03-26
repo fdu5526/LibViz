@@ -10,7 +10,7 @@ public class PerspectiveSwitcher : MonoBehaviour
 	public float far = 1000f;
 	public float orthographicSize = 50f;
 
-	Camera camera;
+	Camera mainCamera;
 	Matrix4x4 ortho;
 	Matrix4x4 perspective;
 	float aspect;
@@ -19,30 +19,23 @@ public class PerspectiveSwitcher : MonoBehaviour
 	
 	void Start()
 	{
-		camera = GetComponent<Camera>();
+		mainCamera = GetComponent<Camera>();
 		aspect = (float) Screen.width / (float) Screen.height;
 		ortho = Matrix4x4.Ortho(-orthographicSize * aspect, orthographicSize * aspect, -orthographicSize, orthographicSize, near, far);
 		perspective = Matrix4x4.Perspective(fov, aspect, near, far);
-		camera.projectionMatrix = perspective;
+		mainCamera.projectionMatrix = perspective;
 		orthoOn = false;
 		blender = (MatrixBlender) GetComponent(typeof(MatrixBlender));
 	}
 	
 	public void switchPerspective(){
-		if(true)
-		{
-			orthoOn = !orthoOn;
-			if (orthoOn){
+		orthoOn = !orthoOn;
+		if (orthoOn){
 
-				blender.BlendToMatrix(ortho, 1f, true);
-			}
-			else{
-				blender.BlendToMatrix(perspective, 1f, false);
-			}
+			blender.BlendToMatrix(ortho, 1f, true);
 		}
-
 		else{
-			Debug.Log("Button is not ready yet");
+			blender.BlendToMatrix(perspective, 1f, false);
 		}
 	}
 

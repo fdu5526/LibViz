@@ -9,6 +9,7 @@ public class DatabaseManager : MonoBehaviour {
 	[SerializeField] SQLConnector connector {get { return SQLConnector.Instance;}}
 
 	int numOfFields = Enum.GetNames(typeof(Field)).Length;
+	Field[] fields = {Field.AUTHOR, Field.PUBLISH_LOCATION, Field.TIME, Field.TITLE};
 	bool connectionSuccess;
 
 
@@ -31,15 +32,40 @@ public class DatabaseManager : MonoBehaviour {
 
 		if (connectionSuccess) {
 			List<WhirlwindBeltInfo> retVal = new List<WhirlwindBeltInfo>();
-			// search by all fields, get all the results
-			for (int i = 0; i < numOfFields; i++) {
-				Field f = (Field)i;
-				
-				// search each field
-				List<BookInfo> b = connector.Search(inputInfo.GetField(f), f);
-				WhirlwindBeltInfo wwbi = new WhirlwindBeltInfo(b, Global.Field2String(f));
-				retVal.Add(wwbi);
+
+			List<BookInfo> b;
+			WhirlwindBeltInfo wwbi;
+			Field f;
+
+			f = Field.TITLE;
+			b = connector.Search(inputInfo.Title, f);
+			wwbi = new WhirlwindBeltInfo(b, Global.Field2String(f));
+			retVal.Add(wwbi);
+
+			f = Field.AUTHOR;
+			b = connector.Search(inputInfo.Author, f);
+			wwbi = new WhirlwindBeltInfo(b, Global.Field2String(f));
+			retVal.Add(wwbi);
+
+			f = Field.PUBLISH_LOCATION;
+			b = connector.Search(inputInfo.Location, f);
+			wwbi = new WhirlwindBeltInfo(b, Global.Field2String(f));
+			retVal.Add(wwbi);
+
+			f = Field.TIME;
+			b = connector.Search(inputInfo.Time.ToString(), f);
+			wwbi = new WhirlwindBeltInfo(b, Global.Field2String(f));
+			retVal.Add(wwbi);
+
+			List<string> subjects = inputInfo.GetSubjects();
+			b = new List<BookInfo>();
+			for (int i = 0; i < subjects.Count; i++) {
+				b.AddRange(connector.SearchBySubject(subjects[i]));
 			}
+			wwbi = new WhirlwindBeltInfo(b, "Subjects");
+			retVal.Add(wwbi);
+
+
 
 			// sort the search results by popularity
 			retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b2.InfosCount.CompareTo(b1.InfosCount); });
