@@ -223,14 +223,18 @@ public class SQLConnector : MonoBehaviour {
 	public List<BookInfo> SearchBySubject(string key)
 	{
 
+		Debug.Log("Search By Subject");
+
 		string command = "SELECT * FROM `" + tableName + "` WHERE ";
 
 		foreach(string s in Global.SubjectColumnList)
 		{
-			command += " `" + s + "` LIKE '%" +  key + "%' OR";
+			command += " `" + Global.ConvertFieldName2DataBase(s) + "` LIKE '%" +  key + "%' OR";
 		}
 
-		command = command.Remove(command.Length-3, 2);
+		command = command.Remove(command.Length - 2, 2);
+
+		Debug.Log("Command " + command);
 
 		return EvaluateBookByKeyTag( GetBookListByCommand(command) , tag );
 	}
@@ -259,15 +263,6 @@ public class SQLConnector : MonoBehaviour {
 		foreach(BookInfo b in list)
 		{
 			b.v = UnityEngine.Random.Range(-0.05f, 0.05f);
-			if (b.genre.Contains(keyWord))
-				b.v += 3f;
-			if (b.topical_term.Contains(keyWord))
-				b.v += 2f;
-			if (b.chronological_subdivision.Contains(keyWord) ||
-				b.form_subdivision.Contains(keyWord) ||
-				b.general_subdivision.Contains(keyWord) ||
-				b.geographic_subdivision.Contains(keyWord))
-				b.v += 1f;
 		}
 
 		List<BookInfo> res = new List<BookInfo>(list);

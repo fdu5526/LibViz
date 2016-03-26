@@ -56,17 +56,13 @@ public class DatabaseManager : MonoBehaviour {
 			wwbi = new WhirlwindBeltInfo(b, column);
 			retVal.Add(wwbi);
 
-			column = "title";
-			b = connector.Search("", column);
-			wwbi = new WhirlwindBeltInfo(b, column);
-			retVal.Add(wwbi);
-			/*List<string> subjects = inputInfo.GetSubjects();
+			List<string> subjects = inputInfo.GetSubjects();
 			b = new List<BookInfo>();
 			for (int i = 0; i < subjects.Count; i++) {
 				b.AddRange(connector.SearchBySubject(subjects[i]));
 			}
 			wwbi = new WhirlwindBeltInfo(b, "subjects");
-			retVal.Add(wwbi);*/
+			retVal.Add(wwbi);
 
 			// sort the search results by popularity
 			retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b2.InfosCount.CompareTo(b1.InfosCount); });
@@ -128,16 +124,9 @@ public class DatabaseManager : MonoBehaviour {
 			wwbi = new WhirlwindBeltInfo(b, column);
 			retVal.Add(wwbi);
 
-			//TODO
-			column = "name";
-			b = connector.Search("", column);
-			wwbi = new WhirlwindBeltInfo(b, column);
-			retVal.Add(wwbi);
-
-			//TODO
-			/*b = connector.SearchBySubject("");
+			b = connector.SearchBySubject("");
 			wwbi = new WhirlwindBeltInfo(b, "subjects");
-			retVal.Add(wwbi);*/
+			retVal.Add(wwbi);
 
 			// sort the search results by popularity
 			retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b2.InfosCount.CompareTo(b1.InfosCount); });
