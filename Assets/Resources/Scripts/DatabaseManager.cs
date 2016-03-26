@@ -125,15 +125,15 @@ public class DatabaseManager : MonoBehaviour {
 			retVal.Add(wwbi);
 
 			//TODO
-			column = "name";
+			/*column = "name";
 			b = connector.Search("", column);
 			wwbi = new WhirlwindBeltInfo(b, column);
-			retVal.Add(wwbi);
+			retVal.Add(wwbi);*/
 
-			/*TODO
+			//TODO
 			b = connector.SearchBySubject("");
 			wwbi = new WhirlwindBeltInfo(b, "subjects");
-			re tVal.Add(wwbi);*/
+			retVal.Add(wwbi);
 
 			// sort the search results by popularity
 			retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b2.InfosCount.CompareTo(b1.InfosCount); });
