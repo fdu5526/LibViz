@@ -1,9 +1,33 @@
 using UnityEngine;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 
 public class WhirlwindItem : PhysicsBody {
 	
+	static Dictionary<string,Sprite> itemSprites = new Dictionary<string, Sprite>();
+
+	public static void InitializeItemImages () {
+		string path = Application.dataPath + "/Resources/Sprites/Items/";
+		DirectoryInfo dir = new DirectoryInfo(path);
+ 		FileInfo[] info = dir.GetFiles("*.png");
+
+ 		for (int i = 0; i < info.Length; i++) {
+ 			string fileName = info[i].Name;
+ 			fileName = fileName.Substring(0, fileName.Length - 4);
+ 			Sprite sprite = Resources.Load<Sprite>("Sprites/Items/" + fileName);
+ 			itemSprites.Add(fileName, sprite);
+ 		}
+	}
+
+	static Sprite GetItemSprite (string fileName) {
+		Sprite s = null;
+		itemSprites.TryGetValue(fileName, out s);
+		Debug.Assert(s != null);
+		return s;
+	}
+
+
 	// assigned
 	float speed;
 	float radius;
@@ -56,7 +80,7 @@ public class WhirlwindItem : PhysicsBody {
 		this.idlePosition = idlePosition;
 		this.bookInfo = bookInfo;
 
-		itemImage.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Items/" + bookInfo.FileName);
+		itemImage.GetComponent<SpriteRenderer>().sprite = GetItemSprite(bookInfo.FileName);
 		
 		transform.position = idlePosition;
 	}
