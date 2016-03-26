@@ -251,7 +251,7 @@ public class BookInfo{
 	public string FileName
 	{
 		get {
-			return "";
+			return GetData("file_name");
 		}
 	}
 
