@@ -37,9 +37,9 @@ public class WhirlwindBelt : MonoBehaviour {
 		center = GameObject.Find("WhirlwindCenter").transform;
 		whirlwind = center.GetComponent<Whirlwind>();
 		height = transform.position.y;
-		radius = height * 0.6f + 1f;
+		radius = height * 0.5f + 1.5f;
 		isOperating = false;
-		numOfItemsShownOnBelt = 3 + level * 3;
+		numOfItemsShownOnBelt = 4 + level * 3;
 		wwItems = new List<WhirlwindItem>();
 
 		// initialize the slots
@@ -156,6 +156,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		wwItems = new List<WhirlwindItem>();
 		for (int i = 0; i < infos.Infos.Count; i++) {
 			g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindItem"));
+			g.transform.parent = transform;
 			WhirlwindItem wwi = g.GetComponent<WhirlwindItem>();
 			wwi.Initialize(this, radius, height, defaultItemPosition, infos.Infos[i]);
 			wwItems.Add(wwi);
