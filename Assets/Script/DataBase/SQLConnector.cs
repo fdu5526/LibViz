@@ -222,7 +222,7 @@ public class SQLConnector : MonoBehaviour {
 
 	public List<BookInfo> SearchBySubject(string key)
 	{
-
+		 key = key.Replace("'", "''" );
 		//Debug.Log("Search By Subject");
 
 		string command = "SELECT * FROM `" + tableName + "` WHERE ";
@@ -234,7 +234,7 @@ public class SQLConnector : MonoBehaviour {
 
 		command = command.Remove(command.Length - 2, 2);
 
-		//Debug.Log("Command " + command);
+		Debug.Log(" Search by Subject Command " + command);
 
 		return EvaluateBookByKeyTag( GetBookListByCommand(command) , tag );
 	}
