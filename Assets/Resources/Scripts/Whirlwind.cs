@@ -37,7 +37,7 @@ public class Whirlwind : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		WhirlwindItem.InitializeItemImages();
 
 		currentState = State.Idle;

@@ -8,13 +8,9 @@ public class WhirlwindItem : PhysicsBody {
 	static Dictionary<string,Sprite> itemSprites = new Dictionary<string, Sprite>();
 
 	public static void InitializeItemImages () {
-		string path = Application.dataPath + "/Resources/Sprites/Items/";
-		DirectoryInfo dir = new DirectoryInfo(path);
- 		FileInfo[] info = dir.GetFiles("*.png");
 
- 		for (int i = 0; i < info.Length; i++) {
- 			string fileName = info[i].Name;
- 			fileName = fileName.Substring(0, fileName.Length - 4);
+ 		for (int i = 0; i < OfflinePlaceHolder.allFiles.Length; i++) {
+ 			string fileName = OfflinePlaceHolder.allFiles[i];
  			Sprite sprite = Resources.Load<Sprite>("Sprites/Items/" + fileName);
  			itemSprites.Add(fileName, sprite);
  		}
