@@ -37,8 +37,8 @@ public class Whirlwind : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
-		WhirlwindItem.InitializeItemImages();
+	void Awake () {
+		WhirlwindItem.InitializeItemSprites();
 
 		currentState = State.Idle;
 		userInputTimer = new Timer(60f);
