@@ -7,12 +7,10 @@ public class WhirlwindItem : PhysicsBody {
 	
 	static Dictionary<string,Sprite> itemSprites = new Dictionary<string, Sprite>();
 
-	public static void InitializeItemImages () {
-
- 		for (int i = 0; i < OfflinePlaceHolder.allFiles.Length; i++) {
- 			string fileName = OfflinePlaceHolder.allFiles[i];
- 			Sprite sprite = Resources.Load<Sprite>("Sprites/Items/" + fileName);
- 			itemSprites.Add(fileName, sprite);
+	public static void InitializeItemSprites () {
+	 	Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/Items");
+		for (int i = 0; i < sprites.Length; i++) {
+ 			itemSprites.Add(sprites[i].name, sprites[i]);
  		}
 	}
 
