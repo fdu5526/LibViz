@@ -24,9 +24,10 @@ public class WhirlwindItem : PhysicsBody {
 		Sprite s = null;
 		itemSprites.TryGetValue(fileName, out s);
 		if (s == null) {
-			// TODO this should be an assertion
-			print(fileName);
+			itemSprites.TryGetValue("placeholder", out s);
 		}
+
+		Debug.Assert(s != null);
 		return s;
 	}
 

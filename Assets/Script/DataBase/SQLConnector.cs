@@ -35,7 +35,7 @@ public class SQLConnector : MonoBehaviour {
 		string result = "";
 		try {
 			string connectionString = string.Format("Server={0};port={4};Database={1};User ID = {2};Password={3};",server,database,user,pass,"3306");
-			Debug.Log("connect info " + connectionString);
+			//Debug.Log("connect info " + connectionString);
 			connection = new MySqlConnection(connectionString);
 			connection.Open();
 		}catch (Exception e) {
@@ -63,7 +63,7 @@ public class SQLConnector : MonoBehaviour {
 			    {
 			    	BookInfo info = new BookInfo();
 
-				    Debug.Log("field count " + reader.FieldCount);
+				    //Debug.Log("field count " + reader.FieldCount);
 				    for ( int i = 0 ; i < reader.FieldCount; ++ i )
 				    {	
 				    	info.AddData(i, reader.GetString(i));
@@ -83,7 +83,7 @@ public class SQLConnector : MonoBehaviour {
 
 	public List<BookInfo> Search(string text)
 	{
-		Debug.Log("search for " + text );
+		//Debug.Log("search for " + text );
 		string command = "SELECT * FROM `" + tableName + "` WHERE " 
 	    	+ " `Title` LIKE '%" +  text + "%' OR"
 	    	+ " `Name` LIKE '%" +  text + "%' OR"
@@ -106,11 +106,11 @@ public class SQLConnector : MonoBehaviour {
 	public List<BookInfo> Search(string text, string field)
 	{
 
-		Debug.Log("Called");
+		//Debug.Log("Called");
 		if (text == null)
 			text = "";
 
-		Debug.Log(field + " " + Global.ConvertFieldName2DataBase(field) );
+		//Debug.Log(field + " " + Global.ConvertFieldName2DataBase(field) );
 		string command = "SELECT * FROM `" + tableName + "` WHERE " 
 	    	+ " `" +  Global.ConvertFieldName2DataBase(field)  + "` LIKE '%" +  text + "%'";
 
@@ -223,7 +223,7 @@ public class SQLConnector : MonoBehaviour {
 	public List<BookInfo> SearchBySubject(string key)
 	{
 
-		Debug.Log("Search By Subject");
+		//Debug.Log("Search By Subject");
 
 		string command = "SELECT * FROM `" + tableName + "` WHERE ";
 
@@ -234,7 +234,7 @@ public class SQLConnector : MonoBehaviour {
 
 		command = command.Remove(command.Length - 2, 2);
 
-		Debug.Log("Command " + command);
+		//Debug.Log("Command " + command);
 
 		return EvaluateBookByKeyTag( GetBookListByCommand(command) , tag );
 	}
