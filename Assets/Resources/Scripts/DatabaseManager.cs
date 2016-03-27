@@ -8,7 +8,8 @@ public class DatabaseManager : MonoBehaviour {
 
 	[SerializeField] SQLConnector connector {get { return SQLConnector.Instance;}}
 
-	int numOfFields = Enum.GetNames(typeof(Field)).Length;
+	string[] columns = {"name", "date", "pub_place", "other_author_personal"};
+	int maxItemsPerBelt = 30;
 	bool connectionSuccess;
 
 
@@ -34,33 +35,20 @@ public class DatabaseManager : MonoBehaviour {
 
 			List<BookInfo> b;
 			WhirlwindBeltInfo wwbi;
-			string column;
 
-			column = "name";
-			b = connector.Search("", column);
-			wwbi = new WhirlwindBeltInfo(b, column);
-			retVal.Add(wwbi);
-
-			column = "date";
-			b = connector.Search("", column);
-			wwbi = new WhirlwindBeltInfo(b, column);
-			retVal.Add(wwbi);
-
-			column = "pub_place";
-			b = connector.Search("", column);
-			wwbi = new WhirlwindBeltInfo(b, column);
-			retVal.Add(wwbi);
-
-			column = "other_author_personal";
-			b = connector.Search("", column);
-			wwbi = new WhirlwindBeltInfo(b, column);
-			retVal.Add(wwbi);
+			for (int i = 0; i < columns.Length; i++) {
+ 				b = connector.Search(inputInfo.GetData(columns[i]), columns[i]);
+				b = b.GetRange(0, Mathf.Min(b.Count, maxItemsPerBelt));
+				wwbi = new WhirlwindBeltInfo(b, columns[i]);
+				retVal.Add(wwbi);
+			}
 
 			List<string> subjects = inputInfo.GetSubjects();
 			b = new List<BookInfo>();
 			for (int i = 0; i < subjects.Count; i++) {
 				b.AddRange(connector.SearchBySubject(subjects[i]));
 			}
+			b = b.GetRange(0, maxItemsPerBelt);
 			wwbi = new WhirlwindBeltInfo(b, "subjects");
 			retVal.Add(wwbi);
 
@@ -104,27 +92,15 @@ public class DatabaseManager : MonoBehaviour {
 			WhirlwindBeltInfo wwbi;
 			string column;
 
-			column = "name";
-			b = connector.Search("", column);
-			wwbi = new WhirlwindBeltInfo(b, column);
-			retVal.Add(wwbi);
-
-			column = "date";
-			b = connector.Search("", column);
-			wwbi = new WhirlwindBeltInfo(b, column);
-			retVal.Add(wwbi);
-
-			column = "pub_place";
-			b = connector.Search("", column);
-			wwbi = new WhirlwindBeltInfo(b, column);
-			retVal.Add(wwbi);
-
-			column = "other_author_personal";
-			b = connector.Search("", column);
-			wwbi = new WhirlwindBeltInfo(b, column);
-			retVal.Add(wwbi);
+			for (int i = 0; i < columns.Length; i++) {
+ 				b = connector.Search("", columns[i]);
+				b = b.GetRange(0, Mathf.Min(b.Count, maxItemsPerBelt));
+				wwbi = new WhirlwindBeltInfo(b, columns[i]);
+				retVal.Add(wwbi);
+			}
 
 			b = connector.SearchBySubject("");
+			b = b.GetRange(0, maxItemsPerBelt);
 			wwbi = new WhirlwindBeltInfo(b, "subjects");
 			retVal.Add(wwbi);
 

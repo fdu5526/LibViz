@@ -161,7 +161,6 @@ public class WhirlwindBelt : MonoBehaviour {
 			wwi.Initialize(this, radius, height, defaultItemPosition, infos.Infos[i]);
 			wwItems.Add(wwi);
 		}
-
 		// set the label
 		label.Text = infos.Label;
 	}

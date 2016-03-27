@@ -247,6 +247,12 @@ public class BookInfo{
 			return GetData("pub_place");
 		}
 	}
+	public string OtherAuthor
+	{
+		get {
+			return GetData("other_author_personal");
+		}
+	}
 
 	public string FileName
 	{
@@ -276,34 +282,6 @@ public class BookInfo{
 		if ( !dict.ContainsKey(key))
 			dict.Add(key, value);
 	}
-
-	// public string GetData(Field f)
-	// {
-	// 	switch(f)
-	// 	{
-	// 	case Field.TITLE:
-	// 		return GetData("title");
-	// 		break;
-	// 	case Field.AUTHOR:
-	// 		return GetData("name");
-	// 		break;
-	// 	case Field.TIME:
-	// 		return GetData("date");
-	// 		break;
-	// 	case Field.NOTE:
-	// 		return GetData("note");
-	// 		break;
-	// 	case Field.PUBLISH_LOCATION:
-	// 		return GetData("pub_place");
-	// 		break;
-	// 	case Field.GENRE:
-	// 		return GetData("genre");
-	// 		break;
-	// 	default:
-	// 		return "";
-	// 		break;
-	// 	};
-	// }
 
 	public List<string> GetSubjects()
 	{
