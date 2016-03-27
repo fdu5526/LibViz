@@ -36,6 +36,7 @@ public class DatabaseManager : MonoBehaviour {
 			List<BookInfo> b;
 			WhirlwindBeltInfo wwbi;
 
+			// search through the 4 columns
 			for (int i = 0; i < columns.Length; i++) {
  				b = connector.Search(inputInfo.GetData(columns[i]), columns[i]);
 				b = b.GetRange(0, Mathf.Min(b.Count, maxItemsPerBelt));
@@ -43,11 +44,8 @@ public class DatabaseManager : MonoBehaviour {
 				retVal.Add(wwbi);
 			}
 
-			List<string> subjects = inputInfo.GetSubjects();
-			b = new List<BookInfo>();
-			for (int i = 0; i < subjects.Count; i++) {
-				b.AddRange(connector.SearchBySubject(subjects[i]));
-			}
+			// search by subject
+			b = connector.SearchBySubject(inputInfo.GetSubjects());
 			b = b.GetRange(0, maxItemsPerBelt);
 			wwbi = new WhirlwindBeltInfo(b, "subjects");
 			retVal.Add(wwbi);
