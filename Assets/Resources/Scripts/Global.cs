@@ -219,19 +219,29 @@ public class BookInfo{
 	public int TimeFrom
 	{
 		get {
-			if (GetData("date") != null && GetData("date").Length > 11)
-				return int.Parse(GetData("date").Substring(7, 4));
+			if (GetData("date") != null && GetData("date").Length > 11) {
+				string year = GetData("date").Substring(7, 4);
+				if ( year.EndsWith("u"));
+					year = year.Replace('u', '0');
+				return int.Parse(year);
+			}
 			return int.Parse(GetData("date"));
 		}
 	}
 	public int TimeTo
 	{
 		get {
-			if (GetData("date") != null && GetData("date").Length > 15)
+			if (GetData("date") != null && GetData("date").Length > 15) {
+				string fromYear = GetData("date").Substring(7, 4);
+				if ( fromYear.EndsWith("u"));
+					return int.Parse(fromYear.Replace('u', '9'));
+
 				if ( GetData("date").Substring(11, 4).Equals("    ") )
 					return -1;
-				else
-					return int.Parse(GetData("date").Substring(11, 4));
+				else {
+					return int.Parse(GetData("date").Substring(11,4));
+				}
+			}
 			return int.Parse(GetData("date"));
 		}
 	}
@@ -312,7 +322,24 @@ public class BookInfo{
 		{
 			string data = GetData(Global.SubjectColumnList[i]);
 			if (data != null && data != "" )
-				res.Add(data);
+			{
+				string[] subjects = data.Split('|');
+				res.AddRange(subjects);
+			}
+		}
+
+		// clean the same subjects;
+
+		for( int i = res.Count - 1 ; i >= 0 ; --i )
+		{
+			for ( int j = i + 1 ; j < res.Count ; ++j )
+			{
+				if ( res[i].Equals(res[j]))
+				{
+					res.RemoveAt(i);
+					break;
+				}
+			}
 		}
 		return res;
 	}

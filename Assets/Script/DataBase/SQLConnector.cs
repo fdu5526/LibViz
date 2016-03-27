@@ -63,7 +63,6 @@ public class SQLConnector : MonoBehaviour {
 			    {
 			    	BookInfo info = new BookInfo();
 
-				    //Debug.Log("field count " + reader.FieldCount);
 				    for ( int i = 0 ; i < reader.FieldCount; ++ i )
 				    {	
 				    	info.AddData(i, reader.GetString(i));
@@ -77,6 +76,8 @@ public class SQLConnector : MonoBehaviour {
 	    		 Debug.LogError(e.Message);
 	    	}
 	    }
+
+	    Debug.Log("Get " + res.Count + " books in total");
 
 		return res;
  	}
@@ -191,12 +192,15 @@ public class SQLConnector : MonoBehaviour {
 	{
 		if (book == null)
 			book = new BookInfo();
-		string command = "SELECT * FROM `" + tableName + "` WHERE " 
-	    	+ " `Name` LIKE '%" +  book.Author + "%' OR"
-	    	+ " ( `Time` <= " + (book.Time + 2).ToString() + " AND `Time` >= " + (book.Time - 2).ToString() + ") OR"
-	    	+ " `Location` LIKE '%" +  book.Location + "%' ";
 
-		return EvaluateBookByBook( GetBookListByCommand(command) , book );
+		return SearchBySubject(book.GetSubjects());
+
+		// string command = "SELECT * FROM `" + tableName + "` WHERE " 
+	 //    	+ " `Name` LIKE '%" +  book.Author + "%' OR"
+	 //    	+ " ( `Time` <= " + (book.Time + 2).ToString() + " AND `Time` >= " + (book.Time - 2).ToString() + ") OR"
+	 //    	+ " `Location` LIKE '%" +  book.Location + "%' ";
+
+		// return EvaluateBookByBook( GetBookListByCommand(command) , book );
 	}
 
 
@@ -222,21 +226,51 @@ public class SQLConnector : MonoBehaviour {
 
 	public List<BookInfo> SearchBySubject(string key)
 	{
-		 key = key.Replace("'", "''" );
+		List<string> keys = new List<string>();
+
+		keys.AddRange(key.Split('|'));
+
+		return SearchBySubject(keys);
+		// key = key.Replace("'", "''" );
+		// //Debug.Log("Search By Subject");
+
+		// string command = "SELECT * FROM `" + tableName + "` WHERE ";
+
+		// foreach(string s in Global.SubjectColumnList)
+		// {
+		// 	command += " `" + Global.ConvertFieldName2DataBase(s) + "` LIKE '%" +  key + "%' OR";
+		// }
+
+		// command = command.Remove(command.Length - 2, 2);
+
+		// Debug.Log(" Search by Subject Command " + command);
+
+		// return EvaluateBookByKeyTag( GetBookListByCommand(command) ,  key );
+	}
+
+	public List<BookInfo> SearchBySubject( List<string> keys )
+	{
+		for( int i = 0 ; i < keys.Count ; ++ i ) {
+			keys[i] = keys[i].Replace("'", "''" );
+		}
+		
 		//Debug.Log("Search By Subject");
 
 		string command = "SELECT * FROM `" + tableName + "` WHERE ";
 
 		foreach(string s in Global.SubjectColumnList)
 		{
-			command += " `" + Global.ConvertFieldName2DataBase(s) + "` LIKE '%" +  key + "%' OR";
+			foreach(string key in keys ) {
+				command += " `" + Global.ConvertFieldName2DataBase(s) + "` LIKE '%" +  key + "%' OR";
+			}
 		}
 
 		command = command.Remove(command.Length - 2, 2);
 
 		Debug.Log(" Search by Subject Command " + command);
 
-		return EvaluateBookByKeyTag( GetBookListByCommand(command) , tag );
+		return EvaluateBookByKeyTag( GetBookListByCommand(command) , keys );
+
 	}
 
 
@@ -258,7 +292,20 @@ public class SQLConnector : MonoBehaviour {
 		return res;
 	}
 
-	public List<BookInfo> EvaluateBookByKeyTag(List<BookInfo> list , string keyWord)
+	// public List<BookInfo> EvaluateBookByKeyTag(List<BookInfo> list , string keyWord)
+	// {
+	// 	foreach(BookInfo b in list)
+	// 	{
+	// 		b.v = UnityEngine.Random.Range(-0.05f, 0.05f);
+	// 	}
+
+	// 	List<BookInfo> res = new List<BookInfo>(list);
+	// 	res.Sort((x,y) => x.v.CompareTo(y.v));
+	// 	return res;
+	// }
+
+
+	public List<BookInfo> EvaluateBookByKeyTag(List<BookInfo> list , List<string> keys )
 	{
 		foreach(BookInfo b in list)
 		{

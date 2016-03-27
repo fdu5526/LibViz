@@ -183,7 +183,7 @@ public class LogicManager : MonoBehaviour {
 				if (t.name == "Author")
 					t.text = info.Author;
 				if (t.name == "Time")
-					t.text = info.TimeFrom.ToString() + " " + info.TimeTo.ToString();
+					t.text = info.TimeFrom.ToString() + " TO " + info.TimeTo.ToString();
 				if (t.name == "Note")
 					t.text = info.Note;
 				if (t.name == "Genre")
