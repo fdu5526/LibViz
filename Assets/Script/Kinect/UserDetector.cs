@@ -8,7 +8,7 @@ public class UserDetector : MonoBehaviour {
 
 	[SerializeField] OpenNIUserTracker tracker;
 	[SerializeField] UserDetectHandler handler;
-	[SerializeField] float comeRelativeTreshod = 20f;
+	[SerializeField] float ComeInTreshod = -1200f;
 	[SerializeField] float stopAbstractTreshod = - 400f;
 
 	public enum State
@@ -25,124 +25,131 @@ public class UserDetector : MonoBehaviour {
 			return m_state;
 		}
 		set {
-			if (m_state != value) {
-				positionList.Clear ();
+			if ( m_state != value )
+			{
 				m_state = value;
-			}
-			if (value == State.None) {
-				oriPosition = Vector3.zero;
+				if ( value == State.Pass )
+					Pass();
+				if ( value == State.Come )
+					Come();
+				if ( value == State.Stop )
+					Stop();
+				if ( value == State.None )
+					Leave();
 			}
 		}
 	}
 
-	void Awake()
+	void LateUpdate()
 	{
+		UpdateUserInfo ();
 	}
-
-	void Update()
-	{
-		if (state != State.None) {
-			UpdateUserInfo ();		
-		}
-
-	}
-
-	[SerializeField] int cachePositionNum = 5;
-	List<Vector3> positionList = new List<Vector3>();
-
-
-	Vector3 oriPosition;
-	Vector3 currentPosition;
+		
+	Vector3 closetPosition;
 	int temID;
 
 	void UpdateUserInfo()
 	{
-		currentPosition = tracker.GetUserCenterOfMass (temID);
-	
-
-		// save the current position in the list
-		if ( positionList.Count >= cachePositionNum )
-			positionList.RemoveAt (0);
-		positionList.Add (currentPosition);
-
-
-		// if the state is pass, then test the close
-		if ( state == State.Pass )
+		if ( state == State.None ) 
+			return;
+		
+		//detect closest position
+		if ( tracker.AllUsers.Count <= 0 ) 
+			return;
+		
+		closetPosition.z = -99999f;
+		foreach( int id in tracker.AllUsers )
 		{
-			if (positionCloser(  )) {
-				positionList.Clear ();
-				Come ();
+			Vector3 pos = tracker.GetUserCenterOfMass( id );
+			if ( Mathf.Abs( pos.z ) < Mathf.Abs( closetPosition.z ) )
+				closetPosition = pos;
+		}
+
+
+		Debug.Log(" distance " + closetPosition.z );
+
+		switch( state )
+		{
+		case State.Pass:
+			if ( Mathf.Abs( closetPosition.z ) < Mathf.Abs ( ComeInTreshod ))
+			{
+				state = State.Come;
 			}
-		}
-
-		// if the state is come, then test the stop
-		if (state == State.Come) {
-			if ( positionUnmove () ) {
-				positionList.Clear ();
-				Stop ();
+			break;
+		case State.Come:
+			if ( Math.Abs( closetPosition.z ) > Mathf.Abs( ComeInTreshod ))
+			{
+				state = State.Pass;
+			}else if (  Math.Abs( closetPosition.z ) < Mathf.Abs( stopAbstractTreshod ) )
+			{
+				state = State.Stop;
 			}
+		break;
+		case State.Stop:
+			break;
 		}
 	}
 
-	IEnumerator RecordOriPosition()
-	{
-		while ( oriPosition.Equals(Vector3.zero) ) {
-			yield return null;
-			oriPosition = tracker.GetUserCenterOfMass (temID);
-		}
-	}
-
-	public bool positionCloser()
-	{
-		Vector3 move = currentPosition - oriPosition;
-
-		Debug.Log ("Check closer" + move);
-		if (move.z > comeRelativeTreshod || currentPosition.z > stopAbstractTreshod )
-			return true;
-
-		return false;
-//		if (positionList.Count < cachePositionNum)
-//			return false;
-//		for (int i = 0; i < positionList.Count - 1 ; ++i) {
-//			if (!(positionList [i].z < positionList [i + 1].z))
-//				return false;
+//	IEnumerator RecordOriPosition()
+//	{
+//		while ( oriPosition.Equals(Vector3.zero) ) {
+//			yield return null;
+//			oriPosition = tracker.GetUserCenterOfMass (temID);
 //		}
-//		return true;
-	}
+//	}
 
-	public bool positionUnmove()
-	{
-		Debug.Log ("CheckUnmove " + currentPosition);
-		if (currentPosition.z > stopAbstractTreshod)
-			return true;
-		return false;
-//		if (positionList.Count < cachePositionNum)
-//			return false;
-//		for (int i = 0; i < positionList.Count - 1 ; ++i) {
-//			if ( ! ( (positionList [i] - positionList [i + 1]).magnitude < 0.1f  ) ) 
-//				return false;
-//		}
-//		return true;
-	}
+//	public bool positionCloser()
+//	{
+//		Vector3 move = closetPosition - oriPosition;
+//
+//		Debug.Log ("Check closer" + move);
+//		if (move.z > comeRelativeTreshod || closetPosition.z > stopAbstractTreshod )
+//			return true;
+//
+//		return false;
+////		if (positionList.Count < cachePositionNum)
+////			return false;
+////		for (int i = 0; i < positionList.Count - 1 ; ++i) {
+////			if (!(positionList [i].z < positionList [i + 1].z))
+////				return false;
+////		}
+////		return true;
+//	}
+//
+//	public bool positionUnmove()
+//	{
+//		Debug.Log ("CheckUnmove " + closetPosition);
+//		if (closetPosition.z > stopAbstractTreshod)
+//			return true;
+//		return false;
+////		if (positionList.Count < cachePositionNum)
+////			return false;
+////		for (int i = 0; i < positionList.Count - 1 ; ++i) {
+////			if ( ! ( (positionList [i] - positionList [i + 1]).magnitude < 0.1f  ) ) 
+////				return false;
+////		}
+////		return true;
+//	}
 
 	public void UserDetected( NewUserEventArgs e )
 	{
 		if (state == State.None) {
-			temID = e.ID;
-			StartCoroutine (RecordOriPosition ());
-			Pass ();
+			state = State.Pass;
+			Pass();
 		}
 
 	}
+
+//	public void AllUsersLost( UserLostEventArgs e )
+//	{
+//		state = State.None;
+//	}
 
 	public void UserLost( UserLostEventArgs e )
 	{
-		if (e.ID == temID) {
-			Leave ();
-		}
+		if ( tracker.AllUsers.Count <= 0 )
+			state = State.None;
 	}
-
-
 
 	public void Pass()
 	{

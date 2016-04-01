@@ -111,8 +111,8 @@ GameObject:
   - 114: {fileID: 100}
   - 114: {fileID: 99}
   - 114: {fileID: 98}
-  - 114: {fileID: 27}
   - 114: {fileID: 25}
+  - 114: {fileID: 28}
   m_Layer: 0
   m_Name: Sensor
   m_TagString: Untagged
@@ -168,7 +168,7 @@ GameObject:
   - 81: {fileID: 85}
   - 114: {fileID: 96}
   - 114: {fileID: 95}
-  - 114: {fileID: 28}
+  - 114: {fileID: 27}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -187,8 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902bba3f7e7fd2e40ae1793fb4d3aedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UserTooCloseDistance: 1.2
-  MaxCalibratedUsers: 1
+  UserTooCloseDistance: 1
+  MaxCalibratedUsers: 10
 --- !u!4 &26
 Transform:
   m_ObjectHideFlags: 0
@@ -207,22 +207,6 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 21}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247918c38fcf04107aac796efc9fd102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tracker: {fileID: 25}
-  handler: {fileID: 28}
-  comeRelativeTreshod: 20
-  stopAbstractTreshod: -250
-  cachePositionNum: 5
---- !u!114 &28
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 24}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -231,6 +215,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   img: {fileID: 1823902235}
   text: {fileID: 1204574900}
+--- !u!114 &28
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 21}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247918c38fcf04107aac796efc9fd102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tracker: {fileID: 25}
+  handler: {fileID: 27}
+  ComeInTreshod: -1500
+  stopAbstractTreshod: -400
 --- !u!4 &31 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400010, guid: 42c019f173811a2428265109cf18acf6, type: 2}
