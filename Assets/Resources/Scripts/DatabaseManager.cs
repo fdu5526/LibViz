@@ -39,6 +39,14 @@ public class DatabaseManager : MonoBehaviour {
 			// search through the 4 columns
 			for (int i = 0; i < columns.Length; i++) {
  				b = connector.Search(inputInfo.GetData(columns[i]), columns[i]);
+ 				// remove ones that are the same as the search term itself
+ 				for (int j = 0; j < b.Count; j++) {
+ 					if (b[j].FileName.Equals(inputInfo.FileName)) {
+ 						b.Remove(b[j]);
+ 					}
+ 				}
+
+ 				// limits the items
 				b = b.GetRange(0, Mathf.Min(b.Count, maxItemsPerBelt));
 				wwbi = new WhirlwindBeltInfo(b, columns[i]);
 				retVal.Add(wwbi);

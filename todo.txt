@@ -28,9 +28,13 @@ interaction
 	scrolling up and down the whirlwind
 	whirling the whirlwind
 	put center item in correct place
+	fix out of range error
 	prevent clicking on another item in fullscreen view
 	make close button smaller
-	try to make camera more orthographic in context exam
+	camera less FOV, more back
+	make context exam more horizontal
+	put author name date on context exam
+	put all information in full screen view
 	*****fix drag threshold
 
 
