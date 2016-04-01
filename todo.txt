@@ -20,6 +20,10 @@ interaction
 			Location
 			Subject headings (SearchBySubject())
 			Author other
+		search by search bar
+		remove duplicates in search results
+		remove items that are the same as the search targets
+		add random stuffs in if there isnt enough to fill the entire belt
 		
 	scrolling up and down the whirlwind
 	whirling the whirlwind
