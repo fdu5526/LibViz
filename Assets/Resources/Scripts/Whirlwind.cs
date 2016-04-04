@@ -323,8 +323,6 @@ public class Whirlwind : MonoBehaviour {
 	public void ExitEnlargeSelection (bool isEnding) {
 		Debug.Assert(IsEnlargedOrFullscreen);
 
-		print("yay");
-
 		mainCamera.ZoomOut();
 		enlargedItem = null;
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
@@ -343,8 +341,8 @@ public class Whirlwind : MonoBehaviour {
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
 		
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
-		fullscreenSelectionUI.GetComponent<Canvas>().enabled = true;
 		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().ItemSprite = enlargedItem.Sprite;
+		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().Enable(true);
 		LogUserInput();
 	}
 
@@ -353,7 +351,7 @@ public class Whirlwind : MonoBehaviour {
 		Debug.Assert(IsEnlargedOrFullscreen);
 		
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
-		fullscreenSelectionUI.GetComponent<Canvas>().enabled = false;
+		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().Enable(false);
 		LogUserInput();
 	}
 
