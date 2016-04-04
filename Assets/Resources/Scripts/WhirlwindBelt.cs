@@ -53,7 +53,7 @@ public class WhirlwindBelt : MonoBehaviour {
 			Vector3 v = new Vector3(center.position.x + radius * Mathf.Cos(t),
 															height,
 															center.position.z + radius * Mathf.Sin(t));
-			slots[i].Initialize(v, height, radius);
+			slots[i].Initialize(v, radius);
 			slots[i].transform.parent = transform;
 		}
 
@@ -72,7 +72,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 /////// private helper functions //////
 	// stir up an item one at a time
-	IEnumerator StaggeredStirUp (float speed) {
+	IEnumerator StaggeredStirUp (float speed, bool transitionToWhirlExam) {
 		// the number of items stirred up is based on radius
 		tailIndex = Mathf.Max(BeltSize - 1, 0);
 		headIndex = 0;
@@ -82,6 +82,12 @@ public class WhirlwindBelt : MonoBehaviour {
 		for (int i = 0; i < wwItems.Count; i++) {
 			if (!isOperating) {
 				yield break;
+			}
+
+			if (!transitionToWhirlExam) {
+				Vector3 p = transform.position;
+				p.y = Mathf.Lerp(Global.defaultBeltHeights[level], Global.contextExamBeltHeights[level], (float)i/(float)(BeltSize));
+				transform.position = p;
 			}
 
 			if (IndexIsInSlots(i)) {
@@ -156,7 +162,6 @@ public class WhirlwindBelt : MonoBehaviour {
 		wwItems = new List<WhirlwindItem>();
 		for (int i = 0; i < infos.Infos.Count; i++) {
 			g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindItem"));
-			g.transform.parent = transform;
 			WhirlwindItem wwi = g.GetComponent<WhirlwindItem>();
 			wwi.Initialize(this, radius, height, defaultItemPosition, infos.Infos[i]);
 			wwItems.Add(wwi);
@@ -211,15 +216,13 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 	// stir up items, but stagger them so they have spaces in between them
-	public void StirUp (float speed, bool shouldLoadItems) {
+	public void StirUp (float speed, bool transitionToWhirlExam) {
 		isOperating = true;
 		for (int i = 0; i < slots.Length; i++) {
 			slots[i].EnableCollider(false);
 			slots[i].StirUp();
 		}
-		if (shouldLoadItems) {
-			StartCoroutine(StaggeredStirUp(speed));
-		}
+		StartCoroutine(StaggeredStirUp(speed, transitionToWhirlExam));
 	}
 
 	// whether all the slots are filled. Expensive operation

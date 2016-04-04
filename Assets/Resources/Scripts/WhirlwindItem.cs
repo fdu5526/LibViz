@@ -5,8 +5,10 @@ using System.Collections.Generic;
 
 public class WhirlwindItem : PhysicsBody {
 	
+/////// static functions for dealing with item images //////
 	static Dictionary<string,Sprite> itemSprites = new Dictionary<string, Sprite>();
 
+	// initialize the dictionary, call this once at the beginning in Whirlwind.cs
 	public static void InitializeItemSprites () {
 	 	Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/Items");
 		for (int i = 0; i < sprites.Length; i++) {
@@ -14,6 +16,7 @@ public class WhirlwindItem : PhysicsBody {
  		}
 	}
 
+	// get a value out of the dictionary
 	static Sprite GetItemSprite (string fileName) {
 		Sprite s = null;
 		itemSprites.TryGetValue(fileName, out s);
@@ -105,7 +108,7 @@ public class WhirlwindItem : PhysicsBody {
 		rigidbody.velocity = Vector3.zero;
 	}
 
-
+	// change transparency based on how far this item is from the camera
 	void UpdateFade () {
 		float a = 1f - (transform.position.z + radius) / (2f * radius);
 		Color c = itemImage.GetComponent<Renderer>().material.color;

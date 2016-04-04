@@ -99,8 +99,8 @@ public class Whirlwind : MonoBehaviour {
 			LoadNewItems(newInfos);
 				
 			// stir up the new items
-			StirUp(Global.StirUpSpeed);
 			currentState = State.StirUpNewContextExam;
+			StirUp(Global.StirUpSpeed);
 		} else {
 			// TODO do nothing?
 		}
@@ -139,8 +139,8 @@ public class Whirlwind : MonoBehaviour {
 		LoadNewItems(newInfos);
 			
 		// stir up the new items
-		StirUp(Global.StirUpSpeed);
 		currentState = State.StirUpNewContextExam;
+		StirUp(Global.StirUpSpeed);
 	}
 
 /////// private functions for setting whirlwind state //////
@@ -225,15 +225,16 @@ public class Whirlwind : MonoBehaviour {
 
 /////// public functions for setting whirlwind state //////
 	public void StirUp (float speed) {
-		Debug.Assert(currentState == State.Idle || 
-								 currentState == State.WhirlExam);
-
-		bool shouldLoadItems = currentState == State.Idle;
+		Debug.Assert(currentState == State.Idle || currentState == State.StirUpNewContextExam);
+		
+		bool transitionToWhirlExam = currentState == State.Idle;
 
 		for (int i = 0; i < belts.Length; i++) {
-			belts[i].StirUp(speed, shouldLoadItems);
+			belts[i].StirUp(speed, transitionToWhirlExam);
 		}
-		currentState = State.StirUp;
+		if (transitionToWhirlExam) {
+			currentState = State.StirUp;
+		}
 		LogUserInput();
 	}
 

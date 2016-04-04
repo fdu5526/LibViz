@@ -14,6 +14,9 @@ public class Global
 	public const float SpinSpeed = 10f;
 	public const float EnlargeMultipler = 1.5f;
 
+	public static float[] defaultBeltHeights = { 2.2f, 6.2f, 9f, 12f, 15f };
+	public static float[] contextExamBeltHeights = { 2.2f, 4.82f, 7.22f, 12.54f, 15f };
+
 	public static bool FiftyFifty { get { return UnityEngine.Random.value > 0.5f; } }
 	
 	// find facing angle based on default sprite direction

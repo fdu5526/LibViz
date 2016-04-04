@@ -7,7 +7,6 @@ public class WhirlwindBeltSlot : PhysicsBody {
 	
 	// assigned properties
 	public float speed;
-	public float height;
 	public float radius;
 	public float direction;
 	
@@ -37,6 +36,8 @@ public class WhirlwindBeltSlot : PhysicsBody {
 /////// private helper functions //////
 	// spin around, most important function
 	void Orbit () {
+		Debug.Assert(transform.parent != null);
+
 		float xc;
 		float yc;
 		float dy = 0f;
@@ -56,7 +57,7 @@ public class WhirlwindBeltSlot : PhysicsBody {
 				isGoingUp = !isGoingUp;
 			}
 		} else {
-			float h = Mathf.Lerp(p.y, height, 0.5f);
+			float h = Mathf.Lerp(p.y, transform.parent.position.y, 0.5f);
 			p.y = h;
 			transform.position = p;
 		}
@@ -93,16 +94,15 @@ public class WhirlwindBeltSlot : PhysicsBody {
 		}
 	}
 
-	public void Initialize (Vector3 position, float height, float radius) {
+	public void Initialize (Vector3 position, float radius) {
 		transform.position = position;
-		this.height = height;
 		this.radius = radius;
 	}
 
 	public void StirUp () {
 		isStirup = true;
 		isGoingUp = UnityEngine.Random.Range(0f,1f) > 0.5f;
-		speed = Global.SpinSpeed * height / 5f;
+		speed = Global.SpinSpeed * transform.position.y / 5f;
 		direction = 1f;
 		shouldSlowsDown = false;
 		slowDownLerpFactor = baseSlowDownLerpFactor;
