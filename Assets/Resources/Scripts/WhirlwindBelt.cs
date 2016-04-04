@@ -83,11 +83,17 @@ public class WhirlwindBelt : MonoBehaviour {
 				yield break;
 			}
 
+			Vector3 p = transform.position;
+			float ogPosition, targetPosition;
 			if (!transitionToWhirlExam) {
-				Vector3 p = transform.position;
-				p.y = Mathf.Lerp(Global.defaultBeltHeights[level], Global.contextExamBeltHeights[level], (float)i/(float)(BeltSize));
-				transform.position = p;
+				ogPosition = Global.defaultBeltHeights[level];
+				targetPosition = Global.contextExamBeltHeights[level];
+			} else {
+				ogPosition = Global.contextExamBeltHeights[level];
+				targetPosition = Global.defaultBeltHeights[level];
 			}
+			p.y = Mathf.Lerp(ogPosition, targetPosition, (float)i/(float)(BeltSize));
+			transform.position = p;
 
 			if (IndexIsInSlots(i)) {
 				wwItems[i].StirUp(speed, slots[slotIndex].transform);

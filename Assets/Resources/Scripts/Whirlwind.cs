@@ -226,7 +226,7 @@ public class Whirlwind : MonoBehaviour {
 /////// public functions for setting whirlwind state //////
 	public void StirUp (float speed) {
 		Debug.Assert(currentState == State.Idle || currentState == State.StirUpNewContextExam);
-		
+
 		bool transitionToWhirlExam = currentState == State.Idle;
 
 		for (int i = 0; i < belts.Length; i++) {
@@ -322,6 +322,8 @@ public class Whirlwind : MonoBehaviour {
 	// close the UI for enlarge selection, return item to slot
 	public void ExitEnlargeSelection (bool isEnding) {
 		Debug.Assert(IsEnlargedOrFullscreen);
+
+		print("yay");
 
 		mainCamera.ZoomOut();
 		enlargedItem = null;
