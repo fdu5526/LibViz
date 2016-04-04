@@ -125,12 +125,24 @@ public class DatabaseManager : MonoBehaviour {
 
 	// this is only called when database is not connected; creates placeholder data for testing only
 	List<WhirlwindBeltInfo> OfflinePlaceHolderSearch (int numBelts) {
+		string[] filenames = WhirlwindItem.GetAllItemFileNames();
 		List<WhirlwindBeltInfo> retVal = new List<WhirlwindBeltInfo>();
+
+		Debug.Assert(filenames.Length > 0);
+
 		for (int i = 0; i < numBelts; i++) {
 			int amount = (int)UnityEngine.Random.Range(15f, 30f);
 			List<BookInfo> b = new List<BookInfo>();
 			for (int j = 0; j < amount; j++) {
-				b.Add(OfflinePlaceHolder.RandomBookInfo());
+				BookInfo bi = new BookInfo();
+				string fn = "placeholder";
+				while (fn.Equals("placeholder")) {
+					fn = filenames[UnityEngine.Random.Range(0, filenames.Length)];
+				}
+
+				bi.AddData("file_name", fn);
+
+				b.Add(bi);
 			}
 			retVal.Add(new WhirlwindBeltInfo(b, "PLACEHOLDER " + i));
 		}

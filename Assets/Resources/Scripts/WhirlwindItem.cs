@@ -1,7 +1,7 @@
 using UnityEngine;
-using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class WhirlwindItem : PhysicsBody {
 	
@@ -14,6 +14,12 @@ public class WhirlwindItem : PhysicsBody {
 		for (int i = 0; i < sprites.Length; i++) {
  			itemSprites.Add(sprites[i].name, sprites[i]);
  		}
+	}
+
+	public static string[] GetAllItemFileNames () {
+		Debug.Assert(itemSprites != null);
+
+		return itemSprites.Keys.ToArray();
 	}
 
 	// get a value out of the dictionary
