@@ -210,14 +210,22 @@ public class WhirlwindBelt : MonoBehaviour {
 /////// public functions used by state transition //////
 	
 	public bool IsAtHead (Transform slot) {
-		bool isHead = (slot.position - wwItems[headIndex].Slot.position).sqrMagnitude < 1f;
-		return isHead;
+		if (wwItems.Count == 0) {
+			return true;
+		} else {
+			bool isHead = (slot.position - wwItems[headIndex].Slot.position).sqrMagnitude < 1f;
+			return isHead;
+		}
 	}
 
 
 	public bool IsAtTail (Transform slot) {
-		bool isTail = (slot.position - wwItems[tailIndex].Slot.position).sqrMagnitude < 1f;
-		return isTail;
+		if (wwItems.Count == 0) {
+			return true;
+		} else {
+			bool isTail = (slot.position - wwItems[tailIndex].Slot.position).sqrMagnitude < 1f;
+			return isTail;
+		}
 	}
 
 	// stir up items, but stagger them so they have spaces in between them
