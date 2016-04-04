@@ -26,9 +26,7 @@ interaction
 		add random stuffs in if there isnt enough to fill the entire belt
 		
 	whirling the whirlwind
-	put center item in correct place
 	fix out of range error
-	prevent clicking on another item in fullscreen view
 	put author name date on context exam
 	put all information in full screen view
 	*****fix drag threshold
