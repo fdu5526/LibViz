@@ -9,7 +9,6 @@ public class WhirlwindBelt : MonoBehaviour {
 	int numOfItemsShownOnBelt;
 
 	float radius;
-	float height;
 
 	float prevMouseX;
 
@@ -32,12 +31,12 @@ public class WhirlwindBelt : MonoBehaviour {
 	void Start () {
 		GameObject g;
 
-		defaultItemPosition = new Vector3(-14.47f, 1.3f, -0.77f);
+		float height = transform.position.y;
+		radius = height * 0.5f + 1.5f;
 
+		defaultItemPosition = new Vector3(-14.47f, 1.3f, -0.77f);
 		center = GameObject.Find("WhirlwindCenter").transform;
 		whirlwind = center.GetComponent<Whirlwind>();
-		height = transform.position.y;
-		radius = height * 0.5f + 1.5f;
 		isOperating = false;
 		numOfItemsShownOnBelt = 4 + level * 3;
 		wwItems = new List<WhirlwindItem>();
@@ -163,7 +162,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		for (int i = 0; i < infos.Infos.Count; i++) {
 			g = (GameObject)MonoBehaviour.Instantiate(Resources.Load("Prefabs/WhirlwindItem"));
 			WhirlwindItem wwi = g.GetComponent<WhirlwindItem>();
-			wwi.Initialize(this, radius, height, defaultItemPosition, infos.Infos[i]);
+			wwi.Initialize(this, radius, defaultItemPosition, infos.Infos[i]);
 			wwItems.Add(wwi);
 		}
 		// set the label

@@ -32,7 +32,6 @@ public class WhirlwindItem : PhysicsBody {
 	// assigned
 	float speed;
 	float radius;
-	float height;
 	Transform slot;
 
 	// for searching
@@ -74,10 +73,9 @@ public class WhirlwindItem : PhysicsBody {
 
 
 	// initialize important information passed from the belt this item belongs to
-	public void Initialize (WhirlwindBelt belt, float radius, float height, Vector3 idlePosition, BookInfo bookInfo) {
+	public void Initialize (WhirlwindBelt belt, float radius, Vector3 idlePosition, BookInfo bookInfo) {
 		this.belt = belt;
 		this.radius = radius;
-		this.height = height;
 		this.idlePosition = idlePosition;
 		this.bookInfo = bookInfo;
 
@@ -265,7 +263,7 @@ public class WhirlwindItem : PhysicsBody {
 				Debug.Assert(slot != null);
 
 				d = (slot.position - p);
-				if (height - p.y < 1f) {
+				if (d.sqrMagnitude < 10f) {
 					SlowToStopByShift();
 				} else {
 					speed = Mathf.Lerp(speed, slot.GetComponent<WhirlwindBeltSlot>().speed, 0.02f);
