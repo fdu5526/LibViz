@@ -85,7 +85,46 @@ public class DatabaseManager : MonoBehaviour {
 
 		if (connectionSuccess) {
 			List<WhirlwindBeltInfo> retVal = new List<WhirlwindBeltInfo>();
-			//TODO
+
+			List<BookInfo> b;
+			WhirlwindBeltInfo wwbi;
+
+			// search through the columns
+			for (int i = 0; i < columns.Length; i++) {
+
+				// aggregate the terms of which we search
+				List<string> searchTerms = new List<string>();
+				for (int j = 0; j < inputInfos.Count; j++) {
+					if (columns[i].Equals("subject")) {
+						searchTerms.AddRange(inputInfos[j].GetSubjects());
+					} else {
+						searchTerms.Add(inputInfos[j].GetData(columns[i]));
+					}
+				}
+
+				// make a query
+				if (columns[i].Equals("subject")) {
+					b = connector.SearchBySubject(searchTerms);
+				} else {
+					b = connector.Search(searchTerms, columns[i]);					
+				}
+				
+ 				// remove ones that are the same as the search terms
+ 				for (int j = 0; j < b.Count; j++) {
+ 					for (int k = 0; k < inputInfos.Count; k++) {
+ 						if (b[j].FileName.Equals(inputInfos[k].FileName)) {
+	 						b.Remove(b[j]);
+	 						j--;
+	 						break;
+	 					}
+ 					}
+ 				}
+
+ 				// limits the items count
+				b = b.GetRange(0, Mathf.Min(b.Count, maxItemsPerBelt));
+				wwbi = new WhirlwindBeltInfo(b, columnTitles[i]);
+				retVal.Add(wwbi);
+			}
 
 			// sort the search results by popularity
 			retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b2.InfosCount.CompareTo(b1.InfosCount); });
