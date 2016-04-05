@@ -2,7 +2,6 @@ touch interaction
 	get it on Mac
 
 kinect
-	faster people movement => swirl up more stuff
 	ensure it is same person interacting
 
 MxR - look at codec, look how complicated
@@ -15,12 +14,9 @@ interaction
 			drill down - by putting into desk or typing in search
 			open up - whirl the whirlwind, repopulate with ||
 		search by search bar
-		remove duplicates in search results
-		remove items that are the same as the search targets
 		add random stuffs in if there isnt enough to fill the entire belt
 		
 	whirling the whirlwind
-	fix out of range error
 	put author name date on context exam
 	put all information in full screen view
 	*****fix drag threshold
@@ -29,3 +25,6 @@ interaction
 questions
 	what to do when duplicates in bar?
 		display a message about it's already in the bar
+
+	some entries have no author
+	What is author other?

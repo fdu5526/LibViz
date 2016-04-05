@@ -52,6 +52,7 @@ public class DatabaseManager : MonoBehaviour {
  				for (int j = 0; j < b.Count; j++) {
  					if (b[j].FileName.Equals(inputInfo.FileName)) {
  						b.Remove(b[j]);
+ 						break;
  					}
  				}
 
@@ -103,19 +104,31 @@ public class DatabaseManager : MonoBehaviour {
 		if (connectionSuccess) {
 			List<WhirlwindBeltInfo> retVal = new List<WhirlwindBeltInfo>();
 
+			// query everything, do not include the ones that we have no images for
+			List<BookInfo> results = connector.Search("", columns[0]);
+			for (int i = 0; i < results.Count; i++) {
+				if (!WhirlwindItem.HasItemSprite(results[i].FileName)) {
+					results.Remove(results[i]);
+				}
+			}
+
 			List<BookInfo> b;
 			WhirlwindBeltInfo wwbi;
 			string column;
 
+			int amountPerBelt;
+			int prevBeltEndIndex = 0;
+			// take chunks out (based on belt sizes) of all the entries so nothing repeats
 			for (int i = 0; i < columns.Length; i++) {
- 				b = connector.Search("", columns[i]);
-				b = b.GetRange(0, Mathf.Min(b.Count, maxItemsPerBelt));
+				amountPerBelt = 4 + i * 3;
+ 				b = results.GetRange(prevBeltEndIndex, amountPerBelt);
 				wwbi = new WhirlwindBeltInfo(b, columns[i]);
 				retVal.Add(wwbi);
+				prevBeltEndIndex += amountPerBelt + 1;
 			}
 
-			b = connector.SearchBySubject("");
-			b = b.GetRange(0, maxItemsPerBelt);
+			// do the same for the subject headings one
+			b = results.GetRange(prevBeltEndIndex, results.Count - prevBeltEndIndex);
 			wwbi = new WhirlwindBeltInfo(b, "subjects");
 			retVal.Add(wwbi);
 

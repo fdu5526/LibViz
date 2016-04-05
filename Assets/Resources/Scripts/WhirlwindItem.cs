@@ -22,6 +22,12 @@ public class WhirlwindItem : PhysicsBody {
 		return itemSprites.Keys.ToArray();
 	}
 
+	public static bool HasItemSprite (string fileName) {
+		Sprite s = null;
+		itemSprites.TryGetValue(fileName, out s);
+		return s != null;
+	}
+
 	// get a value out of the dictionary
 	static Sprite GetItemSprite (string fileName) {
 		Sprite s = null;
