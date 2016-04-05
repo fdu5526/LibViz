@@ -58,7 +58,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 		// get the label
 		label = transform.Find("Label").GetComponent<WhirlwindBeltLabel>();
-		label.transform.position = transform.position + new Vector3(-radius - (float)(level * 1f) - 2f, 0f, 0f);
+		label.transform.position = transform.position + new Vector3(-radius - (float)(level * 0.4f) - 4.5f, -0.5f, 0f);
 		label.SetToTransparent();
 		
 		// the end point of the belt that causes shifting

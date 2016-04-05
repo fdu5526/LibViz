@@ -8,10 +8,19 @@ public class DatabaseManager : MonoBehaviour {
 
 	[SerializeField] SQLConnector connector {get { return SQLConnector.Instance;}}
 
+	string[] columnTitle = {"Author", "Date", "Location", "Author Other"};
 	string[] columns = {"name", "date", "pub_place", "other_author_personal"};
 	int maxItemsPerBelt = 30;
 	bool connectionSuccess;
 
+	/*
+		5 searches
+			Author
+			Normalized date
+			Location
+			Subject headings (SearchBySubject())
+			Author other
+	*/
 
 	public bool ConnectionSuccess { get { return connectionSuccess; } }
 
@@ -48,14 +57,14 @@ public class DatabaseManager : MonoBehaviour {
 
  				// limits the items
 				b = b.GetRange(0, Mathf.Min(b.Count, maxItemsPerBelt));
-				wwbi = new WhirlwindBeltInfo(b, columns[i]);
+				wwbi = new WhirlwindBeltInfo(b, columnTitle[i]);
 				retVal.Add(wwbi);
 			}
 
 			// search by subject
 			b = connector.SearchBySubject(inputInfo.GetSubjects());
 			b = b.GetRange(0, maxItemsPerBelt);
-			wwbi = new WhirlwindBeltInfo(b, "subjects");
+			wwbi = new WhirlwindBeltInfo(b, "Subject Headings");
 			retVal.Add(wwbi);
 
 			// sort the search results by popularity

@@ -13,13 +13,7 @@ interaction
 	search bar
 		2 ways of searching
 			drill down - by putting into desk or typing in search
-			open up -	 whirl the whirlwind, repopulate with ||
-		5 searches
-			Author
-			Normalized date
-			Location
-			Subject headings (SearchBySubject())
-			Author other
+			open up - whirl the whirlwind, repopulate with ||
 		search by search bar
 		remove duplicates in search results
 		remove items that are the same as the search targets
