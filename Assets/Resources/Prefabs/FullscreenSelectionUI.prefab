@@ -269,7 +269,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2795, y: 1459, z: 20}
+  m_Size: {x: 2795, y: 1608, z: 70}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11400954
 MonoBehaviour:
@@ -1018,7 +1018,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107788}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1066,8 +1066,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: -20.6}
-  m_SizeDelta: {x: 2752, y: 1455.3}
+  m_AnchoredPosition: {x: -12, y: -0.186203}
+  m_SizeDelta: {x: 2752, y: 1524.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22415562
 RectTransform:
