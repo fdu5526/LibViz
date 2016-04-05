@@ -314,7 +314,7 @@ public class Whirlwind : MonoBehaviour {
 		LoadNewWhirlwindBasedOnItem(wwItem);
 		mainCamera.ZoomIn();
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
-		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ItemSprite = wwItem.Sprite;
+		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().SetBookInfo(wwItem.BookInfo, wwItem.Sprite);
 
 		LogUserInput();
 	}
@@ -341,7 +341,7 @@ public class Whirlwind : MonoBehaviour {
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
 		
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
-		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().ItemSprite = enlargedItem.Sprite;
+		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().SetBookInfo(enlargedItem.BookInfo, enlargedItem.Sprite);
 		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().Enable(true);
 		LogUserInput();
 	}

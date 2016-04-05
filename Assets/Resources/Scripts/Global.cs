@@ -25,11 +25,11 @@ public class Global
 		if (defaultDirection == Vector2.down) {
 			theta = direction.x < 0f ? -theta : theta;
 		} else if (defaultDirection == Vector2.right) {
-  		theta = direction.y > 0f ? -theta : theta;
+  			theta = direction.y > 0f ? -theta : theta;
 		} else if (defaultDirection == Vector2.up) {
 			theta = direction.x > 0f ? -theta : theta;
 		} else if (defaultDirection == Vector2.left) {
-  		theta = direction.y < 0f ? -theta : theta;
+  			theta = direction.y < 0f ? -theta : theta;
 		} 
 		return theta;
 	}

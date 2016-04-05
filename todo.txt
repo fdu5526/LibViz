@@ -11,10 +11,6 @@ MxR - look at codec, look how complicated
 interaction
 	search bar
 		add random stuffs in if there isnt enough to fill the entire belt
-		
-	whirling the whirlwind
-	put author name date on context exam
-	put all information in full screen view
 	*****fix drag threshold
 
 

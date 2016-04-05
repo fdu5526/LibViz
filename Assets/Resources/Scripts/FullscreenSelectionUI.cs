@@ -21,18 +21,13 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		GetComponent<Canvas>().enabled = enabled;
 	}
 
-	public string Fields {
-		set {
-			fields.text = value;
-		}
+	public void SetBookInfo (BookInfo bookInfo, Sprite sprite) {
+		fields.text = 
+			bookInfo.Title + "\n\n" + 
+			bookInfo.Author + "\n\n" + 
+			bookInfo.GetData("pub_date") + "\n\n";
+		itemImage.sprite = sprite;
 	}
-
-	public Sprite ItemSprite {
-		set {
-			itemImage.sprite = value;
-		}
-	}
-	
 
 	// Update is called once per frame
 	void Update () {
