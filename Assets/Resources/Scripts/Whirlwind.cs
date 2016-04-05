@@ -316,7 +316,6 @@ public class Whirlwind : MonoBehaviour {
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().ItemSprite = wwItem.Sprite;
 
-		print(wwItem.BookInfo.FileName);
 		LogUserInput();
 	}
 

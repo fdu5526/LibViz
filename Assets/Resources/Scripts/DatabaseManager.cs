@@ -8,8 +8,8 @@ public class DatabaseManager : MonoBehaviour {
 
 	[SerializeField] SQLConnector connector {get { return SQLConnector.Instance;}}
 
-	string[] columnTitle = {"Author", "Date", "Location", "Author Other"};
-	string[] columns = {"name", "date", "pub_place", "other_author_personal"};
+	string[] columnTitles = {"Author", "Date", "Location", "Author Other", "Subject Headings"};
+	string[] columns = {"name", "date", "pub_place", "other_author_personal", "subject"};
 	int maxItemsPerBelt = 30;
 	bool connectionSuccess;
 
@@ -45,9 +45,15 @@ public class DatabaseManager : MonoBehaviour {
 			List<BookInfo> b;
 			WhirlwindBeltInfo wwbi;
 
-			// search through the 4 columns
+			// search through the columns
 			for (int i = 0; i < columns.Length; i++) {
- 				b = connector.Search(inputInfo.GetData(columns[i]), columns[i]);
+				// make a query
+				if (columns[i].Equals("subject")) {
+					b = connector.SearchBySubject(inputInfo.GetSubjects());
+				} else {
+					b = connector.Search(inputInfo.GetData(columns[i]), columns[i]);					
+				}
+				
  				// remove ones that are the same as the search term itself
  				for (int j = 0; j < b.Count; j++) {
  					if (b[j].FileName.Equals(inputInfo.FileName)) {
@@ -56,17 +62,11 @@ public class DatabaseManager : MonoBehaviour {
  					}
  				}
 
- 				// limits the items
+ 				// limits the items count
 				b = b.GetRange(0, Mathf.Min(b.Count, maxItemsPerBelt));
-				wwbi = new WhirlwindBeltInfo(b, columnTitle[i]);
+				wwbi = new WhirlwindBeltInfo(b, columnTitles[i]);
 				retVal.Add(wwbi);
 			}
-
-			// search by subject
-			b = connector.SearchBySubject(inputInfo.GetSubjects());
-			b = b.GetRange(0, maxItemsPerBelt);
-			wwbi = new WhirlwindBeltInfo(b, "Subject Headings");
-			retVal.Add(wwbi);
 
 			// sort the search results by popularity
 			retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b2.InfosCount.CompareTo(b1.InfosCount); });
@@ -122,15 +122,10 @@ public class DatabaseManager : MonoBehaviour {
 			for (int i = 0; i < columns.Length; i++) {
 				amountPerBelt = 4 + i * 3;
  				b = results.GetRange(prevBeltEndIndex, amountPerBelt);
-				wwbi = new WhirlwindBeltInfo(b, columns[i]);
+				wwbi = new WhirlwindBeltInfo(b, columnTitles[i]);
 				retVal.Add(wwbi);
 				prevBeltEndIndex += amountPerBelt + 1;
 			}
-
-			// do the same for the subject headings one
-			b = results.GetRange(prevBeltEndIndex, results.Count - prevBeltEndIndex);
-			wwbi = new WhirlwindBeltInfo(b, "subjects");
-			retVal.Add(wwbi);
 
 			// sort the search results by popularity
 			retVal.Sort(delegate(WhirlwindBeltInfo b1, WhirlwindBeltInfo b2) { return b2.InfosCount.CompareTo(b1.InfosCount); });
