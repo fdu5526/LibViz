@@ -12,7 +12,11 @@ public class DatabaseManager : MonoBehaviour {
 	string[] columns = {"name", "date", "pub_place", "other_author_personal", "subject"};
 	int maxItemsPerBelt = 30;
 	bool connectionSuccess;
-
+	/*
+		2 ways of searching
+			drill down - by putting into desk or typing in search
+			open up - whirl the whirlwind, repopulate with ||
+	*/
 	/*
 		5 searches
 			Author

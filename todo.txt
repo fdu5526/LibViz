@@ -10,10 +10,6 @@ MxR - look at codec, look how complicated
 
 interaction
 	search bar
-		2 ways of searching
-			drill down - by putting into desk or typing in search
-			open up - whirl the whirlwind, repopulate with ||
-		search by search bar
 		add random stuffs in if there isnt enough to fill the entire belt
 		
 	whirling the whirlwind
