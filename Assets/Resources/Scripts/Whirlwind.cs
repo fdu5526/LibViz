@@ -91,6 +91,7 @@ public class Whirlwind : MonoBehaviour {
 /////// functions for manipulating data //////
 	public void SearchDeskExplore () {
 		List<BookInfo> bookinfos = searchBar.SelectedBookInfos;
+		print("yay");
 		
 		if (bookinfos.Count > 0) { // actually stuffs in the search
 			List<WhirlwindBeltInfo> newInfos = databaseManager.Search(bookinfos, belts.Length);

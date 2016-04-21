@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SearchUI : MonoBehaviour {
 
@@ -32,6 +34,24 @@ public class SearchUI : MonoBehaviour {
 		if (isDraggingItem) {
 			dragShadow.transform.position = Input.mousePosition;
 			whirlwind.LogUserInput();
+		}
+
+
+		// UI raycast out
+		GraphicRaycaster gr = this.GetComponent<GraphicRaycaster>();
+		PointerEventData ped = new PointerEventData(null);
+		ped.position = Input.mousePosition;
+
+
+		List<RaycastResult> results = new List<RaycastResult>();
+		gr.Raycast(ped, results);
+
+		ped.button = PointerEventData.InputButton.Left;
+		if (results.Count > 1) {
+			for (int i = 0; i < results.Count; i++) {
+				ExecuteEvents.Execute(results[i].gameObject, ped, ExecuteEvents.dragHandler);
+			}
+			
 		}
 	}
 }

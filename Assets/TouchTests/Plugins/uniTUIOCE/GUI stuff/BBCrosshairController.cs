@@ -1,5 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 // this object just handles the crosshairs that show up under each touch event
 
@@ -29,19 +32,24 @@ public class BBCrosshairController : MonoBehaviour {
 	 	int crosshairIndex = 0;
 		int i;
 		for (i = 0; i < iPhoneInput.touchCount; i++) {
+			
+			// make a new crosshair and cache it
 			if (crosshairs.Count <= crosshairIndex) {
-				// make a new crosshair and cache it
 				GameObject newCrosshair = (GameObject)Instantiate (crosshairPrefab, Vector3.zero, Quaternion.identity);
 				crosshairs.Add(newCrosshair);
 			}
+				
+			// get the touch event
 			iPhoneTouch touch = iPhoneInput.GetTouch(i);
 			Vector3 screenPosition = new Vector3(touch.position.x,touch.position.y,0.0f);
-			
+				
+			// draw the crosshair
 			GameObject thisCrosshair = (GameObject)crosshairs[crosshairIndex];
 			thisCrosshair.SetActiveRecursively(true);
 			thisCrosshair.transform.position = renderingCamera.ScreenToViewportPoint(screenPosition);
 			crosshairIndex++;
 
+			// physics raycast out; what kind of object does it hit?
 			RaycastHit hit;
 			Ray ray = renderingCamera.ScreenPointToRay(screenPosition);
 			if (Physics.Raycast(ray, out hit)) {
