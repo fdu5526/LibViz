@@ -48,4 +48,5 @@ public class KinectShow : UserDetectHandler {
 		text.text = "USER LEAVE";
 		text.color = Color.red;
 	}
+
 }
