@@ -27,6 +27,7 @@ public class UserDetector : MonoBehaviour {
 		set {
 			if ( m_state != value )
 			{
+				m_state = value;
 				if ( value == State.Pass )
 					Pass();
 				if ( value == State.Come )
@@ -35,14 +36,8 @@ public class UserDetector : MonoBehaviour {
 					Stop();
 				if ( value == State.None )
 					Leave();
-				m_state = value;
 			}
 		}
-	}
-
-	void Start()
-	{
-		state = State.None;
 	}
 
 	void LateUpdate()
@@ -66,12 +61,13 @@ public class UserDetector : MonoBehaviour {
 		foreach( int id in tracker.AllUsers )
 		{
 			Vector3 pos = tracker.GetUserCenterOfMass( id );
-			if ( Mathf.Abs( pos.z ) < Mathf.Abs( closetPosition.z ) && pos.z < -0.1f )
+			if ( Mathf.Abs( pos.z ) < Mathf.Abs( closetPosition.z ) )
 				closetPosition = pos;
 		}
 
 
-		// switch the state based on the closest position
+		Debug.Log(" distance " + closetPosition.z );
+
 		switch( state )
 		{
 		case State.Pass:
@@ -90,10 +86,6 @@ public class UserDetector : MonoBehaviour {
 			}
 		break;
 		case State.Stop:
-			if (  Math.Abs( closetPosition.z ) > Mathf.Abs( stopAbstractTreshod ) )
-			{
-				state = State.Come;
-			}
 			break;
 		}
 	}
@@ -143,6 +135,7 @@ public class UserDetector : MonoBehaviour {
 	{
 		if (state == State.None) {
 			state = State.Pass;
+			Pass();
 		}
 
 	}
@@ -184,11 +177,5 @@ public class UserDetector : MonoBehaviour {
 		state = State.None;
 		if (handler != null)
 			handler.UserLeave ();
-	}
-
-
-	void OnGUI()
-	{
-		GUILayout.Label( " min Distance " + closetPosition );
 	}
 }

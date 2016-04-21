@@ -228,8 +228,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tracker: {fileID: 25}
   handler: {fileID: 27}
-  ComeInTreshod: -2000
-  stopAbstractTreshod: -800
+  ComeInTreshod: -1500
+  stopAbstractTreshod: -400
 --- !u!4 &31 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400010, guid: 42c019f173811a2428265109cf18acf6, type: 2}
