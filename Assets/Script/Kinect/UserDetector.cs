@@ -70,8 +70,8 @@ public class UserDetector : MonoBehaviour {
 				closetPosition = pos;
 		}
 
-		Debug.Log(" distance " + closetPosition.z );
 
+		// switch the state based on the closest position
 		switch( state )
 		{
 		case State.Pass:

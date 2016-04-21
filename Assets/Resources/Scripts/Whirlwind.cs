@@ -88,6 +88,7 @@ public class Whirlwind : MonoBehaviour {
 		}
 	}
 
+
 /////// functions for manipulating data //////
 	public void SearchDeskExplore () {
 		List<BookInfo> bookinfos = searchBar.SelectedBookInfos;
