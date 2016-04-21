@@ -9,8 +9,8 @@ MxR - look at codec, look how complicated
 
 
 interaction
-	search bar
-		add random stuffs in if there isnt enough to fill the entire belt
+	search: add random stuffs in if there isnt enough to fill the entire belt
+	Finalize UI - look at Andreas's basecamp
 	*****fix drag threshold
 
 

@@ -9,3 +9,5 @@ Temp/
 *.sln
 *.csproj
 LibViz.userprefs
+ProjectSettings/GraphicsSettings.asset
+ProjectSettings/ProjectSettings.asset
