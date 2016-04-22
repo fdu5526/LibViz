@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SearchUI : MonoBehaviour {
 
@@ -8,6 +10,8 @@ public class SearchUI : MonoBehaviour {
 
 	GameObject dragShadow;
 	Whirlwind whirlwind;
+
+	bool dragging;
 
 	// Use this for initialization
 	void Start () {
@@ -33,5 +37,50 @@ public class SearchUI : MonoBehaviour {
 			dragShadow.transform.position = Input.mousePosition;
 			whirlwind.LogUserInput();
 		}
+
+
+		// UI raycast out
+		if (Input.GetKey("n")) {
+			GraphicRaycaster gr = this.GetComponent<GraphicRaycaster>();
+			PointerEventData ped = new PointerEventData(null);
+			ped.position = Input.mousePosition;
+
+			List<RaycastResult> results = new List<RaycastResult>();
+			gr.Raycast(ped, results);
+
+			//ped.button = PointerEventData.InputButton.Left;
+			if (results.Count > 1) {
+				for (int i = 0; i < results.Count; i++) {
+					if (!dragging) {
+						ExecuteEvents.Execute(results[i].gameObject, ped, ExecuteEvents.beginDragHandler);
+					} else {
+						ExecuteEvents.Execute(results[i].gameObject, ped, ExecuteEvents.dragHandler);
+					}
+					print(results[i].gameObject.name);
+				}
+			}
+			dragging = true;
+
+		} else {
+			if (dragging) {
+				GraphicRaycaster gr = this.GetComponent<GraphicRaycaster>();
+				PointerEventData ped = new PointerEventData(null);
+				ped.position = Input.mousePosition;
+
+				List<RaycastResult> results = new List<RaycastResult>();
+				gr.Raycast(ped, results);
+
+				//ped.button = PointerEventData.InputButton.Left;
+				if (results.Count > 1) {
+					for (int i = 0; i < results.Count; i++) {
+						ExecuteEvents.Execute(results[i].gameObject, ped, ExecuteEvents.endDragHandler);
+						ExecuteEvents.Execute(results[i].gameObject, ped, ExecuteEvents.dropHandler);
+					}
+				}
+				dragging = false;
+			}
+			
+		}
+		
 	}
 }

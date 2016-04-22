@@ -31,6 +31,5 @@ public class FullscreenSelectionUI : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
 	}
 }

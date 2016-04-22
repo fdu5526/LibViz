@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnlargedSelectionUI : MonoBehaviour {
 
@@ -20,6 +22,5 @@ public class EnlargedSelectionUI : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
 	}
 }
