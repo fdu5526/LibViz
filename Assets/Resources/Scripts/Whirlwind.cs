@@ -72,26 +72,29 @@ public class Whirlwind : MonoBehaviour {
 	// current debugging based state machine triggers
 	// TODO remove me at the end
 	void CheckInteractionWithWhirlwind () {
-		if (Input.GetKeyDown("a") &&
-				currentState == State.Idle) {
-			LoadNewItems(defaultBookinfos);
-			StirUp(Global.StirUpSpeed);
-		} else if (Input.GetKeyDown("s") &&
-							 currentState == State.StirUp && 
-							 IsDoneStirUp) {
+		if (Input.GetKeyDown("a") && CanStirUp) {
+			StirUpFromIdle();
+		} else if (Input.GetKeyDown("s") && CanSlowDown) {
 			SlowToStopWhirlExam();
-		} else if (Input.GetKeyDown("d") && 
-							 IsDoneStirUp &&
-							 currentState != State.End && 
-							 currentState != State.Idle) {
+		} else if (Input.GetKeyDown("d") && CanEnd) {
 			End();
 		}
 	}
 
 
+	public bool CanStirUp { get { return currentState == State.Idle; } }
+	public void StirUpFromIdle () {
+		LoadNewItems(defaultBookinfos);
+		StirUp(Global.StirUpSpeed);
+	}
+	public bool CanSlowDown { get { return currentState == State.StirUp && IsDoneStirUp; } }
+	public bool CanEnd { get { return IsDoneStirUp && currentState != State.End && currentState != State.Idle; } }
+
+
 /////// functions for manipulating data //////
 	public void SearchDeskExplore () {
 		List<BookInfo> bookinfos = searchBar.SelectedBookInfos;
+		print("yay");
 		
 		if (bookinfos.Count > 0) { // actually stuffs in the search
 			List<WhirlwindBeltInfo> newInfos = databaseManager.Search(bookinfos, belts.Length);

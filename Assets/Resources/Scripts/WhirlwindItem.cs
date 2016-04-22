@@ -340,7 +340,7 @@ public class WhirlwindItem : PhysicsBody {
 		}
 	}
 
-	void OnMouseUp () {
+	public void OnMouseUp () {
 		if (isInteractable) {
 			whirlwind.LogUserInput();
 
