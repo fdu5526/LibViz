@@ -413,14 +413,14 @@ namespace RenderHeads.Media.AVProVideo
 #if AVPROVIDEO_ISSUEPLUGINEVENT_UNITY52
 			if (renderEvent == Native.RenderThreadEvent.UpdateAllTextures)
 			{
-				GL.IssuePluginEvent(_nativeFunction_UpdateAllTextures, 0);
+				//TODOGL.IssuePluginEvent(_nativeFunction_UpdateAllTextures, 0);
 			}
 			else if (renderEvent == Native.RenderThreadEvent.FreeTextures)
 			{
-				GL.IssuePluginEvent(_nativeFunction_FreeTextures, 0);
+				//TODOGL.IssuePluginEvent(_nativeFunction_FreeTextures, 0);
 			}
 #else
-			GL.IssuePluginEvent(Native.PluginID | (int)renderEvent);
+			//TODOGL.IssuePluginEvent(Native.PluginID | (int)renderEvent);
 #endif
 		}
 
