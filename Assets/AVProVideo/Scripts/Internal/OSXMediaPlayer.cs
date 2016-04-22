@@ -252,7 +252,7 @@ namespace RenderHeads.Media.AVProVideo
 			}
 
 #if UNITY_5 && !UNITY_5_0 && !UNITY_5_1
-				GL.IssuePluginEvent(AVPGetRenderEventFunc(), eventId);
+				// GL.IssuePluginEvent(AVPGetRenderEventFunc(), eventId);
 #else
 				GL.IssuePluginEvent(eventId);
 #endif

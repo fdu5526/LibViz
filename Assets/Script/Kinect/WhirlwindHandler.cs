@@ -19,20 +19,41 @@ public class WhirlwindHandler : UserDetectHandler {
 	{
 		if ( whirlwind != null )
 		{
-			whirlwind.StirUp(Global.StirUpSpeed);
+			StartCoroutine( TryStirUp ());
+		}
+	}
+
+	IEnumerator TryStirUp()
+	{
+		if ( whirlwind == null )
+			yield break;
+		
+		while ( ! whirlwind.CanStirUp ) {
+			yield return null;
 		}
 
+		whirlwind.StirUpFromIdle();
 	}
 
 	public override void UserCome ()
 	{
 		if ( whirlwind != null )
 		{
-			whirlwind.SlowToStopWhirlExam();
+			StartCoroutine( TrySlowDown());
 		}
 	}
 
+	IEnumerator TrySlowDown()
+	{
+		if ( whirlwind == null )
+			yield break;
 
+		while ( ! whirlwind.CanSlowDown ) {
+			yield return null;
+		}
+
+		whirlwind.SlowToStopWhirlExam();
+	}
 
 
 	public override void UserStop ()
@@ -48,8 +69,20 @@ public class WhirlwindHandler : UserDetectHandler {
 	{
 		if ( whirlwind != null )
 		{
-			whirlwind.End();
+			StartCoroutine( TryEnd());
+		}
+	}
+
+
+	IEnumerator TryEnd()
+	{
+		if ( whirlwind == null )
+			yield break;
+
+		while ( ! whirlwind.CanEnd ) {
+			yield return null;
 		}
 
+		whirlwind.End();
 	}
 }
