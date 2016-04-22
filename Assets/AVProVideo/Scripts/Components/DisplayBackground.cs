@@ -28,7 +28,7 @@ namespace RenderHeads.Media.AVProVideo
 		{
 			if (_material == null || _texture == null)
 				return;
-
+			/*TODO
 			Vector4 uv = new Vector4(0f, 0f, 1f, 1f);
 			_material.SetPass(0);
 			GL.PushMatrix();
@@ -49,6 +49,7 @@ namespace RenderHeads.Media.AVProVideo
 			
 			GL.End();
 			GL.PopMatrix();
+			*/
 		}
 	}
 }
