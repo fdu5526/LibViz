@@ -28,7 +28,7 @@ public class WhirlwindHandler : UserDetectHandler {
 	{
 		if ( whirlwind != null )
 		{
-			whirlwind.Spin();
+			whirlwind.SlowToStopWhirlExam();
 		}
 	}
 
@@ -39,7 +39,7 @@ public class WhirlwindHandler : UserDetectHandler {
 	{
 		if ( whirlwind != null )
 		{
-			whirlwind.SlowToStopWhirlExam();
+			
 		}
 	}
 
