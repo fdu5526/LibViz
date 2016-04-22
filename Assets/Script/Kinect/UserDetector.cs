@@ -66,7 +66,7 @@ public class UserDetector : MonoBehaviour {
 		}
 
 
-		Debug.Log(" distance " + closetPosition.z );
+//		Debug.Log(" distance " + closetPosition.z );
 
 		switch( state )
 		{

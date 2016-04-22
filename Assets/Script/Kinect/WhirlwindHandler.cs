@@ -4,6 +4,7 @@ using System.Collections;
 public class WhirlwindHandler : UserDetectHandler {
 
 	public Whirlwind whirlwind;
+	Coroutine stageCor = null;
 
 	void Awake()
 	{
@@ -19,12 +20,15 @@ public class WhirlwindHandler : UserDetectHandler {
 	{
 		if ( whirlwind != null )
 		{
-			StartCoroutine( TryStirUp ());
+			if ( stageCor != null )
+				StopCoroutine (stageCor);
+			stageCor = StartCoroutine( TryStirUp ());
 		}
 	}
 
 	IEnumerator TryStirUp()
 	{
+		Debug.Log ("StirUp");
 		if ( whirlwind == null )
 			yield break;
 		
@@ -37,9 +41,12 @@ public class WhirlwindHandler : UserDetectHandler {
 
 	public override void UserCome ()
 	{
+		Debug.Log ("SlowDown");
 		if ( whirlwind != null )
 		{
-			StartCoroutine( TrySlowDown());
+			if ( stageCor != null )
+				StopCoroutine (stageCor);
+			stageCor = StartCoroutine( TrySlowDown());
 		}
 	}
 
@@ -69,13 +76,16 @@ public class WhirlwindHandler : UserDetectHandler {
 	{
 		if ( whirlwind != null )
 		{
-			StartCoroutine( TryEnd());
+			if ( stageCor != null )
+				StopCoroutine (stageCor);
+			stageCor = StartCoroutine( TryEnd());
 		}
 	}
 
 
 	IEnumerator TryEnd()
 	{
+		Debug.Log ("End");
 		if ( whirlwind == null )
 			yield break;
 
