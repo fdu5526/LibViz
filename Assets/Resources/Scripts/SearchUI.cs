@@ -44,11 +44,9 @@ public class SearchUI : MonoBehaviour {
 			GraphicRaycaster gr = this.GetComponent<GraphicRaycaster>();
 			PointerEventData ped = new PointerEventData(null);
 			ped.position = Input.mousePosition;
-
 			List<RaycastResult> results = new List<RaycastResult>();
 			gr.Raycast(ped, results);
 
-			//ped.button = PointerEventData.InputButton.Left;
 			if (results.Count > 1) {
 				for (int i = 0; i < results.Count; i++) {
 					if (!dragging) {
@@ -66,11 +64,9 @@ public class SearchUI : MonoBehaviour {
 				GraphicRaycaster gr = this.GetComponent<GraphicRaycaster>();
 				PointerEventData ped = new PointerEventData(null);
 				ped.position = Input.mousePosition;
-
 				List<RaycastResult> results = new List<RaycastResult>();
 				gr.Raycast(ped, results);
 
-				//ped.button = PointerEventData.InputButton.Left;
 				if (results.Count > 1) {
 					for (int i = 0; i < results.Count; i++) {
 						ExecuteEvents.Execute(results[i].gameObject, ped, ExecuteEvents.endDragHandler);
