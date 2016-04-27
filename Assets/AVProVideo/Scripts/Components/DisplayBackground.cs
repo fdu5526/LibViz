@@ -24,32 +24,31 @@ namespace RenderHeads.Media.AVProVideo
 		
 		//-------------------------------------------------------------------------
 
-		void OnRenderObject()
+		public void OnRenderObject()
 		{
 			if (_material == null || _texture == null)
 				return;
-			/*TODO
+			
 			Vector4 uv = new Vector4(0f, 0f, 1f, 1f);
 			_material.SetPass(0);
-			GL.PushMatrix();
-			GL.LoadOrtho();
-			GL.Begin(GL.QUADS);
+			UnityEngine.GL.PushMatrix();
+			UnityEngine.GL.LoadOrtho();
+			UnityEngine.GL.Begin(UnityEngine.GL.QUADS);
 			
-			GL.TexCoord2(uv.x, uv.y);
-			GL.Vertex3(0.0f, 0.0f, 0.1f);
+			UnityEngine.GL.TexCoord2(uv.x, uv.y);
+			UnityEngine.GL.Vertex3(0.0f, 0.0f, 0.1f);
 			
-			GL.TexCoord2(uv.z, uv.y);
-			GL.Vertex3(1.0f, 0.0f, 0.1f);
+			UnityEngine.GL.TexCoord2(uv.z, uv.y);
+			UnityEngine.GL.Vertex3(1.0f, 0.0f, 0.1f);
 			
-			GL.TexCoord2(uv.z, uv.w);		
-			GL.Vertex3(1.0f, 1.0f, 0.1f);
+			UnityEngine.GL.TexCoord2(uv.z, uv.w);		
+			UnityEngine.GL.Vertex3(1.0f, 1.0f, 0.1f);
 			
-			GL.TexCoord2(uv.x, uv.w);
-			GL.Vertex3(0.0f, 1.0f, 0.1f);
+			UnityEngine.GL.TexCoord2(uv.x, uv.w);
+			UnityEngine.GL.Vertex3(0.0f, 1.0f, 0.1f);
 			
-			GL.End();
-			GL.PopMatrix();
-			*/
+			UnityEngine.GL.End();
+			UnityEngine.GL.PopMatrix();
 		}
 	}
 }
