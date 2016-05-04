@@ -33,6 +33,7 @@ public class WhirlwindItem : PhysicsBody {
 		Sprite s = null;
 		itemSprites.TryGetValue(fileName, out s);
 		if (s == null) {
+			print(fileName);
 			itemSprites.TryGetValue("placeholder", out s);
 		}
 

@@ -26,15 +26,16 @@ public class FullscreenSelectionUI : MonoBehaviour {
 			Debug.Assert(currentBookInfo != null);
 		}
 
-		background.GetComponent<Collider>().enabled = enabled;
-		GetComponent<Canvas>().enabled = enabled;
 		spriteModel.gameObject.SetActive(enabled);
 
 		if (enabled) {
 			spriteModel.videoFileName = currentBookInfo.FileName + ".mp4";
 			billBoardRenderer.LoadMovie();
-		} else {
 		}
+
+		background.GetComponent<Collider>().enabled = enabled;
+		GetComponent<Canvas>().enabled = enabled;
+
 
 	}
 
