@@ -18,6 +18,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System.IO;
 
 [RequireComponent (typeof (AVProQuickTimeMovie))]
 public class BillBoardRenderer : MonoBehaviour {
@@ -34,6 +35,20 @@ public class BillBoardRenderer : MonoBehaviour {
         billboardRenderer = GetComponent<Renderer>();
 		movie._folder = model.videoFolderPath;
 		movie._filename = model.videoFileName;
+    }
+
+    public void LoadMovie () {
+    	if (System.IO.File.Exists(model.videoFolderPath + model.videoFileName)) {
+    		movie._folder = model.videoFolderPath;
+			movie._filename = model.videoFileName;
+			movie.LoadMovie();
+    	} else {
+    		movie._folder = model.videoFolderPath;
+			movie._filename = "placeholder.mp4";
+			movie.LoadMovie();
+    	}
+
+    	
     }
 
 	void OnWillRenderObject ()

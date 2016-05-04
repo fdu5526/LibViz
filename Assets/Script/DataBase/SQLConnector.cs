@@ -77,7 +77,7 @@ public class SQLConnector : MonoBehaviour {
 	    	}
 	    }
 
-	    Debug.Log("Get " + res.Count + " books in total");
+	    //Debug.Log("Get " + res.Count + " books in total");
 
 		return res;
  	}
@@ -267,7 +267,7 @@ public class SQLConnector : MonoBehaviour {
 
 		command = command.Remove(command.Length - 2, 2);
 
-		Debug.Log(" Search by Subject Command " + command);
+		//Debug.Log(" Search by Subject Command " + command);
 
 		return EvaluateBookByKeyTag( GetBookListByCommand(command) , keys );
 

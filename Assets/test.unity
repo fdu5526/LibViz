@@ -2419,7 +2419,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 113244, guid: 66049049089001c45af238af534f77fc, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497468, guid: 66049049089001c45af238af534f77fc, type: 2}
+      propertyPath: _ignoreFlips
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406988, guid: 66049049089001c45af238af534f77fc, type: 2}
+      propertyPath: videoFolderPath
+      value: C:\Users\Manager\Desktop\Videos\
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66049049089001c45af238af534f77fc, type: 2}

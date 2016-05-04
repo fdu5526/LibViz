@@ -127,7 +127,7 @@ MonoBehaviour:
   currentFrameIndex: 0
   clockwiseCapture: 0
   frameCount: 10
-  videoFolderPath: C:\Users\Manager\Desktop\Videos
+  videoFolderPath: C:\Users\Manager\Desktop\Videos\
   videoFileName: specol_0304_box1_3.mp4
 --- !u!114 &11497468
 MonoBehaviour:

@@ -8,35 +8,39 @@ public class FullscreenSelectionUI : MonoBehaviour {
 	Image itemImage;
 	GameObject background;
 
-	[SerializeField]
-	GameObject spriteModelPrefab;
-	GameObject currentSpriteModel;
+	BookInfo currentBookInfo;
+	SpriteModel spriteModel;
+	BillBoardRenderer billBoardRenderer;
 
 	// Use this for initialization
 	void Start () {
 		fields = transform.Find("Fields/Viewport/Content/Text").GetComponent<Text>();
 		itemImage = transform.Find("ItemBackground/ItemImage").GetComponent<Image>();
 		background = transform.Find("Background").gameObject;
-		//spriteModel = GameObject.Find("StaticSpriteModel-Mono").GetComponent<SpriteModel>();
+		spriteModel = GameObject.Find("StaticSpriteModel-Mono").GetComponent<SpriteModel>();
+		billBoardRenderer = GameObject.Find("StaticSpriteModel-Mono/BillboardRenderer").GetComponent<BillBoardRenderer>();
 
-		//spriteModel.videoFileName = "";
 		Enable(false);
 	}
 
 	public void Enable (bool enabled) {
+		if (enabled) {
+			Debug.Assert(currentBookInfo != null);
+		}
+
 		background.GetComponent<Collider>().enabled = enabled;
 		GetComponent<Canvas>().enabled = enabled;
 
 		if (enabled) {
-			currentSpriteModel = GameObject.Instantiate(spriteModelPrefab);
-			currentSpriteModel.GetComponent<SpriteModel>().videoFileName = "specol_0315_box199_2";
+			spriteModel.videoFileName = currentBookInfo.FileName + ".mp4";
+			billBoardRenderer.LoadMovie();
 		} else {
-			Destroy(currentSpriteModel);
 		}
 
 	}
 
 	public void SetBookInfo (BookInfo bookInfo, Sprite sprite) {
+		currentBookInfo = bookInfo;
 		fields.text = 
 			bookInfo.Title + "\n\n" + 
 			bookInfo.Author + "\n\n" + 
