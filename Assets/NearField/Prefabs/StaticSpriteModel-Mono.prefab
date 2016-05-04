@@ -9,7 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 421058}
   - 114: {fileID: 11406988}
-  m_Layer: 0
+  - 65: {fileID: 6536244}
+  m_Layer: 5
   m_Name: StaticSpriteModel-Mono
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +29,7 @@ GameObject:
   - 23: {fileID: 2327052}
   - 114: {fileID: 11406584}
   - 114: {fileID: 11497468}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BillboardRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,6 +94,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 134598}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &6536244
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113244}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11406584
 MonoBehaviour:
   m_ObjectHideFlags: 1

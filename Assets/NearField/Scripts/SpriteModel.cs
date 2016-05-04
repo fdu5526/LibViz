@@ -65,6 +65,13 @@ public class SpriteModel : BillBoardModel {
 	public string videoFolderPath;
 	public string videoFileName;
 
+	float prevMouseX;
+	InputManager inputManager;
+
+	void Start () {
+		inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();		
+	}
+
 	private void Update () {
 	
 		billboardFrameIndex = currentFrameIndex;
@@ -85,5 +92,24 @@ public class SpriteModel : BillBoardModel {
 		float frameIndex = intFrameIndex * imagesPerFrame + processedAngle;
 		
 		return (uint)(frameIndex);
+	}
+
+
+	void OnMouseDown () {
+		prevMouseX = Input.mousePosition.x;
+	}
+
+
+	void OnMouseDrag () {
+		if (inputManager.IsDragging) {
+			float mouseX = Input.mousePosition.x;
+			float d = (mouseX - prevMouseX) / 3f;
+			prevMouseX = mouseX;
+
+			// ignore extraneous input
+			if (Mathf.Abs(d) > 1f) {
+				currentRotation += d;
+			}
+		}
 	}
 }
