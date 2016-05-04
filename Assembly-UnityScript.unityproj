@@ -50,6 +50,8 @@
      <None Include="Assets\AVProQuickTime\Shaders\AVProQuickTime_Copy.shader" />
      <None Include="Assets\AVProQuickTime\Shaders\AVProQuickTime_Shared.cginc" />
      <None Include="Assets\Interfaces\OpenNI.ini.txt" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Asset\Shaders\Normal-Diffuse.shader" />
      <None Include="Assets\Interfaces\NiTE.ini.txt" />
      <None Include="Assets\AVProQuickTime\Demos\MaterialMappingDemo\Projector Additive.shader" />
      <None Include="Assets\Data\ori\new_records_2_01_16.txt" />
@@ -69,6 +71,9 @@
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files (x86)/Unity32Bit/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="OpenNI.Net">
+ <HintPath>C:/Users/Manager/Desktop/libviz/Assets/OpenNI/Scripts/OpenNI.Net.dll</HintPath>
  </Reference>
  <Reference Include="MySql.Data">
  <HintPath>C:/Users/Manager/Desktop/libviz/Assets/plugin/MySql.Data.dll</HintPath>
@@ -91,11 +96,10 @@
  <Reference Include="DOTween50">
  <HintPath>C:/Users/Manager/Desktop/libviz/Assets/plugin/DOTween/DOTween50.dll</HintPath>
  </Reference>
- <Reference Include="OpenNI.Net">
- <HintPath>C:/Users/Manager/Desktop/libviz/Assets/plugin/Kinect/OpenNI/Scripts/OpenNI.Net.dll</HintPath>
- </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{B7005F69-FC68-F38B-BDA4-94DA00814EB0}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
       <Project>{5540BF02-BCAC-AEBF-A5D5-9D15C51B4085}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>

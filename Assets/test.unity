@@ -120,7 +120,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000038146973, y: -4.6000004}
+  m_AnchoredPosition: {x: -0.000030517578, y: -4.6000004}
   m_SizeDelta: {x: -100, y: 81}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &41551838
@@ -589,6 +589,7 @@ GameObject:
   - 33: {fileID: 303245547}
   - 23: {fileID: 303245545}
   - 114: {fileID: 303245549}
+  - 114: {fileID: 303245546}
   m_Layer: 8
   m_Name: WhirlwindCenter
   m_TagString: Untagged
@@ -622,6 +623,18 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!114 &303245546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 303245544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99a8fb2efb0b40aca75a76e1e2ca410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whirlwind: {fileID: 303245549}
 --- !u!33 &303245547
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2404,21 +2417,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11406988, guid: 66049049089001c45af238af534f77fc, type: 2}
-      propertyPath: videoFolderPath
-      value: C:\Users\Manager\Desktop\Videos
-      objectReference: {fileID: 0}
-    - target: {fileID: 11406988, guid: 66049049089001c45af238af534f77fc, type: 2}
-      propertyPath: videoFileName
-      value: mxr.mp4
-      objectReference: {fileID: 0}
-    - target: {fileID: 11406988, guid: 66049049089001c45af238af534f77fc, type: 2}
-      propertyPath: imagesPerFrame
-      value: 360
-      objectReference: {fileID: 0}
-    - target: {fileID: 11406988, guid: 66049049089001c45af238af534f77fc, type: 2}
-      propertyPath: frameCount
-      value: 10
+    - target: {fileID: 113244, guid: 66049049089001c45af238af534f77fc, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66049049089001c45af238af534f77fc, type: 2}
@@ -2976,7 +2977,7 @@ Prefab:
       objectReference: {fileID: 1419908872}
     - target: {fileID: 22451836, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.42521995
+      value: 0.4252199
       objectReference: {fileID: 0}
     - target: {fileID: 22451836, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.x
@@ -2984,7 +2985,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22451836, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 22368870, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_Enabled
@@ -2992,19 +2993,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 22415562, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 107788, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_IsActive
@@ -3014,6 +3015,10 @@ Prefab:
       propertyPath: m_Value
       value: 0.9999999
       objectReference: {fileID: 0}
+    - target: {fileID: 11414678, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: spriteModelPrefab
+      value: 
+      objectReference: {fileID: 113244, guid: 66049049089001c45af238af534f77fc, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
   m_IsPrefabParent: 0

@@ -11,4 +11,4 @@ LogToFile=0
 ; Location of the drivers specified by a relative path based on OpenNI's shared library or an absolute path.
 ; Path separator "/" can be used to be portable for any platforms.
 ; Default - OpenNI2/Drivers
-Repository=%OPENNI_REDIST_DIR%/OpenNI2/Drivers
+Repository=%OPENNI_REDIST_DIR%/OpenNI2/Driver

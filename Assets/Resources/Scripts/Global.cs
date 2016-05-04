@@ -224,7 +224,7 @@ public class BookInfo{
 		get {
 			if (GetData("date") != null && GetData("date").Length > 11) {
 				string year = GetData("date").Substring(7, 4);
-				if ( year.EndsWith("u"));
+				if ( year.EndsWith("u"))
 					year = year.Replace('u', '0');
 				return int.Parse(year);
 			}
@@ -236,7 +236,7 @@ public class BookInfo{
 		get {
 			if (GetData("date") != null && GetData("date").Length > 15) {
 				string fromYear = GetData("date").Substring(7, 4);
-				if ( fromYear.EndsWith("u"));
+				if ( fromYear.EndsWith("u"))
 					return int.Parse(fromYear.Replace('u', '9'));
 
 				if ( GetData("date").Substring(11, 4).Equals("    ") )
