@@ -1,22 +1,13 @@
-touch interaction
-	get it on Mac
-
 kinect
 	ensure it is same person interacting
-
-MxR - look at codec, look how complicated
-
-
 
 interaction
 	search: add random stuffs in if there isnt enough to fill the entire belt
 	Finalize UI - look at Andreas's basecamp
+	still some problems with placeholder medallions
+	install the TUIO stuff onto the Mac Mini
 	*****fix drag threshold
-
 
 questions
 	what to do when duplicates in bar?
 		display a message about it's already in the bar
-
-	some entries have no author
-	What is author other?

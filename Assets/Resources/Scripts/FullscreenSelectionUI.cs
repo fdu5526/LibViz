@@ -5,7 +5,6 @@ using System.Collections;
 public class FullscreenSelectionUI : MonoBehaviour {
 
 	Text fields;
-	Image itemImage;
 	GameObject background;
 
 	BookInfo currentBookInfo;
@@ -15,7 +14,6 @@ public class FullscreenSelectionUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		fields = transform.Find("Fields/Viewport/Content/Text").GetComponent<Text>();
-		itemImage = transform.Find("ItemBackground/ItemImage").GetComponent<Image>();
 		background = transform.Find("Background").gameObject;
 		spriteModel = GameObject.Find("StaticSpriteModel-Mono").GetComponent<SpriteModel>();
 		billBoardRenderer = GameObject.Find("StaticSpriteModel-Mono/BillboardRenderer").GetComponent<BillBoardRenderer>();
@@ -30,6 +28,7 @@ public class FullscreenSelectionUI : MonoBehaviour {
 
 		background.GetComponent<Collider>().enabled = enabled;
 		GetComponent<Canvas>().enabled = enabled;
+		spriteModel.gameObject.SetActive(enabled);
 
 		if (enabled) {
 			spriteModel.videoFileName = currentBookInfo.FileName + ".mp4";
@@ -45,7 +44,6 @@ public class FullscreenSelectionUI : MonoBehaviour {
 			bookInfo.Title + "\n\n" + 
 			bookInfo.Author + "\n\n" + 
 			bookInfo.GetData("pub_date") + "\n\n";
-		itemImage.sprite = sprite;
 	}
 
 	// Update is called once per frame
