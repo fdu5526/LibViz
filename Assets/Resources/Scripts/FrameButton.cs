@@ -18,6 +18,7 @@ public class FrameButton : MonoBehaviour, IPointerClickHandler {
 		set { index = value; }
 	}
 
+	// tell the fullScreenSelectionUI which frame we are at, hopefully the index is set correctly
 	public void OnPointerClick(PointerEventData eventData) {
 		fullscreenSelectionUI.SetCurrentFrame(index);
 

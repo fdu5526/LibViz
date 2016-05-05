@@ -9,9 +9,9 @@ public class FullscreenSelectionUI : MonoBehaviour {
 	GameObject background;
 
 	BookInfo currentBookInfo;
+	
 	SpriteModel spriteModel;
 	BillBoardRenderer billBoardRenderer;
-
 	GameObject frameSelector;
 	List<Button> frameButtons;
 
@@ -23,26 +23,26 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		billBoardRenderer = GameObject.Find("StaticSpriteModel-Mono/BillboardRenderer").GetComponent<BillBoardRenderer>();
 
 		frameSelector = transform.Find("FrameSelector").gameObject;
-
-		Enable(false);
 		frameButtons = new List<Button>();
-		frameButtons.Add(transform.Find("FrameSelector/Button").GetComponent<Button>());
+		frameButtons.Add(frameSelector.transform.Find("Button").GetComponent<Button>());
+		Enable(false);
 	}
 
+	// turn on the UI, called from Whirlwind.cs
 	public void Enable (bool enabled) {
-		if (enabled) {
+		if (enabled) { // please have a bookInfo
 			Debug.Assert(currentBookInfo != null);
 		}
 
 		spriteModel.gameObject.SetActive(enabled);
+		background.GetComponent<Collider>().enabled = enabled;
+		GetComponent<Canvas>().enabled = enabled;
 
+		// if turning on, load the video
 		if (enabled) {
 			spriteModel.videoFileName = currentBookInfo.FileName + ".mp4";
 			billBoardRenderer.LoadMovie();
-		}
-
-		background.GetComponent<Collider>().enabled = enabled;
-		GetComponent<Canvas>().enabled = enabled;
+		}	
 	}
 
 	// because spriteModel doesn't update instanteously
@@ -50,24 +50,25 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		Debug.Assert(frameCount > 0);
 		Debug.Assert(frameButtons.Count > 0);
 
+		// add or remove buttons till we get the amount we want
 		while (frameCount != frameButtons.Count) {
 			Debug.Assert(frameButtons.Count > 0);
 
-			if (frameCount > frameButtons.Count) {
+			if (frameCount > frameButtons.Count) { // add a button
 				GameObject g = (GameObject)Instantiate(frameButtons[0].gameObject, frameButtons[0].transform.position, Quaternion.identity);
-				g.transform.parent = frameSelector.transform;
+				g.transform.SetParent(frameSelector.transform);
 				g.transform.localScale = Vector3.one;
 				g.GetComponent<FrameButton>().Index = frameButtons.Count;
 
 				frameButtons.Add(g.GetComponent<Button>());
-			} else {
+			} else { // remove a button
 				Destroy(frameButtons[frameButtons.Count - 1].gameObject);
 				frameButtons.RemoveAt(frameButtons.Count - 1);
 			}
 		}
 	}
 
-
+	// set the frame, only call this from  FrameButton.cs
 	public void SetCurrentFrame (int index) {
 		Debug.Assert(index >= 0);
 		Debug.Assert(index < frameButtons.Count);
@@ -75,6 +76,7 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		spriteModel.currentFrameIndex = index;
 	}
 
+	// set this in Whirlwind.cs
 	public void SetBookInfo (BookInfo bookInfo, Sprite sprite) {
 		currentBookInfo = bookInfo;
 		fields.text = 
