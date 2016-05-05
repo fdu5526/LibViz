@@ -71,7 +71,7 @@ public class WhirlwindBelt : MonoBehaviour {
 
 /////// private helper functions //////
 	// stir up an item one at a time
-	IEnumerator StaggeredStirUp (float speed, bool transitionToWhirlExam) {
+	IEnumerator StaggeredStirUp (float speed) {
 		// the number of items stirred up is based on radius
 		tailIndex = Mathf.Max(BeltSize - 1, 0);
 		headIndex = 0;
@@ -82,18 +82,6 @@ public class WhirlwindBelt : MonoBehaviour {
 			if (!isOperating) {
 				yield break;
 			}
-
-			Vector3 p = transform.position;
-			float ogPosition, targetPosition;
-			if (!transitionToWhirlExam) {
-				ogPosition = Global.defaultBeltHeights[level];
-				targetPosition = Global.contextExamBeltHeights[level];
-			} else {
-				ogPosition = Global.contextExamBeltHeights[level];
-				targetPosition = Global.defaultBeltHeights[level];
-			}
-			p.y = Mathf.Lerp(ogPosition, targetPosition, (float)i/(float)(BeltSize));
-			transform.position = p;
 
 			if (IndexIsInSlots(i)) {
 				wwItems[i].StirUp(speed, slots[slotIndex].transform);
@@ -229,13 +217,13 @@ public class WhirlwindBelt : MonoBehaviour {
 	}
 
 	// stir up items, but stagger them so they have spaces in between them
-	public void StirUp (float speed, bool transitionToWhirlExam) {
+	public void StirUp (float speed) {
 		isOperating = true;
 		for (int i = 0; i < slots.Length; i++) {
 			slots[i].EnableCollider(false);
 			slots[i].StirUp();
 		}
-		StartCoroutine(StaggeredStirUp(speed, transitionToWhirlExam));
+		StartCoroutine(StaggeredStirUp(speed));
 	}
 
 	// whether all the slots are filled. Expensive operation

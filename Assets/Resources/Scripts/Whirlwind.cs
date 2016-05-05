@@ -234,7 +234,7 @@ public class Whirlwind : MonoBehaviour {
 		bool transitionToWhirlExam = currentState == State.Idle;
 
 		for (int i = 0; i < belts.Length; i++) {
-			belts[i].StirUp(speed, transitionToWhirlExam);
+			belts[i].StirUp(speed);
 		}
 		if (transitionToWhirlExam) {
 			currentState = State.StirUp;

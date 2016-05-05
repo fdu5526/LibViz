@@ -191,6 +191,10 @@ public class WhirlwindItem : PhysicsBody {
 		Debug.Assert(currentState == State.SlowToStop);
 		
 		isInteractable = true;
+		rigidbody.velocity = Vector3.zero;
+		rigidbody.angularVelocity = Vector3.zero;
+		rigidbody.rotation = Quaternion.identity;
+		rigidbody.freezeRotation = true;
 		currentState = State.ContextExam;
 	}
 
