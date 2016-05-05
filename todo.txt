@@ -4,9 +4,11 @@ kinect
 interaction
 	search: add random stuffs in if there isnt enough to fill the entire belt
 	Finalize UI - look at Andreas's basecamp
-	still some problems with placeholder medallions
+	
 	install the TUIO stuff onto the Mac Mini
 	*****fix drag threshold
+
+	still some problems with placeholder medallions - missing data
 
 questions
 	what to do when duplicates in bar?
