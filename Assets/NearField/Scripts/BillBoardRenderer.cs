@@ -65,6 +65,7 @@ public class BillBoardRenderer : MonoBehaviour {
 
 			model.frameCount = Mathf.RoundToInt ((float)movie._moviePlayer.FrameCount / (float)model.imagesPerFrame);
 			model.frameCount = Mathf.Max (1, model.frameCount);
+			model.SetFullscreenSelectionUIFrameCount();
 
             Vector3 camPos = new Vector3 (cam.transform.position.x, transform.position.y, cam.transform.position.z);
 			transform.LookAt (camPos);

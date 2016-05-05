@@ -43,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.48, y: 8.79, z: -10.66}
+  m_LocalPosition: {x: 2.48, y: 9.77, z: -10.66}
   m_LocalScale: {x: 11.407246, y: 6.416578, z: 6.416578}
   m_Children:
   - {fileID: 475738}
@@ -139,7 +139,7 @@ MonoBehaviour:
   imagesPerFrame: 360
   currentFrameIndex: 0
   clockwiseCapture: 0
-  frameCount: 10
+  frameCount: 0
   videoFolderPath: C:\Users\Manager\Desktop\Videos\
   videoFileName: specol_0304_box1_3.mp4
 --- !u!114 &11497468
