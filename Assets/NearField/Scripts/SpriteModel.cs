@@ -1,4 +1,4 @@
-﻿/*************************************************
+/*************************************************
  * Copyright 2016
  * MxR Studio
  * School of Cinematic Arts, USC
@@ -115,11 +115,11 @@ public class SpriteModel : BillBoardModel {
 	void OnMouseDrag () {
 		if (inputManager.IsDragging) {
 			float mouseX = Input.mousePosition.x;
-			float d = (mouseX - prevMouseX) / 3f;
+			float d = (mouseX - prevMouseX) / 2f;
 			prevMouseX = mouseX;
 
 			// ignore extraneous input
-			if (Mathf.Abs(d) > 1f) {
+			if (Mathf.Abs(d) > 0.1f) {
 				currentRotation += d;
 			}
 		}
