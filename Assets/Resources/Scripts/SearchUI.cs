@@ -20,6 +20,10 @@ public class SearchUI : MonoBehaviour {
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 	}
 
+	public void Enable (bool enabled) {
+		GetComponent<Canvas>().enabled = enabled;
+	}
+
 	public void EnableDragShadow (Sprite sprite) {
 		isDraggingItem = true;
 		dragShadow.GetComponent<Image>().enabled = true;

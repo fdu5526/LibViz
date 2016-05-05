@@ -347,6 +347,7 @@ public class Whirlwind : MonoBehaviour {
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
 		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().SetBookInfo(enlargedItem.BookInfo, enlargedItem.Sprite);
 		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().Enable(true);
+		searchUI.GetComponent<SearchUI>().Enable(false);
 		LogUserInput();
 	}
 
@@ -356,6 +357,7 @@ public class Whirlwind : MonoBehaviour {
 		
 		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
 		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().Enable(false);
+		searchUI.GetComponent<SearchUI>().Enable(true);
 		LogUserInput();
 	}
 
