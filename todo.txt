@@ -2,13 +2,16 @@ kinect
 	ensure it is same person interacting
 
 interaction
-	search: add random stuffs in if there isnt enough to fill the entire belt
-	Finalize UI - look at Andreas's basecamp
-	
-	install the TUIO stuff onto the Mac Mini
-	*****fix drag threshold
+	polish finalize UI - look at Andreas's basecamp
+		remove labels for empty belts
+		Add back zoom
+	camelcorn video - 58 of them
+		play/pause button, slider
+
+	record self using the big screen in the MEML lab
 
 	still some problems with placeholder medallions - missing data
+
 
 questions
 	what to do when duplicates in bar?
