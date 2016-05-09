@@ -42,7 +42,7 @@ public class MainCamera : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {/*
+	void FixedUpdate () {
 		switch (currentState) {
 			case State.ZoomIn:
 				transform.position = Vector3.Lerp(defaultPosition, zoomPosition, transitionTimer.PercentTimeLeft);
@@ -60,6 +60,6 @@ public class MainCamera : MonoBehaviour {
 				break;
 			default:
 				break;
-		}*/
+		}
 	}
 }

@@ -161,6 +161,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		}
 		// set the label
 		label.Text = infos.Label;
+
 	}
 
 /////// public functions used for user interaction //////
@@ -350,7 +351,7 @@ public class WhirlwindBelt : MonoBehaviour {
 		// swirl belt to correct locatin
 		if (isSlowingDown && isTransitioningToContextExam) {
 			if (beltEnd.MostRecentCollisionIsHead) {
-				label.Fade(isOperating);
+				label.Fade(isOperating && wwItems.Count > 0);
 				SlowToStopFast(true);
 			}
 		}

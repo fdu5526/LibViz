@@ -1,14 +1,7 @@
-kinect
-	ensure it is same person interacting
-
 interaction
 	polish finalize UI - look at Andreas's basecamp
-		remove labels for empty belts
-		Add back zoom
 	camelcorn video - 58 of them
 		play/pause button, slider
-
-	record self using the big screen in the MEML lab
 
 	still some problems with placeholder medallions - missing data
 
