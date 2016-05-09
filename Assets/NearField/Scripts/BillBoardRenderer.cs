@@ -1,4 +1,4 @@
-﻿/*************************************************
+/*************************************************
  * Copyright 2016
  * MxR Studio
  * School of Cinematic Arts, USC
@@ -38,14 +38,21 @@ public class BillBoardRenderer : MonoBehaviour {
     }
 
     public void LoadMovie () {
-    	if (System.IO.File.Exists(model.videoFolderPath + model.videoFileName)) {
-    		movie._folder = model.videoFolderPath;
+    	string mxrFolderPath = model.videoFolderPath + "MxR\\";
+    	string caramelCornFolderPath = model.videoFolderPath + "CaramelCorn\\";
+
+    	if (System.IO.File.Exists(mxrFolderPath + model.videoFileName)) { // it is an MxR video
+    		movie._folder = mxrFolderPath;
 			movie._filename = model.videoFileName;
 			movie.LoadMovie();
-    	} else {
-    		movie._folder = model.videoFolderPath;
-			movie._filename = "placeholder.mp4";
+			GetComponent<Renderer>().material.color = Color.white;
+    	} else if (System.IO.File.Exists(caramelCornFolderPath + model.videoFileName)) { // it is a caramel corn video
+    		movie._folder = caramelCornFolderPath;
+			movie._filename = model.videoFileName;
 			movie.LoadMovie();
+			GetComponent<Renderer>().material.color = Color.white;
+    	} else { // does not exist
+			GetComponent<Renderer>().material.color = new Color(0.082f, 0.074f, 0.082f);
     	}
 
     	
