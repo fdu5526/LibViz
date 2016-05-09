@@ -984,15 +984,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_SizeDelta.x
-      value: -17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22368870, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_Enabled
@@ -4406,6 +4406,133 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1798647742}
   m_RootOrder: 1
+--- !u!1 &1958130290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1958130296}
+  - 114: {fileID: 1958130295}
+  - 114: {fileID: 1958130294}
+  - 114: {fileID: 1958130293}
+  - 114: {fileID: 1958130292}
+  - 114: {fileID: 1958130291}
+  m_Layer: 0
+  m_Name: ZigFu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1958130291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1958130290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247918c38fcf04107aac796efc9fd102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler: {fileID: 303245546}
+  ComeInTreshod: -2000
+  stopAbstractTreshod: -1200
+--- !u!114 &1958130292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1958130290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdbd215710c9c7643bfa405519956c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isShowGUI: 0
+--- !u!114 &1958130293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1958130290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e0fbe56a984814bb55e043166b1beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadarRealWorldDimensions: {x: 4000, y: 4000}
+  PixelsPerMeter: 35
+  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  isShowGUI: 0
+--- !u!114 &1958130294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1958130290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bd747d3614fa24582c8fb99330e888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  TextureSize: 0
+  BaseColor:
+    serializedVersion: 2
+    rgba: 4278512639
+  UseHistogram: 1
+  MaxDepth: 10000
+  isShowGUI: 0
+--- !u!114 &1958130295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1958130290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b58476561a9e4043a293fcc870d7ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 0
+  settings:
+    UpdateDepth: 1
+    UpdateImage: 0
+    UpdateLabelMap: 0
+    AlignDepthToRGB: 0
+    OpenNISpecific:
+      Mirror: 1
+      UseXML: 0
+      XMLPath: 53616d706c65436f6e6669672e786d6c
+    KinectSDKSpecific:
+      UseSDKSmoothing: 0
+      SeatedMode: 0
+      NearMode: 0
+      TrackSkeletonInNearMode: 0
+      SmoothingParameters:
+        Smoothing: 0.5
+        Correction: 0.5
+        Prediction: 0.5
+        JitterRadius: 0.05
+        MaxDeviationRadius: 0.04
+    showWebPlayerLogger: 0
+  listeners: []
+  Verbose: 1
+--- !u!4 &1958130296
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1958130290}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
 --- !u!1 &1973552088
 GameObject:
   m_ObjectHideFlags: 0

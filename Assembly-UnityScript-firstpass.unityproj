@@ -75,9 +75,6 @@
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files (x86)/Unity32Bit/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
- <Reference Include="OpenNI.Net">
- <HintPath>C:/Users/Manager/Desktop/libviz/Assets/OpenNI/Scripts/OpenNI.Net.dll</HintPath>
- </Reference>
  <Reference Include="MySql.Data">
  <HintPath>C:/Users/Manager/Desktop/libviz/Assets/plugin/MySql.Data.dll</HintPath>
  </Reference>
@@ -98,6 +95,12 @@
  </Reference>
  <Reference Include="DOTween50">
  <HintPath>C:/Users/Manager/Desktop/libviz/Assets/plugin/DOTween/DOTween50.dll</HintPath>
+ </Reference>
+ <Reference Include="OpenNI.Net">
+ <HintPath>C:/Users/Manager/Desktop/libviz/Assets/ZigFu/Scripts/_Internal/OpenNI.Net.dll</HintPath>
+ </Reference>
+ <Reference Include="ZDK">
+ <HintPath>C:/Users/Manager/Desktop/libviz/Assets/ZigFu/Scripts/_Internal/ZDK.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
