@@ -1,5 +1,6 @@
 interaction
 	polish finalize UI - look at Andreas's basecamp
+		fill in fullscreen info
 	camelcorn video - 58 of them
 		play/pause button, slider
 
