@@ -82,10 +82,18 @@ public class FullscreenSelectionUI : MonoBehaviour {
 	// set this in Whirlwind.cs
 	public void SetBookInfo (BookInfo bookInfo, Sprite sprite) {
 		currentBookInfo = bookInfo;
-		fields.text = 
-			bookInfo.Title + "\n\n" + 
-			bookInfo.Author + "\n\n" + 
-			bookInfo.GetData("pub_date") + "\n\n";
+
+		string[] columns = {"title", "title_subtitle", "name", "pub_date", "pub_place", "note", "scope_content", "history"};
+		string text = "";
+		for (int i = 0; i < columns.Length; i++) {
+			string s = bookInfo.GetData(columns[i]);
+			if (s.Length > 1) {
+				text += s + "\n\n";
+			}
+
+		}
+
+		fields.text = text;
 	}
 
 	// Update is called once per frame
