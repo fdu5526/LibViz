@@ -117,7 +117,7 @@ public class BillBoardRenderer : MonoBehaviour {
 			// calculate the number of frames based on if this is MxR video or not
 			if (IsCurrentVideoMxR) {
 				model.frameCount = Mathf.CeilToInt ((float)movie._moviePlayer.FrameCount / (float)model.imagesPerFrame);
-			} else if (IsCurrentVideoCaramelCorn) {
+			} else if (IsCurrentVideoCaramelCorn) {	
 				model.frameCount = Mathf.CeilToInt ((float)movie._moviePlayer.FrameCount / (90f));
 			}
 			model.frameCount = Mathf.Max (1, model.frameCount);
@@ -139,7 +139,7 @@ public class BillBoardRenderer : MonoBehaviour {
 				if (movie._moviePlayer.FrameCount > 0) {
 					frame = (movie._moviePlayer.Frame + 1) % movie._moviePlayer.FrameCount;
 
-					fullscreenSelectionUI.SetHighlightedButton(Mathf.RoundToInt((float)frame / 90f));
+					fullscreenSelectionUI.SetHighlightedButton(Mathf.FloorToInt((float)frame / 90f));
 				}
 				fullscreenSelectionUI.SetProgress((float)frame/(float)movie._moviePlayer.FrameCount);
 			}
