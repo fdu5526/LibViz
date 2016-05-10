@@ -1,10 +1,5 @@
 interaction
 	polish finalize UI - look at Andreas's basecamp
-	camelcorn video - 58 of them
-		play/pause button, slider
-
-	still some problems with placeholder medallions - missing data
-
 
 questions
 	what to do when duplicates in bar?
