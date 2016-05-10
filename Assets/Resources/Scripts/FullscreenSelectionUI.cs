@@ -43,7 +43,7 @@ public class FullscreenSelectionUI : MonoBehaviour {
 			spriteModel.currentFrameIndex = 0;
 			spriteModel.currentRotation = 0f;
 
-			spriteModel.videoFileName = currentBookInfo.FileName + ".mp4";
+			spriteModel.videoFileName = currentBookInfo.FileName;
 			billBoardRenderer.LoadMovie();
 		}	
 	}

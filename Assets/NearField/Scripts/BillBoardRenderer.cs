@@ -39,16 +39,19 @@ public class BillBoardRenderer : MonoBehaviour {
 
     public void LoadMovie () {
     	string mxrFolderPath = model.videoFolderPath + "MxR\\";
-    	string caramelCornFolderPath = model.videoFolderPath + "CaramelCorn\\";
+    	string mxrFileName = model.videoFileName + ".mp4";
 
-    	if (System.IO.File.Exists(mxrFolderPath + model.videoFileName)) { // it is an MxR video
+    	string caramelCornFolderPath = model.videoFolderPath + "CaramelCorn\\";
+    	string caramelCornFileName = model.videoFileName + ".mov";
+
+    	if (System.IO.File.Exists(mxrFolderPath + mxrFileName)) { // it is an MxR video
     		movie._folder = mxrFolderPath;
-			movie._filename = model.videoFileName;
+			movie._filename = mxrFileName;
 			movie.LoadMovie();
 			GetComponent<Renderer>().material.color = Color.white;
-    	} else if (System.IO.File.Exists(caramelCornFolderPath + model.videoFileName)) { // it is a caramel corn video
+    	} else if (System.IO.File.Exists(caramelCornFolderPath + caramelCornFileName)) { // it is a caramel corn video
     		movie._folder = caramelCornFolderPath;
-			movie._filename = model.videoFileName;
+			movie._filename = caramelCornFileName;
 			movie.LoadMovie();
 			GetComponent<Renderer>().material.color = Color.white;
     	} else { // does not exist
