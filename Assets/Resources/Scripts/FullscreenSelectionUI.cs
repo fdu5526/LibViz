@@ -93,7 +93,9 @@ public class FullscreenSelectionUI : MonoBehaviour {
 
 		}
 
+		transform.Find("Fields").GetComponent<ScrollRect>().verticalNormalizedPosition = 1f;
 		fields.text = text;
+
 	}
 
 	// Update is called once per frame
