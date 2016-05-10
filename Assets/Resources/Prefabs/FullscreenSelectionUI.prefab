@@ -854,7 +854,7 @@ MonoBehaviour:
   m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
-  m_Elasticity: 0.1
+  m_Elasticity: 0.01
   m_Inertia: 1
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 1
@@ -972,7 +972,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -993,81 +993,6 @@ MonoBehaviour:
 
 
     Field 4
-
-
-    Field 5
-
-
-    Field 6
-
-
-    Field 7
-
-
-    Field 8
-
-
-    Field 9
-
-
-    Field 10
-
-
-    Field 11
-
-
-    Field 12
-
-
-    Field 13
-
-
-    Field 14
-
-
-    Field 15
-
-
-    Field 16
-
-
-    Field 17
-
-
-    Field 18
-
-
-    Field 19
-
-
-    Field 20
-
-
-    Field 21
-
-
-    Field 22
-
-
-    Field 23
-
-
-    Field 24
-
-
-    Field 25
-
-
-    Field 26
-
-
-    Field 27
-
-
-    Field 28
-
-
-    Field 29
 
 '
 --- !u!114 &11473508
@@ -1268,8 +1193,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11475066}
   m_HandleRect: {fileID: 22451836}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.57478005
+  m_Value: 0
+  m_Size: 0.43267107
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1627,8 +1552,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 25, y: 0.000030517578}
-  m_SizeDelta: {x: -25, y: 1023}
+  m_AnchoredPosition: {x: 25, y: 771}
+  m_SizeDelta: {x: -25, y: 1359}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &22419134
 RectTransform:
@@ -1922,14 +1847,14 @@ RectTransform:
   m_GameObject: {fileID: 146566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5671313, y: 0.56713116, z: 0.56713116}
   m_Children: []
   m_Father: {fileID: 22415562}
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.500015, y: 37}
-  m_SizeDelta: {x: 369, y: 927}
+  m_AnchoredPosition: {x: 5, y: 6}
+  m_SizeDelta: {x: 658, y: 2353}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &100100000
 Prefab:
