@@ -857,6 +857,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11494414, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 22402918, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -997,6 +1001,34 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: -41
       objectReference: {fileID: 0}
+    - target: {fileID: 11494414, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494414, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494414, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494414, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494414, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 479588225}
+    - target: {fileID: 11494414, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494414, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
   m_IsPrefabParent: 0
@@ -1136,6 +1168,12 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 450092262}
+--- !u!114 &479588225 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11406988, guid: 66049049089001c45af238af534f77fc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1489370929}
+  m_Script: {fileID: 11500000, guid: badd1968e2f3a6a4ab1297c638be0180, type: 3}
 --- !u!1 &486868587
 GameObject:
   m_ObjectHideFlags: 0
@@ -3269,6 +3307,10 @@ Prefab:
     - target: {fileID: 421058, guid: 66049049089001c45af238af534f77fc, type: 2}
       propertyPath: m_LocalScale.z
       value: 7.341477
+      objectReference: {fileID: 0}
+    - target: {fileID: 475738, guid: 66049049089001c45af238af534f77fc, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66049049089001c45af238af534f77fc, type: 2}

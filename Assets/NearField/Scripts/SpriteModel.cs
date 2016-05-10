@@ -70,15 +70,38 @@ public class SpriteModel : BillBoardModel {
 	InputManager inputManager;
 	FullscreenSelectionUI fullscreenSelectionUI;
 
+	bool isPlaying;
+	bool canPlay;
+
 	void Start () {
 		inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();		
 		fullscreenSelectionUI = GameObject.Find("FullscreenSelectionUI").GetComponent<FullscreenSelectionUI>();
 		prevFrameCount = 0;
+		isPlaying = false;
+		canPlay = false;
 	}
 
 	private void Update () {
 	
 		billboardFrameIndex = currentFrameIndex;
+
+		if (canPlay && isPlaying) {
+			currentRotation -= 0.4f;
+		}
+	}
+
+
+	public bool CanPlay { 
+		set { canPlay = value; }
+		get { return canPlay; } 
+	}
+	public bool IsPlaying { 
+		set { isPlaying = value; }
+		get { return isPlaying; } 
+	}
+
+	public void PlayPause () {
+		isPlaying = !isPlaying;
 	}
 
 	public void SetFullscreenSelectionUIFrameCount () {
@@ -87,6 +110,7 @@ public class SpriteModel : BillBoardModel {
 			prevFrameCount = frameCount;
 		}
 		
+
 	}
 	
 	public uint GetFrameIndex (float objectAngle)
@@ -113,9 +137,9 @@ public class SpriteModel : BillBoardModel {
 
 
 	void OnMouseDrag () {
-		if (inputManager.IsDragging) {
+		if (!canPlay && inputManager.IsDragging) {
 			float mouseX = Input.mousePosition.x;
-			float d = (mouseX - prevMouseX) / 2f;
+			float d = -(mouseX - prevMouseX) / 2f;
 			prevMouseX = mouseX;
 
 			// ignore extraneous input
