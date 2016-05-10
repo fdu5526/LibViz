@@ -25,6 +25,7 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		frameSelector = transform.Find("FrameSelector").gameObject;
 		frameButtons = new List<Button>();
 		frameButtons.Add(frameSelector.transform.Find("Button").GetComponent<Button>());
+		frameButtons[0].GetComponent<FrameButton>().Index = 0;
 		Enable(false);
 	}
 
@@ -43,6 +44,7 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		if (enabled) {
 			spriteModel.videoFileName = currentBookInfo.FileName;
 			billBoardRenderer.LoadMovie();
+			SetHighlightedButton(0);
 		}	
 	}
 
@@ -61,6 +63,11 @@ public class FullscreenSelectionUI : MonoBehaviour {
 				g.transform.localScale = Vector3.one;
 				g.GetComponent<FrameButton>().Index = frameButtons.Count;
 
+				ColorBlock cb = g.GetComponent<Button>().colors;
+				cb.normalColor = Color.white;
+				cb.highlightedColor = Color.white;
+				g.GetComponent<Button>().colors = cb;
+
 				frameButtons.Add(g.GetComponent<Button>());
 			} else { // remove a button
 				Destroy(frameButtons[frameButtons.Count - 1].gameObject);
@@ -69,12 +76,28 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		}
 	}
 
+
+	public void SetHighlightedButton (int index) {
+		Debug.Assert(index >= 0);
+		Debug.Assert(index < frameButtons.Count);
+
+		// highlight our current one, and all the other ones are ignored
+		for (int i = 0; i < frameButtons.Count; i++) {
+			Color c = i == index ? new Color(1f, 0.887f, 0.435f) : Color.white;
+			ColorBlock cb = frameButtons[i].colors;
+			cb.normalColor = c;
+			cb.highlightedColor = c;
+			frameButtons[i].colors = cb;	
+		}
+	}
+
 	// set the frame, only call this from  FrameButton.cs
 	public void SetCurrentFrame (int index) {
 		Debug.Assert(index >= 0);
 		Debug.Assert(index < frameButtons.Count);
 		
-		spriteModel.currentFrameIndex = index;
+		SetHighlightedButton(index);
+		billBoardRenderer.SetFrameIndex(index);
 	}
 
 	// set this in Whirlwind.cs

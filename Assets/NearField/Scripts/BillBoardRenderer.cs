@@ -30,6 +30,12 @@ public class BillBoardRenderer : MonoBehaviour {
 
 	enum VideoType { MxR, CaramelCorn, None };
 	VideoType currentVideoType;
+
+	int prevFrameCount;
+	FullscreenSelectionUI fullscreenSelectionUI;
+
+	// for autoplaying
+	bool isPlaying;
     
 	void Awake(){
 
@@ -39,6 +45,10 @@ public class BillBoardRenderer : MonoBehaviour {
 		movie._folder = model.videoFolderPath;
 		movie._filename = model.videoFileName;
 		currentVideoType = VideoType.None;
+
+		fullscreenSelectionUI = GameObject.Find("FullscreenSelectionUI").GetComponent<FullscreenSelectionUI>();
+		prevFrameCount = 0;
+		isPlaying = false;
     }
 
 
@@ -47,7 +57,7 @@ public class BillBoardRenderer : MonoBehaviour {
 
     public void LoadMovie () {
     	model.currentFrameIndex = 0;
-    	model.IsPlaying = false;
+    	isPlaying = false;
 
     	string mxrFolderPath = model.videoFolderPath + "MxR\\";
     	string mxrFileName = model.videoFileName + ".mp4";
@@ -59,16 +69,14 @@ public class BillBoardRenderer : MonoBehaviour {
     		movie._folder = mxrFolderPath;
 			movie._filename = mxrFileName;
 			movie.LoadMovie();
-			model.CanPlay = false;
 
 			GetComponent<Renderer>().material.color = Color.white;
 			currentVideoType = VideoType.MxR;
-			model.currentRotation = 0f;
+			model.currentRotation = 180f;
     	} else if (System.IO.File.Exists(caramelCornFolderPath + caramelCornFileName)) { // it is a caramel corn video
     		movie._folder = caramelCornFolderPath;
 			movie._filename = caramelCornFileName;
 			movie.LoadMovie();
-			model.CanPlay = true;
 
 			GetComponent<Renderer>().material.color = Color.white;
 			currentVideoType = VideoType.CaramelCorn;
@@ -78,6 +86,21 @@ public class BillBoardRenderer : MonoBehaviour {
     		currentVideoType = VideoType.None;
     	}
     }
+
+    // only call this from the PlayPause button in the UI
+	public void PlayPause () {
+		isPlaying = !isPlaying;
+	}
+
+	// only call this from FullScreenSelectionUI.cs
+	public void SetFrameIndex (int index) {
+		if (IsCurrentVideoMxR) {
+			model.currentFrameIndex = index;
+		} else if (IsCurrentVideoCaramelCorn) {
+			movie._moviePlayer.Frame = (uint)Mathf.RoundToInt((float)index * 90f);
+		}
+	}
+
 
 	void OnWillRenderObject ()
 	{
@@ -91,31 +114,39 @@ public class BillBoardRenderer : MonoBehaviour {
 
 		if (cam != null && hasEditorCam && movie != null &&  movie._moviePlayer != null) {
 
+			// calculate the number of frames based on if this is MxR video or not
 			if (IsCurrentVideoMxR) {
 				model.frameCount = Mathf.RoundToInt ((float)movie._moviePlayer.FrameCount / (float)model.imagesPerFrame);
-				model.frameCount = Mathf.Max (1, model.frameCount);
-			} else {
-				model.frameCount = 1;
-				//model.frameCount = Mathf.RoundToInt ((float)movie._moviePlayer.FrameCount / (120f));
-			}
-			model.SetFullscreenSelectionUIFrameCount();
-			
-
-            Vector3 camPos = new Vector3 (cam.transform.position.x, transform.position.y, cam.transform.position.z);
-			transform.LookAt (camPos);
-			
-			uint frame = 0;
-			if (IsCurrentVideoMxR) {
-			 	frame = model.GetFrameIndex (transform.localRotation.eulerAngles.y);
 			} else if (IsCurrentVideoCaramelCorn) {
+				model.frameCount = Mathf.RoundToInt ((float)movie._moviePlayer.FrameCount / (90f));
+			}
+			model.frameCount = Mathf.Max (1, model.frameCount);
+			if (model.frameCount != prevFrameCount) {
+				fullscreenSelectionUI.SetFrameCount(model.frameCount);
+				prevFrameCount = model.frameCount;
+			}
+			
+			
+			// calculate the current frame of the video (different from SpriteModel frame)
+			uint frame = movie._moviePlayer.Frame;
+			if (IsCurrentVideoMxR) {
+				//uint prevFrame = frame;
+			 	frame = model.GetFrameIndex (transform.localRotation.eulerAngles.y);
+			 	if (isPlaying) {
+			 		model.currentRotation -= 0.4f;
+			 	}
+			} else if (IsCurrentVideoCaramelCorn && isPlaying) {
 				if (movie._moviePlayer.FrameCount > 0) {
 					frame = (movie._moviePlayer.Frame + 1) % movie._moviePlayer.FrameCount;
+					fullscreenSelectionUI.SetHighlightedButton((int)(frame / 90f));
 				}
 			}
-			
             movie._moviePlayer.Frame = frame;
             billboardRenderer.material.mainTexture = movie.OutputTexture;
 
+			// make this quad the camera
+            Vector3 camPos = new Vector3 (cam.transform.position.x, transform.position.y, cam.transform.position.z);
+			transform.LookAt (camPos);
             transform.Rotate (rotationCorrection.x, rotationCorrection.y, rotationCorrection.z);
 		}
 	}
