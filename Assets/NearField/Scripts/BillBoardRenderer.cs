@@ -96,13 +96,22 @@ public class BillBoardRenderer : MonoBehaviour {
 				model.frameCount = Mathf.Max (1, model.frameCount);
 			} else {
 				model.frameCount = 1;
+				//model.frameCount = Mathf.RoundToInt ((float)movie._moviePlayer.FrameCount / (120f));
 			}
 			model.SetFullscreenSelectionUIFrameCount();
 			
 
             Vector3 camPos = new Vector3 (cam.transform.position.x, transform.position.y, cam.transform.position.z);
 			transform.LookAt (camPos);
-			uint frame = model.GetFrameIndex (transform.localRotation.eulerAngles.y);
+			
+			uint frame = 0;
+			if (IsCurrentVideoMxR) {
+			 	frame = model.GetFrameIndex (transform.localRotation.eulerAngles.y);
+			} else if (IsCurrentVideoCaramelCorn) {
+				if (movie._moviePlayer.FrameCount > 0) {
+					frame = (movie._moviePlayer.Frame + 1) % movie._moviePlayer.FrameCount;
+				}
+			}
 			
             movie._moviePlayer.Frame = frame;
             billboardRenderer.material.mainTexture = movie.OutputTexture;
