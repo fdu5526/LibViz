@@ -116,9 +116,9 @@ public class BillBoardRenderer : MonoBehaviour {
 
 			// calculate the number of frames based on if this is MxR video or not
 			if (IsCurrentVideoMxR) {
-				model.frameCount = Mathf.RoundToInt ((float)movie._moviePlayer.FrameCount / (float)model.imagesPerFrame);
+				model.frameCount = Mathf.CeilToInt ((float)movie._moviePlayer.FrameCount / (float)model.imagesPerFrame);
 			} else if (IsCurrentVideoCaramelCorn) {
-				model.frameCount = Mathf.RoundToInt ((float)movie._moviePlayer.FrameCount / (90f));
+				model.frameCount = Mathf.CeilToInt ((float)movie._moviePlayer.FrameCount / (90f));
 			}
 			model.frameCount = Mathf.Max (1, model.frameCount);
 			if (model.frameCount != prevFrameCount) {
@@ -138,11 +138,14 @@ public class BillBoardRenderer : MonoBehaviour {
 			} else if (IsCurrentVideoCaramelCorn && isPlaying) {
 				if (movie._moviePlayer.FrameCount > 0) {
 					frame = (movie._moviePlayer.Frame + 1) % movie._moviePlayer.FrameCount;
-					fullscreenSelectionUI.SetHighlightedButton((int)(frame / 90f));
+
+					fullscreenSelectionUI.SetHighlightedButton(Mathf.RoundToInt((float)frame / 90f));
 				}
+				fullscreenSelectionUI.SetProgress((float)frame/(float)movie._moviePlayer.FrameCount);
 			}
             movie._moviePlayer.Frame = frame;
             billboardRenderer.material.mainTexture = movie.OutputTexture;
+            
 
 			// make this quad the camera
             Vector3 camPos = new Vector3 (cam.transform.position.x, transform.position.y, cam.transform.position.z);

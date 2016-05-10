@@ -12,6 +12,7 @@ public class FullscreenSelectionUI : MonoBehaviour {
 	
 	SpriteModel spriteModel;
 	BillBoardRenderer billBoardRenderer;
+	Slider progressBar;
 	GameObject frameSelector;
 	List<Button> frameButtons;
 
@@ -21,6 +22,7 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		background = transform.Find("Background").gameObject;
 		spriteModel = GameObject.Find("StaticSpriteModel-Mono").GetComponent<SpriteModel>();
 		billBoardRenderer = GameObject.Find("StaticSpriteModel-Mono/BillboardRenderer").GetComponent<BillBoardRenderer>();
+		progressBar = transform.Find("ProgressBar").GetComponent<Slider>();
 
 		frameSelector = transform.Find("FrameSelector").gameObject;
 		frameButtons = new List<Button>();
@@ -74,6 +76,14 @@ public class FullscreenSelectionUI : MonoBehaviour {
 				frameButtons.RemoveAt(frameButtons.Count - 1);
 			}
 		}
+
+		SetProgress(0f);
+		progressBar.GetComponent<RectTransform>().offsetMax = new Vector2(-135f + (frameButtons.Count - 1) * 110f + 25f, -289.5f);
+	}
+
+
+	public void SetProgress (float percent) {
+		progressBar.value = percent;
 	}
 
 
