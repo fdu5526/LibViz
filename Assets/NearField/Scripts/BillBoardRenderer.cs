@@ -36,6 +36,7 @@ public class BillBoardRenderer : MonoBehaviour {
 
 	// for autoplaying
 	bool isPlaying;
+	const float caramelCornFramesPerView = 90f;
     
 	void Awake(){
 
@@ -97,7 +98,7 @@ public class BillBoardRenderer : MonoBehaviour {
 		if (IsCurrentVideoMxR) {
 			model.currentFrameIndex = index;
 		} else if (IsCurrentVideoCaramelCorn) {
-			movie._moviePlayer.Frame = (uint)Mathf.RoundToInt((float)index * 90f);
+			movie._moviePlayer.Frame = (uint)Mathf.RoundToInt((float)index * caramelCornFramesPerView);
 		}
 	}
 
@@ -118,7 +119,7 @@ public class BillBoardRenderer : MonoBehaviour {
 			if (IsCurrentVideoMxR) {
 				model.frameCount = Mathf.CeilToInt ((float)movie._moviePlayer.FrameCount / (float)model.imagesPerFrame);
 			} else if (IsCurrentVideoCaramelCorn) {	
-				model.frameCount = Mathf.CeilToInt ((float)movie._moviePlayer.FrameCount / (90f));
+				model.frameCount = Mathf.CeilToInt ((float)movie._moviePlayer.FrameCount / (caramelCornFramesPerView));
 			}
 			model.frameCount = Mathf.Max (1, model.frameCount);
 			if (model.frameCount != prevFrameCount) {
@@ -139,7 +140,7 @@ public class BillBoardRenderer : MonoBehaviour {
 				if (movie._moviePlayer.FrameCount > 0) {
 					frame = (movie._moviePlayer.Frame + 1) % movie._moviePlayer.FrameCount;
 
-					fullscreenSelectionUI.SetHighlightedButton(Mathf.FloorToInt((float)frame / 90f));
+					fullscreenSelectionUI.SetHighlightedButton(Mathf.FloorToInt((float)frame / caramelCornFramesPerView));
 				}
 				fullscreenSelectionUI.SetProgress((float)frame/(float)movie._moviePlayer.FrameCount);
 			}
