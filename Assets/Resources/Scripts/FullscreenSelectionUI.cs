@@ -78,7 +78,7 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		}
 
 		SetProgress(0f);
-		progressBar.GetComponent<RectTransform>().offsetMax = new Vector2(-135f + (frameButtons.Count - 1) * 110f + 25f, -289.5f);
+		progressBar.GetComponent<RectTransform>().offsetMax = new Vector2(-135f + (frameButtons.Count - 1) * 110f + 60f, -289.5f);
 	}
 
 

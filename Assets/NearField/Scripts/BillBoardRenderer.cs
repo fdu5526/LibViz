@@ -36,7 +36,7 @@ public class BillBoardRenderer : MonoBehaviour {
 
 	// for autoplaying
 	bool isPlaying;
-	const float caramelCornFramesPerView = 90f;
+	const float caramelCornFramesPerView = 96f;
     
 	void Awake(){
 
