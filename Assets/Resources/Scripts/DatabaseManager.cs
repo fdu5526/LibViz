@@ -190,6 +190,8 @@ public class DatabaseManager : MonoBehaviour {
 
 		Debug.Assert(filenames.Length > 0);
 
+		string[] columns = {"title", "title_subtitle", "name", "pub_date", "pub_place", "note", "scope_content", "history"};
+
 		for (int i = 0; i < numBelts; i++) {
 			int amount = (int)UnityEngine.Random.Range(15f, 30f);
 			List<BookInfo> b = new List<BookInfo>();
@@ -201,7 +203,9 @@ public class DatabaseManager : MonoBehaviour {
 				}
 
 				bi.AddData("file_name", fn);
-
+				for (int c = 0; c < columns.Length; c++) {
+					bi.AddData(columns[c], "PLACEHOLDER");
+				}
 				b.Add(bi);
 			}
 			retVal.Add(new WhirlwindBeltInfo(b, "PLACEHOLDER " + i));
