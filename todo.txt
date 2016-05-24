@@ -2,8 +2,6 @@ interaction
 
 	press holding item in desk => examine it again
 
-	desk remove threshold too low
-
 	caramelcorn
 		swipe to scrub
 	

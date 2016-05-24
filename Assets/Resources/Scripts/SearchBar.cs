@@ -31,6 +31,14 @@ public class SearchBar : MonoBehaviour, IDropHandler {
 		
 	}
 
+	void DecreaseBarByOne () {
+		if (slots.Count >= 5) {
+			Vector2 v = content.GetComponent<RectTransform>().sizeDelta;
+			v.x = v.x - 144f;
+			content.GetComponent<RectTransform>().sizeDelta = v;
+		}
+	}
+
 	public void AddSlotAtEnd () {
 		// create a new slot
 
@@ -53,6 +61,7 @@ public class SearchBar : MonoBehaviour, IDropHandler {
 
 	public void RemoveSlot (SearchSlot slot) {
 		slots.Remove(slot);
+		DecreaseBarByOne();
 	}
 
 

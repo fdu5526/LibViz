@@ -60,6 +60,7 @@ public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 		if (IsFilled) {
 			// TODO determine if this is vertical
 			whirlwind.DragItemImage(searchWhirlwindItem);
+			GetComponent<Image>().raycastTarget = false;
 		}
 	}
 
