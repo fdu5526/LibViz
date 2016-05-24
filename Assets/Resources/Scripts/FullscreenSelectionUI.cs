@@ -54,7 +54,8 @@ public class FullscreenSelectionUI : MonoBehaviour {
 	public void SetFrameCount (int frameCount) {
 		Debug.Assert(frameCount > 0);
 		Debug.Assert(frameButtons.Count > 0);
-
+		frameCount = 10;
+		
 		// add or remove buttons till we get the amount we want
 		while (frameCount != frameButtons.Count) {
 			Debug.Assert(frameButtons.Count > 0);
@@ -78,7 +79,8 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		}
 
 		SetProgress(0f);
-		progressBar.GetComponent<RectTransform>().offsetMax = new Vector2(-135f + (frameButtons.Count - 1) * 110f + 60f, -289.5f);
+		float y = progressBar.GetComponent<RectTransform>().offsetMax.y;
+		progressBar.GetComponent<RectTransform>().offsetMax = new Vector2(-135f + (frameButtons.Count - 1) * 90f + 44f, y);
 	}
 
 

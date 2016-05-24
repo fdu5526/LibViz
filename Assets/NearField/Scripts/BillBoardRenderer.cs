@@ -101,6 +101,7 @@ public class BillBoardRenderer : MonoBehaviour {
 			model.currentFrameIndex = index;
 		} else if (IsCurrentVideoCaramelCorn) {
 			movie._moviePlayer.Frame = (uint)Mathf.RoundToInt((float)index * caramelCornFramesPerView);
+			fullscreenSelectionUI.SetProgress((float)movie._moviePlayer.Frame/(float)movie._moviePlayer.FrameCount);
 		}
 	}
 
@@ -136,8 +137,7 @@ public class BillBoardRenderer : MonoBehaviour {
 			 	frame = model.GetFrameIndex (transform.localRotation.eulerAngles.y);
 			 	if (isPlaying) {
 			 		float prevRotation = model.currentRotation;
-			 		//model.currentRotation -= 0.4f;
-			 		model.currentRotation -= 4f;
+			 		model.currentRotation -= 0.4f;
 			 		model.currentRotation = model.currentRotation % 360f;
 
 			 		// rotated past the original point, time to move to the next frame
@@ -150,7 +150,7 @@ public class BillBoardRenderer : MonoBehaviour {
 			 		}
 
 			 	}
-			} else if (IsCurrentVideoCaramelCorn) {
+			} else if (IsCurrentVideoCaramelCorn && isPlaying) {
 				if (movie._moviePlayer.FrameCount > 0 && nextFrameTimer.IsOffCooldown) {
 					frame = (movie._moviePlayer.Frame + 1) % movie._moviePlayer.FrameCount;
 
