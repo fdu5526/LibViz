@@ -136,7 +136,7 @@ public class Whirlwind : MonoBehaviour {
 	}
 
 	// clicked on a single whirlwind item, do a search based on it
-	void LoadNewWhirlwindBasedOnItem (WhirlwindItem wwItem) {
+	void LoadNewWhirlwindBasedOnItem (SearchWhirlwindItem wwItem) {
 		Debug.Assert(IsEnlargedOrFullscreen);
 
 		// search based on this single item
@@ -317,12 +317,19 @@ public class Whirlwind : MonoBehaviour {
 	// only call this from WhirlwindItem.Enlarge()
 	// open the UI for enlarge selection of selected item
 	public void EnterEnlargeSelection (WhirlwindItem wwItem) {
-		enlargedItem = new SearchWhirlwindItem(wwItem);
-		LoadNewWhirlwindBasedOnItem(wwItem);
-		mainCamera.ZoomIn();
-		enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
-		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().SetBookInfo(wwItem.BookInfo, wwItem.Sprite);
+		EnterEnlargeSelection(new SearchWhirlwindItem(wwItem));
+	}
 
+	public void EnterEnlargeSelection (SearchWhirlwindItem wwItem) {
+		if (enlargedItem == null || 
+				!wwItem.BookInfo.FileName.Equals(enlargedItem.BookInfo.FileName)) {
+			enlargedItem = wwItem;
+			LoadNewWhirlwindBasedOnItem(enlargedItem);
+			mainCamera.ZoomIn();
+			enlargedSelectionUI.GetComponent<Canvas>().enabled = true;
+		}
+
+		enlargedSelectionUI.GetComponent<EnlargedSelectionUI>().SetBookInfo(enlargedItem.BookInfo, enlargedItem.Sprite);
 		LogUserInput();
 	}
 

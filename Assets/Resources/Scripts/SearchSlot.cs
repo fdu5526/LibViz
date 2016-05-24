@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 
-public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class SearchSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
 	int index;
 
@@ -11,6 +11,8 @@ public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 	Whirlwind whirlwind;
 	SearchWhirlwindItem searchWhirlwindItem;
 	SearchBar searchBar;
+	Timer holdTimer;
+	bool isHeld;
 
 	// Use this for initialization
 	void Awake () {
@@ -18,6 +20,8 @@ public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 		whirlwind = GameObject.Find("WhirlwindCenter").GetComponent<Whirlwind>();
 		searchBar = GameObject.Find("SearchUI/SearchBar").GetComponent<SearchBar>();
 		isSelected = false;
+		isHeld = false;
+		holdTimer = new Timer(0.5f);
 	}
 
 	public bool IsFilled { get { return searchWhirlwindItem != null; } }
@@ -51,9 +55,23 @@ public class SearchSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 		Destroy(this.gameObject);
 	}
 
-	public void OnPointerClick(PointerEventData eventData) {
-		// TODO if not drag
-		FlipSelection();
+	public void OnPointerDown (PointerEventData eventData) {
+		holdTimer.Reset();
+		isHeld = true;
+	}
+
+	public void OnPointerUp (PointerEventData eventData) {
+		if (isHeld) {
+			FlipSelection();
+			isHeld = false;
+		}
+	}
+
+	void FixedUpdate () {
+		if (isHeld && holdTimer.IsOffCooldown) {
+			whirlwind.EnterEnlargeSelection(searchWhirlwindItem);
+			isHeld = false;
+		}
 	}
 
 	public void OnBeginDrag(PointerEventData eventData) {

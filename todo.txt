@@ -1,12 +1,7 @@
 interaction
 
-	press holding item in desk => examine it again
-
 	caramelcorn
 		swipe to scrub
-	
-
-
 
 
 

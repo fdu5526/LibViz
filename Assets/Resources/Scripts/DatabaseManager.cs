@@ -157,7 +157,6 @@ public class DatabaseManager : MonoBehaviour {
 
 			List<BookInfo> b;
 			WhirlwindBeltInfo wwbi;
-			string column;
 
 			int amountPerBelt;
 			int prevBeltEndIndex = 0;

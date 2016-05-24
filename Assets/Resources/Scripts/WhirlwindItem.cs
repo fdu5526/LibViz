@@ -96,6 +96,14 @@ public class WhirlwindItem : PhysicsBody {
 		transform.position = idlePosition;
 	}
 
+	public void Initialize (BookInfo bookInfo) {
+		this.idlePosition = Vector3.zero;
+		this.bookInfo = bookInfo;
+
+		itemImage.GetComponent<SpriteRenderer>().sprite = GetItemSprite(bookInfo.FileName);
+		transform.position = idlePosition;	
+	}
+
 
 	public BookInfo BookInfo { get { return bookInfo; } }
 	public Transform Slot { get { return slot; } }
