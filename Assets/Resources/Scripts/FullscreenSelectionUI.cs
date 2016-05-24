@@ -16,6 +16,8 @@ public class FullscreenSelectionUI : MonoBehaviour {
 	GameObject frameSelector;
 	List<Button> frameButtons;
 
+	bool isTestMode;
+
 	// Use this for initialization
 	void Start () {
 		fields = transform.Find("Fields/Viewport/Content/Text").GetComponent<Text>();
@@ -29,6 +31,8 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		frameButtons.Add(frameSelector.transform.Find("Button").GetComponent<Button>());
 		frameButtons[0].GetComponent<FrameButton>().Index = 0;
 		Enable(false);
+
+		isTestMode = GameObject.Find("TestMode") != null;
 	}
 
 	// turn on the UI, called from Whirlwind.cs
@@ -45,7 +49,12 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		// if turning on, load the video
 		if (enabled) {
 			spriteModel.videoFileName = currentBookInfo.FileName;
-			billBoardRenderer.LoadMovie();
+			if (isTestMode) {
+				billBoardRenderer.LoadMovieTest();
+			} else {
+				billBoardRenderer.LoadMovie();
+			}
+			
 			SetHighlightedButton(0);
 		}	
 	}

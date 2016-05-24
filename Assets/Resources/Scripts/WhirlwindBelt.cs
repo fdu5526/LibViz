@@ -68,6 +68,15 @@ public class WhirlwindBelt : MonoBehaviour {
 		beltEnd.Enable(false);
 	}
 
+/////// debugging purposes only //////
+	public bool IsBeltEmpty { get { return wwItems.Count == 0; } }
+	public WhirlwindItem RandomWhirlwindItem {
+		get {
+			Debug.Assert(wwItems != null && !IsBeltEmpty);
+			return wwItems[(int)UnityEngine.Random.Range(0, wwItems.Count)];
+		}
+	}
+
 
 /////// private helper functions //////
 	// stir up an item one at a time

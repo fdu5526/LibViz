@@ -38,9 +38,6 @@ public class Whirlwind : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		UnityEngine.Random.seed = 0;
-
-		
 		WhirlwindItem.InitializeItemSprites();
 
 		currentState = State.Idle;
@@ -72,8 +69,8 @@ public class Whirlwind : MonoBehaviour {
 		defaultBookinfos = databaseManager.GetDefaultBookInfos(belts.Length);
 	}
 
+/////// debugging purposes only //////
 	// current debugging based state machine triggers
-	// TODO remove me at the end
 	void CheckInteractionWithWhirlwind () {
 		if (Input.GetKeyDown("a") && CanStirUp) {
 			StirUpFromIdle();
@@ -83,6 +80,25 @@ public class Whirlwind : MonoBehaviour {
 			End();
 		}
 	}
+
+	public WhirlwindBelt RandomWhirlwindBelt {
+		get {
+			Debug.Assert(belts != null && belts.Length > 0);
+			return belts[(int)UnityEngine.Random.Range(0, belts.Length)];
+		}
+	}
+
+	public bool PIsEnlargedOrFullscreen { get { return enlargedItem != null; } }
+
+
+
+
+
+
+
+
+
+
 
 
 	public bool CanStirUp { get { return currentState == State.Idle; } }
