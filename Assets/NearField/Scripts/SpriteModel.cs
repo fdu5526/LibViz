@@ -65,12 +65,15 @@ public class SpriteModel : BillBoardModel {
 	public string videoFolderPath;
 	public string videoFileName;
 
+	bool wasDragging;
 	float prevMouseX;
 	InputManager inputManager;
+	BillBoardRenderer bbRenderer;
 
 
 	void Start () {
-		inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();		
+		inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();	
+		bbRenderer = transform.Find("BillboardRenderer").GetComponent<BillBoardRenderer>();
 	}
 
 	private void Update () {
@@ -97,7 +100,14 @@ public class SpriteModel : BillBoardModel {
 
 
 	void OnMouseDown () {
+		wasDragging = false;
 		prevMouseX = Input.mousePosition.x;
+	}
+
+	void OnMouseUp () {
+		if (!wasDragging) {
+			bbRenderer.PlayPause();
+		}
 	}
 
 
@@ -111,6 +121,8 @@ public class SpriteModel : BillBoardModel {
 			if (Mathf.Abs(d) > 0.1f) {
 				currentRotation += d;
 			}
+
+			wasDragging = true;
 		}
 	}
 }

@@ -8,15 +8,9 @@ interaction
 	desk remove threshold too low
 
 	caramelcorn
-		slow down video playback a bit
-		tap to play/pause
 		swipe to scrub
 
 		nodes overflow
-	
-	MxR
-		for autoplay, also fill out the bar and nodes
-		auto-move-on for the next frame
 	
 
 

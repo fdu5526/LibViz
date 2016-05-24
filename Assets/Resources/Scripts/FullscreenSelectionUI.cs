@@ -101,7 +101,7 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		}
 	}
 
-	// set the frame, only call this from  FrameButton.cs
+	// set the frame, only call this from  FrameButton.cs and BillBoardRenderer.cs
 	public void SetCurrentFrame (int index) {
 		Debug.Assert(index >= 0);
 		Debug.Assert(index < frameButtons.Count);

@@ -23,7 +23,7 @@ using System.IO;
 [RequireComponent (typeof (AVProQuickTimeMovie))]
 public class BillBoardRenderer : MonoBehaviour {
 
-    public Vector3 rotationCorrection;
+  public Vector3 rotationCorrection;
 	SpriteModel model;
 	AVProQuickTimeMovie movie;
 	Renderer billboardRenderer;
@@ -37,6 +37,7 @@ public class BillBoardRenderer : MonoBehaviour {
 	// for autoplaying
 	bool isPlaying;
 	const float caramelCornFramesPerView = 96f;
+	Timer nextFrameTimer;
     
 	void Awake(){
 
@@ -50,50 +51,51 @@ public class BillBoardRenderer : MonoBehaviour {
 		fullscreenSelectionUI = GameObject.Find("FullscreenSelectionUI").GetComponent<FullscreenSelectionUI>();
 		prevFrameCount = 0;
 		isPlaying = false;
-    }
+		nextFrameTimer = new Timer(1f / 20f);
+  }
 
 
-    public bool IsCurrentVideoMxR { get { return currentVideoType == VideoType.MxR; } }
-    public bool IsCurrentVideoCaramelCorn { get { return currentVideoType == VideoType.CaramelCorn; } }
+  public bool IsCurrentVideoMxR { get { return currentVideoType == VideoType.MxR; } }
+  public bool IsCurrentVideoCaramelCorn { get { return currentVideoType == VideoType.CaramelCorn; } }
 
-    public void LoadMovie () {
-    	model.currentFrameIndex = 0;
-    	isPlaying = false;
+  public void LoadMovie () {
+  	model.currentFrameIndex = 0;
+  	isPlaying = false;
 
-    	string mxrFolderPath = model.videoFolderPath + "MxR\\";
-    	string mxrFileName = model.videoFileName + ".mp4";
+  	string mxrFolderPath = model.videoFolderPath + "MxR\\";
+  	string mxrFileName = model.videoFileName + ".mp4";
 
-    	string caramelCornFolderPath = model.videoFolderPath + "CaramelCorn\\";
-    	string caramelCornFileName = model.videoFileName + ".mov";
+  	string caramelCornFolderPath = model.videoFolderPath + "CaramelCorn\\";
+  	string caramelCornFileName = model.videoFileName + ".mov";
 
-    	if (System.IO.File.Exists(mxrFolderPath + mxrFileName)) { // it is an MxR video
-    		movie._folder = mxrFolderPath;
+  	if (System.IO.File.Exists(mxrFolderPath + mxrFileName)) { // it is an MxR video
+	  		movie._folder = mxrFolderPath;
 			movie._filename = mxrFileName;
 			movie.LoadMovie();
 
 			GetComponent<Renderer>().material.color = Color.white;
 			currentVideoType = VideoType.MxR;
 			model.currentRotation = 180f;
-    	} else if (System.IO.File.Exists(caramelCornFolderPath + caramelCornFileName)) { // it is a caramel corn video
-    		movie._folder = caramelCornFolderPath;
+  	} else if (System.IO.File.Exists(caramelCornFolderPath + caramelCornFileName)) { // it is a caramel corn video
+  		movie._folder = caramelCornFolderPath;
 			movie._filename = caramelCornFileName;
 			movie.LoadMovie();
 
 			GetComponent<Renderer>().material.color = Color.white;
 			currentVideoType = VideoType.CaramelCorn;
 			model.currentRotation = -100f;
-    	} else { // does not exist
+  	} else { // does not exist
 			GetComponent<Renderer>().material.color = new Color(0.082f, 0.074f, 0.082f);
-    		currentVideoType = VideoType.None;
-    	}
-    }
+  		currentVideoType = VideoType.None;
+  	}
+  }
 
-    // only call this from the PlayPause button in the UI
+  // only call this from the PlayPause button in the UI and spriteModel.cs
 	public void PlayPause () {
 		isPlaying = !isPlaying;
 	}
 
-	// only call this from FullScreenSelectionUI.cs
+	// only call this from FullscreenSelectionUI.cs
 	public void SetFrameIndex (int index) {
 		if (IsCurrentVideoMxR) {
 			model.currentFrameIndex = index;
@@ -101,7 +103,6 @@ public class BillBoardRenderer : MonoBehaviour {
 			movie._moviePlayer.Frame = (uint)Mathf.RoundToInt((float)index * caramelCornFramesPerView);
 		}
 	}
-
 
 	void OnWillRenderObject ()
 	{
@@ -134,14 +135,29 @@ public class BillBoardRenderer : MonoBehaviour {
 				//uint prevFrame = frame;
 			 	frame = model.GetFrameIndex (transform.localRotation.eulerAngles.y);
 			 	if (isPlaying) {
-			 		model.currentRotation -= 0.4f;
+			 		float prevRotation = model.currentRotation;
+			 		//model.currentRotation -= 0.4f;
+			 		model.currentRotation -= 4f;
+			 		model.currentRotation = model.currentRotation % 360f;
+
+			 		// rotated past the original point, time to move to the next frame
+			 		float prevRotationClamped = (Mathf.Abs(prevRotation - 180f)) % 360f;
+			 		float currentRotationClamped = (Mathf.Abs(model.currentRotation - 180f)) % 360f;
+			 		if (currentRotationClamped < prevRotationClamped) {
+			 			int i = (model.currentFrameIndex + 1) % model.frameCount;
+			 			fullscreenSelectionUI.SetCurrentFrame(i);
+			 			fullscreenSelectionUI.SetProgress((float)(i)/Mathf.Max((float)(model.frameCount - 1), 1f));
+			 		}
+
 			 	}
 			} else if (IsCurrentVideoCaramelCorn) {
-				if (movie._moviePlayer.FrameCount > 0) {
+				if (movie._moviePlayer.FrameCount > 0 && nextFrameTimer.IsOffCooldown) {
 					frame = (movie._moviePlayer.Frame + 1) % movie._moviePlayer.FrameCount;
 
 					fullscreenSelectionUI.SetHighlightedButton(Mathf.FloorToInt((float)frame / caramelCornFramesPerView));
 					fullscreenSelectionUI.SetProgress((float)frame/(float)movie._moviePlayer.FrameCount);
+
+					nextFrameTimer.Reset();
 				}
 			}
 

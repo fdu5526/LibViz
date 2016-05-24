@@ -38,6 +38,9 @@ public class Whirlwind : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		UnityEngine.Random.seed = 0;
+
+		
 		WhirlwindItem.InitializeItemSprites();
 
 		currentState = State.Idle;
