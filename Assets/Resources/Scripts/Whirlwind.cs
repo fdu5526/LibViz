@@ -346,12 +346,14 @@ public class Whirlwind : MonoBehaviour {
 	public void EnterFullScreen () {
 		Debug.Assert(IsEnlargedOrFullscreen);
 		Debug.Assert(enlargedSelectionUI.GetComponent<Canvas>().enabled);
+		if (draggedSearchItem == null) { // only if player is not dragging an item image
+			enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
+			fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().SetBookInfo(enlargedItem.BookInfo, enlargedItem.Sprite);
+			fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().Enable(true);
+			searchUI.GetComponent<SearchUI>().Enable(false);
+			LogUserInput();
+		}
 		
-		enlargedSelectionUI.GetComponent<Canvas>().enabled = false;
-		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().SetBookInfo(enlargedItem.BookInfo, enlargedItem.Sprite);
-		fullscreenSelectionUI.GetComponent<FullscreenSelectionUI>().Enable(true);
-		searchUI.GetComponent<SearchUI>().Enable(false);
-		LogUserInput();
 	}
 
 	// show detailed information about selected item

@@ -11,6 +11,8 @@ public class Timer {
 		cooldownTime = c;
 		prevActivationTime = -c;
 	}
+
+	public float PercentTimePassed { get { return 1f - PercentTimeLeft; } }
 	public float TimeLeft { get { return cooldownTime - (Time.time - prevActivationTime); } }
 	public bool IsOffCooldown { get { return Time.time - prevActivationTime > cooldownTime; } }
 	public float PercentTimeLeft { get { return 1f - TimeLeft / cooldownTime; } }

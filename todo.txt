@@ -1,7 +1,4 @@
 interaction
-	
-	examine view, tap on item image also examines => fullscreen view
-	When switching items in examine view, blink the background
 
 	press holding item in desk => examine it again
 
@@ -9,8 +6,6 @@ interaction
 
 	caramelcorn
 		swipe to scrub
-
-		nodes overflow
 	
 
 

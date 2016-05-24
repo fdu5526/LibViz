@@ -54,8 +54,7 @@ public class FullscreenSelectionUI : MonoBehaviour {
 	public void SetFrameCount (int frameCount) {
 		Debug.Assert(frameCount > 0);
 		Debug.Assert(frameButtons.Count > 0);
-		frameCount = 10;
-		
+
 		// add or remove buttons till we get the amount we want
 		while (frameCount != frameButtons.Count) {
 			Debug.Assert(frameButtons.Count > 0);
