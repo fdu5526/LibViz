@@ -136,16 +136,17 @@ public class BillBoardRenderer : MonoBehaviour {
 			 	if (isPlaying) {
 			 		model.currentRotation -= 0.4f;
 			 	}
-			} else if (IsCurrentVideoCaramelCorn && isPlaying) {
+			} else if (IsCurrentVideoCaramelCorn) {
 				if (movie._moviePlayer.FrameCount > 0) {
 					frame = (movie._moviePlayer.Frame + 1) % movie._moviePlayer.FrameCount;
 
 					fullscreenSelectionUI.SetHighlightedButton(Mathf.FloorToInt((float)frame / caramelCornFramesPerView));
+					fullscreenSelectionUI.SetProgress((float)frame/(float)movie._moviePlayer.FrameCount);
 				}
-				fullscreenSelectionUI.SetProgress((float)frame/(float)movie._moviePlayer.FrameCount);
 			}
-            movie._moviePlayer.Frame = frame;
-            billboardRenderer.material.mainTexture = movie.OutputTexture;
+
+      movie._moviePlayer.Frame = frame;
+      billboardRenderer.material.mainTexture = movie.OutputTexture;
             
 
 			// make this quad the camera

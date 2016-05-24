@@ -1,5 +1,4 @@
 interaction
-	integrate UI assets
 	
 	examine view, tap on item image also examines => fullscreen view
 	When switching items in examine view, blink the background
@@ -13,13 +12,18 @@ interaction
 		tap to play/pause
 		swipe to scrub
 
-		fix yellow fill bar during pause when clicking on nodes
-		fill out the yellow nodes along with progress bar
 		nodes overflow
 	
 	MxR
 		for autoplay, also fill out the bar and nodes
 		auto-move-on for the next frame
+	
+
+
+
+
+
+	integrate UI assets
 
 	fullscreen record on the left
 		below all information, have full record

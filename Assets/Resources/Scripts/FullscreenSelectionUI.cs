@@ -91,9 +91,9 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		Debug.Assert(index >= 0);
 		Debug.Assert(index < frameButtons.Count);
 
-		// highlight our current one, and all the other ones are ignored
+		// highlight all to the left of our current one, unlight the rest
 		for (int i = 0; i < frameButtons.Count; i++) {
-			Color c = i == index ? new Color(1f, 0.887f, 0.435f) : Color.white;
+			Color c = i <= index ? new Color(1f, 0.887f, 0.435f) : Color.white;
 			ColorBlock cb = frameButtons[i].colors;
 			cb.normalColor = c;
 			cb.highlightedColor = c;
