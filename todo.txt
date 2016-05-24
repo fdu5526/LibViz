@@ -1,5 +1,34 @@
 interaction
-	polish finalize UI - look at Andreas's basecamp
+	integrate UI assets
+	
+	examine view, tap on item image also examines => fullscreen view
+	When switching items in examine view, blink the background
+
+	press holding item in desk => examine it again
+
+	desk remove threshold too low
+
+	caramelcorn
+		slow down video playback a bit
+		tap to play/pause
+		swipe to scrub
+
+		fix yellow fill bar during pause when clicking on nodes
+		fill out the yellow nodes along with progress bar
+		nodes overflow
+	
+	MxR
+		for autoplay, also fill out the bar and nodes
+		auto-move-on for the next frame
+
+	fullscreen record on the left
+		below all information, have full record
+
+	twitter icon next to explore
+		show tweet has all the titles
+		1 tweet per item
+
+
 
 questions
 	what to do when duplicates in bar?
