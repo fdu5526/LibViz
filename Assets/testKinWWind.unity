@@ -1191,7 +1191,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1399,7 +1398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &879908098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1423,7 +1422,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247918c38fcf04107aac796efc9fd102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tracker: {fileID: 879908100}
   handler: {fileID: 879908098}
   ComeInTreshod: -2000
   stopAbstractTreshod: -800
@@ -1438,8 +1436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902bba3f7e7fd2e40ae1793fb4d3aedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UserTooCloseDistance: 1
-  MaxCalibratedUsers: 10
 --- !u!114 &879908101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1451,9 +1447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c00116da55f9b040b94047560e90dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UserTracker: {fileID: 879908100}
-  RadarRealWorldDimensions: {x: 4000, y: 4000}
-  PixelsPerMeter: 35
 --- !u!114 &879908102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1465,13 +1458,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57628ebbcb92bcb48bb3d7333f9d2300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  factor: 2
-  target: {fileID: 0}
-  DrawHand: 1
-  handColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  handPixSize: 4
 --- !u!114 &879908103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1483,9 +1469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca1396d4ffbc9547a7b7150936962c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UserTracker: {fileID: 879908100}
-  Skeletons:
-  - {fileID: 0}
 --- !u!4 &879908104
 Transform:
   m_ObjectHideFlags: 0
@@ -1602,6 +1585,146 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1087055305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1087055312}
+  - 114: {fileID: 1087055311}
+  - 114: {fileID: 1087055310}
+  - 114: {fileID: 1087055309}
+  - 114: {fileID: 1087055308}
+  - 114: {fileID: 1087055307}
+  - 114: {fileID: 1087055306}
+  m_Layer: 0
+  m_Name: ZigFu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1087055306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1087055305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99a8fb2efb0b40aca75a76e1e2ca410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whirlwind: {fileID: 303245549}
+--- !u!114 &1087055307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1087055305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247918c38fcf04107aac796efc9fd102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler: {fileID: 1087055306}
+  ComeInTreshod: -2000
+  stopAbstractTreshod: -1200
+--- !u!114 &1087055308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1087055305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdbd215710c9c7643bfa405519956c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isShowGUI: 0
+--- !u!114 &1087055309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1087055305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e0fbe56a984814bb55e043166b1beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadarRealWorldDimensions: {x: 4000, y: 4000}
+  PixelsPerMeter: 35
+  boxColor: {r: 1, g: 1, b: 1, a: 1}
+  isShowGUI: 0
+--- !u!114 &1087055310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1087055305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bd747d3614fa24582c8fb99330e888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  TextureSize: 0
+  BaseColor:
+    serializedVersion: 2
+    rgba: 4278512639
+  UseHistogram: 1
+  MaxDepth: 10000
+  isShowGUI: 0
+--- !u!114 &1087055311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1087055305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b58476561a9e4043a293fcc870d7ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 0
+  settings:
+    UpdateDepth: 1
+    UpdateImage: 0
+    UpdateLabelMap: 0
+    AlignDepthToRGB: 0
+    OpenNISpecific:
+      Mirror: 1
+      UseXML: 0
+      XMLPath: 53616d706c65436f6e6669672e786d6c
+    KinectSDKSpecific:
+      UseSDKSmoothing: 0
+      SeatedMode: 0
+      NearMode: 0
+      TrackSkeletonInNearMode: 0
+      SmoothingParameters:
+        Smoothing: 0.5
+        Correction: 0.5
+        Prediction: 0.5
+        JitterRadius: 0.05
+        MaxDeviationRadius: 0.04
+    showWebPlayerLogger: 0
+  listeners: []
+  Verbose: 1
+--- !u!4 &1087055312
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1087055305}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
 --- !u!1 &1153290119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,7 +2262,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2300,7 +2422,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
@@ -2936,7 +3057,7 @@ Prefab:
       objectReference: {fileID: 1419908872}
     - target: {fileID: 22451836, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.42521995
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22451836, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.x
@@ -2944,7 +3065,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22451836, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.43267107
       objectReference: {fileID: 0}
     - target: {fileID: 22368870, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_Enabled
@@ -2961,6 +3082,10 @@ Prefab:
     - target: {fileID: 22492302, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22415562, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 1359
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82ba5b33ad7855a499d9de979520da02, type: 2}
@@ -3175,7 +3300,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -3503,7 +3627,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -3767,7 +3890,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
