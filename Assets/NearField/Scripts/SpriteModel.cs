@@ -65,15 +65,9 @@ public class SpriteModel : BillBoardModel {
 	public string videoFolderPath;
 	public string videoFileName;
 
-	bool wasDragging;
-	float prevMouseX;
-	InputManager inputManager;
-	BillBoardRenderer bbRenderer;
 
 
 	void Start () {
-		inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();	
-		bbRenderer = transform.Find("BillboardRenderer").GetComponent<BillBoardRenderer>();
 	}
 
 	private void Update () {
@@ -96,33 +90,5 @@ public class SpriteModel : BillBoardModel {
 		float frameIndex = intFrameIndex * imagesPerFrame + processedAngle;
 
 		return (uint)(frameIndex);
-	}
-
-
-	void OnMouseDown () {
-		wasDragging = false;
-		prevMouseX = Input.mousePosition.x;
-	}
-
-	void OnMouseUp () {
-		if (!wasDragging) {
-			bbRenderer.PlayPause();
-		}
-	}
-
-
-	void OnMouseDrag () {
-		if (inputManager.IsDragging) {
-			float mouseX = Input.mousePosition.x;
-			float d = -(mouseX - prevMouseX) / 2f;
-			prevMouseX = mouseX;
-
-			// ignore extraneous input
-			if (Mathf.Abs(d) > 0.1f) {
-				currentRotation += d;
-			}
-
-			wasDragging = true;
-		}
 	}
 }

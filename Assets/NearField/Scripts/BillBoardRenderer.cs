@@ -38,6 +38,11 @@ public class BillBoardRenderer : MonoBehaviour {
 	bool isPlaying;
 	const float caramelCornFramesPerView = 96f;
 	Timer nextFrameTimer;
+
+	// interaction
+	bool wasDragging;
+	float prevMouseX;
+	InputManager inputManager;
     
 	void Awake(){
 
@@ -52,6 +57,7 @@ public class BillBoardRenderer : MonoBehaviour {
 		prevFrameCount = 0;
 		isPlaying = false;
 		nextFrameTimer = new Timer(1f / 20f);
+		inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();	
   }
 
 
@@ -139,7 +145,7 @@ public class BillBoardRenderer : MonoBehaviour {
 			 	if (isPlaying) {
 			 		float prevRotation = model.currentRotation;
 			 		model.currentRotation -= 0.4f;
-			 		model.currentRotation = model.currentRotation % 360f;
+			 		//model.currentRotation = model.currentRotation % 360f;
 
 			 		// rotated past the original point, time to move to the next frame
 			 		float prevRotationClamped = (Mathf.Abs(prevRotation - 180f)) % 360f;
@@ -161,7 +167,6 @@ public class BillBoardRenderer : MonoBehaviour {
 					nextFrameTimer.Reset();
 				}
 			}
-			print(frame);
       movie._moviePlayer.Frame = frame;
       billboardRenderer.material.mainTexture = movie.OutputTexture;
             
@@ -170,6 +175,44 @@ public class BillBoardRenderer : MonoBehaviour {
             Vector3 camPos = new Vector3 (cam.transform.position.x, transform.position.y, cam.transform.position.z);
 			transform.LookAt (camPos);
             transform.Rotate (rotationCorrection.x, rotationCorrection.y, rotationCorrection.z);
+		}
+	}
+
+
+
+
+	void OnMouseDown () {
+		wasDragging = false;
+		prevMouseX = Input.mousePosition.x;
+	}
+
+	void OnMouseUp () {
+		if (!wasDragging) {
+			PlayPause();
+		}
+	}
+
+
+	void OnMouseDrag () {
+		if (inputManager.IsDragging) {
+			float mouseX = Input.mousePosition.x;
+			float d = -(mouseX - prevMouseX) / 2f;
+			prevMouseX = mouseX;
+
+			// ignore extraneous input
+			if (Mathf.Abs(d) > 0.1f) {
+				if (IsCurrentVideoMxR) {
+					model.currentRotation += d;
+				} else if (IsCurrentVideoCaramelCorn) {
+					uint frame = (movie._moviePlayer.Frame - (uint)Mathf.RoundToInt(d) + movie._moviePlayer.FrameCount) % movie._moviePlayer.FrameCount;
+					movie._moviePlayer.Frame = frame;
+					fullscreenSelectionUI.SetHighlightedButton(Mathf.FloorToInt((float)frame / caramelCornFramesPerView));
+					fullscreenSelectionUI.SetProgress((float)frame/(float)movie._moviePlayer.FrameCount);
+				}
+				
+			}
+
+			wasDragging = true;
 		}
 	}
 }

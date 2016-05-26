@@ -47,6 +47,7 @@ public class FullscreenSelectionUI : MonoBehaviour {
 			spriteModel.videoFileName = currentBookInfo.FileName;
 			billBoardRenderer.LoadMovie();
 			SetHighlightedButton(0);
+			SetProgress(0f);
 		}	
 	}
 
@@ -108,6 +109,7 @@ public class FullscreenSelectionUI : MonoBehaviour {
 		Debug.Assert(index < frameButtons.Count);
 		
 		SetHighlightedButton(index);
+		SetProgress((float)index / (float)(frameButtons.Count - 1));
 		billBoardRenderer.SetFrameIndex(index);
 	}
 
