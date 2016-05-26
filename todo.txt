@@ -1,10 +1,5 @@
 interaction
 
-	caramelcorn
-		swipe to scrub
-
-
-
 	integrate UI assets
 
 	fullscreen record on the left
